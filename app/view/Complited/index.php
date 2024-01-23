@@ -420,7 +420,7 @@
                         </a>
                         <div style="font: 400 13px Arial; display: flex; gap: 2px; flex-direction: column;">
                             <div >Akhtar</div>
-                            <div >iniemail@pplg.id</div>
+                            <div style="font-size: 12px; font-weight:100; color:gray">iniemail@pplg.id</div>
                         </div>
                     </div>
                 </div>
