@@ -7,6 +7,6 @@ Class Solo extends Controller{
     }
 
     public function detail(){
-        $this->view("Solo/solodetail");
+        $this->view("Solo/detail");
     }
 }

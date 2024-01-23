@@ -14,10 +14,8 @@
             Solo Project
         </div>
         <div class="back" onclick="window.history.back()">
-            <svg class="group" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path d="M7.828 11H20V13H7.828L13.192 18.364L11.778 19.778L4 12L11.778 4.22205L13.192 5.63605L7.828 11Z"
-                    fill="#363942" />
+            <svg class="group" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.828 11H20V13H7.828L13.192 18.364L11.778 19.778L4 12L11.778 4.22205L13.192 5.63605L7.828 11Z" fill="#363942" />
             </svg>
         </div>
     </div>
@@ -44,92 +42,86 @@
     <div class="file">
         <div class="bg" id="attachments">
             <div style="display: flex; ">
-                <div class="menu" style="margin: 0 10px;">Attachments</div>
-                <div class="menu" style="margin: 0 10px;" onclick="AttachmentInput()">Add attachment</div>
+                <div class="menu" style="margin: 0 10px;" onclick="AddAttachments()">Attachments</div>
+                <div class="menu" style="margin: 0 10px;" onclick="Attachment()">Add attachment</div>
             </div>
-            <div class="Attachments">
-                <div style="background-image: url(figma.png);" class="img"></div>
-                <div style="margin-left: 10px;">
-                    <div style="font-size: 0.9rem;">Hospital-app.fig</div>
-                    <div style="color: #8e8e8e ; font-size: 0.8rem;">Added May 8 at 11:30PM</div>
-                    <div>
-                        <iconify-icon class="icon" icon="octicon:comment-16" flip="horizontal"></iconify-icon>
-                        <iconify-icon class="icon" icon="bi:trash"></iconify-icon>
-                        <iconify-icon class="icon" icon="uil:pen"></iconify-icon>
+            <div id="attachment">
+                <div class="Attachments">
+                    <div style="background-image: url(http://localhost/ourtaskmvc/public/image/figma.png);" class="img"></div>
+                    <div style="margin-left: 10px;">
+                        <div style="font-size: 0.9rem;">Figma</div>
+                        <div style="color: #8e8e8e ; font-size: 0.8rem;">Added May 8 at 11:30 PM</div>
+                        <div>
+                            <iconify-icon class="icon" icon="octicon:comment-16" flip="horizontal"></iconify-icon>
+                            <iconify-icon class="icon" icon="bi:trash"></iconify-icon>
+                            <iconify-icon class="icon" icon="uil:pen"></iconify-icon>
+                        </div>
+                    </div>
+                </div>
+                <div class="Attachments">
+                    <div style="background-image: url(http://localhost/ourtaskmvc/public/image/hp.jpg);" class="img"></div>
+                    <div style="margin-left: 10px;">
+                        <div style="font-size: 0.9rem;">Front End</div>
+                        <div style="color: #8e8e8e; font-size: 0.8rem;">Added May 8 at 11:30 PM</div>
+                        <div>
+                            <iconify-icon class="icon" icon="octicon:comment-16" flip="horizontal"></iconify-icon>
+                            <iconify-icon class="icon" icon="bi:trash"></iconify-icon>
+                            <iconify-icon class="icon" icon="uil:pen"></iconify-icon>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="Attachments">
-                <div style="background-image: url(hp.jpg);" class="img"></div>
-                <div style="margin-left: 10px;">
-                    <div style="font-size: 0.9rem;">Thumbnail.png</div>
-                    <div style="color: #8e8e8e; font-size: 0.8rem;">Added May 8 at 11:30PM</div>
-                    <div>
-                        <iconify-icon class="icon" icon="octicon:comment-16" flip="horizontal"></iconify-icon>
-                        <iconify-icon class="icon" icon="bi:trash"></iconify-icon>
-                        <iconify-icon class="icon" icon="uil:pen"></iconify-icon>
-                    </div>
-                </div>
+            <div class="add-attachment hide" id="add">
+                <input type="text" id="attachment-note" style="height: 20px">
+                <input type="file" id="attachment-file">
+                <button style="outline: none; border:none; height: 30px" onclick="AttachmentInput()">Upload</button>
             </div>
         </div>
     </div>
+
     <div class="finsih">
-        <button
-            style="background-color: rgba(0, 110, 233, 1); border-radius: 10px; height: 30px; width: 100%; border: none; color: white;"
-            onclick="window.location.href='../'">Finsih</button>
+        <button style="background-color: rgba(0, 110, 233, 1); border-radius: 10px; height: 30px; width: 100%; border: none; color: white;" onclick="window.location.href='http://localhost/ourtaskmvc/public/home'">Finsih</button>
     </div>
     <script>
+        var attachment = document.getElementById('attachment');
+        var addAttachments = document.getElementById('add');
+
+        function Attachment() {
+            attachment.classList.add("hide");
+            addAttachments.classList.remove("hide");
+        }
+
+        function AddAttachments() {
+            attachment.classList.remove("hide");
+            addAttachments.classList.add("hide");
+        }
+
         function AttachmentInput() {
-            // Membuat elemen Attachments
-            var attachmentDiv = document.createElement('div');
-            attachmentDiv.className = 'Attachments';
-    
-            // Membuat elemen gambar
-            var imgDiv = document.createElement('input');
-            imgDiv.type = 'file';
-            imgDiv.className = 'img';
-            attachmentDiv.appendChild(imgDiv);
-    
-            // Membuat elemen keterangan file
-            var textDiv = document.createElement('div');
-            textDiv.style.marginLeft = '10px';
-    
-            // Menambahkan elemen teks nama file
-            var fileNameDiv = document.createElement('input');
-            fileNameDiv.type = 'text';
-            fileNameDiv.style.fontSize = '0.9rem';
-            textDiv.appendChild(fileNameDiv);
-    
-            // Membuat tombol melalui JavaScript
-            var button = document.createElement('button');
-            button.textContent = 'Upload';
-            textDiv.appendChild(button);
-    
+
             var formattedTime;
-    
+
             // Fungsi untuk menampilkan waktu
             function showTime() {
                 var timeDisplay = document.getElementById('timeDisplay');
                 var currentTime = new Date();
+                var month = currentTime.toLocaleString('default', { month: 'long' });
+                var day = currentTime.getDay();
                 var hours = currentTime.getHours();
                 var minutes = currentTime.getMinutes();
-                var seconds = currentTime.getSeconds();
-                formattedTime = padZero(hours) + ':' + padZero(minutes) + ':' + padZero(seconds);
+                var formattedMonth = month.substring(0, 3);
+                var ampm = hours >= 12 ? 'PM' : 'AM';
+                formattedTime = 'Added ' + formattedMonth + ' ' + day + ' at ' + padZero(hours) + ':' + padZero(minutes) + ' ' + ampm;
             }
-    
+
             // Fungsi untuk menambahkan nol di depan angka satu digit
             function padZero(number) {
                 return (number < 10) ? '0' + number : number;
             }
-    
-            // Menambahkan pendengar acara klik ke tombol baru
-            button.addEventListener('click', function () {
-                showTime();
-                addAttachment(fileNameDiv.value, 'url placeholder', formattedTime);
-                attachmentDiv.remove();
-            });
-    
+
+            showTime(); 
+            AddAttachments();
+            addAttachment(document.getElementById("attachment-note").value, 'url placeholder', formattedTime);
+
             // Menambahkan elemen ikon komentar, sampah, dan pena
             var iconDiv = document.createElement('div');
             var icons = ['octicon:comment-16', 'bi:trash', 'uil:pen'];
@@ -139,44 +131,36 @@
                 iconifyIcon.setAttribute('icon', icon);
                 iconDiv.appendChild(iconifyIcon);
             });
-            textDiv.appendChild(iconDiv);
-    
-            // Menambahkan elemen teks ke elemen Attachments
-            attachmentDiv.appendChild(textDiv);
-    
-            // Menambahkan elemen Attachments ke dalam elemen target
-            var targetElement = document.getElementById('attachments');
-            targetElement.appendChild(attachmentDiv);
         }
-    
+
         function addAttachment(fileName, imageUrl, addedInfo) {
             // Membuat elemen Attachments
             var attachmentDiv = document.createElement('div');
             attachmentDiv.className = 'Attachments';
-    
+
             // Membuat elemen gambar
             var imgDiv = document.createElement('div');
             imgDiv.className = 'img';
             imgDiv.style.backgroundImage = 'url(' + imageUrl + ')';
             attachmentDiv.appendChild(imgDiv);
-    
+
             // Membuat elemen keterangan file
             var textDiv = document.createElement('div');
             textDiv.style.marginLeft = '10px';
-    
+
             // Menambahkan elemen teks nama file
             var fileNameDiv = document.createElement('div');
             fileNameDiv.style.fontSize = '0.9rem';
             fileNameDiv.textContent = fileName;
             textDiv.appendChild(fileNameDiv);
-    
+
             // Menambahkan elemen teks informasi tambahan
             var addedInfoDiv = document.createElement('div');
             addedInfoDiv.style.color = '#8e8e8e';
             addedInfoDiv.style.fontSize = '0.8rem';
             addedInfoDiv.textContent = addedInfo;
             textDiv.appendChild(addedInfoDiv);
-    
+
             // Menambahkan elemen ikon komentar, sampah, dan pena
             var iconDiv = document.createElement('div');
             var icons = ['octicon:comment-16', 'bi:trash', 'uil:pen'];
@@ -187,15 +171,16 @@
                 iconDiv.appendChild(iconifyIcon);
             });
             textDiv.appendChild(iconDiv);
-    
+
             // Menambahkan elemen teks ke elemen Attachments
             attachmentDiv.appendChild(textDiv);
-    
+
             // Menambahkan elemen Attachments ke dalam elemen target
-            document.getElementById('attachments').appendChild(attachmentDiv);
+            document.getElementById('attachment').appendChild(attachmentDiv);
         }
     </script>
-    
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
 </body>
 
 </html>

@@ -7,7 +7,7 @@ class Group extends Controller{
     }
 
     public function detail(){
-        $this->view("Group/groupdetail");
+        $this->view("Group/detail");
     }
 
     public function leader(){
