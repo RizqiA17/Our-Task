@@ -2,24 +2,11 @@
 
 class Home extends Controller{
     public function index(){
+        $data['title'] = 'Data Tugas';
+        $data['tugas'] = $this->model('Tugas_solo_model')->getAllTugas();
+        // var_dump($data);
         $this->view("templates/header");
-        $this->view("home/index");
-        $this->view("templates/footer");
-    }
-
-    public function mapel(){
-        $this->view("templates/header");
-        $this->view("home/mapel");
-        $this->view("templates/footer");
-    }
-    public function solo(){
-        $this->view("templates/header");
-        $this->view("home/soloproject");
-        $this->view("templates/footer");
-    }
-    public function complited(){
-        $this->view("templates/header");
-        $this->view("home/complitedtask");
+        $this->view("home/index",$data);
         $this->view("templates/footer");
     }
     public function calender(){

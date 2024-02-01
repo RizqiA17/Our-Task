@@ -42,11 +42,11 @@ a
     gap: 25px;
 }
 
-.solo
+/* .solo
 {
     flex-grow: 1;
     width: 100% !important;
-}
+} */
 
 @media (max-width: 401px)
 {
@@ -331,4 +331,8 @@ button
 
 a:hover{
     color: rgb(0, 147, 233);
+}
+
+.hide{
+    display: none;
 }

@@ -39,44 +39,47 @@
             </div>
         </div>
         <div class="container">
-            <div class="contain">
+            <div class="contain" id="content-solo">
                 <div class="sort-by top">
                     <div class="title poppins">Solo Projects</div>
                     <a href="http://localhost/ourtaskmvc/public/solo" class="poppins" style="font-size: 12px;">View All</a>
                 </div>
                 <div class="item">
-                    <div class="list solo half" onclick="window.location.href='Task-Solo'">
-                        <div class="plain">
-                            <div class="info">
-                                <div class="task work-sans task-down">Desain Web Di Figma</div>
-                                <div class="mapel work-sans">Web Developer</div>
-                            </div>
-                            <div class="deadline work-sans">
-                                <div class="logo">
-                                    <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 0.5V4.5M6 0.5V4.5M17.4826 9.5H0.517334M17.4826 9.5C17.2743 3.79277 15.154 2 9 2C2.84596 2 0.725603 3.79277 0.517334 9.5M17.4826 9.5C17.4943 9.82084 17.5 10.154 17.5 10.5C17.5 17 15.5 19 9 19C2.5 19 0.5 17 0.5 10.5C0.5 10.154 0.505626 9.82084 0.517334 9.5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
+                    <?php
+                    $total = 0;
+                    foreach ($data['tugas'] as $task) {
+                        date_default_timezone_set('Asia/Jakarta');
+                        $today = new DateTime(date('Y-m-d', time()));
+                        $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat_solo'])));
+                        $interval = date_diff($dibuat, $today);
+                        // echo $interval->format('%a days');
+                        if ($interval->format('%R') == '+' && $interval->format('%a') <= '7' && $total < 2) {
+                            $total++;
+                    ?>
+                            <div class="list solo half" onclick="window.location.href='Task-Solo'">
+                                <div class="plain">
+                                    <div class="info">
+                                        <div class="task work-sans task-down"><?= $task['nama_tugas_solo'] ?></div>
+                                        <div class="mapel work-sans"><?= $task['mapel'] ?></div>
+                                    </div>
+                                    <div class="deadline work-sans">
+                                        <div class="logo">
+                                            <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 0.5V4.5M6 0.5V4.5M17.4826 9.5H0.517334M17.4826 9.5C17.2743 3.79277 15.154 2 9 2C2.84596 2 0.725603 3.79277 0.517334 9.5M17.4826 9.5C17.4943 9.82084 17.5 10.154 17.5 10.5C17.5 17 15.5 19 9 19C2.5 19 0.5 17 0.5 10.5C0.5 10.154 0.505626 9.82084 0.517334 9.5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                        <?= $task['tgl_deadline_solo'] ?>
+                                    </div>
                                 </div>
-                                Rabu, 23 Agust 2023
                             </div>
-                        </div>
-                    </div>
-                    <div class="list solo half" onclick="window.location.href='Task-Solo'">
-                        <div class="plain">
-                            <div class="info">
-                                <div class="task work-sans task-down">Desain Web Di Figma</div>
-                                <div class="mapel work-sans">Web Developer</div>
-                            </div>
-                            <div class="deadline work-sans">
-                                <div class="logo">
-                                    <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 0.5V4.5M6 0.5V4.5M17.4826 9.5H0.517334M17.4826 9.5C17.2743 3.79277 15.154 2 9 2C2.84596 2 0.725603 3.79277 0.517334 9.5M17.4826 9.5C17.4943 9.82084 17.5 10.154 17.5 10.5C17.5 17 15.5 19 9 19C2.5 19 0.5 17 0.5 10.5C0.5 10.154 0.505626 9.82084 0.517334 9.5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                                Rabu, 23 Agust 2023
-                            </div>
-                        </div>
-                    </div>
+                        <?php
+                        } else ?>
+                        <script>
+                            var content = document.getElementById('content-solo');
+                            content.classList.add('hide');
+                        </script>
+                    <?php
+                    } ?>
                 </div>
             </div>
             <div class="contain">
@@ -241,7 +244,7 @@
                         <div class="left-content">
                             <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="#000000">
                                 <path d="M0 0h24v24H0V0z" fill="none" />
-                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="#71839B" stroke="#71839B"/>
+                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="#71839B" stroke="#71839B" />
                             </svg>
                             <div>Add Tugas</div>
                         </div>
@@ -281,7 +284,7 @@
                             <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="left-content">
                         </a>
                         <div style="font: 400 13px Arial; display: flex; gap: 2px; flex-direction: column;">
-                            <div >Akhtar</div>
+                            <div>Akhtar</div>
                             <div style="font-size: 12px; font-weight:100; color:gray">iniemail@pplg.id</div>
                         </div>
                     </div>
