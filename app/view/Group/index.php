@@ -40,7 +40,7 @@
         </div>
         <div class="container">
             <div class="contain">
-                <div>
+                <div class="" id='content'>
                     <div class="sort-by top">
                         <div class="title poppins">Lewat Deadline</div>
                         <div class="arrow">
@@ -56,98 +56,60 @@
                             </span>
                         </div>
                     </div>
+                    <script>
+                        var hide = true;
+                    </script>
                     <div class="item row-task" id="scroll-1">
-                        <div class="list" onclick="window.location.href='Task-group'">
-                            <div class="group gradient-1">
-                                <div class="group-inner-text">
-                                    <div class="mapel2 poppins">PBO</div>
-                                    <div class="task-remaining poppins">Java</div>
-                                </div>
-                            </div>
-                            <div class="bottom-group">
-                                <div class="percentage poppins">60%</div>
-                                <div class="progress-member">
-                                    <div class="progress-bar-empty">
-                                        <div class="progress-bar gradient-1" style="width: 60px;"></div>
+                        <?php foreach ($data['tugas'] as $task) {
+                            date_default_timezone_set('Asia/Jakarta');
+                            $today = new DateTime(date('Y-m-d', time()));
+                            $deadline = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_deadline_group'])));
+                            $interval = date_diff($today, $deadline);
+                            if ($interval->format('%R') == '-') {
+                        ?>
+                                <script>
+                                    hide = false
+                                </script>
+                                <div class="list" onclick="window.location.href='group/detail'">
+                                    <div class="group gradient-1">
+                                        <div class="group-inner-text">
+                                            <div class="mapel2 poppins"><?= $task['mapel'] ?></div>
+                                            <div class="task-remaining poppins"><?= $task['nama_tugas_group'] ?></div>
+                                        </div>
                                     </div>
-                                    <div class="member">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <div class="ellipse poppins">+8</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list" onclick="window.location.href='Task-group'">
-                            <div class="group gradient-1">
-                                <div class="group-inner-text">
-                                    <div class="mapel2 poppins">PBO</div>
-                                    <div class="task-remaining poppins">Java</div>
-                                </div>
-                            </div>
-                            <div class="bottom-group">
-                                <div class="percentage poppins">45%</div>
-                                <div class="progress-member">
-                                    <div class="progress-bar-empty">
-                                        <div class="progress-bar gradient-1" style="width: 45px;"></div>
-                                    </div>
-                                    <div class="member">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <div class="ellipse poppins">+8</div>
+                                    <div class="bottom-group">
+                                        <div class="percentage poppins">60%</div>
+                                        <div class="progress-member">
+                                            <div class="progress-bar-empty">
+                                                <div class="progress-bar gradient-1" style="width: 60px;"></div>
+                                            </div>
+                                            <div class="member">
+                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                <div class="ellipse poppins">+8</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="list" onclick="window.location.href='Task-group'">
-                            <div class="group gradient-1">
-                                <div class="group-inner-text">
-                                    <div class="mapel2 poppins">PBO</div>
-                                    <div class="task-remaining poppins">Java</div>
-                                </div>
-                            </div>
-                            <div class="bottom-group">
-                                <div class="percentage poppins">60%</div>
-                                <div class="progress-member">
-                                    <div class="progress-bar-empty">
-                                        <div class="progress-bar gradient-1" style="width: 60px;"></div>
-                                    </div>
-                                    <div class="member">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <div class="ellipse poppins">+8</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list" onclick="window.location.href='Task-group'">
-                            <div class="group gradient-1">
-                                <div class="group-inner-text">
-                                    <div class="mapel2 poppins">PBO</div>
-                                    <div class="task-remaining poppins">Java</div>
-                                </div>
-                            </div>
-                            <div class="bottom-group">
-                                <div class="percentage poppins">45%</div>
-                                <div class="progress-member">
-                                    <div class="progress-bar-empty">
-                                        <div class="progress-bar gradient-1" style="width: 45px;"></div>
-                                    </div>
-                                    <div class="member">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <div class="ellipse poppins">+8</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            <?php
+                            } else { ?>
+                                <script>
+                                    // alert('content')
+
+                                    if (hide) {
+                                        var content = document.getElementById('content');
+                                        content.classList.add('hide');
+                                    }
+                                </script>
+                        <?php }
+                        } ?>
                     </div>
                 </div>
-                <div>
+                <?php
+                $display2 = 'block';
+                ?>
+                <div class="" id='content2'>
                     <div class="sort-by top">
                         <div class="title poppins">Deadline Dekat</div>
                         <div class="arrow">
@@ -163,98 +125,63 @@
                             </span>
                         </div>
                     </div>
+                    <script>
+                        var hide2 = true;
+                    </script>
                     <div class="item row-task" id="scroll-2">
-                        <div class="list" onclick="window.location.href='Task-group'">
-                            <div class="group gradient-1">
-                                <div class="group-inner-text">
-                                    <div class="mapel2 poppins">PBO</div>
-                                    <div class="task-remaining poppins">Java</div>
-                                </div>
-                            </div>
-                            <div class="bottom-group">
-                                <div class="percentage poppins">60%</div>
-                                <div class="progress-member">
-                                    <div class="progress-bar-empty">
-                                        <div class="progress-bar gradient-1" style="width: 60px;"></div>
+                        <?php foreach ($data['tugas'] as $task) {
+                            date_default_timezone_set('Asia/Jakarta');
+                            $today = new DateTime(date('Y-m-d', time()));
+                            $deadline = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_deadline_group'])));
+                            $interval = date_diff($today, $deadline);
+                            // echo $interval->format('%a days');
+                            if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
+                        ?>
+                                <script>
+                                    hide2 = false
+                                </script>
+                                <div class="list" onclick="window.location.href='group/detail'">
+                                    <div class="group gradient-1">
+                                        <div class="group-inner-text">
+                                            <div class="mapel2 poppins"><?= $task['mapel'] ?></div>
+                                            <div class="task-remaining poppins"><?= $task['nama_tugas_group'] ?></div>
+                                        </div>
                                     </div>
-                                    <div class="member">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <div class="ellipse poppins">+8</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list" onclick="window.location.href='Task-group'">
-                            <div class="group gradient-1">
-                                <div class="group-inner-text">
-                                    <div class="mapel2 poppins">PBO</div>
-                                    <div class="task-remaining poppins">Java</div>
-                                </div>
-                            </div>
-                            <div class="bottom-group">
-                                <div class="percentage poppins">45%</div>
-                                <div class="progress-member">
-                                    <div class="progress-bar-empty">
-                                        <div class="progress-bar gradient-1" style="width: 45px;"></div>
-                                    </div>
-                                    <div class="member">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <div class="ellipse poppins">+8</div>
+                                    <div class="bottom-group">
+                                        <div class="percentage poppins">60%</div>
+                                        <div class="progress-member">
+                                            <div class="progress-bar-empty">
+                                                <div class="progress-bar gradient-1" style="width: 60px;"></div>
+                                            </div>
+                                            <div class="member">
+                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                <div class="ellipse poppins">+8</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="list" onclick="window.location.href='Task-group'">
-                            <div class="group gradient-1">
-                                <div class="group-inner-text">
-                                    <div class="mapel2 poppins">PBO</div>
-                                    <div class="task-remaining poppins">Java</div>
-                                </div>
-                            </div>
-                            <div class="bottom-group">
-                                <div class="percentage poppins">60%</div>
-                                <div class="progress-member">
-                                    <div class="progress-bar-empty">
-                                        <div class="progress-bar gradient-1" style="width: 60px;"></div>
-                                    </div>
-                                    <div class="member">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <div class="ellipse poppins">+8</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list" onclick="window.location.href='Task-group'">
-                            <div class="group gradient-1">
-                                <div class="group-inner-text">
-                                    <div class="mapel2 poppins">PBO</div>
-                                    <div class="task-remaining poppins">Java</div>
-                                </div>
-                            </div>
-                            <div class="bottom-group">
-                                <div class="percentage poppins">45%</div>
-                                <div class="progress-member">
-                                    <div class="progress-bar-empty">
-                                        <div class="progress-bar gradient-1" style="width: 45px;"></div>
-                                    </div>
-                                    <div class="member">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <div class="ellipse poppins">+8</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            <?php
+                            } else { ?>
+                                <script>
+                                    // alert('content')
+
+                                    if (hide2) {
+                                        var content = document.getElementById('content2');
+                                        content.classList.add('hide');
+                                    }
+                                </script>
+                            <?php
+                            } ?>
+                        <?php
+                        } ?>
                     </div>
                 </div>
-                <div>
+                <script>
+                    hide3 = true
+                </script>
+                <div class="" id='content3'>
                     <div class="sort-by top">
                         <div class="title poppins">Tugas Baru</div>
                         <div class="arrow">
@@ -271,94 +198,52 @@
                         </div>
                     </div>
                     <div class="item row-task" id="scroll-3">
-                        <div class="list" onclick="window.location.href='Task-group'">
-                            <div class="group gradient-1">
-                                <div class="group-inner-text">
-                                    <div class="mapel2 poppins">PBO</div>
-                                    <div class="task-remaining poppins">Java</div>
-                                </div>
-                            </div>
-                            <div class="bottom-group">
-                                <div class="percentage poppins">0%</div>
-                                <div class="progress-member">
-                                    <div class="progress-bar-empty">
-                                        <div class="progress-bar gradient-1" style="width: 0px;"></div>
+                        <?php foreach ($data['tugas'] as $task) {
+                            date_default_timezone_set('Asia/Jakarta');
+                            $today = new DateTime(date('Y-m-d', time()));
+                            $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat_group'])));
+                            $interval = date_diff($dibuat, $today);
+                            if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
+                        ?>
+                                <script>
+                                    hide3 = false
+                                </script>
+                                <div class="list" onclick="window.location.href='group/detail'">
+                                    <div class="group gradient-1">
+                                        <div class="group-inner-text">
+                                            <div class="mapel2 poppins"><?=$task['mapel']?></div>
+                                            <div class="task-remaining poppins"><?=$task['nama_tugas_group']?></div>
+                                        </div>
                                     </div>
-                                    <div class="member">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <div class="ellipse poppins">+8</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list" onclick="window.location.href='Task-group'">
-                            <div class="group gradient-1">
-                                <div class="group-inner-text">
-                                    <div class="mapel2 poppins">PBO</div>
-                                    <div class="task-remaining poppins">Java</div>
-                                </div>
-                            </div>
-                            <div class="bottom-group">
-                                <div class="percentage poppins">2%</div>
-                                <div class="progress-member">
-                                    <div class="progress-bar-empty">
-                                        <div class="progress-bar gradient-1" style="width: 2px;"></div>
-                                    </div>
-                                    <div class="member">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <div class="ellipse poppins">+8</div>
+                                    <div class="bottom-group">
+                                        <div class="percentage poppins">0%</div>
+                                        <div class="progress-member">
+                                            <div class="progress-bar-empty">
+                                                <div class="progress-bar gradient-1" style="width: 0px;"></div>
+                                            </div>
+                                            <div class="member">
+                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                <div class="ellipse poppins">+8</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="list" onclick="window.location.href='Task-group'">
-                            <div class="group gradient-1">
-                                <div class="group-inner-text">
-                                    <div class="mapel2 poppins">PBO</div>
-                                    <div class="task-remaining poppins">Java</div>
-                                </div>
-                            </div>
-                            <div class="bottom-group">
-                                <div class="percentage poppins">5%</div>
-                                <div class="progress-member">
-                                    <div class="progress-bar-empty">
-                                        <div class="progress-bar gradient-1" style="width: 5px;"></div>
-                                    </div>
-                                    <div class="member">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <div class="ellipse poppins">+8</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list" onclick="window.location.href='Task-group'">
-                            <div class="group gradient-1">
-                                <div class="group-inner-text">
-                                    <div class="mapel2 poppins">PBO</div>
-                                    <div class="task-remaining poppins">Java</div>
-                                </div>
-                            </div>
-                            <div class="bottom-group">
-                                <div class="percentage poppins">0%</div>
-                                <div class="progress-member">
-                                    <div class="progress-bar-empty">
-                                        <div class="progress-bar gradient-1" style="width: 0px;"></div>
-                                    </div>
-                                    <div class="member">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                        <div class="ellipse poppins">+8</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            <?php
+                            } else { ?>
+                                <script>
+                                    // alert('content')
+
+                                    if (hide3) {
+                                        var content = document.getElementById('content3');
+                                        content.classList.add('hide');
+                                    }
+                                </script>
+                            <?php
+                            } ?>
+                        <?php
+                        } ?>
                     </div>
                 </div>
             </div>
@@ -459,7 +344,7 @@
                             <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="left-content">
                         </a>
                         <div style="font: 400 13px Arial; display: flex; gap: 2px; flex-direction: column;">
-                            <div >Akhtar</div>
+                            <div>Akhtar</div>
                             <div style="font-size: 12px; font-weight:100; color:gray">iniemail@pplg.id</div>
                         </div>
                     </div>

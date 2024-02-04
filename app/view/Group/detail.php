@@ -10,10 +10,16 @@
 </head>
 
 <body>
-    <nav>
-        <iconify-icon onclick="window.history.back()" icon="ep:back"></iconify-icon>
-        <div style="margin: 0% 20px; text-align: center; width: 100%; ">Member Task</div>
-    </nav>
+<div class="header">
+        <div class="title">
+            Member Task
+        </div>
+        <div class="back" onclick="window.history.back()">
+            <svg class="group" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.828 11H20V13H7.828L13.192 18.364L11.778 19.778L4 12L11.778 4.22205L13.192 5.63605L7.828 11Z" fill="#363942" />
+            </svg>
+        </div>
+    </div>
 
     <div class="bg">
         <div style="font-weight: bold; ">High-fidelityt design</div>
@@ -45,7 +51,8 @@
         </div>
         <div id="attachment">
             <div class="Attachments">
-                <div style="background-image: url(http://localhost/ourtaskmvc/public/image/figma.png);" class="img"></div>
+                <div style="background-image: url(http://localhost/ourtaskmvc/public/image/figma.png);" class="img">
+                </div>
                 <div style="margin-left: 10px;">
                     <div style="font-size: 0.9rem;">Figma</div>
                     <div style="color: #8e8e8e ; font-size: 0.8rem;">Added May 8 at 11:30 PM</div>
@@ -80,9 +87,11 @@
         <div>Activity</div>
         <div style="display: flex; align-items: center; margin-top: 15px;">
             <div class="profile"></div>
-            <input type="text" id="comment-box" style="width: 100%; height: 20px; padding:5px; margin-bottom: 10px" placeholder="Write a comment">
+            <input type="text" id="comment-box" style="width: 100%; height: 20px; padding:5px; margin-bottom: 10px"
+                placeholder="Write a comment">
         </div>
-        <button class="" style="width: 100%; height: 30px; outline:none; border:none;" onclick="AddComment()">Send</button>
+        <button class="" style="width: 100%; height: 30px; outline:none; border:none;"
+            onclick="AddComment()">Send</button>
         <div style="width: 100%; height: 2px; background: rgb(239, 239, 239); margin-top: 20px;"></div>
         <div class="comment" id="comment">
 
@@ -92,8 +101,10 @@
                 <div style="font-size: 0.8rem; margin-left: 7px; color: #8e8e8e;">May 8 at 11:41 PM</div>
             </div>
             <div class="comment-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis eos architecto voluptas itaque similique
-                autem necessitatibus, rerum reprehenderit voluptates est, consequuntur quod ullam officia, deleniti iusto?
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis eos architecto voluptas itaque
+                similique
+                autem necessitatibus, rerum reprehenderit voluptates est, consequuntur quod ullam officia, deleniti
+                iusto?
                 Provident unde assumenda hic.</div>
             <!-- <div style="display: flex; align-items: center;">
                 <iconify-icon icon="fluent:emoji-add-16-regular"></iconify-icon>

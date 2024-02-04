@@ -42,148 +42,109 @@
             <div class="contain" id="content-solo">
                 <div class="sort-by top">
                     <div class="title poppins">Solo Projects</div>
-                    <a href="http://localhost/ourtaskmvc/public/solo" class="poppins" style="font-size: 12px;">View All</a>
+                    <a href="http://localhost/ourtaskmvc/public/solo" class="poppins" style="font-size: 12px;">View
+                        All</a>
                 </div>
                 <div class="item">
                     <script>
-                        var hide = false;
+                        var hide = true;
                     </script>
                     <?php
                     $total = 0;
-                    foreach ($data['tugas'] as $task) {
+                    foreach ($data['tugas_solo'] as $task) {
                         date_default_timezone_set('Asia/Jakarta');
                         $today = new DateTime(date('Y-m-d', time()));
                         $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat_solo'])));
                         $interval = date_diff($dibuat, $today);
-                        // echo $interval->format('%a days');
-                        if ($interval->format('%R') == '+' && $interval->format('%a') <= '7' && $total < 2) {
-                            $total++;
+                        if ($total < 2) {
+                            if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
+                                $total++;
                     ?>
-                            <script>
-                                hide = false
-                            </script>
-                            <div class="list solo half" onclick="window.location.href='Task-Solo'">
-                                <div class="plain">
-                                    <div class="info">
-                                        <div class="task work-sans task-down"><?= $task['nama_tugas_solo'] ?></div>
-                                        <div class="mapel work-sans"><?= $task['mapel'] ?></div>
-                                    </div>
-                                    <div class="deadline work-sans">
-                                        <div class="logo">
-                                            <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M12 0.5V4.5M6 0.5V4.5M17.4826 9.5H0.517334M17.4826 9.5C17.2743 3.79277 15.154 2 9 2C2.84596 2 0.725603 3.79277 0.517334 9.5M17.4826 9.5C17.4943 9.82084 17.5 10.154 17.5 10.5C17.5 17 15.5 19 9 19C2.5 19 0.5 17 0.5 10.5C0.5 10.154 0.505626 9.82084 0.517334 9.5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
+                                <script>
+                                    hide = false
+                                </script>
+                                <div class="list solo half" onclick="window.location.href='Solo/detail'">
+                                    <div class="plain">
+                                        <div class="info">
+                                            <div class="task work-sans task-down">
+                                                <?= $task['nama_tugas_solo'] ?>
+                                            </div>
+                                            <div class="mapel work-sans">
+                                                <?= $task['mapel'] ?>
+                                            </div>
                                         </div>
-                                        <?= $task['tgl_deadline_solo'] ?>
+                                        <div class="deadline work-sans">
+                                            <div class="logo">
+                                                <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M12 0.5V4.5M6 0.5V4.5M17.4826 9.5H0.517334M17.4826 9.5C17.2743 3.79277 15.154 2 9 2C2.84596 2 0.725603 3.79277 0.517334 9.5M17.4826 9.5C17.4943 9.82084 17.5 10.154 17.5 10.5C17.5 17 15.5 19 9 19C2.5 19 0.5 17 0.5 10.5C0.5 10.154 0.505626 9.82084 0.517334 9.5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </div>
+                                            <?= $task['tgl_deadline_solo'] ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php
+                            } else { ?>
+                                <script>
+                                    if (hide) {
+                                        var content = document.getElementById('content-solo');
+                                        content.classList.add('hide');
+                                    }
+                                </script>
+                    <?php }
+                        }
+                    } ?>
+                </div>
+            </div>
+            <div class="contain" id="content-group">
+                <div class="sort-by top">
+                    <div class="title poppins">Group Projects</div>
+                    <a href="http://localhost/ourtaskmvc/public/group" class="poppins" style="font-size: 12px;">View
+                        All</a>
+                </div>
+                <div class="item row-task">
+                    <script>
+                        var hide = true;
+                    </script>
+                    <?php
+                    foreach ($data['tugas_group'] as $task) {
+                        date_default_timezone_set('Asia/Jakarta');
+                        $today = new DateTime(date('Y-m-d', time()));
+                        $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat_group'])));
+                        $interval = date_diff($dibuat, $today);
+                        if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
+                    ?>
+                            <div class="list" onclick="window.location.href='Group/detail'">
+                                <div class="group gradient-1">
+                                    <div class="group-inner-text">
+                                        <div class="mapel2 poppins"><?= $task['mapel'] ?></div>
+                                        <div class="task-remaining poppins"><?= $task['nama_tugas_group'] ?></div>
+                                    </div>
+                                </div>
+                                <div class="bottom-group">
+                                    <div class="percentage poppins">60%</div>
+                                    <div class="progress-member">
+                                        <div class="progress-bar-empty">
+                                            <div class="progress-bar gradient-1" style="width: 60px;"></div>
+                                        </div>
+                                        <div class="member">
+                                            <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                            <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                            <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                            <div class="ellipse poppins">+8</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        <?php
-                        } else { ?>
+                        <?php } else { ?>
                             <script>
                                 if (hide) {
-                                    var content = document.getElementById('content-solo');
+                                    var content = document.getElementById('content-group');
                                     content.classList.add('hide');
                                 }
                             </script>
                     <?php }
                     } ?>
-                </div>
-            </div>
-            <div class="contain">
-                <div class="sort-by top">
-                    <div class="title poppins">Group Projects</div>
-                    <a href="http://localhost/ourtaskmvc/public/group" class="poppins" style="font-size: 12px;">View All</a>
-                </div>
-                <div class="item row-task">
-                    <div class="list" onclick="window.location.href='Task-group'">
-                        <div class="group gradient-1">
-                            <div class="group-inner-text">
-                                <div class="mapel2 poppins">PBO</div>
-                                <div class="task-remaining poppins">Java</div>
-                            </div>
-                        </div>
-                        <div class="bottom-group">
-                            <div class="percentage poppins">60%</div>
-                            <div class="progress-member">
-                                <div class="progress-bar-empty">
-                                    <div class="progress-bar gradient-1" style="width: 60px;"></div>
-                                </div>
-                                <div class="member">
-                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                    <div class="ellipse poppins">+8</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list" onclick="window.location.href='Task-group'">
-                        <div class="group gradient-1">
-                            <div class="group-inner-text">
-                                <div class="mapel2 poppins">PBO</div>
-                                <div class="task-remaining poppins">Java</div>
-                            </div>
-                        </div>
-                        <div class="bottom-group">
-                            <div class="percentage poppins">45%</div>
-                            <div class="progress-member">
-                                <div class="progress-bar-empty">
-                                    <div class="progress-bar gradient-1" style="width: 45px;"></div>
-                                </div>
-                                <div class="member">
-                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                    <div class="ellipse poppins">+8</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list" onclick="window.location.href='Task-group'">
-                        <div class="group gradient-1">
-                            <div class="group-inner-text">
-                                <div class="mapel2 poppins">PBO</div>
-                                <div class="task-remaining poppins">Java</div>
-                            </div>
-                        </div>
-                        <div class="bottom-group">
-                            <div class="percentage poppins">60%</div>
-                            <div class="progress-member">
-                                <div class="progress-bar-empty">
-                                    <div class="progress-bar gradient-1" style="width: 60px;"></div>
-                                </div>
-                                <div class="member">
-                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                    <div class="ellipse poppins">+8</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list" onclick="window.location.href='Task-group'">
-                        <div class="group gradient-1">
-                            <div class="group-inner-text">
-                                <div class="mapel2 poppins">PBO</div>
-                                <div class="task-remaining poppins">Java</div>
-                            </div>
-                        </div>
-                        <div class="bottom-group">
-                            <div class="percentage poppins">45%</div>
-                            <div class="progress-member">
-                                <div class="progress-bar-empty">
-                                    <div class="progress-bar gradient-1" style="width: 45px;"></div>
-                                </div>
-                                <div class="member">
-                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                    <div class="ellipse poppins">+8</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -231,7 +192,7 @@
                             <div>Calendar</div>
                         </div>
                     </button>
-                    <button class="navigation" onclick="pathFind('complatedtask')">
+                    <button class="navigation" onclick="pathFind('complited')">
                         <div class="left-content">
                             <svg class="check-ring" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle id="logo" cx="10" cy="10" r="7.5" stroke="#71839B" stroke-width="2" />

@@ -56,7 +56,9 @@
                             </span>
                         </div>
                     </div>
-                    <script>var hide = true;</script>
+                    <script>
+                        var hide = true;
+                    </script>
                     <div class="item row-task" id="scroll-1">
                         <?php foreach ($data['tugas'] as $task) {
                             date_default_timezone_set('Asia/Jakarta');
@@ -65,8 +67,10 @@
                             $interval = date_diff($today, $deadline);
                             if ($interval->format('%R') == '-') {
                         ?>
-                        <script>hide=false</script>
-                                <div class="solo list" onclick="window.location.href='Task-Solo'">
+                                <script>
+                                    hide = false
+                                </script>
+                                <div class="solo list" onclick="window.location.href='Solo/detail'">
                                     <div class="plain">
                                         <div class="info">
                                             <div class="task work-sans task-down"><?= $task['nama_tugas_solo'] ?></div>
@@ -83,20 +87,23 @@
                                     </div>
                                 </div>
                             <?php
-                            } else{ ?>
-                            <script>
-                                // alert('content')
-                                
-                                if(hide){
-                                    var content = document.getElementById('content');
-                                    content.classList.add('hide');
-                                }
-                                    </script>
+                            } else { ?>
+                                <script>
+                                    // alert('content')
+
+                                    if (hide) {
+                                        var content = document.getElementById('content');
+                                        content.classList.add('hide');
+                                    }
+                                </script>
                         <?php }
                         } ?>
                     </div>
                 </div>
-                <div>
+                <?php
+                $display2 = 'block';
+                ?>
+                <div style="display:<?= $display2; ?>;">
                     <div class="sort-by top">
                         <div class="title poppins">Deadline Dekat</div>
                         <div class="arrow">
@@ -121,11 +128,11 @@
                             // echo $interval->format('%a days');
                             if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
                         ?>
-                                <div class="solo list" onclick="window.location.href='Task-Solo'">
+                                <div class="solo list" onclick="window.location.href='Solo/detail'">
                                     <div class="plain">
                                         <div class="info">
                                             <div class="task work-sans task-down"><?= $task['nama_tugas_solo'] ?></div>
-                                            <div class="mapel work-sans"><?=$task['mapel']?></div>
+                                            <div class="mapel work-sans"><?= $task['mapel'] ?></div>
                                         </div>
                                         <div class="deadline work-sans">
                                             <div class="logo">
@@ -168,11 +175,11 @@
                             // echo $interval->format('%a days');
                             if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
                         ?>
-                                <div class="solo list" onclick="window.location.href='Task-Solo'">
+                                <div class="solo list" onclick="window.location.href='Solo/detail'">
                                     <div class="plain">
                                         <div class="info">
-                                            <div class="task work-sans task-down"><?= $task['nama_tugas_solo']?></div>
-                                            <div class="mapel work-sans"><?=$task['mapel']?></div>
+                                            <div class="task work-sans task-down"><?= $task['nama_tugas_solo'] ?></div>
+                                            <div class="mapel work-sans"><?= $task['mapel'] ?></div>
                                         </div>
                                         <div class="deadline work-sans">
                                             <div class="logo">
@@ -185,7 +192,7 @@
                                     </div>
                                 </div>
                             <?php
-                            }?>
+                            } ?>
                         <?php
                         } ?>
                     </div>
