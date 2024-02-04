@@ -45,6 +45,9 @@
                     <a href="http://localhost/ourtaskmvc/public/solo" class="poppins" style="font-size: 12px;">View All</a>
                 </div>
                 <div class="item">
+                    <script>
+                        var hide = false;
+                    </script>
                     <?php
                     $total = 0;
                     foreach ($data['tugas'] as $task) {
@@ -56,6 +59,9 @@
                         if ($interval->format('%R') == '+' && $interval->format('%a') <= '7' && $total < 2) {
                             $total++;
                     ?>
+                            <script>
+                                hide = false
+                            </script>
                             <div class="list solo half" onclick="window.location.href='Task-Solo'">
                                 <div class="plain">
                                     <div class="info">
@@ -73,12 +79,14 @@
                                 </div>
                             </div>
                         <?php
-                        } else ?>
-                        <script>
-                            var content = document.getElementById('content-solo');
-                            content.classList.add('hide');
-                        </script>
-                    <?php
+                        } else { ?>
+                            <script>
+                                if (hide) {
+                                    var content = document.getElementById('content-solo');
+                                    content.classList.add('hide');
+                                }
+                            </script>
+                    <?php }
                     } ?>
                 </div>
             </div>

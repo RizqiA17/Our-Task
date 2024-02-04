@@ -56,6 +56,7 @@
                             </span>
                         </div>
                     </div>
+                    <script>var hide = true;</script>
                     <div class="item row-task" id="scroll-1">
                         <?php foreach ($data['tugas'] as $task) {
                             date_default_timezone_set('Asia/Jakarta');
@@ -64,10 +65,7 @@
                             $interval = date_diff($today, $deadline);
                             if ($interval->format('%R') == '-') {
                         ?>
-                        <!-- <script>
-                            var content = document.getElementById('content');
-                            content.classList.remove('hide');
-                        </script> -->
+                        <script>hide=false</script>
                                 <div class="solo list" onclick="window.location.href='Task-Solo'">
                                     <div class="plain">
                                         <div class="info">
@@ -87,17 +85,17 @@
                             <?php
                             } else{ ?>
                             <script>
-                                alert('content')
-                                var content = document.getElementById('content');
-                                content.classList.add('hide');
-                            </script>
+                                // alert('content')
+                                
+                                if(hide){
+                                    var content = document.getElementById('content');
+                                    content.classList.add('hide');
+                                }
+                                    </script>
                         <?php }
                         } ?>
                     </div>
                 </div>
-                <?php 
-                $display2 = 'block';
-                ?>
                 <div>
                     <div class="sort-by top">
                         <div class="title poppins">Deadline Dekat</div>
@@ -140,9 +138,7 @@
                                     </div>
                                 </div>
                             <?php
-                            } else 
-                            $display2 = 'none'; ?>
-                            <div class style="height: 150px;"></div>
+                            } ?>
                         <?php
                         } ?>
                     </div>
