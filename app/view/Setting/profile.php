@@ -23,7 +23,7 @@
         }
     </style>
 </head>
-
+<?php session_start(); ?>  
 <body class="bg-[#006EE9] " style="overflow: hidden;">
     <div class="" style="margin: 40px 20px 10px 20px;">
         <a onclick="window.history.back(); " style="position: absolute;">
@@ -45,7 +45,7 @@
     <div class="bg-white w-[100%]  mt-14 pt-14 text-center" style="height: calc(100vh - 120px)">
 
         <div class="bg-white shadow-lg rounded-lg px-5 mx-5 h-[130px]">
-            <div class="mt-5 text-lg font-bold text-[#006EE9]">Muhammad Faqih</div>
+            <div class="mt-5 text-lg font-bold text-[#006EE9]"><?= $_SESSION['nama']?></div>
             <div class="mt-3 font-medium">UI UX Designer</div>
             <div class="grid grid-cols-3 place-items-center mt-5">
                 <div class="flex ml-2 items-center">

@@ -130,6 +130,7 @@ body
 {
     padding: 7px 10px;
     border-radius: 1rem;
+    cursor: pointer;
 }
 
 .add-attachment

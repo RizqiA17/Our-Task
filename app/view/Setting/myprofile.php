@@ -9,11 +9,15 @@
     <link rel="icon" href="" media="(prefers-color-scheme: light)">
     <link rel="icon" href="" media="(prefers-color-scheme: dark)">
     <style>
-        input{
+        input {
             outline: none;
+        }
+        ::-ms-reveal {
+            display: none !important;
         }
     </style>
 </head>
+<?php session_start(); ?>
 
 <body class="bg-[#006EE9] ">
     <div class="" style="margin: 40px 20px 10px 20px;">
@@ -38,21 +42,29 @@
         <div class="px-7 py-10 ">
             <div class="mt-4">
                 <label class="pt-10 text-[#006EE9] font-medium " for="">Name</label>
-                <input type="text" class="mt-1 flex border-2 border-[#bdd3ec] rounded-lg w-[100%] px-4 py-3 text-sm " value="Faiq Rafiq">
+                <label type="text" class="mt-1 flex border-2 border-[#bdd3ec] rounded-lg w-[100%] px-4 py-3 text-sm "><?= $_SESSION['nama'] ?></label>
             </div>
             <div class="mt-4">
-                <label class="pt-10 text-[#006EE9] font-medium " for="">Profession</label>
-                <input type="text" class="mt-1 flex border-2 border-[#bdd3ec] rounded-lg w-[100%] px-4 py-3 text-sm " value="UI UX Designer">
+                <label class="pt-10 text-[#006EE9] font-medium " for="">Class</label>
+                <label type="text" class="mt-1 flex border-2 border-[#bdd3ec] rounded-lg w-[100%] px-4 py-3 text-sm ">XI PPLG 1</label>
             </div>
             <div class="mt-4">
                 <label class="mt-4 text-[#006EE9] font-medium " for="">Date of Birth</label>
-                <input type="date" class="mt-1 flex border-2 border-[#bdd3ec] rounded-lg w-[100%] px-4 py-3 text-sm " value="2007-01-12">
+                <label type="date" class="mt-1 flex border-2 border-[#bdd3ec] rounded-lg w-[100%] px-4 py-3 text-sm ">2007-01-12</label>
             </div>
-            <div class="mt-4">
-                <label class="pt-10 text-[#006EE9] font-medium " for="">Email</label>
-                <input type="email" class="mt-1 flex border-2 border-[#bdd3ec] rounded-lg w-[100%] px-4 py-3 text-sm " value="iniemail@pplg.id">
-            </div>
-            <button class="bg-[#006EE9] w-[100%] rounded-lg mt-6 h-[40px] text-white">save</button>
+            <br>
+            Change Email
+            <form action="ChangeEmail" method="post">
+                <div class="mt-4">
+                    <label class="pt-10 text-[#006EE9] font-medium " for="">Email</label>
+                    <input type="email" name="email" id="email" class="mt-1 flex border-2 border-[#bdd3ec] rounded-lg w-[100%] px-4 py-3 text-sm " placeholder="New Email">
+                </div>
+                <div class="mt-4">
+                    <label class="pt-10 text-[#006EE9] font-medium " for="">Password</label>
+                    <input type="password" name="password" id="password" class="mt-1 flex border-2 border-[#bdd3ec] rounded-lg w-[100%] px-4 py-3 text-sm " placeholder="Enter Password to Change Email">
+                </div>
+                <button class="bg-[#006EE9] w-[100%] rounded-lg mt-6 h-[40px] text-white">save</button>
+            </form>
 
 
 
