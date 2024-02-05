@@ -29,7 +29,7 @@
                 </svg>
             </div>
         </a>
-        <div class=" text-white font-bold " style="width: 100%; text-align: center;">My Profile</div>
+        <div class=" text-white font-bold " style="width: 100%; text-align: center;">Security</div>
     </div>
 
 
@@ -45,15 +45,15 @@
                 <label type="text" class="mt-1 flex border-2 border-[#bdd3ec] rounded-lg w-[100%] px-4 py-3 text-sm "><?= $_SESSION['nama'] ?></label>
             </div>
             <br>
-            Change Email
+            Change Password
             <form action="ChangeEmail" method="post">
                 <div class="mt-4">
-                    <label class="pt-10 text-[#006EE9] font-medium " for="">Email</label>
-                    <input type="email" name="email" id="email" class="mt-1 flex border-2 border-[#bdd3ec] rounded-lg w-[100%] px-4 py-3 text-sm " placeholder="New Email">
+                    <label class="pt-10 text-[#006EE9] font-medium " for="">Password</label>
+                    <input type="password" name="email" id="email" class="mt-1 flex border-2 border-[#bdd3ec] rounded-lg w-[100%] px-4 py-3 text-sm " placeholder="Password Now">
                 </div>
                 <div class="mt-4">
                     <label class="pt-10 text-[#006EE9] font-medium " for="">Password</label>
-                    <input type="password" name="password" id="password" class="mt-1 flex border-2 border-[#bdd3ec] rounded-lg w-[100%] px-4 py-3 text-sm " placeholder="Enter Password to Change Email">
+                    <input type="password" name="password" id="password" class="mt-1 flex border-2 border-[#bdd3ec] rounded-lg w-[100%] px-4 py-3 text-sm " placeholder="New Password">
                 </div>
                 <button class="bg-[#006EE9] w-[100%] rounded-lg mt-6 h-[40px] text-white">save</button>
             </form>

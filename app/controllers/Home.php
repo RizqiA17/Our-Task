@@ -6,15 +6,9 @@ class Home extends Controller{
         $data['tugas_solo'] = $this->model('Tugas_solo_model')->getAllTugas();
         $data['tugas_group'] = $this->model('Tugas_group_model')->getAllTugas();
         
-        // var_dump($_SESSION['nama']);
-        if(isset($_SESSION['nama'])) {
             $this->view("templates/header");
             $this->view("home/index",$data);
             $this->view("templates/footer");
-        } else {
-            header("Location: http://localhost/ourtaskmvc/public/login");
-            $this->view("Login/index");
-        }
     }
     public function calender(){
         $this->view("Home/calender");

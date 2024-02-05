@@ -4,7 +4,21 @@ class Controller
 {
     public function view($view,  $data = [])
     {
-        require_once("../app/view/" . $view . ".php");
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        // var_dump($_SESSION['nama']);
+        if (isset($_SESSION['nama'])) {
+            require_once("../app/view/" . $view . ".php");
+        } else {
+            $url = BASEURL . $view;
+            // var_dump($url);
+            if ($url == 'http://localhost/ourtaskmvc/public/Login/register') {
+                require_once("../app/view/Login/register.php");
+            } else {
+                require_once("../app/view/Login/index.php");
+            }
+        }
     }
 
     public function model($model)

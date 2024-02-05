@@ -23,7 +23,8 @@
         }
     </style>
 </head>
-<?php session_start(); ?>  
+<?php session_start(); ?>
+
 <body class="bg-[#006EE9] " style="overflow: hidden;">
     <div class="" style="margin: 40px 20px 10px 20px;">
         <a onclick="window.history.back(); " style="position: absolute;">
@@ -44,30 +45,13 @@
     </div>
     <div class="bg-white w-[100%]  mt-14 pt-14 text-center" style="height: calc(100vh - 120px)">
 
-        <div class="bg-white shadow-lg rounded-lg px-5 mx-5 h-[130px]">
-            <div class="mt-5 text-lg font-bold text-[#006EE9]"><?= $_SESSION['nama']?></div>
-            <div class="mt-3 font-medium">UI UX Designer</div>
-            <div class="grid grid-cols-3 place-items-center mt-5">
-                <div class="flex ml-2 items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#006EE9">
-                        <path d="M0 0h24v24H0z" fill="none" />
-                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                    </svg>
-                    <div class="text-sm ">Bogor, Indonesia</div>
-                </div>
-                <div class="h-[30px] w-[2px] rounded-xl bg-[#658dd7]"></div>
-                <div class="flex ml-2 items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#006EE9">
-                        <path d="M0 0h24v24H0z" fill="none" />
-                        <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z" />
-                    </svg>
-                    <div class="text-sm ">6969 Task Completed</div>
-                </div>
-            </div>
+        <div class="bg-white shadow-lg rounded-lg px-5 mx-5 " style="height: 100px;">
+            <div class="mt-5 text-lg font-bold text-[#006EE9]"><?= $_SESSION['nama'] ?></div>
+            <div class="mt-3 font-medium"><?= $_SESSION['email'] ?></div>
         </div>
 
 
-        <div class="px-7 py-10 mt-16">
+        <div class="px-7 py-10 ">
             <!--  -->
             <a href="http://localhost/ourtaskmvc/public/setting/myprofile">
                 <div class="flex my-8 items-center btn">
@@ -78,22 +62,6 @@
                     <div class="ml-3">My Profile</div>
                 </div>
             </a>
-            <!--  -->
-            <div class="flex my-8 items-center ">
-                <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 0 24 24" width="28px" fill="#006EE9">
-                    <path d="M0 0h24v24H0z" fill="none" />
-                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
-                </svg>
-                <div class="ml-3">Statistic</div>
-            </div>
-            <!--  -->
-            <div class="flex my-8 items-center ">
-                <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 0 24 24" width="28px" fill="#006EE9">
-                    <path d="M0 0h24v24H0z" fill="none" />
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                </svg>
-                <div class="ml-3">Location</div>
-            </div>
             <!--  -->
             <a href="http://localhost/ourtaskmvc/public/setting">
                 <div class="flex my-8 items-center ">
@@ -113,12 +81,13 @@
                         <path d="M0 0h24v24H0z" fill="none" />
                         <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" />
                     </svg>
-                    <div class="ml-3">Logout</div>
+                    <form action="http://localhost/ourtaskmvc/public/home/logout">
+                        <button type="submit" method="post">
+                            <div class="ml-3">Logout</div>
+                        </button>
+                    </form>
                 </div>
             </a>
-
-
-
         </div>
     </div>
 </body>

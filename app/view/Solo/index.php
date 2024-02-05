@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="container.css">
     <title>Home</title>
 </head> -->
-<?php session_start();?>
 <body>
     <div>
         <div class="header">
