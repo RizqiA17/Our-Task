@@ -22,17 +22,17 @@ class Login extends Controller
 
     public function signin()
     {
-        var_dump($_POST["email"]);
+        // var_dump($_POST["email"]);
         $email = $_POST['email'];
         $password = $_POST['password'];
 
         $data['signin'] = $this->model('Profile_model')->getAccount($email, $password);
         session_start();
         if (!is_null($data)) {
-            // var_dump($data['signin'][0]['nama']);
-            $_SESSION['nama'] = $data['signin'][0]['nama'];
+            $_SESSION['nama'] = $data['signin'][0]['name'];
             $_SESSION['email'] =  $data['signin'][0]['email'];
-            $_SESSION['nis'] =  $data['signin'][0]['nis'];
+            $_SESSION['id'] = $data['signin'][0]['id'];
+            $_SESSION['status'] = $data['signin'][0]['status'];
             header("Location:" . BASEURL . "home");
         }
         // if($data['signin'] == null)

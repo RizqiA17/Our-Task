@@ -2,6 +2,15 @@ body
 {
     font-family: Arial, Helvetica, sans-serif;
     padding: 10px 30px 30px 30px;
+    height: calc(100vh - 56px);
+}
+
+.add-task-form
+{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .header
@@ -12,9 +21,217 @@ body
     margin: 36px;
 }
 
+.container
+{
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(236, 236, 236);
+    border: none;
+    padding: 20px;
+    border-radius: 20px;
+}
+
 .title
 {
     font: 600 22px 'Poppins', sans-serif;
+}
+
+textarea
+{
+    resize: none;
+    margin-bottom: 10px;
+    height: 50px;
+    width: 100%;
+    border: solid 1px gray;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+input[type="date"]
+{}
+
+input[type="date"],
+input[type="file"],
+select
+{
+    box-sizing: border-box;
+    padding: 2px;
+    height: 25px;
+    width: 200px;
+    outline: none;
+}
+
+
+label
+{
+    font: 400 18px 'Poppins', sans-serif;
+}
+
+.task-setting
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sett
+{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.leader
+{
+    height: 40px;
+    width: 40px;
+    margin: 10px;
+    border-radius: 25px;
+}
+
+div.leader
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    box-sizing: border-box;
+    border: dotted 3px;
+    height: 40px;
+    width: 40px;
+}
+
+button[type="submit"]
+{
+    bottom: 30px;
+    background-color: rgba(62, 74, 222, 1);
+    font: 400 14px 'Poppins', sans-serif;
+    color: white;
+    border: none;
+    height: 40px;
+    width: 100%;
+    margin-top: 30px;
+    border-radius: 10px;
+}
+
+@media (max-width: 1200px)
+{
+
+    input[type="date"],
+    input[type="file"],
+    select
+    {
+        width: 140px;
+    }
+}
+
+@media (max-width: 1000px)
+{
+
+    input[type="date"],
+    input[type="file"],
+    select
+    {
+        width: 100px;
+    }
+}
+
+@media (max-width: 800px)
+{  
+    .container{
+        height: fit-content;
+    }
+
+    .task-setting
+    {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        justify-content: center;
+        align-items: start;
+    }
+
+    .sett{
+        width: 100%;
+    }
+
+    .sett label{
+        width: 125px;
+    }
+
+    input[type="date"],
+    input[type="file"],
+    select
+    {
+        width: 100%;
+    }
+}
+
+@media (max-width: 425px)
+{  
+    .container{
+        height: fit-content;
+    }
+
+    .task-setting
+    {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        justify-content: center;
+        align-items: start;
+    }
+
+    .sett{
+        width: 100%;
+    }
+
+    .sett label{
+        width: 150px;
+    }
+
+    input[type="date"],
+    input[type="file"],
+    select
+    {
+        width: 100%;
+    }
+}
+
+@media (max-width: 425px)
+{  
+    .container{
+        height: fit-content;
+    }
+
+    .task-setting
+    {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        justify-content: center;
+        align-items: start;
+    }
+
+    .sett{
+        width: 100%;
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .sett label{
+        width: 150px;
+    }
+
+    input[type="date"],
+    input[type="file"],
+    select
+    {
+        width: 100%;
+    }
 }
 
 .back
@@ -28,6 +245,12 @@ body
 .task-title
 {
     font: 700 25px 'Poppins', sans-serif;
+    margin-bottom: 10px;
+    border: solid 1px gray;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 5px;
+    width: 100%;
 }
 
 .bottom-detail
@@ -146,9 +369,8 @@ body
     display: none;
 }
 
-.comment{
-    
-}
+.comment
+{}
 
 .comment-username
 {
@@ -163,4 +385,48 @@ body
     border-radius: 1rem;
     margin: 15px 0px;
     font-size: 0.8rem;
+}
+
+.list_siswa
+{
+    margin: 40px 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.item
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.name
+{
+    display: flex;
+    flex-direction: column;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+.responses
+{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.submit-date
+{
+    margin-right: 10px;
+}
+
+.approve,
+.reject
+{
+    cursor: pointer;
 }

@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="container.css">
-    <title>Mapel</title>
-</head>
 <body>
     <div>
         <div class="header">
@@ -47,8 +34,13 @@
             <div class="contain">
                 <div class="sort-by top">Mapel</div>
                 <div class="item mapel">
+                    <?php 
+
+                    foreach($data['mapel'] as $mapel){
+
+                    ?>
                     <div class="list mapel-group" onclick="window.location.href='List-Mapel'">
-                        <div class="mapel-top  gradient-2">PBO</div>
+                        <div class="mapel-top  gradient-2"><?= $mapel['mapel'] ?></div>
                         <div class="information">
                             <div class="task-tota poppins">12 Tugas</div>
                             <select id="">
@@ -60,58 +52,9 @@
                             </select>
                         </div>
                     </div>
-                    <div class="list mapel-group" onclick="window.location.href='List-Mapel'">
-                        <div class="mapel-top  gradient-2">PBO</div>
-                        <div class="information">
-                            <div class="task-tota poppins">12 Tugas</div>
-                            <select id="">
-                                <option value="">Belum Selesai</option>
-                                <option value="">Selesai</option>
-                                <option value="">Terbaru</option>
-                                <option value="">Lewat Deadline</option>
-                                <option value="">Dekat Deadline</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="list mapel-group" onclick="window.location.href='List-Mapel'">
-                        <div class="mapel-top  gradient-2">PBO</div>
-                        <div class="information">
-                            <div class="task-tota poppins">12 Tugas</div>
-                            <select id="">
-                                <option value="">Belum Selesai</option>
-                                <option value="">Selesai</option>
-                                <option value="">Terbaru</option>
-                                <option value="">Lewat Deadline</option>
-                                <option value="">Dekat Deadline</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="list mapel-group" onclick="window.location.href='List-Mapel'">
-                        <div class="mapel-top  gradient-2">PBO</div>
-                        <div class="information">
-                            <div class="task-tota poppins">12 Tugas</div>
-                            <select id="">
-                                <option value="">Belum Selesai</option>
-                                <option value="">Selesai</option>
-                                <option value="">Terbaru</option>
-                                <option value="">Lewat Deadline</option>
-                                <option value="">Dekat Deadline</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="list mapel-group" onclick="window.location.href='List-Mapel'">
-                        <div class="mapel-top  gradient-2">PBO</div>
-                        <div class="information">
-                            <div class="task-tota poppins">12 Tugas</div>
-                            <select id="">
-                                <option value="">Belum Selesai</option>
-                                <option value="">Selesai</option>
-                                <option value="">Terbaru</option>
-                                <option value="">Lewat Deadline</option>
-                                <option value="">Dekat Deadline</option>
-                            </select>
-                        </div>
-                    </div>
+
+                    <?php }
+                    ?>
                 </div>
             </div>
         </div>

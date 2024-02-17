@@ -1,7 +1,7 @@
 <?php
 
 class Profile_model{
-    private $table = "akun";
+    private $table = "profile";
     private $db;
 
     public function __construct(){

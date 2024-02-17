@@ -1,7 +1,7 @@
 <?php
 
 class Tugas_group_model{
-    private $table = "tugas_group";
+    private $table = "task_group";
     private $db;
 
     public function __construct(){

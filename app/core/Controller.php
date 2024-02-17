@@ -13,7 +13,7 @@ class Controller
         } else {
             $url = BASEURL . $view;
             // var_dump($url);
-            if ($url == 'http://localhost/ourtaskmvc/public/Login/register') {
+            if ($url == BASEURL.'Login/register') {
                 require_once("../app/view/Login/register.php");
             } else {
                 require_once("../app/view/Login/index.php");

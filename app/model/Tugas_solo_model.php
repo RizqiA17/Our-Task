@@ -1,7 +1,7 @@
 <?php
 
 class Tugas_solo_model{
-    private $table = "tugas_solo";
+    private $table = "task_solo";
     private $db;
 
     public function __construct(){
