@@ -15,6 +15,12 @@ class Mapel_model{
         return $this->db->resultSet();
     }
 
+    public function mengajar(){
+        // echo$_SESSION['id'];
+        $this->db->query("SELECT * FROM ".$this->table." JOIN kelas ON ".$this->table.".id_kelas = kelas.id WHERE id_profile = ".$_SESSION['id']);
+        return $this->db->resultSet();        
+    }
+
     
 
 }

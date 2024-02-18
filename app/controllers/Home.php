@@ -38,7 +38,9 @@ class Home extends Controller
 
     public function addtask()
     {
-        $this->view("Home/addtask");
+        // $this->model('Mapel_model')->mengajar();
+        $data['kelas']=$this->model('Mapel_model')->mengajar();
+        $this->view("Home/addtask", $data);
     }
 
     public function addnewtask()
@@ -46,11 +48,12 @@ class Home extends Controller
         $title = $_POST['title'];
         $detail = $_POST['detail'];
         $deadline = date('Y-m-d', strtotime($_POST['deadline']));
-        $taskmode = $_POST['mode'];
-        $filename = $_POST['file-name'];
+        // $taskmode = $_POST['mode'];
+        // $filename = $_POST['file-name'];
         $kelas = $_POST['kelas'];
-        echo $title . $detail . $deadline . $taskmode . $filename . $kelas . $_SESSION['mapel'];
-        $addTask = $this->model('Task_' . $taskmode . '_model')->addTask($title, $detail, $deadline, $taskmode, $filename, $_SESSION['mapel'], $kelas);
+        // echo $title . $detail . $deadline . $taskmode . $filename . $kelas . $_SESSION['mapel'];
+        // $addTask = $this->model('Task_' . $taskmode . '_model')->addTask($title, $detail, $deadline, $taskmode, $filename, $_SESSION['mapel'], $kelas);
+        $addTask = $this->model('Task_solo_model')->addTask($title, $detail, $deadline,'', $_SESSION['mapel'], $kelas);
         var_dump($addTask);
         $murid = $this->model('Kelas_model')->getAllSiswaWithKelas($kelas);
         // var_dump($murid);
@@ -58,6 +61,16 @@ class Home extends Controller
             $this->model('Task_solo_distribution_model')->distributingTasks($addTask[0]['id'], $murid[$i]['id_profile']);
         }
         header("Location:" . BASEURL . "home");
+    }
+    public function getDetail()
+    {
+        $id_task = $_POST['idtask'];
+        echo $id_task;
+        // session_start();
+        // $data['task'] = $this->model('Task_solo_distribution_model')->getTaskDetail($_SESSION['id_task'], $_SESSION['id']);
+        // $data['task_file'] = $this->model('Task_solo_distribution_model')->taskFile($_SESSION['id_task'], $_SESSION['id']);
+        // var_dump($data);
+        // $this->view("Solo/detail", $data);
     }
 
     public function logout()

@@ -23,7 +23,6 @@
         }
     </style>
 </head>
-<?php session_start(); ?>
 
 <body class="bg-[#006EE9] " style="overflow: hidden;">
     <div class="" style="margin: 40px 20px 10px 20px;">

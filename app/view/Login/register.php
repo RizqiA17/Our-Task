@@ -17,22 +17,21 @@
     </style>
     <title>Sign Up</title>
 </head>
-
 <body>
     <div class="header">
         <div class="title">OUR TASK</div>
         <div class="sub-title general-text-font">Task Management</div>
     </div>
-    <div class="container">
-        <div class="login general-text-font">Create your account</div>
-        <form>
+    <form action="<?= BASEURL ?>login/register" method="post">
+        <div class="container">
+            <div class="login general-text-font">Create your account</div>
             <div class="input-box">
                 <div class="logo">
                     <svg class="profile" width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6.04998 8.56306C8.87008 8.56306 11.25 9.02131 11.25 10.7893C11.25 12.558 8.85448 13 6.04998 13C3.23052 13 0.849976 12.5417 0.849976 10.7737C0.849976 9.00506 3.24547 8.56306 6.04998 8.56306ZM6.04998 0C7.96039 0 9.49107 1.53012 9.49107 3.43918C9.49107 5.34825 7.96039 6.87902 6.04998 6.87902C4.14021 6.87902 2.60889 5.34825 2.60889 3.43918C2.60889 1.53012 4.14021 0 6.04998 0Z" fill="white" />
                     </svg>
                 </div>
-                <input type="number" placeholder="NIS" class="input">
+                <input type="number" placeholder="NIS" name="no_induk" class="input" required>
             </div>
             <div class="input-box">
                 <div class="logo">
@@ -40,7 +39,7 @@
                         <path d="M13.1448 0.5C14.2623 0.5 15.3373 0.941667 16.1282 1.73417C16.9198 2.525 17.3623 3.59167 17.3623 4.70833V11.2917C17.3623 13.6167 15.4707 15.5 13.1448 15.5H4.91235C2.58651 15.5 0.695679 13.6167 0.695679 11.2917V4.70833C0.695679 2.38333 2.57818 0.5 4.91235 0.5H13.1448ZM14.0873 4.83333C13.9123 4.82417 13.7457 4.88333 13.6198 5L9.86234 8C9.37901 8.40083 8.68651 8.40083 8.19568 8L4.44568 5C4.18651 4.80833 3.82818 4.83333 3.61235 5.05833C3.38735 5.28333 3.36235 5.64167 3.55318 5.89167L3.66235 6L7.45401 8.95833C7.92068 9.325 8.48651 9.525 9.07901 9.525C9.66985 9.525 10.2457 9.325 10.7115 8.95833L14.4707 5.95L14.5373 5.88333C14.7365 5.64167 14.7365 5.29167 14.5282 5.05C14.4123 4.92583 14.2532 4.85 14.0873 4.83333Z" fill="white" />
                     </svg>
                 </div>
-                <input type="email" id="" placeholder="Email" class="input">
+                <input type="email" id="" placeholder="Email" name="email" class="input" required>
             </div>
             <div class="input-box">
                 <div class="logo">
@@ -49,7 +48,7 @@
                     </svg>
                 </div>
                 <div class="input password">
-                    <input type="password" id="password" placeholder="Password">
+                    <input type="password" id="password" placeholder="Password" name="password" minlength="8" required>
                     <!-- <span class="material-symbols-outlined" id="toggleIcon">&#xe8f5;</span> -->
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000" class="material-symbols-outlined" id="toggleIcon">
                         <path id="toogleOff" d="M12 6c3.79 0 7.17 2.13 8.82 5.5-.59 1.22-1.42 2.27-2.41 3.12l1.41 1.41c1.39-1.23 2.49-2.77 3.18-4.53C21.27 7.11 17 4 12 4c-1.27 0-2.49.2-3.64.57l1.65 1.65C10.66 6.09 11.32 6 12 6zm-1.07 1.14L13 9.21c.57.25 1.03.71 1.28 1.28l2.07 2.07c.08-.34.14-.7.14-1.07C16.5 9.01 14.48 7 12 7c-.37 0-.72.05-1.07.14zM2.01 3.87l2.68 2.68C3.06 7.83 1.77 9.53 1 11.5 2.73 15.89 7 19 12 19c1.52 0 2.98-.29 4.32-.82l3.42 3.42 1.41-1.41L3.42 2.45 2.01 3.87zm7.5 7.5l2.61 2.61c-.04.01-.08.02-.12.02-1.38 0-2.5-1.12-2.5-2.5 0-.05.01-.08.01-.13zm-3.4-3.4l1.75 1.75c-.23.55-.36 1.15-.36 1.78 0 2.48 2.02 4.5 4.5 4.5.63 0 1.23-.13 1.77-.36l.98.98c-.88.24-1.8.38-2.75.38-3.79 0-7.17-2.13-8.82-5.5.7-1.43 1.72-2.61 2.93-3.53z" />
@@ -64,7 +63,7 @@
                     </svg>
                 </div>
                 <div class="input password">
-                    <input type="password" id="confirm-password" placeholder="Confirm Password" style="flex-grow: 1;">
+                    <input type="password" id="confirm-password" placeholder="Confirm Password" name="cnfrmpass" style="flex-grow: 1;" minlength="8" required>
                     <!-- <span class="material-symbols-outlined" id="toggleIcon-2">&#xe8f5;</span> -->
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000" class="material-symbols-outlined" id="toggleIcon-2">
                         <path id="toogleOff-2" d="M12 6c3.79 0 7.17 2.13 8.82 5.5-.59 1.22-1.42 2.27-2.41 3.12l1.41 1.41c1.39-1.23 2.49-2.77 3.18-4.53C21.27 7.11 17 4 12 4c-1.27 0-2.49.2-3.64.57l1.65 1.65C10.66 6.09 11.32 6 12 6zm-1.07 1.14L13 9.21c.57.25 1.03.71 1.28 1.28l2.07 2.07c.08-.34.14-.7.14-1.07C16.5 9.01 14.48 7 12 7c-.37 0-.72.05-1.07.14zM2.01 3.87l2.68 2.68C3.06 7.83 1.77 9.53 1 11.5 2.73 15.89 7 19 12 19c1.52 0 2.98-.29 4.32-.82l3.42 3.42 1.41-1.41L3.42 2.45 2.01 3.87zm7.5 7.5l2.61 2.61c-.04.01-.08.02-.12.02-1.38 0-2.5-1.12-2.5-2.5 0-.05.01-.08.01-.13zm-3.4-3.4l1.75 1.75c-.23.55-.36 1.15-.36 1.78 0 2.48 2.02 4.5 4.5 4.5.63 0 1.23-.13 1.77-.36l.98.98c-.88.24-1.8.38-2.75.38-3.79 0-7.17-2.13-8.82-5.5.7-1.43 1.72-2.61 2.93-3.53z" />
@@ -72,12 +71,12 @@
                     </svg>
                 </div>
             </div>
-        </form>
-        <a href="" class="general-text-font forgot-password">Forgot password?</a>
-    </div>
-    <button class="general-text-font login-btn" onclick="window.location.href='http://localhost/ourtaskmvc/public/home'">Login</button>
+        </div>
+        <div class="err-msg"><?php if (isset($_SESSION['signup_err'])) echo $_SESSION['signup_err'] ?></div>
+        <button class="general-text-font login-btn" type="submit">Signup</button>
+    </form>
     <div class="sign-up">
-        <label for="" class="general-text-font sign-up-text">Don't have an account?</label>
+        <label for="" class="general-text-font sign-up-text">Have an account?</label>
         <a href="http://localhost/ourtaskmvc/public/login" class="general-text-font sign-up-text">Sign In</a>
     </div>
     <script>

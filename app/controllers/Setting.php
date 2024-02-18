@@ -20,10 +20,13 @@ class Setting extends Controller
     }
     public function ChangeEmail()
     {
-        session_start();
+        if(session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         $email = $_POST['email'];
         $password = $_POST['password'];
         $data['ChangeEmail'] = $this->model("Profile_model")->VallPass();
+        var_dump($data);
         if (!is_null($data)) {
             if ($password == $data['ChangeEmail'][0]['password']) {
                 $this->model("Profile_model")->ChangeEmail($email);

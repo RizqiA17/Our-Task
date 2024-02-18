@@ -44,7 +44,7 @@ textarea
     margin-bottom: 10px;
     height: 50px;
     width: 100%;
-    border: solid 1px gray;
+    border: none;
     border-radius: 5px;
     box-sizing: border-box;
     padding: 5px;
@@ -246,7 +246,7 @@ button[type="submit"]
 {
     font: 700 25px 'Poppins', sans-serif;
     margin-bottom: 10px;
-    border: solid 1px gray;
+    border: none;
     border-radius: 5px;
     box-sizing: border-box;
     padding: 5px;

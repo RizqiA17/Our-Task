@@ -1,17 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="container.css">
-    <title>Home</title>
-</head> -->
 <body>
     <div>
         <div class="header">
@@ -59,18 +45,18 @@
                 </script>
                 <div class="item row-task" id="scroll-1">
                     <?php
-                    foreach ($data['tugas_solo'] as $task) {
-                        $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat_solo'])));
+                    foreach ($data['task_solo'] as $task) {
+                        $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat'])));
                         $selesai = (int) $task['status_selesai'];
                         if ($selesai > 0) {
                     ?>
                             <script>
                                 hide = false
                             </script>
-                            <div class="solo list" onclick="window.location.href='Task-Solo'">
+                            <div class="solo list" onclick="pathFind('solo/detail')">
                                 <div class="plain">
                                     <div class="info">
-                                        <div class="task work-sans task-down"><?= $task['nama_tugas_solo'] ?></div>
+                                        <div class="task work-sans task-down"><?= $task['name'] ?></div>
                                         <div class="mapel work-sans"><?= $task['mapel'] ?></div>
                                     </div>
                                     <div class="deadline work-sans">
@@ -79,7 +65,7 @@
                                                 <path d="M12 0.5V4.5M6 0.5V4.5M17.4826 9.5H0.517334M17.4826 9.5C17.2743 3.79277 15.154 2 9 2C2.84596 2 0.725603 3.79277 0.517334 9.5M17.4826 9.5C17.4943 9.82084 17.5 10.154 17.5 10.5C17.5 17 15.5 19 9 19C2.5 19 0.5 17 0.5 10.5C0.5 10.154 0.505626 9.82084 0.517334 9.5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </div>
-                                        <?= $task['tgl_deadline_solo'] ?>
+                                        <?= $task['tgl_deadline'] ?>
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +88,7 @@
                     } ?>
                 </div>
             </div>
-            <div class="contain">
+            <!-- <div class="contain">
                 <div class="" id="content-group">
                     <div class="sort-by top">
                         <div class="title poppins">Complated Group Project</div>
@@ -241,7 +227,7 @@
                         } ?>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <div id="background"></div>
@@ -271,14 +257,14 @@
                             <div>Solo Projects</div>
                         </div>
                     </button>
-                    <button class="navigation" onclick="pathFind('group')">
+                    <!-- <button class="navigation" onclick="pathFind('group')">
                         <div class="left-content">
                             <svg class="curved-users-more" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path id="logo" d="M15.8333 11.6667C17.6743 11.6667 19.1667 13.3333 19.1667 14.5833C19.1667 15.2737 18.607 15.8333 17.9167 15.8333H17.5M14.1667 9.16667C15.5474 9.16667 16.6667 8.04738 16.6667 6.66667C16.6667 5.28596 15.5474 4.16667 14.1667 4.16667M4.16668 11.6667C2.32573 11.6667 0.833344 13.3333 0.833344 14.5833C0.833344 15.2737 1.39299 15.8333 2.08334 15.8333H2.50001M5.83334 9.16667C4.45263 9.16667 3.33334 8.04738 3.33334 6.66667C3.33334 5.28596 4.45263 4.16667 5.83334 4.16667M13.75 15.8333H6.25001C5.55965 15.8333 5.00001 15.2737 5.00001 14.5833C5.00001 12.5 7.50001 11.6667 10 11.6667C12.5 11.6667 15 12.5 15 14.5833C15 15.2737 14.4404 15.8333 13.75 15.8333ZM12.5 6.66667C12.5 8.04738 11.3807 9.16667 10 9.16667C8.6193 9.16667 7.50001 8.04738 7.50001 6.66667C7.50001 5.28596 8.6193 4.16667 10 4.16667C11.3807 4.16667 12.5 5.28596 12.5 6.66667Z" stroke="#71839B" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                             <div>Group Projects</div>
                         </div>
-                    </button>
+                    </button> -->
                     <button class="navigation" onclick="window.location.href='http://localhost/ourtaskmvc/public/home/calender'">
                         <div class="left-content">
                             <svg class="u-calender" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

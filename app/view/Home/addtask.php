@@ -24,34 +24,35 @@
             <div class="container">
                 <div class="title">
                     <label for="">Title</label>
-                    <input type="text" name="title" class="task-title">
+                    <input type="text" name="title" class="task-title" required>
                     </input>
                 </div>
                 <div class="task-detail" style=" margin-bottom: 10px;">
                     <label for="">Detail Task</label>
-                    <textarea name="detail"></textarea>
+                    <textarea required name="detail"></textarea>
                 </div>
                 <div class="task-setting">
                     <div class="set-deadline sett">
                         <label for="">Deadline</label>
-                        <input type="date" name="deadline">
+                        <input type="date" name="deadline" required>
                     </div>
-                    <div class="task-file sett">
+                    <!-- <div class="task-file sett">
                         <label for="">File</label>
                         <input type="file" class="file-task" name="file-name">
-                    </div>
-                    <div class="task-mode sett">
+                    </div> -->
+                    <!-- <div class="task-mode sett">
                         <label for="">Task Mode</label>
                         <select id="" name="mode">
                             <option value="Solo">Solo</option>
                             <option value="Group">Group</option>
                         </select>
-                    </div>
+                    </div> -->
                     <div class="select-kelas sett">
                         <label for="">Kelas</label>
                         <select id="" name="kelas">
-                            <option value="1">PPLG 1</option>
-                            <option value="2">PPLG 2</option>
+                            <?php foreach($data['kelas'] as $kelas){ ?>
+                            <option value="<?=$kelas['id_kelas']?>"><?=$kelas['grade']?></option>
+                            <?php } ?>
                         </select>
                     </div>
                 </div>

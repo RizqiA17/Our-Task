@@ -33,6 +33,9 @@ body{
 
 form{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .login{
@@ -179,4 +182,12 @@ a:hover{
 
 a:active{
     color: rgb(78, 78, 78);
+}
+
+.err-msg{
+    width: 100%;
+    color: red;
+    text-align: center;
+    margin-top: 25px;
+    font: 800 12px 'Poppins',sans-serif;
 }
