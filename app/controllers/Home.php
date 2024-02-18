@@ -29,6 +29,17 @@ class Home extends Controller{
         $this->view("Home/addtask");
     }
 
+    public function addnewtask(){
+        $title = $_POST['title'];
+        $detail = $_POST['detail'];
+        $deadline = date('Y-m-d', strtotime($_POST['deadline']));
+        $taskmode = $_POST['mode'];
+        $filename = $_POST['file-name'];
+        $kelas = $_POST['kelas'];
+        echo $title. $detail. $deadline. $taskmode. $filename. $kelas. $_SESSION['mapel'];
+        $this->model('Task_'.$taskmode.'_model')->addTask($title, $detail, $deadline, $taskmode, $filename, $_SESSION['mapel'],$kelas);
+    }
+
     public function logout(){
         session_start();
         session_unset();

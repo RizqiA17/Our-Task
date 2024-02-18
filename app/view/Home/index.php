@@ -199,7 +199,7 @@
                         </button>
                     <?php } 
                     if ($_SESSION['status'] != 'siswa') {?>
-                    <button class="navigation" onclick="pathFind('complihome/addtask')">
+                    <button class="navigation" onclick="pathFind('home/addtask')">
                         <div class="left-content">
                             <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="#000000">
                                 <path d="M0 0h24v24H0V0z" fill="none" />

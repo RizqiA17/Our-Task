@@ -10,9 +10,11 @@ class Mapel_model{
     }
 
     public function getMapel($id){
-        $this->db->query("SELECT mapel FROM ".$this->table." JOIN mapel ON ".$this->table.".id_mapel = mapel.id WHERE id_kelas = :id");
+        $this->db->query("SELECT * FROM ".$this->table." JOIN mapel ON ".$this->table.".id_mapel = mapel.id WHERE id_kelas = :id or id_profile = $id");
         $this->db->bind(':id', $id);
         return $this->db->resultSet();
     }
+
+    
 
 }

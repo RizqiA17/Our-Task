@@ -33,6 +33,9 @@ class Login extends Controller
             $_SESSION['email'] =  $data['signin'][0]['email'];
             $_SESSION['id'] = $data['signin'][0]['id'];
             $_SESSION['status'] = $data['signin'][0]['status'];
+            $mapel = $this->model('Mapel_model')->getMapel(841);
+            $_SESSION['mapel'] = $mapel[0]['id_mapel'];
+            
             header("Location:" . BASEURL . "home");
         }
         // if($data['signin'] == null)

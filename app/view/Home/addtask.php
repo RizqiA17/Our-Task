@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form action="" method="post" class="add-task-form">
+    <form action="<?=BASEURL?>/home/addnewtask" method="post" class="add-task-form">
         <div class="top">
             <div class="header">
                 <div class="title">
@@ -24,34 +24,34 @@
             <div class="container">
                 <div class="title">
                     <label for="">Title</label>
-                    <input type="text" class="task-title">
+                    <input type="text" name="title" class="task-title">
                     </input>
                 </div>
                 <div class="task-detail" style=" margin-bottom: 10px;">
                     <label for="">Detail Task</label>
-                    <textarea></textarea>
+                    <textarea name="detail"></textarea>
                 </div>
                 <div class="task-setting">
                     <div class="set-deadline sett">
                         <label for="">Deadline</label>
-                        <input type="date">
+                        <input type="date" name="deadline">
                     </div>
                     <div class="task-file sett">
                         <label for="">File</label>
-                        <input type="file" class="file-task">
+                        <input type="file" class="file-task" name="file-name">
                     </div>
                     <div class="task-mode sett">
                         <label for="">Task Mode</label>
-                        <select name="" id="">
+                        <select id="" name="mode">
                             <option value="Solo">Solo</option>
                             <option value="Group">Group</option>
                         </select>
                     </div>
                     <div class="select-kelas sett">
                         <label for="">Kelas</label>
-                        <select name="" id="">
+                        <select id="" name="kelas">
                             <option value="1">PPLG 1</option>
-                            <option value="1">PPLG 2</option>
+                            <option value="2">PPLG 2</option>
                         </select>
                     </div>
                 </div>
