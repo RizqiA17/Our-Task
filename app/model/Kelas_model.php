@@ -17,4 +17,10 @@ class Kelas_model{
         return $this->db->resultSet();
     }
 
+    public function getAllSiswaWithKelas($kelas){
+        $this->db->query("SELECT id_profile FROM ". $this->table . " WHERE id_kelas = :id");
+        $this->db->bind(':id', $kelas);
+        return $this->db->resultSet();
+    }
+
 }
