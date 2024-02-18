@@ -9,14 +9,14 @@
                         <div class="line"></div>
                     </button>
                     <div class="right-content">
-                    <?php if ($_SESSION['status'] != 'guru') {?>
-                        <a href="http://localhost/ourtaskmvc/public/home/notification" class="notification">
-                            <svg class="" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.917375 10.4893V10.3068C0.944146 9.76687 1.11719 9.24374 1.41865 8.79134C1.92044 8.24789 2.26394 7.58192 2.41312 6.86332C2.41312 6.30792 2.41312 5.74459 2.46163 5.18919C2.71226 2.51535 5.35609 0.666668 7.96757 0.666668H8.03225C10.6437 0.666668 13.2876 2.51535 13.5463 5.18919C13.5948 5.74459 13.5463 6.30792 13.5867 6.86332C13.7379 7.58359 14.081 8.25162 14.5812 8.79927C14.8849 9.24767 15.0582 9.76889 15.0824 10.3068V10.4813C15.1005 11.2067 14.8507 11.914 14.379 12.4728C13.7558 13.1262 12.9101 13.5327 12.002 13.6154C9.33918 13.901 6.65255 13.901 3.98971 13.6154C3.08264 13.5292 2.23815 13.1233 1.61269 12.4728C1.14835 11.9136 0.901888 11.2105 0.917375 10.4893Z" stroke="#8E92BC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M5.96246 16.3765C6.37853 16.8987 6.98951 17.2367 7.66021 17.3156C8.3309 17.3945 9.00599 17.2079 9.53607 16.797C9.6991 16.6755 9.8458 16.5342 9.97266 16.3765" stroke="#8E92BC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            <div class="have-notif"></div>
-                        </a>
+                        <?php if ($_SESSION['status'] != 'guru') { ?>
+                            <a href="http://localhost/ourtaskmvc/public/home/notification" class="notification">
+                                <svg class="" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.917375 10.4893V10.3068C0.944146 9.76687 1.11719 9.24374 1.41865 8.79134C1.92044 8.24789 2.26394 7.58192 2.41312 6.86332C2.41312 6.30792 2.41312 5.74459 2.46163 5.18919C2.71226 2.51535 5.35609 0.666668 7.96757 0.666668H8.03225C10.6437 0.666668 13.2876 2.51535 13.5463 5.18919C13.5948 5.74459 13.5463 6.30792 13.5867 6.86332C13.7379 7.58359 14.081 8.25162 14.5812 8.79927C14.8849 9.24767 15.0582 9.76889 15.0824 10.3068V10.4813C15.1005 11.2067 14.8507 11.914 14.379 12.4728C13.7558 13.1262 12.9101 13.5327 12.002 13.6154C9.33918 13.901 6.65255 13.901 3.98971 13.6154C3.08264 13.5292 2.23815 13.1233 1.61269 12.4728C1.14835 11.9136 0.901888 11.2105 0.917375 10.4893Z" stroke="#8E92BC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M5.96246 16.3765C6.37853 16.8987 6.98951 17.2367 7.66021 17.3156C8.3309 17.3945 9.00599 17.2079 9.53607 16.797C9.6991 16.6755 9.8458 16.5342 9.97266 16.3765" stroke="#8E92BC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <div class="have-notif"></div>
+                            </a>
                         <?php } ?>
                         <a href="http://localhost/ourtaskmvc/public/setting/profile">
                             <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="profile">
@@ -37,48 +37,95 @@
                         var hide = true;
                     </script>
                     <?php
-                    $total = 0;
-                    foreach ($data['task_solo'] as $task) {
-                        date_default_timezone_set('Asia/Jakarta');
-                        $today = new DateTime(date('Y-m-d', time()));
-                        $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat'])));
-                        $interval = date_diff($dibuat, $today);
-                        if ($total < 2) {
-                            if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
-                                $total++;
+                    if ($_SESSION['status'] != 'guru') {
+                        $total = 0;
+                        foreach ($data['task_solo'] as $task) {
+                            date_default_timezone_set('Asia/Jakarta');
+                            $today = new DateTime(date('Y-m-d', time()));
+                            $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat'])));
+                            $interval = date_diff($dibuat, $today);
+                            if ($total < 2) {
+                                if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
+                                    $total++;
                     ?>
-                                <script>
-                                    hide = false
-                                </script>
-                                <div class="list solo half" onclick="window.location.href='Solo/detail'">
-                                    <div class="plain">
-                                        <div class="info">
-                                            <div class="task work-sans task-down">
-                                                <?= $task['nama_tugas_solo'] ?>
+                                    <script>
+                                        hide = false
+                                    </script>
+                                    <div class="list solo half" onclick="window.location.href='Solo/detail'">
+                                        <div class="plain">
+                                            <div class="info">
+                                                <div class="task work-sans task-down">
+                                                    <?= $task['nama_tugas_solo'] ?>
+                                                </div>
+                                                <div class="mapel work-sans">
+                                                    <?= $task['mapel'] ?>
+                                                </div>
                                             </div>
-                                            <div class="mapel work-sans">
-                                                <?= $task['mapel'] ?>
+                                            <div class="deadline work-sans">
+                                                <div class="logo">
+                                                    <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M12 0.5V4.5M6 0.5V4.5M17.4826 9.5H0.517334M17.4826 9.5C17.2743 3.79277 15.154 2 9 2C2.84596 2 0.725603 3.79277 0.517334 9.5M17.4826 9.5C17.4943 9.82084 17.5 10.154 17.5 10.5C17.5 17 15.5 19 9 19C2.5 19 0.5 17 0.5 10.5C0.5 10.154 0.505626 9.82084 0.517334 9.5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
+                                                </div>
+                                                <?= $task['tgl_deadline'] ?>
                                             </div>
-                                        </div>
-                                        <div class="deadline work-sans">
-                                            <div class="logo">
-                                                <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M12 0.5V4.5M6 0.5V4.5M17.4826 9.5H0.517334M17.4826 9.5C17.2743 3.79277 15.154 2 9 2C2.84596 2 0.725603 3.79277 0.517334 9.5M17.4826 9.5C17.4943 9.82084 17.5 10.154 17.5 10.5C17.5 17 15.5 19 9 19C2.5 19 0.5 17 0.5 10.5C0.5 10.154 0.505626 9.82084 0.517334 9.5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                </svg>
-                                            </div>
-                                            <?= $task['tgl_deadline_solo'] ?>
                                         </div>
                                     </div>
-                                </div>
-                            <?php
-                            } else { ?>
-                                <script>
-                                    if (hide) {
-                                        var content = document.getElementById('content-solo');
-                                        content.classList.add('hide');
-                                    }
-                                </script>
+                                <?php
+                                } else { ?>
+                                    <script>
+                                        if (hide) {
+                                            var content = document.getElementById('content-solo');
+                                            content.classList.add('hide');
+                                        }
+                                    </script>
+                                <?php }
+                            }
+                        }
+                    } else {
+                        $total = 0;
+                        foreach ($data['task_solo'] as $task) {
+                            date_default_timezone_set('Asia/Jakarta');
+                            $today = new DateTime(date('Y-m-d', time()));
+                            $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat'])));
+                            $interval = date_diff($dibuat, $today);
+                            if ($total < 2) {
+                                if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
+                                    $total++;
+                                ?>
+                                    <script>
+                                        hide = false
+                                    </script>
+                                    <div class="list solo half" onclick="window.location.href='Solo/detail'">
+                                        <div class="plain">
+                                            <div class="info">
+                                                <div class="task work-sans">
+                                                    <?= $task['name'] ?>
+                                                </div>
+                                                <div class="mapel work-sans">
+                                                    <?= $task['grade'] ?>
+                                                </div>
+                                            </div>
+                                            <div class="deadline work-sans">
+                                                <div class="logo">
+                                                    <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M12 0.5V4.5M6 0.5V4.5M17.4826 9.5H0.517334M17.4826 9.5C17.2743 3.79277 15.154 2 9 2C2.84596 2 0.725603 3.79277 0.517334 9.5M17.4826 9.5C17.4943 9.82084 17.5 10.154 17.5 10.5C17.5 17 15.5 19 9 19C2.5 19 0.5 17 0.5 10.5C0.5 10.154 0.505626 9.82084 0.517334 9.5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
+                                                </div>
+                                                <?= $task['tgl_deadline'] ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php
+                                } else { ?>
+                                    <script>
+                                        if (hide) {
+                                            var content = document.getElementById('content-solo');
+                                            content.classList.add('hide');
+                                        }
+                                    </script>
                     <?php }
+                            }
                         }
                     } ?>
                 </div>
@@ -197,17 +244,17 @@
                                 <div>Mapel</div>
                             </div>
                         </button>
-                    <?php } 
-                    if ($_SESSION['status'] != 'siswa') {?>
-                    <button class="navigation" onclick="pathFind('home/addtask')">
-                        <div class="left-content">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="#000000">
-                                <path d="M0 0h24v24H0V0z" fill="none" />
-                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="#71839B" stroke="#71839B" />
-                            </svg>
-                            <div>Add Tugas</div>
-                        </div>
-                    </button>
+                    <?php }
+                    if ($_SESSION['status'] != 'siswa') { ?>
+                        <button class="navigation" onclick="pathFind('home/addtask')">
+                            <div class="left-content">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="#000000">
+                                    <path d="M0 0h24v24H0V0z" fill="none" />
+                                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="#71839B" stroke="#71839B" />
+                                </svg>
+                                <div>Add Tugas</div>
+                            </div>
+                        </button>
                     <?php } ?>
                 </div>
             </div>
@@ -215,15 +262,15 @@
         <div class="option">
             <div class="container">
                 <div class="nav-button-list">
-                    <?php if ($_SESSION['status'] != 'guru') {?>
-                    <button class="navigation" onclick="window.location.href='http://localhost/ourtaskmvc/public/home/notification'">
-                        <div class="left-content">
-                            <svg class="curved-bell" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 17.5V18.5C9 20.1569 10.3431 21 12 21C13.6569 21 15 20.1569 15 18.5V17.5M5.99999 8.5C5.99999 5.18629 8.68628 3.5 12 3.5C15.3137 3.5 18 5.18629 18 8.5C18 10.4392 18.705 12.6133 19.4316 14.3389C20.0348 15.7717 19.0222 17.5 17.4676 17.5H6.53237C4.97778 17.5 3.96518 15.7717 4.56842 14.3389C5.29493 12.6133 5.99999 10.4392 5.99999 8.5Z" stroke="#71839B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            <div>Notification</div>
-                        </div>
-                    </button>
+                    <?php if ($_SESSION['status'] != 'guru') { ?>
+                        <button class="navigation" onclick="window.location.href='http://localhost/ourtaskmvc/public/home/notification'">
+                            <div class="left-content">
+                                <svg class="curved-bell" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 17.5V18.5C9 20.1569 10.3431 21 12 21C13.6569 21 15 20.1569 15 18.5V17.5M5.99999 8.5C5.99999 5.18629 8.68628 3.5 12 3.5C15.3137 3.5 18 5.18629 18 8.5C18 10.4392 18.705 12.6133 19.4316 14.3389C20.0348 15.7717 19.0222 17.5 17.4676 17.5H6.53237C4.97778 17.5 3.96518 15.7717 4.56842 14.3389C5.29493 12.6133 5.99999 10.4392 5.99999 8.5Z" stroke="#71839B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <div>Notification</div>
+                            </div>
+                        </button>
                     <?php } ?>
                     <button class="navigation" onclick="window.location.href='http://localhost/ourtaskmvc/public/setting'">
                         <div class="left-content">

@@ -1,8 +1,8 @@
 <?php
 
-class Task_solo_model{
+class Task_group_model{
 
-    private $table = "task_solo";
+    private $table = "task_group";
     private $db;
 
     public function __construct(){
@@ -15,7 +15,7 @@ class Task_solo_model{
     }
 
     public function getTaskForTeacher(){
-        $this->db->query("SELECT * FROM " . $this->table." JOIN mapel ON ".$this->table.".id_mapel = mapel.id JOIN kelas ON ".$this->table.".id_kelas = kelas.id WHERE id_guru = :id");
+        $this->db->query("SELECT * FROM " . $this->table." WHERE id_guru = :id");
         $this->db->bind(':id', $_SESSION['id']);
         return $this->db->resultSet();        
     }

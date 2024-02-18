@@ -5,8 +5,10 @@ class Home extends Controller
     public function index()
     {
         $data['title'] = 'Home';
-        $data['task_solo'] = $this->model('Tugas_solo_model')->getAllTugas();
-        $data['tugas_group'] = $this->model('Tugas_group_model')->getAllTugas();
+        if ($_SESSION['status'] == 'guru') {
+            $data['task_solo'] = $this->model('Task_solo_model')->getTaskForTeacher();
+            $data['tugas_group'] = $this->model('Task_group_model')->getTaskForTeacher();
+        }
 
         $this->view("templates/header", $data);
         $this->view("home/index", $data);
@@ -48,10 +50,10 @@ class Home extends Controller
         var_dump($addTask);
         $murid = $this->model('Kelas_model')->getAllSiswaWithKelas($kelas);
         // var_dump($murid);
-        for($i = 0; $i < sizeof($murid); $i++){
+        for ($i = 0; $i < sizeof($murid); $i++) {
             $this->model('Task_solo_distribution_model')->distributingTasks($addTask[0]['id'], $murid[$i]['id_profile']);
         }
-        header("Location:".BASEURL."home");
+        header("Location:" . BASEURL . "home");
     }
 
     public function logout()
