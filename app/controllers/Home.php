@@ -8,7 +8,11 @@ class Home extends Controller
         if ($_SESSION['status'] == 'guru') {
             $data['task_solo'] = $this->model('Task_solo_model')->getTaskForTeacher();
             $data['tugas_group'] = $this->model('Task_group_model')->getTaskForTeacher();
+        } else {
+            $data['task_solo'] = $this->model('Task_solo_distribution_model')->getAllTask();
+            $data['tugas_group'] = $this->model('Task_group_distribution_model')->getAllTask();
         }
+        // var_dump($data['task_solo']);
 
         $this->view("templates/header", $data);
         $this->view("home/index", $data);

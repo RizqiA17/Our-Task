@@ -4,7 +4,13 @@ class Solo extends Controller
     public function index()
     {
         $data['title'] = 'Data Tugas';
-        $data['tugas'] = $this->model('Tugas_solo_model')->getAllTugas();
+        session_start();        
+        if ($_SESSION['status'] == 'guru') {
+            $data['task'] = $this->model('Task_solo_model')->getTaskForTeacher();
+        } else {
+            $data['task'] = $this->model('Task_solo_distribution_model')->getAllTask();
+        }
+        // var_dump($data['task']);
         $this->view("templates/header");
         $this->view("Solo/index", $data);
         $this->view("templates/footer");

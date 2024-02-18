@@ -10,7 +10,7 @@ class Task_solo_model{
     }
 
     public function getAllTask(){
-        $this->db->query("SELECT * FROM " . $this->table);
+        $this->db->query("SELECT * FROM " . $this->table );
         return $this->db->resultSet();
     }
 

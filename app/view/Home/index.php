@@ -55,7 +55,7 @@
                                         <div class="plain">
                                             <div class="info">
                                                 <div class="task work-sans task-down">
-                                                    <?= $task['nama_tugas_solo'] ?>
+                                                    <?= $task['name'] ?>
                                                 </div>
                                                 <div class="mapel work-sans">
                                                     <?= $task['mapel'] ?>
