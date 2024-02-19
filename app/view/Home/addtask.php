@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form action="<?= BASEURL ?>/home/addnewtask" method="post" class="add-task-form">
+    <form action="<?= BASEURL ?>/home/addnewtask" method="post" class="add-task-form" enctype="multipart/form-data">
         <div class="top">
             <div class="header">
                 <div class="title">
@@ -36,22 +36,22 @@
                         <label for="">Deadline</label>
                         <input type="date" name="deadline" required>
                     </div>
-                    <!-- <div class="task-file sett">
-                        <label for="">File</label>
-                        <input type="file" class="file-task" name="file-name">
-                    </div> -->
-                    <!-- <div class="task-mode sett">
+                    <div class="task-file sett">
+                        <label for="">Image</label>
+                        <input type="file" accept="image/*" class="file-task" name="image">
+                    </div>
+                    <div class="task-mode sett">
                         <label for="">Task Mode</label>
-                        <select id="" name="mode">
+                        <select id="task-mode" name="mode" onchange="groupLeader()">
                             <option value="Solo">Solo</option>
                             <option value="Group">Group</option>
                         </select>
-                    </div> -->
+                    </div>
                     <div class="select-kelas sett">
                         <label for="">Kelas</label>
-                        <select id="kelas" name="kelas">
+                        <select id="kelas" name="kelas" onchange="selectClass(value)">
                             <?php foreach ($data['kelas'] as $kelas) { ?>
-                                <option value="<?= $kelas['id_kelas'] ?>" onclick="selectClass(<?= $kelas['id_kelas'] ?>)"><?= $kelas['grade'] ?></option>
+                                <option value="<?= $kelas['id_kelas'] ?>"><?= $kelas['grade'] ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -65,18 +65,22 @@
                 </div> -->
             </div>
         </div>
+        <div class="header hide" id="selectLeader">
+            <input type="hidden" name="leader" id="leader">
+            Select Leader
+        </div>
         <?php
         $absen = 0;
         $id_kelas = 0;
         do {
         ?>
-            <div class="hide list-murid" id="class<?= $id_kelas+1; ?>">
+            <div class="hide list-murid" id="class<?= $id_kelas + 1; ?>">
                 <?php
                 foreach ($data['siswa' . $id_kelas] as $siswa) {
                 ?>
                     <div>
                         <?php $absen++; ?>
-                        <label for=""><input type="checkbox" name="" id="<?= $siswa['id_profile'] ?>"><?= $absen . '. ' . $siswa['name'] ?></label>
+                        <label for=""><input type="checkbox" name="leader-list" id="<?= $siswa['id_profile'] ?>" value="<?=$siswa['id_profile']?>"><?= $absen . '. ' . $siswa['name'] ?> </label>
                     </div>
                 <?php
                     if ($absen == sizeof($data['siswa' . $id_kelas])) {
@@ -90,13 +94,43 @@
         } while (!empty($data['siswa' . $id_kelas]));
         ?>
         <div class="bottom">
-            <button type="submit">Add</button>
+            <button onclick="getLeader()" type="submit">Add</button>
         </div>
     </form>
     <script>
+        var leader='';
+        function getLeader(){
+            var checkbox =document.getElementsByName("leader-list");
+
+            for(var i = 0; i < checkbox.length; i++){
+                if(checkbox[i].checked){
+                    leader += checkbox[i].value+',';
+                }
+            }
+            document.getElementById('leader').value = leader
+        }
+
+        function groupLeader() {
+            if (document.getElementById('task-mode').value == 'Solo') {
+                document.getElementById('selectLeader').classList.add("hide");
+                document.getElementById('class' + 1).classList.add("hide");
+            } else {
+                document.getElementById('selectLeader').classList.remove("hide");
+                document.getElementById('class' + 1).classList.remove("hide");
+            }
+        }
+
         function selectClass(kelas) {
-            idkelas = "class"+kelas;
-            document.getElementById(idkelas).classList.remove("hide");
+            var i = 1
+            for (i = 1; i <= 20; i++) {
+                if (i == kelas) {
+                    idkelas = "class" + kelas;
+                    document.getElementById(idkelas).classList.remove("hide");
+                } else {
+                    idkelas2 = "class" + i;
+                    document.getElementById(idkelas2).classList.add("hide");
+                }
+            }
         }
 
         setInterval(function() {
