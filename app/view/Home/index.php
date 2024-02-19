@@ -9,15 +9,13 @@
                         <div class="line"></div>
                     </button>
                     <div class="right-content">
-                        <?php if ($_SESSION['status'] != 'guru') { ?>
-                            <a href="http://localhost/ourtaskmvc/public/home/notification" class="notification">
-                                <svg class="" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.917375 10.4893V10.3068C0.944146 9.76687 1.11719 9.24374 1.41865 8.79134C1.92044 8.24789 2.26394 7.58192 2.41312 6.86332C2.41312 6.30792 2.41312 5.74459 2.46163 5.18919C2.71226 2.51535 5.35609 0.666668 7.96757 0.666668H8.03225C10.6437 0.666668 13.2876 2.51535 13.5463 5.18919C13.5948 5.74459 13.5463 6.30792 13.5867 6.86332C13.7379 7.58359 14.081 8.25162 14.5812 8.79927C14.8849 9.24767 15.0582 9.76889 15.0824 10.3068V10.4813C15.1005 11.2067 14.8507 11.914 14.379 12.4728C13.7558 13.1262 12.9101 13.5327 12.002 13.6154C9.33918 13.901 6.65255 13.901 3.98971 13.6154C3.08264 13.5292 2.23815 13.1233 1.61269 12.4728C1.14835 11.9136 0.901888 11.2105 0.917375 10.4893Z" stroke="#8E92BC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M5.96246 16.3765C6.37853 16.8987 6.98951 17.2367 7.66021 17.3156C8.3309 17.3945 9.00599 17.2079 9.53607 16.797C9.6991 16.6755 9.8458 16.5342 9.97266 16.3765" stroke="#8E92BC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                                <div class="have-notif"></div>
-                            </a>
-                        <?php } ?>
+                        <a href="http://localhost/ourtaskmvc/public/home/notification" class="notification">
+                            <svg class="" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.917375 10.4893V10.3068C0.944146 9.76687 1.11719 9.24374 1.41865 8.79134C1.92044 8.24789 2.26394 7.58192 2.41312 6.86332C2.41312 6.30792 2.41312 5.74459 2.46163 5.18919C2.71226 2.51535 5.35609 0.666668 7.96757 0.666668H8.03225C10.6437 0.666668 13.2876 2.51535 13.5463 5.18919C13.5948 5.74459 13.5463 6.30792 13.5867 6.86332C13.7379 7.58359 14.081 8.25162 14.5812 8.79927C14.8849 9.24767 15.0582 9.76889 15.0824 10.3068V10.4813C15.1005 11.2067 14.8507 11.914 14.379 12.4728C13.7558 13.1262 12.9101 13.5327 12.002 13.6154C9.33918 13.901 6.65255 13.901 3.98971 13.6154C3.08264 13.5292 2.23815 13.1233 1.61269 12.4728C1.14835 11.9136 0.901888 11.2105 0.917375 10.4893Z" stroke="#8E92BC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M5.96246 16.3765C6.37853 16.8987 6.98951 17.2367 7.66021 17.3156C8.3309 17.3945 9.00599 17.2079 9.53607 16.797C9.6991 16.6755 9.8458 16.5342 9.97266 16.3765" stroke="#8E92BC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <div class="have-notif"></div>
+                        </a>
                         <a href="http://localhost/ourtaskmvc/public/setting/profile">
                             <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="profile">
                         </a>
@@ -26,18 +24,20 @@
             </div>
         </div>
         <div class="container">
-            <div class="contain" id="content-solo">
-                <div class="sort-by top">
-                    <div class="title poppins">Solo Projects</div>
-                    <a href="http://localhost/ourtaskmvc/public/solo" class="poppins" style="font-size: 12px;">View
-                        All</a>
-                </div>
-                <div class="item">
-                    <script>
-                        var hide = true;
-                    </script>
-                    <?php
-                    if ($_SESSION['status'] != 'guru') {
+            <?php
+            if ($_SESSION['status'] != 'guru') {
+            ?>
+                <div class="contain" id="content-solo">
+                    <div class="sort-by top">
+                        <div class="title poppins">Solo Projects</div>
+                        <a href="http://localhost/ourtaskmvc/public/solo" class="poppins" style="font-size: 12px;">View
+                            All</a>
+                    </div>
+                    <div class="item">
+                        <script>
+                            var hide = true;
+                        </script>
+                        <?php
                         $total = 0;
                         foreach ($data['task_solo'] as $task) {
                             date_default_timezone_set('Asia/Jakarta');
@@ -47,16 +47,13 @@
                             if ($total < 2) {
                                 if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
                                     $total++;
-                    ?>
+                        ?>
                                     <script>
                                         hide = false
                                     </script>
-                                    <!-- <form action="<?= BASEURL ?>/home/getDetail" id="form-<?= $task['id_task'] ?>">
-                                        <input type="text" name="idtask" value="<?= $task['id_task'] ?>">
-                                        <button type="submit"></button>
-                                    </form> -->
                                     <div class="solo list half" onclick="post(<?= $task['id_task'] ?>)">
-                                        <div class="list solo half" id="<?= $task['id_task'] ?>" onclick="pathFind('solo/detail')<?php $_SESSION['id_task'] = $task['id_task'] ?>">
+                                        <form action="solo/detail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
+                                        <div class="list solo half" id="<?= $task['id_task'] ?>">
                                             <div class="plain">
                                                 <div class="info">
                                                     <div class="task work-sans ">
@@ -85,10 +82,82 @@
                                             content.classList.add('hide');
                                         }
                                     </script>
-                                <?php }
+                        <?php }
                             }
                         }
-                    } else {
+
+                        ?>
+                    </div>
+                </div>
+
+                <div class="contain" id="content-group">
+                    <div class="sort-by top">
+                        <div class="title poppins">Group Projects</div>
+                        <a href="http://localhost/ourtaskmvc/public/group" class="poppins" style="font-size: 12px;">View
+                            All</a>
+                    </div>
+                    <div class="item row-task">
+                        <script>
+                            // var hide = true;
+                        </script>
+                        <?php
+                        foreach ($data['tugas_group'] as $task) {
+                            date_default_timezone_set('Asia/Jakarta');
+                            $today = new DateTime(date('Y-m-d', time()));
+                            $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat'])));
+                            $interval = date_diff($dibuat, $today);
+                            if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
+                        ?>
+                                <div class="list" onclick="post(<?= $task['id_task'] ?>)">
+                                    <form action="Group/detail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
+                                    <div class="group gradient-1">
+                                        <div class="group-inner-text">
+                                            <div class="mapel2 poppins"><?= $task['mapel'] ?></div>
+                                            <div class="task-remaining poppins"><?= $task['name'] ?></div>
+                                        </div>
+                                    </div>
+                                    <div class="bottom-group">
+                                        <div class="percentage poppins">60%</div>
+                                        <div class="progress-member">
+                                            <div class="progress-bar-empty">
+                                                <div class="progress-bar gradient-1" style="width: 60px;"></div>
+                                            </div>
+                                            <div class="member">
+                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                <div class="ellipse poppins">+8</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php } else { ?>
+                                <script>
+                                    // if (hide) {
+                                    //     var content = document.getElementById('content-group');
+                                    //     content.classList.add('hide');
+                                    // }
+                                </script>
+                            <?php }
+                            ?>
+                    </div>
+                <?php } ?>
+
+            <?php } ?>
+            <?php
+            if ($_SESSION['status'] == 'guru') {
+            ?>
+                <div class="contain" id="content-solo">
+                    <div class="sort-by top">
+                        <div class="title poppins">Solo Projects</div>
+                        <a href="http://localhost/ourtaskmvc/public/solo" class="poppins" style="font-size: 12px;">View
+                            All</a>
+                    </div>
+                    <div class="item">
+                        <script>
+                            var hide = true;
+                        </script>
+                        <?php
                         $total = 0;
                         foreach ($data['task_solo'] as $task) {
                             date_default_timezone_set('Asia/Jakarta');
@@ -98,27 +167,29 @@
                             if ($total < 2) {
                                 if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
                                     $total++;
-                                ?>
+                        ?>
                                     <script>
                                         hide = false
                                     </script>
-                                    <div class="list solo half" onclick="window.location.href='Solo/detail'">
-                                        <div class="plain">
-                                            <div class="info">
-                                                <div class="task work-sans">
-                                                    <?= $task['name'] ?>
+                                    <div class="solo list half">
+                                        <div class="list solo half">
+                                            <div class="plain">
+                                                <div class="info">
+                                                    <div class="task work-sans ">
+                                                        <?= $task['name'] ?>
+                                                    </div>
+                                                    <div class="mapel work-sans">
+                                                        <?= $task['grade'] ?>
+                                                    </div>
                                                 </div>
-                                                <div class="mapel work-sans">
-                                                    <?= $task['grade'] ?>
+                                                <div class="deadline work-sans">
+                                                    <div class="logo">
+                                                        <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M12 0.5V4.5M6 0.5V4.5M17.4826 9.5H0.517334M17.4826 9.5C17.2743 3.79277 15.154 2 9 2C2.84596 2 0.725603 3.79277 0.517334 9.5M17.4826 9.5C17.4943 9.82084 17.5 10.154 17.5 10.5C17.5 17 15.5 19 9 19C2.5 19 0.5 17 0.5 10.5C0.5 10.154 0.505626 9.82084 0.517334 9.5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                        </svg>
+                                                    </div>
+                                                    <?= $task['tgl_deadline'] ?>
                                                 </div>
-                                            </div>
-                                            <div class="deadline work-sans">
-                                                <div class="logo">
-                                                    <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M12 0.5V4.5M6 0.5V4.5M17.4826 9.5H0.517334M17.4826 9.5C17.2743 3.79277 15.154 2 9 2C2.84596 2 0.725603 3.79277 0.517334 9.5M17.4826 9.5C17.4943 9.82084 17.5 10.154 17.5 10.5C17.5 17 15.5 19 9 19C2.5 19 0.5 17 0.5 10.5C0.5 10.154 0.505626 9.82084 0.517334 9.5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                    </svg>
-                                                </div>
-                                                <?= $task['tgl_deadline'] ?>
                                             </div>
                                         </div>
                                     </div>
@@ -130,63 +201,70 @@
                                             content.classList.add('hide');
                                         }
                                     </script>
-                    <?php }
+                        <?php }
                             }
                         }
-                    } ?>
+
+                        ?>
+                    </div>
                 </div>
-            </div>
-            <!-- <div class="contain" id="content-group">
-                <div class="sort-by top">
-                    <div class="title poppins">Group Projects</div>
-                    <a href="http://localhost/ourtaskmvc/public/group" class="poppins" style="font-size: 12px;">View
-                        All</a>
-                </div>
-                <div class="item row-task">
-                    <script>
-                        var hide = true;
-                    </script>
-                    <?php
-                    foreach ($data['tugas_group'] as $task) {
-                        date_default_timezone_set('Asia/Jakarta');
-                        $today = new DateTime(date('Y-m-d', time()));
-                        $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat_group'])));
-                        $interval = date_diff($dibuat, $today);
-                        if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
-                    ?>
-                            <div class="list" onclick="window.location.href='Group/detail'">
-                                <div class="group gradient-1">
-                                    <div class="group-inner-text">
-                                        <div class="mapel2 poppins"><?= $task['mapel'] ?></div>
-                                        <div class="task-remaining poppins"><?= $task['nama_tugas_group'] ?></div>
-                                    </div>
-                                </div>
-                                <div class="bottom-group">
-                                    <div class="percentage poppins">60%</div>
-                                    <div class="progress-member">
-                                        <div class="progress-bar-empty">
-                                            <div class="progress-bar gradient-1" style="width: 60px;"></div>
-                                        </div>
-                                        <div class="member">
-                                            <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                            <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                            <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                            <div class="ellipse poppins">+8</div>
+
+                <div class="contain" id="content-group">
+                    <div class="sort-by top">
+                        <div class="title poppins">Group Projects</div>
+                        <a href="http://localhost/ourtaskmvc/public/group" class="poppins" style="font-size: 12px;">View
+                            All</a>
+                    </div>
+                    <div class="item row-task">
+                        <script>
+                            // var hide = true;
+                        </script>
+                        <?php
+                        foreach ($data['tugas_group'] as $task) {
+                            date_default_timezone_set('Asia/Jakarta');
+                            $today = new DateTime(date('Y-m-d', time()));
+                            $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat'])));
+                            $interval = date_diff($dibuat, $today);
+                            if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
+                        ?>
+                                <div class="list" onclick="window.location.href='Group/detail'">
+                                    <div class="group gradient-1">
+                                        <div class="group-inner-text">
+                                            <div class="mapel2 poppins"><?= $task['name'] ?></div>
+                                            <div class="task-remaining poppins"><?= $task['grade'] ?></div>
                                         </div>
                                     </div>
+                                    <div class="bottom-group">
+                                        <div class="percentage poppins">60%</div>
+                                        <div class="progress-member">
+                                            <div class="progress-bar-empty">
+                                                <div class="progress-bar gradient-1" style="width: 60px;"></div>
+                                            </div>
+                                            <div class="member">
+                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                <div class="ellipse poppins">+8</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        <?php } else { ?>
-                            <script>
-                                if (hide) {
-                                    var content = document.getElementById('content-group');
-                                    content.classList.add('hide');
-                                }
-                            </script>
-                    <?php }
-                    } ?>
+                            <?php } else { ?>
+                                <script>
+                                    // if (hide) {
+                                    //     var content = document.getElementById('content-group');
+                                    //     content.classList.add('hide');
+                                    // }
+                                </script>
+                            <?php }
+                            ?>
+                    </div>
                 </div>
-            </div> -->
+
+            <?php } ?>
+
+        <?php } ?>
+                </div>
         </div>
         <div id="background"></div>
         <div id="overlay" class="">
@@ -215,14 +293,14 @@
                                 <div>Solo Projects</div>
                             </div>
                         </button>
-                        <!-- <button class="navigation" onclick="pathFind('group')">
+                        <button class="navigation" onclick="pathFind('group')">
                             <div class="left-content">
                                 <svg class="curved-users-more" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path id="logo" d="M15.8333 11.6667C17.6743 11.6667 19.1667 13.3333 19.1667 14.5833C19.1667 15.2737 18.607 15.8333 17.9167 15.8333H17.5M14.1667 9.16667C15.5474 9.16667 16.6667 8.04738 16.6667 6.66667C16.6667 5.28596 15.5474 4.16667 14.1667 4.16667M4.16668 11.6667C2.32573 11.6667 0.833344 13.3333 0.833344 14.5833C0.833344 15.2737 1.39299 15.8333 2.08334 15.8333H2.50001M5.83334 9.16667C4.45263 9.16667 3.33334 8.04738 3.33334 6.66667C3.33334 5.28596 4.45263 4.16667 5.83334 4.16667M13.75 15.8333H6.25001C5.55965 15.8333 5.00001 15.2737 5.00001 14.5833C5.00001 12.5 7.50001 11.6667 10 11.6667C12.5 11.6667 15 12.5 15 14.5833C15 15.2737 14.4404 15.8333 13.75 15.8333ZM12.5 6.66667C12.5 8.04738 11.3807 9.16667 10 9.16667C8.6193 9.16667 7.50001 8.04738 7.50001 6.66667C7.50001 5.28596 8.6193 4.16667 10 4.16667C11.3807 4.16667 12.5 5.28596 12.5 6.66667Z" stroke="#71839B" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                                 <div>Group Projects</div>
                             </div>
-                        </button> -->
+                        </button>
                         <?php if ($_SESSION['status'] != 'guru') { ?>
                             <button class="navigation" onclick="window.location.href='http://localhost/ourtaskmvc/public/home/calender'">
                                 <div class="left-content">
@@ -232,7 +310,7 @@
                                     <div>Calendar</div>
                                 </div>
                             </button>
-                            <button class="navigation" onclick="pathFind('complited')">
+                            <!-- <button class="navigation" onclick="pathFind('complited')">
                                 <div class="left-content">
                                     <svg class="check-ring" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle id="logo" cx="10" cy="10" r="7.5" stroke="#71839B" stroke-width="2" />
@@ -240,7 +318,7 @@
                                     </svg>
                                     <div>Complated Tasks</div>
                                 </div>
-                            </button>
+                            </button> -->
                             <button class="navigation" onclick="pathFind('home/mapel')">
                                 <div class="left-content">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -880 970 600" width="20">
@@ -308,6 +386,15 @@
                 </div>
             </div>
         </div>
+        <script>
+            function post(id) {
+                var idformname = "form-" + id;
+                var idform = document.getElementById(idformname);
+                var idtask = document.getElementById("task-" + id)
+                // alert(idtask.value)
+                idform.submit(idtask)
+            }
+        </script>
         <script src="http://localhost/ourtaskmvc/public/js/overlay_menu.js"></script>
 </body>
 

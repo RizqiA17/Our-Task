@@ -257,14 +257,14 @@
                             <div>Solo Projects</div>
                         </div>
                     </button>
-                    <!-- <button class="navigation" onclick="pathFind('group')">
+                    <button class="navigation" onclick="pathFind('group')">
                         <div class="left-content">
                             <svg class="curved-users-more" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path id="logo" d="M15.8333 11.6667C17.6743 11.6667 19.1667 13.3333 19.1667 14.5833C19.1667 15.2737 18.607 15.8333 17.9167 15.8333H17.5M14.1667 9.16667C15.5474 9.16667 16.6667 8.04738 16.6667 6.66667C16.6667 5.28596 15.5474 4.16667 14.1667 4.16667M4.16668 11.6667C2.32573 11.6667 0.833344 13.3333 0.833344 14.5833C0.833344 15.2737 1.39299 15.8333 2.08334 15.8333H2.50001M5.83334 9.16667C4.45263 9.16667 3.33334 8.04738 3.33334 6.66667C3.33334 5.28596 4.45263 4.16667 5.83334 4.16667M13.75 15.8333H6.25001C5.55965 15.8333 5.00001 15.2737 5.00001 14.5833C5.00001 12.5 7.50001 11.6667 10 11.6667C12.5 11.6667 15 12.5 15 14.5833C15 15.2737 14.4404 15.8333 13.75 15.8333ZM12.5 6.66667C12.5 8.04738 11.3807 9.16667 10 9.16667C8.6193 9.16667 7.50001 8.04738 7.50001 6.66667C7.50001 5.28596 8.6193 4.16667 10 4.16667C11.3807 4.16667 12.5 5.28596 12.5 6.66667Z" stroke="#71839B" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                             <div>Group Projects</div>
                         </div>
-                    </button> -->
+                    </button>
                     <button class="navigation" onclick="window.location.href='http://localhost/ourtaskmvc/public/home/calender'">
                         <div class="left-content">
                             <svg class="u-calender" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

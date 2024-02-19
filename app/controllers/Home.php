@@ -114,11 +114,11 @@ class Home extends Controller
 
         var_dump($addTask);
         $murid = $this->model('Kelas_model')->getAllSiswaWithKelas($kelas);
-        var_dump($murid);
+        // var_dump($murid);
         for ($i = 0; $i < sizeof($murid); $i++) {
             $this->model('Task_'.$taskmode.'_distribution_model')->distributingTasks($addTask[0]['id'], $murid[$i]['id_profile']);
         }
-        // header("Location:" . BASEURL . "home");
+        header("Location:" . BASEURL . "home");
 
     }
     public function getDetail()

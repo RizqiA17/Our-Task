@@ -1,6 +1,7 @@
 <?php
 class Solo extends Controller
 {
+
     public function index()
     {
         session_start();
@@ -19,20 +20,14 @@ class Solo extends Controller
             $this->view("templates/footer");
     }
 
-    public function getDetail()
-    {
-        $id_task = $_POST['idtask'];
-        echo $id_task;
-        // session_start();
-        // $data['task'] = $this->model('Task_solo_distribution_model')->getTaskDetail($_SESSION['id_task'], $_SESSION['id']);
-        // $data['task_file'] = $this->model('Task_solo_distribution_model')->taskFile($_SESSION['id_task'], $_SESSION['id']);
-        // var_dump($data);
-        // $this->view("Solo/detail", $data);
-    }
-
     public function detail()
     {
-        $this->view("Solo/detail");
+        session_start();
+        $id_task = $_POST['idtask'];
+        $id = $_SESSION['id'];
+        $data['task'] = $this->model('Task_solo_distribution_model')->getTaskDetail($id_task, $id);
+        // var_dump($data);
+        $this->view("Solo/detail", $data);
     }
 
     public function upload()
