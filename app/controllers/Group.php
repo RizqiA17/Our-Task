@@ -13,23 +13,24 @@ class Group extends Controller
         } else {
             $data['tugas'] = $this->model('Task_group_distribution_model')->getAllTask();
         }
-        $this->view("templates/header");
+        $this->view("templates/header",$data);
         $this->view("Group/index", $data);
         $this->view("templates/footer");
-    }
-
-    public function subdetail()
-    {
-        $this->view("Group/detail");
     }
 
     public function detail()
     {
         session_start();
         $id_task = $_POST['idtask'];
+        $_SESSION['id_task']=$id_task;
         $id = $_SESSION['id'];
         $data['task'] = $this->model('Task_group_distribution_model')->getTaskDetail($id_task, $id);
-        $this->view("Group/sub_task_detail", $data);
+        $this->view("Group/detail", $data);
+    }
+
+    public function subdetail()
+    {
+        $this->view("Group/sub_task_detail");
     }
 
     public function leader()

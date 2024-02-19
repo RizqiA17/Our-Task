@@ -54,6 +54,10 @@
             /* Animasi transisi */
         }
 
+        .hide {
+            display: none;
+        }
+
         /* Animasi geser ke tengah */
         @keyframes scrollAnimation {
             from {
@@ -69,29 +73,20 @@
 
 <body>
     <div class="back" style="position: absolute; cursor: pointer;" onclick="window.history.back()">
-        <svg class="chevron-down-1" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path d="M14 6L8 12L14 18" stroke="#363942" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
+        <svg class="chevron-down-1" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 6L8 12L14 18" stroke="#363942" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
     </div>
     <h3 style="text-align: center;">Calendar</h3>
 
     <div id="date-selector">
-        <select id="monthSelector" onchange="updateCalendar()"
-            style="border: none; font: 600 20px 'Poppins',sans-serif; margin: 20px 0 10px 0;">
-            <option value="1">January</option>
-            <option value="2">February</option>
-            <option value="3">March</option>
-            <option value="4">April</option>
-            <option value="5">May</option>
-            <option value="6">June</option>
-            <option value="7">July</option>
-            <option value="8">August</option>
-            <option value="9">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
+        <select id="monthSelector" onchange="setMonth(value)" style="border: none; font: 600 20px 'Poppins',sans-serif; margin: 20px 0 10px 0;">
+            <?php
+            echo '<option hidden disabled selected value="' . date('n') . '">' . date('F') . '</option>';
+            for ($i = 1; $i <= 12; $i++) {
+                $month_name = date('F', mktime(0, 0, 0, $i, 1, 2011));
+                echo '<option value="' . $i . '">' . $month_name . '</option>';
+            } ?>
         </select>
 
     </div>
@@ -99,111 +94,52 @@
     <div id="calendar-container"></div>
 
     <div class="">
-        <!-- 1 -->
-        <div class=" flex items-center pl-3 rounded-md h-[60px] shadow-lg mt-5">
-            <div class="text-[#363942] ">MTK </div>
-            <div class="flex items-center justify-between rounded-md h-[60px] ml-3 pr-3 bg-[#4B7BE5] w-[100%]">
-                <div class="px-3">
-                    <div class="text-white ">ALJABAR</div>
-                    <div class="text-[#a6a6a6e9] ">20 Jun 2023</div>
-                </div>
-                <div class="bg-white w-[40px] h-[40px] rounded-full px-3 py-3">
-                    <img class="w-[100%] h-[100%]" src="asset/shape.png" alt="">
+        <!-- 2 -->
+        <?php
+        foreach ($data['task_solo'] as $task) {
+        ?>
+            <form action="../solo/detail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
+            <div class="hide flex items-center pl-3 rounded-md h-[60px] shadow-lg mt-5" onclick="post(<?= $task['id_task'] ?>)" id="<?= date('n', strtotime($task['tgl_dibuat'])) . date('j', strtotime($task['tgl_dibuat'])) ?>">
+                <div class="text-[#363942] "><?= $task['mapel'] ?></div>
+                <div class="flex items-center justify-between rounded-md h-[60px] ml-3 pr-3 bg-white shadow-md  w-[100%]">
+                    <div class="px-3">
+                        <div class="text-black "><?= $task['name'] ?></div>
+                        <div class="text-[#a6a6a6e9] "><?= date('j  Y', strtotime($task['tgl_deadline'])) ?></div>
+                    </div>
+
                 </div>
             </div>
-        </div>
-        <!-- 1 -->
+        <?php } ?>
+        <?php
+        foreach ($data['task_group'] as $task) {
+        ?>
+            <form action="../Group/detail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
+            <div class="hide flex items-center pl-3 rounded-md h-[60px] shadow-lg mt-5" onclick="post(<?= $task['id_task'] ?>)" id="<?= date('n', strtotime($task['tgl_dibuat'])) . date('j', strtotime($task['tgl_dibuat'])) ?>">
+                <div class="text-[#363942] "><?= $task['mapel'] ?></div>
+                <div class="flex items-center justify-between rounded-md h-[60px] ml-3 pr-3 bg-white shadow-md  w-[100%]">
+                    <div class="px-3">
+                        <div class="text-black "><?= $task['name'] ?></div>
+                        <div class="text-[#a6a6a6e9] "><?= date('j M Y', strtotime($task['tgl_deadline'])) ?></div>
+                    </div>
 
-        <!-- 2 -->
-        <div class=" flex items-center pl-3 rounded-md h-[60px] shadow-lg mt-5">
-            <div class="text-[#363942] ">PBO</div>
-            <div class="flex items-center justify-between rounded-md h-[60px] ml-3 pr-3 bg-white shadow-md  w-[100%]">
-                <div class="px-3">
-                    <div class="text-black ">BRANCHING JAVA</div>
-                    <div class="text-[#a6a6a6e9] ">20 Jun 2023</div>
                 </div>
-
             </div>
-        </div>
+        <?php } ?>
         <!-- 2 -->
 
-        <!-- 2 -->
-        <div class=" flex items-center pl-3 rounded-md h-[60px] shadow-lg mt-5">
-            <div class="text-[#363942] ">PBO </div>
-            <div class="flex items-center justify-between rounded-md h-[60px] ml-3 pr-3 bg-white shadow-md  w-[100%]">
-                <div class="px-3">
-                    <div class="text-black ">LOOPING JAVA</div>
-                    <div class="text-[#a6a6a6e9] ">20 Jun 2023</div>
-                </div>
-
-            </div>
-        </div>
-        <!-- 2 -->
-
-        <!-- 2 -->
-        <div class=" flex items-center pl-3 rounded-md h-[60px] shadow-lg mt-5">
-            <div class="text-[#363942] ">B. INA</div>
-            <div class="flex items-center justify-between rounded-md h-[60px] ml-3 pr-3 bg-white shadow-md  w-[100%]">
-                <div class="px-3">
-                    <div class="text-black ">TEKS PROSEDURE</div>
-                    <div class="text-[#a6a6a6e9] ">20 Jun 2023</div>
-                </div>
-
-            </div>
-        </div>
-        <!-- 2 -->
-        <!-- 2 -->
-        <div class=" flex items-center pl-3 rounded-md h-[60px] shadow-lg mt-5">
-            <div class="text-[#363942] ">B. ING</div>
-            <div class="flex items-center justify-between rounded-md h-[60px] ml-3 pr-3 bg-white shadow-md  w-[100%]">
-                <div class="px-3">
-                    <div class="text-black ">ENGLISH SCORE</div>
-                    <div class="text-[#a6a6a6e9] ">20 Jun 2023</div>
-                </div>
-
-            </div>
-        </div>
-        <!-- 2 -->
-        <!-- 2 -->
-        <div class=" flex items-center pl-3 rounded-md h-[60px] shadow-lg mt-5">
-            <div class="text-[#363942] ">MTK </div>
-            <div class="flex items-center justify-between rounded-md h-[60px] ml-3 pr-3 bg-white shadow-md  w-[100%]">
-                <div class="px-3">
-                    <div class="text-black ">FUNGSI</div>
-                    <div class="text-[#a6a6a6e9] ">20 Jun 2023</div>
-                </div>
-
-            </div>
-        </div>
-        <!-- 2 -->
-        <!-- 2 -->
-        <div class=" flex items-center pl-3 rounded-md h-[60px] shadow-lg mt-5">
-            <div class="text-[#363942] ">SJRH </div>
-            <div class="flex items-center justify-between rounded-md h-[60px] ml-3 pr-3 bg-white shadow-md   w-[100%]">
-                <div class="px-3">
-                    <div class="text-black ">KEDATANGAN BELANDA</div>
-                    <div class="text-[#a6a6a6e9] ">20 Jun 2023</div>
-                </div>
-
-            </div>
-        </div>
-        <!-- 2 -->
-        <!-- 2 -->
-        <div class=" flex items-center pl-3 rounded-md h-[60px] shadow-lg mt-5">
-            <div class="text-[#363942] ">PBO </div>
-            <div class="flex items-center justify-between rounded-md h-[60px] ml-3 pr-3 bg-white shadow-md  w-[100%]">
-                <div class="px-3">
-                    <div class="text-black ">INPUT JAVA</div>
-                    <div class="text-[#a6a6a6e9] ">20 Jun 2023</div>
-                </div>
-
-            </div>
-        </div>
-        <!-- 2 -->
 
     </div>
 
     <script>
+
+        function post(id) {
+            var idformname = "form-" + id;
+            var idform = document.getElementById(idformname);
+            var idtask = document.getElementById("task-" + id)
+            // alert(idtask.value)
+            idform.submit(idtask)
+        }
+
         function generateCalendar(year, month) {
             const firstDay = new Date(year, month - 1, 1);
             const lastDay = new Date(year, month, 0);
@@ -233,8 +169,8 @@
                     td.appendChild(th);
                 }
                 thead.appendChild(dayNamesRow);
-                td.id = 'day_' + currentDay;
-                td.addEventListener('click', function () {
+                td.id = currentDay;
+                td.addEventListener('click', function() {
                     handleTdClick(td.id);
                 });
 
@@ -313,9 +249,8 @@
             // setTimeout(() => {
             //     day.classList.remove('selected');
             // }, 500);
+            list(tdId)
         }
-
-        updateCalendar();
     </script>
 </body>
 

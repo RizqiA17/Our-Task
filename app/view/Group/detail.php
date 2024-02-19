@@ -22,12 +22,12 @@
         </div>
     </div>
     <div class="container">
-        <input type="text" class="task-title" style="margin-bottom: 10px; border: solid 1px gray; border-radius: 10px; box-sizing: border-box; padding: 5px; width: 100%;" placeholder="title">
-        </input>
+        <?php foreach($data['task'] as $task){?>
+        <div class="title" style="margin-bottom: 10px; padding: 5px; width: 100%;"><?=$task['name']?></div>
         <div class="task-detail">
-            <textarea style="margin-bottom: 10px; height: fit-content; width: 100%; border: solid 1px gray; border-radius: 10px; box-sizing: border-box; padding: 5px;" placeholder="detail"></textarea>
+            <div style="margin-bottom: 10px; height: fit-content; width: 100%; border: solid 1px gray; border-radius: 5px; box-sizing: border-box; padding: 5px;" ><?=$task['description']?></div>
             <div style="font: 200 14px 'Poppins',sans-serif; color: black;">
-                Due date: Thursday, 20 July 2023
+                Due date: <?=date('l, i M Y')?>
             </div>
         </div>
         <div style="font: 400 20px 'Poppins',sans-serif; margin-top: 30px;">Assigned to</div>
@@ -158,11 +158,13 @@
                 </div>
             </div>
         </div>
+    <?php } ?>
     </div>
     <button
-        style="background-color: rgba(62, 74, 222, 1); border: none; height: 30px; width: 100%; margin-top: 30px; border-radius: 10px;">Add
-        New Task +</button>
-    </div>
+        style="background-color: rgba(62, 74, 222, 1); border: none; height: 30px; width: 100%; margin-top: 30px; border-radius: 10px;">
+        Add
+        New Task +
+    </button>
     <script>
         setInterval(function () {
             var h1 = document.querySelector(".header");

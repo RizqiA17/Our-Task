@@ -15,7 +15,7 @@ class Solo extends Controller
                 $data['task'] = $this->model('Task_solo_distribution_model')->getAllTask();
             }
             // var_dump($data['task']);
-            $this->view("templates/header");
+            $this->view("templates/header",$data);
             $this->view("Solo/index", $data);
             $this->view("templates/footer");
     }

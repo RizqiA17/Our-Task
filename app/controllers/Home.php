@@ -23,7 +23,9 @@ class Home extends Controller
     }
     public function calender()
     {
-        $this->view("Home/calender");
+        $data['task_solo'] = $this->model('Task_solo_distribution_model')->getAllTask();
+        $data['task_group'] = $this->model('Task_group_distribution_model')->getAllTask();
+        $this->view("Home/calender",$data);
     }
     public function notification()
     {

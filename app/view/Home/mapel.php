@@ -105,7 +105,7 @@
                             <div>Group Projects</div>
                         </div>
                     </button>
-                    <button class="navigation" onclick="window.location.href='calender'">
+                    <!-- <button class="navigation" onclick="window.location.href='calender'">
                         <div class="left-content">
                             <svg class="u-calender" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -115,7 +115,7 @@
                             </svg>
                             <div>Calendar</div>
                         </div>
-                    </button>
+                    </button> -->
                     <!-- <button class="navigation" onclick="pathFind('complited')">
                         <div class="left-content">
                             <svg class="check-ring" width="20" height="20" viewBox="0 0 20 20" fill="none"
