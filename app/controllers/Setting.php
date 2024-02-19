@@ -3,6 +3,10 @@ class Setting extends Controller
 {
     public function index()
     {
+        session_start();
+        if(!isset($_SESSION['status'])){
+            header("Location:".BASEURL."Login");
+        }
         $this->view("Setting/index");
     }
 

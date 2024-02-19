@@ -364,14 +364,6 @@ button[type="submit"]
     gap: 10px;
 }
 
-.hide
-{
-    display: none;
-}
-
-.comment
-{}
-
 .comment-username
 {
     margin-left: 10px;
@@ -432,6 +424,12 @@ a
 }
 
 .list-murid{
+    margin-top: 20px;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: calc(100% / 3) calc(100% / 3) calc(100% / 3);
+}
+
+.hide
+{
+    display: none;
 }

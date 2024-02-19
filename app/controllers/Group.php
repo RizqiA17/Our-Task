@@ -1,6 +1,10 @@
 <?php
 class Group extends Controller{
     public function index(){
+        session_start();
+        if(!isset($_SESSION['status'])){
+            header("Location:".BASEURL."Login");
+        }
         $data['title'] = 'Data Tugas';
         $data['tugas'] = $this->model('Tugas_group_model')->getAllTugas();
         $this->view("templates/header");

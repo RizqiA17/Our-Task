@@ -49,9 +49,9 @@
                     </div> -->
                     <div class="select-kelas sett">
                         <label for="">Kelas</label>
-                        <select id="" name="kelas">
+                        <select id="kelas" name="kelas">
                             <?php foreach ($data['kelas'] as $kelas) { ?>
-                                <option value="<?= $kelas['id_kelas'] ?>"><?= $kelas['grade'] ?></option>
+                                <option value="<?= $kelas['id_kelas'] ?>" onclick="selectClass(<?= $kelas['id_kelas'] ?>)"><?= $kelas['grade'] ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -65,25 +65,40 @@
                 </div> -->
             </div>
         </div>
-        <div class="list-murid">
-            <?php
-            $i = 0;
-            foreach ($data['siswa' . $i] as $siswa) {
-            ?>
-                <div>
-                    <?php $absen=$i+1; ?>
-                    <label for=""><input type="checkbox" name="" id="<?= $siswa['id_profile'] ?>"><?=$absen. '. '. $siswa['name'] ?></label>
-                </div>
-            <?php
-                $i++;
-            }
-            ?>
-        </div>
+        <?php
+        $absen = 0;
+        $id_kelas = 0;
+        do {
+        ?>
+            <div class="hide list-murid" id="class<?= $id_kelas+1; ?>">
+                <?php
+                foreach ($data['siswa' . $id_kelas] as $siswa) {
+                ?>
+                    <div>
+                        <?php $absen++; ?>
+                        <label for=""><input type="checkbox" name="" id="<?= $siswa['id_profile'] ?>"><?= $absen . '. ' . $siswa['name'] ?></label>
+                    </div>
+                <?php
+                    if ($absen == sizeof($data['siswa' . $id_kelas])) {
+                        $absen = 0;
+                        $id_kelas = $id_kelas + 1;
+                    }
+                }
+                ?>
+            </div>
+        <?php
+        } while (!empty($data['siswa' . $id_kelas]));
+        ?>
         <div class="bottom">
             <button type="submit">Add</button>
         </div>
     </form>
     <script>
+        function selectClass(kelas) {
+            idkelas = "class"+kelas;
+            document.getElementById(idkelas).classList.remove("hide");
+        }
+
         setInterval(function() {
             var h1 = document.querySelector(".header");
             var h2 = document.querySelector(".task-title");

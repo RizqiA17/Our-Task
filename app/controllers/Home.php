@@ -4,6 +4,9 @@ class Home extends Controller
 {
     public function index()
     {
+        if(!isset($_SESSION['status'])){
+            header("Location:".BASEURL."Login");
+        }
         $data['title'] = 'Home';
         if ($_SESSION['status'] == 'guru') {
             $data['task_solo'] = $this->model('Task_solo_model')->getTaskForTeacher();
