@@ -15,6 +15,12 @@ class Kelas_model{
         return $this->db->resultSet();
     }
 
+    public function getSiswa($kelas){
+        $this->db->query("SELECT id_profile, name FROM ". $this->table . " JOIN profile ON ".$this->table.".id_profile = profile.id WHERE id_kelas = :kelas");
+        $this->db->bind(':kelas', $kelas);
+        return $this->db->resultSet();
+    }
+
     public function getAllSiswaWithKelas($kelas){
         $this->db->query("SELECT id_profile FROM ". $this->table . " WHERE id_kelas = :id");
         $this->db->bind(':id', $kelas);

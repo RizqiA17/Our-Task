@@ -40,6 +40,12 @@ class Home extends Controller
     {
         // $this->model('Mapel_model')->mengajar();
         $data['kelas']=$this->model('Mapel_model')->mengajar();
+        $i = 0;
+        foreach($data['kelas'] as $kelas){
+            $data['siswa'.$i]=$this->model('Kelas_model')->getSiswa($kelas['id_kelas']);
+            $i++;
+        }
+        // var_dump($data);
         $this->view("Home/addtask", $data);
     }
 
@@ -56,7 +62,7 @@ class Home extends Controller
         $addTask = $this->model('Task_solo_model')->addTask($title, $detail, $deadline,'', $_SESSION['mapel'], $kelas);
         var_dump($addTask);
         $murid = $this->model('Kelas_model')->getAllSiswaWithKelas($kelas);
-        // var_dump($murid);
+        var_dump($murid);
         for ($i = 0; $i < sizeof($murid); $i++) {
             $this->model('Task_solo_distribution_model')->distributingTasks($addTask[0]['id'], $murid[$i]['id_profile']);
         }

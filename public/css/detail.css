@@ -430,3 +430,8 @@ a
 {
     cursor: pointer;
 }
+
+.list-murid{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}

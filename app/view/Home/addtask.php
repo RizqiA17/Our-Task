@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form action="<?=BASEURL?>/home/addnewtask" method="post" class="add-task-form">
+    <form action="<?= BASEURL ?>/home/addnewtask" method="post" class="add-task-form">
         <div class="top">
             <div class="header">
                 <div class="title">
@@ -50,20 +50,34 @@
                     <div class="select-kelas sett">
                         <label for="">Kelas</label>
                         <select id="" name="kelas">
-                            <?php foreach($data['kelas'] as $kelas){ ?>
-                            <option value="<?=$kelas['id_kelas']?>"><?=$kelas['grade']?></option>
+                            <?php foreach ($data['kelas'] as $kelas) { ?>
+                                <option value="<?= $kelas['id_kelas'] ?>"><?= $kelas['grade'] ?></option>
                             <?php } ?>
                         </select>
                     </div>
                 </div>
                 <!-- <div style="font: 400 18px 'Poppins',sans-serif; margin-top: 10px;">
-            Leader Group
-            <div style="margin-bottom: 20px; display: flex; align-items: center; overflow: hidden; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; ::-webkit-scrollbar{display: none;}">
-                <img class="member-img leader" src="person1.jpeg" alt="">
-                <div class="member-img leader">+</div>
+                    Leader Group
+                    <div style="margin-bottom: 20px; display: flex; align-items: center; overflow: hidden; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; ::-webkit-scrollbar{display: none;}">
+                        <img class="member-img leader" src="person1.jpeg" alt="">
+                        <div class="member-img leader">+</div>
+                    </div>
+                </div> -->
             </div>
-        </div> -->
-            </div>
+        </div>
+        <div class="list-murid">
+            <?php
+            $i = 0;
+            foreach ($data['siswa' . $i] as $siswa) {
+            ?>
+                <div>
+                    <?php $absen=$i+1; ?>
+                    <label for=""><input type="checkbox" name="" id="<?= $siswa['id_profile'] ?>"><?=$absen. '. '. $siswa['name'] ?></label>
+                </div>
+            <?php
+                $i++;
+            }
+            ?>
         </div>
         <div class="bottom">
             <button type="submit">Add</button>
