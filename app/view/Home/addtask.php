@@ -96,6 +96,7 @@
         <div class="bottom">
             <button onclick="getLeader()" type="submit">Add</button>
         </div>
+        <div id="delete-coma"></div>
     </form>
     <script>
         var leader='';
@@ -107,6 +108,7 @@
                     leader += checkbox[i].value+',';
                 }
             }
+            document.getElementById("delete-coma").innerText = leader.replace(/,\s*$/, "");
             document.getElementById('leader').value = leader
         }
 
