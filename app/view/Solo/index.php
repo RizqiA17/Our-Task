@@ -61,7 +61,9 @@
                                     <div class="solo list" onclick="post(<?= $task['id_task'] ?>)">
                                         <div class="plain">
                                             <div class="info">
-                                                <div class="task work-sans "><?= $task['name'] ?></div>
+                                                <div class="task work-sans <?php if($task['progress'] != "unfinished") ?>">
+                                                        <?= $task['name'] ?>
+                                                    </div>
                                                 <div class="mapel work-sans"><?= $task['mapel'] ?></div>
                                             </div>
                                             <div class="deadline work-sans">
@@ -121,7 +123,9 @@
                                     <div class="solo list" id="<?= $task['id_task'] ?>" onclick="post(<?=$task['id_task']?>)">
                                         <div class="plain">
                                             <div class="info">
-                                                <div class="task work-sans "><?= $task['name'] ?></div>
+                                                <div class="task work-sans <?php if($task['progress'] != "unfinished") echo "task-down" ?>">
+                                                        <?= $task['name'] ?>
+                                                    </div>
                                                 <div class="mapel work-sans"><?= $task['mapel'] ?></div>
                                             </div>
                                             <div class="deadline work-sans">
@@ -182,7 +186,9 @@
                                     <div class="solo list" id="<?= $task['id_task'] ?>" onclick="post(<?=$task['id_task']?>)">
                                         <div class="plain">
                                             <div class="info">
-                                                <div class="task work-sans "><?= $task['name'] ?></div>
+                                                <div class="task work-sans <?php if($task['progress'] != "unfinished") echo "task-down" ?>">
+                                                        <?= $task['name'] ?>
+                                                    </div>
                                                 <div class="mapel work-sans"><?= $task['mapel'] ?></div>
                                             </div>
                                             <div class="deadline work-sans">

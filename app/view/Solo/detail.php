@@ -13,7 +13,7 @@
         <div class="title">
             Solo Project
         </div>
-        <div class="back" onclick="window.location.href='<?= BASEURL . 'solo';   ?>'">
+        <div class="back" onclick="window.history.back()">
             <svg class="group" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7.828 11H20V13H7.828L13.192 18.364L11.778 19.778L4 12L11.778 4.22205L13.192 5.63605L7.828 11Z" fill="#363942" />
             </svg>
@@ -85,7 +85,9 @@
                 </div>
 
                 <div class="finsih">
-                    <button style="background-color: rgba(0, 110, 233, 1); border-radius: 10px; height: 30px; width: 100%; border: none; color: white;" onclick="window.location.href='http://localhost/ourtaskmvc/public/home'">Finsih</button>
+                    <form action="complited">
+                        <button onclick="window.confirm('Tandai Selesai?');" style="background-color: rgba(0, 110, 233, 1); border-radius: 10px; height: 30px; width: 100%; border: none; color: white;" onclick="window.location.href='http://localhost/ourtaskmvc/public/home'">Finsih</button>
+                    </form>
                 </div>
 
                 <script>

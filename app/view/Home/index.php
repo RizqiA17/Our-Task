@@ -56,7 +56,7 @@
                                         <div class="list solo half" id="<?= $task['id_task'] ?>">
                                             <div class="plain">
                                                 <div class="info">
-                                                    <div class="task work-sans ">
+                                                    <div class="task work-sans <?php if($task['progress'] != "unfinished") echo "task-down"?>">
                                                         <?= $task['name'] ?>
                                                     </div>
                                                     <div class="mapel work-sans">

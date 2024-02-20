@@ -32,4 +32,10 @@ class Task_solo_distribution_model{
         echo "complited";
     }
 
+    public function taskComplited($id_task, $id_profile){
+        $this->db->query("UPDATE ".$this->table." SET `progress` = 'finish' WHERE ".$this->table.".`id_task` = ".$id_task." AND ".$this->table.".id_profile = ".$id_profile."");
+        $this->db->execute();
+        echo "complited";
+    }
+
 }

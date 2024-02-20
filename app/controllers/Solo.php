@@ -26,8 +26,18 @@ class Solo extends Controller
         $id_task = $_POST['idtask'];
         $id = $_SESSION['id'];
         $data['task'] = $this->model('Task_solo_distribution_model')->getTaskDetail($id_task, $id);
+        $_SESSION['id_task']=$data['task'][0]['id_task'];
         // var_dump($data);
         $this->view("Solo/detail", $data);
+    }
+
+    public function complited(){
+        session_start();
+        var_dump($_SESSION['id_task']);
+        echo "task selesai";
+
+        $this->model('Task_solo_distribution_model')->taskComplited($_SESSION['id_task'], $_SESSION['id']);
+        header("Location:".BASEURL."home");
     }
 
     public function upload()
