@@ -13,27 +13,63 @@ class Group extends Controller
         } else {
             $data['tugas'] = $this->model('Task_group_distribution_model')->getAllTask();
         }
-        $this->view("templates/header",$data);
+        $this->view("templates/header", $data);
         $this->view("Group/index", $data);
         $this->view("templates/footer");
     }
 
+
     public function detail()
     {
         session_start();
-        $id_task = $_POST['idtask'];
-        $_SESSION['id_task']=$id_task;
         $id = $_SESSION['id'];
+        $id_task = $_SESSION['id_task'];
         $data['task'] = $this->model('Task_group_distribution_model')->getTaskDetail($id_task, $id);
-        $data['member'] = $this->model('Task_group_distribution_model')->getMember($id_task, $id);
-        $data['notmember'] = $this->model('Task_group_distribution_model')->getMemberNotInGroup($id_task);
-        $leadercount = $this->model('Task_group_leader_model')->getMemberNotInGroup($id_task);
-        // $murid = $this->model('Kelas_model')->getAllSiswaWithKelas($kelas);
+        // var_dump($data['task']);
 
-        $data['group_lenght'] = 
-        
+        if ($data['task'][0]['id_leader'] != null) {
+            $_SESSION['id_leader'] = $data['task'][0]['id_leader'];
+            $data['member'] = $this->model('Task_group_distribution_model')->getMember($data['task'][0]['id_leader']);
+        }
+        $data['notmember'] = $this->model('Task_group_distribution_model')->getMemberNotInGroup($id_task);
+        $leadercount = $this->model('Task_group_leader_model')->getAllLeader($id_task);
+        // var_dump($data);
+        $murid = $this->model('Kelas_model')->getAllSiswaWithKelas($data['task'][0]['id_kelas']);
+        for ($totalmurid = 1; $totalmurid < sizeof($murid); $totalmurid++) {
+            // var_dump($totalmurid);
+        }
+        // echo sizeof($leadercount);
+        $grouplenght = $totalmurid / sizeof($leadercount);
+        if ($totalmurid % sizeof($leadercount) != 0) {
+            $grouplenght++;
+        }
+        // var_dump($totalmurid);
+        $data['group_lenght'] = $grouplenght;
+        // var_dump($grouplenght);
+
         // var_dump($data);
         $this->view("Group/detail", $data);
+    }
+
+    public function getDetail()
+    {
+        session_start();
+        $id_task = $_POST['idtask'];
+        var_dump($_POST['idtask']);
+        $_SESSION['id_task'] = $id_task;
+        header('Location:' . BASEURL . "Group/detail");
+    }
+
+    public function addMember()
+    {
+        session_start();
+        $member_id = explode(',', $_POST['addMember']);
+        for ($i = 1; $i < sizeof($member_id); $i++) {
+            echo $member_id[$i - 1] . "<br>";
+            // var_dump($_SESSION['id_leader']);
+            $this->model("Task_group_distribution_model")->addLeader($_SESSION['id_task'], $_SESSION['id_leader'], $member_id[$i - 1]);
+        }
+        header("Location:" . BASEURL . "Group/detail");
     }
 
     public function subdetail()

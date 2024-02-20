@@ -79,31 +79,45 @@
                     Due date: <?= date('l, j M Y') ?>
                 </div>
             </div>
+            <?php if($data['task'][0]['id_leader'] != null){ ?>
             <div style="font: 400 20px 'Poppins',sans-serif; margin-top: 30px;">Member</div>
             <div style="display: flex; align-items: center;">
-                <img class="member-img" src="<?= BASEURL ?>image/<?= $task['pp_name'] ?>" alt="" style="height: 40px; width: 40px; margin: 10px;" style="display: flex; align-items: center; justify-content: center; font-size: 25px; box-sizing: border-box; border: dotted 3px; height: 40px; width: 40px;">
-                <?php foreach ($data['member'] as $member) ?>
-                <img class="member-img" src="<?= BASEURL ?>image/<?= $task['pp_name'] ?>" alt="" style="height: 40px; width: 40px; margin: 10px;" style="display: flex; align-items: center; justify-content: center; font-size: 25px; box-sizing: border-box; border: dotted 3px; height: 40px; width: 40px;">
-                <?php if ($task['id'] == $task['id_profile']) { ?>
+                <!-- <img class="member-img" src="<?= BASEURL ?>image/<?= $task['pp_name'] ?>" alt="" style="height: 40px; width: 40px; margin: 10px;" style="display: flex; align-items: center; justify-content: center; font-size: 25px; box-sizing: border-box; border: dotted 3px; height: 40px; width: 40px;"> -->
+                <?php 
+                    foreach ($data['member'] as $member) { ?>
+                    <img class="member-img" src="<?= BASEURL ?>image/<?= $task['pp_name'] ?>" alt="" style="height: 40px; width: 40px; margin: 10px;" style="display: flex; align-items: center; justify-content: center; font-size: 25px; box-sizing: border-box; border: dotted 3px; height: 40px; width: 40px;">
+                <?php } ?>
+                <?php if ($task['id'] == $task['id_profile'] || sizeof($data['member']) < floor($data['group_lenght'])) { ?>
                     <div id="Add-Member" class="modal">
                         <div class="modal-card">
                             <!-- Modal content -->
                             <span class="close">×</span>
                             <p>Add Member</p>
-                            <div class="modal-content">
-                                <?php foreach ($data['notmember'] as $getmember) { ?>
-                                    <div style="display: flex; gap: 10px; align-items: center">
-                                        <div class=""><input onchange="addMember(<?= $getmember['id_profile'] ?>)"  type="checkbox" name="membernogroup" id="<?= $getmember['id_profile'] ?>"></div>
-                                        <?= $getmember['name'] ?>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                            <button style="background-color: rgba(62, 74, 222, 1); color: white; border: none; height: 30px; width: 100%; margin-top: 30px; border-radius: 10px;">Add Member</button>
+                            <form action="addMember" method="post">
+                                <input type="hidden" name="addMember" id="addMemberValue" value="">
+                                <div class="modal-content">
+                                    <?php foreach ($data['notmember'] as $getmember) { ?>
+                                        <div style="display: flex; gap: 10px; align-items: center">
+                                            <div class="">
+                                                <input onchange="totalAddMember(<?= $getmember['id_profile'] ?>)" type="checkbox" name="membernogroup" value="<?= $getmember['id_profile'] ?>" id="<?= $getmember['id_profile'] ?>">
+                                            </div>
+                                            <?= $getmember['name'] ?>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                                <button onclick="getValue()" type="submit" style="background-color: rgba(62, 74, 222, 1); color: white; border: none; height: 30px; width: 100%; margin-top: 30px; border-radius: 10px;">Add Member</button>
+                            </form>
                         </div>
                     </div>
-                    <button class="member-img" style="display: flex; align-items: center; justify-content: center; font-size: 25px; border-radius: 100%; box-sizing: border-box; border: dotted 3px; height: 40px; width: 40px;" id="Add-member-btn">+</button>
+                <?php } 
+                    if(sizeof($data['member']) < floor($data['group_lenght'])){
+                ?>
+                <button class="member-img" style="display: flex; align-items: center; justify-content: center; font-size: 25px; border-radius: 100%; box-sizing: border-box; border: dotted 3px; height: 40px; width: 40px;" id="Add-member-btn">+</button>
                 <?php } ?>
             </div>
+            <?php }else { ?>
+            <div style="font: 400 20px 'Poppins',sans-serif; margin-top: 30px;">Your not in any Group, contact your leader group</div>
+            <?php } ?>
     </div>
     <div class="task" style="font: 400 20px 'Poppins',sans-serif; overflow: hidden; overflow-y: auto;">Task
         <div>
@@ -166,13 +180,35 @@
         }
     };
 
-    var i = 0
-    function addMember(id) {
-        i++
+    var i = <?= sizeof($data['member']); ?>
+
+    function totalAddMember(id) {
         member = id;
-        if(i > 6){
-            alert("Anggota telah mencapai batas")
-            document.getElementById(member).checked = false
+        // alert(i)
+        if (document.getElementById(id).checked) {
+            if (i < Math.floor(<?= $data['group_lenght'] ?>)) {
+                i++
+            } else {
+                alert("Anggota telah mencapai batas")
+                document.getElementById(id).checked = false
+            }
+        } else {
+            i--
+        }
+        alert(i)
+    }
+
+    function getValue() {
+        var membernogroup = ''
+        // if(document.getElementsByName("membernogroup").length > 0){
+        //     alert("berhasil")
+        // }
+        for (var a = 0; a < document.getElementsByName("membernogroup").length; a++) {
+            if (document.getElementsByName("membernogroup")[a].checked) {
+                membernogroup += document.getElementsByName("membernogroup")[a].value + ","
+                alert(membernogroup)
+                document.getElementById("addMemberValue").value = membernogroup
+            }
         }
     }
 

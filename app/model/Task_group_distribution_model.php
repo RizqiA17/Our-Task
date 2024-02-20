@@ -16,7 +16,7 @@ class Task_group_distribution_model
     }
 
     public function getTaskDetail($id_task, $id){
-        $this->db->query("SELECT * FROM " . $this->table ." JOIN task_group ON ".$this->table.".id_task = task_group.id JOIN mapel ON task_group.id_mapel = mapel.id JOIN profile ON ".$this->table.".id_profile = profile.id WHERE id_task = ".$id_task. " AND id_profile = ".$id);
+        $this->db->query("SELECT * FROM " . $this->table ." JOIN profile ON ".$this->table.".id_profile = profile.id JOIN task_group ON ".$this->table.".id_task = task_group.id JOIN mapel ON task_group.id_mapel = mapel.id WHERE id_task = ".$id_task. " AND id_profile = ".$id);
         return $this->db->resultSet();
     }
 
@@ -31,8 +31,8 @@ class Task_group_distribution_model
         $this->db->execute();
     }
 
-    public function getMember($id_task, $id){
-        $this->db->query("SELECT * FROM ".$this->table." WHERE id_task = ".$id_task."");
+    public function getMember($id_leader){
+        $this->db->query("SELECT * FROM ".$this->table." WHERE id_leader = ".$id_leader."");
         return $this->db->resultSet();
     }
 
@@ -42,9 +42,10 @@ class Task_group_distribution_model
     }
 
     public function getMemberNotInGroup($id_task){
-        $this->db->query("SELECT * FROM " . $this->table ." JOIN profile ON ".$this->table.".id_profile = profile.id WHERE id_task = ".$id_task);
+        $this->db->query("SELECT * FROM " . $this->table ." JOIN profile ON ".$this->table.".id_profile = profile.id WHERE id_task = ".$id_task." AND id_leader is null");
         return $this->db->resultSet();
     }
+
 
     public function distributingTasks($id_task, $id_murid){
         echo $id_murid; 
