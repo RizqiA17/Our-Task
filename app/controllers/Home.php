@@ -25,7 +25,7 @@ class Home extends Controller
     {
         $data['task_solo'] = $this->model('Task_solo_distribution_model')->getAllTask();
         $data['task_group'] = $this->model('Task_group_distribution_model')->getAllTask();
-        $this->view("Home/calender",$data);
+        $this->view("Home/calender", $data);
     }
     public function notification()
     {
@@ -61,9 +61,9 @@ class Home extends Controller
         $deadline = date('Y-m-d', strtotime($_POST['deadline']));
         $taskmode = $_POST['mode'];
         $kelas = $_POST['kelas'];
-        var_dump($_POST['leader']);
+        // var_dump($_POST['leader']);
         $leader = explode(",", $_POST['leader']);
-        var_dump($leader);
+        // var_dump($leader);
         // echo $title . $detail . $deadline . $taskmode . $filename . $kelas . $_SESSION['mapel'];
 
         // $addTask = $this->model('Task_solo_model')->addTask($title, $detail, $deadline,'', $_SESSION['mapel'], $kelas);
@@ -74,12 +74,12 @@ class Home extends Controller
         $imageFileType = strtolower(pathinfo($image_name, PATHINFO_EXTENSION));
         $filename = uniqid() . '.' . $imageFileType;
         $targetFile = $target_dir . $filename;
-        
-        var_dump($_SESSION['id']);
+
+        // var_dump($_SESSION['id']);
         $addTask = $this->model('Task_' . $taskmode . '_model')->addTask($title, $detail, $deadline, $filename, $_SESSION['mapel'], $kelas);
-        
-        
-        var_dump($addTask);
+
+
+        // var_dump($addTask);
         if ($taskmode == 'Group') {
             for ($i = 0; $i <= sizeof($leader); $i++) {
                 if ($leader[$i] != null) {
@@ -95,33 +95,39 @@ class Home extends Controller
             if ($check !== false) {
                 // Memindahkan file yang diupload ke folder image
                 if (move_uploaded_file($image_tmp, $targetFile)) {
-                     echo "The file " . basename($image_name) . " has been uploaded.";
+                    echo "The file " . basename($image_name) . " has been uploaded.";
                     $previous_url = $_SERVER['HTTP_REFERER'];
                     //header('Location:' . BASEURL . 'home');
                 } else {
-                     echo "Sorry, there was an error uploading your file.";
+                    echo "Sorry, there was an error uploading your file.";
                     $previous_url = $_SERVER['HTTP_REFERER'];
                     //header('Location:' . BASEURL . 'home');
                 }
             } else {
-                 echo "File is not an image.";
+                echo "File is not an image.";
                 $previous_url = $_SERVER['HTTP_REFERER'];
                 //header('Location:' . BASEURL . 'home');
             }
         } else {
-             echo "No file uploaded.";
+            echo "No file uploaded.";
             $previous_url = $_SERVER['HTTP_REFERER'];
             //header('Location:' . BASEURL . 'home');
         }
 
-        var_dump($addTask);
+        // var_dump($addTask);
+        // var_dump($addLeader);
         $murid = $this->model('Kelas_model')->getAllSiswaWithKelas($kelas);
         // var_dump($murid);
         for ($i = 0; $i < sizeof($murid); $i++) {
-            $this->model('Task_'.$taskmode.'_distribution_model')->distributingTasks($addTask[0]['id'], $murid[$i]['id_profile']);
+            $this->model('Task_' . $taskmode . '_distribution_model')->distributingTasks($addTask[0]['id'], $murid[$i]['id_profile'], $taskmode);
+        }
+        if ($taskmode == 'Group') {
+            for ($a = 0; $a < sizeof($addLeader); $a++) {
+                $asb = $this->model('Task_' . $taskmode . '_distribution_model')->addLeader($addTask[0]['id'], $addLeader[$a]['id'], $addLeader[$a]['id_profile']);
+                var_dump($asb);
+            }
         }
         header("Location:" . BASEURL . "home");
-
     }
     public function getDetail()
     {

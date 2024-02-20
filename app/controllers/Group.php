@@ -25,6 +25,8 @@ class Group extends Controller
         $_SESSION['id_task']=$id_task;
         $id = $_SESSION['id'];
         $data['task'] = $this->model('Task_group_distribution_model')->getTaskDetail($id_task, $id);
+        $data['member'] = $this->model('Task_group_distribution_model')->getMember($id_task, $id);
+        var_dump($data);
         $this->view("Group/detail", $data);
     }
 

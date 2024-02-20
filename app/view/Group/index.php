@@ -1,4 +1,3 @@
-
 <body>
     <div>
         <div class="header">
@@ -26,424 +25,429 @@
         </div>
         <div class="container">
             <div class="contain">
-                <?php if($_SESSION['status'] != 'guru'){ ?>
-                <div class="" id='content'>
-                    <div class="sort-by top">
-                        <div class="title poppins">Lewat Deadline</div>
-                        <div class="arrow">
-                            <span onclick="scrollContainer('scroll-1',-1)">
-                                <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </span>
-                            <span onclick="scrollContainer('scroll-1',1)">
-                                <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </span>
+                <?php if ($_SESSION['status'] != 'guru') { ?>
+                    <div class="" id='content'>
+                        <div class="sort-by top">
+                            <div class="title poppins">Lewat Deadline</div>
+                            <div class="arrow">
+                                <span onclick="scrollContainer('scroll-1',-1)">
+                                    <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                                <span onclick="scrollContainer('scroll-1',1)">
+                                    <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    <script>
-                        var hide = true;
-                    </script>
-                    <div class="item row-task" id="scroll-1">
-                        <?php foreach ($data['tugas'] as $task) {
-                            date_default_timezone_set('Asia/Jakarta');
-                            $today = new DateTime(date('Y-m-d', time()));
-                            $deadline = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_deadline'])));
-                            $interval = date_diff($today, $deadline);
-                            if ($interval->format('%R') == '-') {
-                        ?>
-                                <script>
+                        <script>
+                            var hide = true;
+                        </script>
+                        <div class="item row-task" id="scroll-1">
+                            <?php foreach ($data['tugas'] as $task) {
+                                date_default_timezone_set('Asia/Jakarta');
+                                $today = new DateTime(date('Y-m-d', time()));
+                                $deadline = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_deadline'])));
+                                $interval = date_diff($today, $deadline);
+                                if ($interval->format('%R') == '-') {
+                            ?>
+                                    <script>
+                                    </script>
                                     // hide = false
-                                </script>
-                                <div class="list" onclick="window.location.href='group/detail'">
-                                    <div class="group gradient-1">
-                                        <div class="group-inner-text">
-                                            <div class="mapel2 poppins"><?= $task['mapel'] ?></div>
-                                            <div class="task-remaining poppins"><?= $task['nama_tugas_group'] ?></div>
-                                        </div>
-                                    </div>
-                                    <div class="bottom-group">
-                                        <div class="percentage poppins">60%</div>
-                                        <div class="progress-member">
-                                            <div class="progress-bar-empty">
-                                                <div class="progress-bar gradient-1" style="width: 60px;"></div>
-                                            </div>
-                                            <div class="member">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <div class="ellipse poppins">+8</div>
+                                    <div class="list" onclick="post(<?= $task['id_task'] ?>)">
+                                        <form action="Group/detail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
+                                        <div class="group gradient-1">
+                                            <div class="group-inner-text">
+                                                <div class="mapel2 poppins"><?= $task['mapel'] ?></div>
+                                                <div class="task-remaining poppins"><?= $task['nama_tugas_group'] ?></div>
                                             </div>
                                         </div>
+                                        <div class="bottom-group">
+                                            <div class="percentage poppins">60%</div>
+                                            <div class="progress-member">
+                                                <div class="progress-bar-empty">
+                                                    <div class="progress-bar gradient-1" style="width: 60px;"></div>
+                                                </div>
+                                                <div class="member">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <div class="ellipse poppins">+8</div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            <?php
-                            } else { ?>
-                                <script>
-                                    // alert('content')
+                                <?php
+                                } else { ?>
+                                    <script>
+                                        // alert('content')
 
-                                    // if (hide) {
-                                    //     var content = document.getElementById('content');
-                                    //     content.classList.add('hide');
-                                    // }
-                                </script>
-                        <?php }
-                        } ?>
+                                        // if (hide) {
+                                        //     var content = document.getElementById('content');
+                                        //     content.classList.add('hide');
+                                        // }
+                                    </script>
+                            <?php }
+                            } ?>
+                        </div>
                     </div>
-                </div>
-                <?php
-                $display2 = 'block';
-                ?>
-                <div class="" id='content2'>
-                    <div class="sort-by top">
-                        <div class="title poppins">Deadline Dekat</div>
-                        <div class="arrow">
-                            <span onclick="scrollContainer('scroll-2',-1)">
-                                <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </span>
-                            <span onclick="scrollContainer('scroll-2',1)">
-                                <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </span>
+                    <?php
+                    $display2 = 'block';
+                    ?>
+                    <div class="" id='content2'>
+                        <div class="sort-by top">
+                            <div class="title poppins">Deadline Dekat</div>
+                            <div class="arrow">
+                                <span onclick="scrollContainer('scroll-2',-1)">
+                                    <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                                <span onclick="scrollContainer('scroll-2',1)">
+                                    <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <script>
+                            // var hide2 = true;
+                        </script>
+                        <div class="item row-task" id="scroll-2">
+                            <?php foreach ($data['tugas'] as $task) {
+                                date_default_timezone_set('Asia/Jakarta');
+                                $today = new DateTime(date('Y-m-d', time()));
+                                $deadline = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_deadline'])));
+                                $interval = date_diff($today, $deadline);
+                                // echo $interval->format('%a days');
+                                if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
+                            ?>
+                                    <script>
+                                        hide2 = false
+                                    </script>
+                                    <div class="list" onclick="post(<?= $task['id_task'] ?>)">
+                                        <form action="Group/detail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
+                                        <div class="group gradient-1">
+                                            <div class="group-inner-text">
+                                                <div class="mapel2 poppins"><?= $task['mapel'] ?></div>
+                                                <div class="task-remaining poppins"><?= $task['name'] ?></div>
+                                            </div>
+                                        </div>
+                                        <div class="bottom-group">
+                                            <div class="percentage poppins">60%</div>
+                                            <div class="progress-member">
+                                                <div class="progress-bar-empty">
+                                                    <div class="progress-bar gradient-1" style="width: 60px;"></div>
+                                                </div>
+                                                <div class="member">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <div class="ellipse poppins">+8</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php
+                                } else { ?>
+                                    <script>
+                                        // alert('content')
+
+                                        // if (hide2) {
+                                        //     var content = document.getElementById('content2');
+                                        //     content.classList.add('hide');
+                                        // }
+                                    </script>
+                                <?php
+                                } ?>
+                            <?php
+                            } ?>
                         </div>
                     </div>
                     <script>
-                        // var hide2 = true;
+                        // hide3 = true
                     </script>
-                    <div class="item row-task" id="scroll-2">
-                        <?php foreach ($data['tugas'] as $task) {
-                            date_default_timezone_set('Asia/Jakarta');
-                            $today = new DateTime(date('Y-m-d', time()));
-                            $deadline = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_deadline'])));
-                            $interval = date_diff($today, $deadline);
-                            // echo $interval->format('%a days');
-                            if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
-                        ?>
-                                <script>
-                                    hide2 = false
-                                </script>
-                                <div class="list" onclick="window.location.href='group/detail'">
-                                    <div class="group gradient-1">
-                                        <div class="group-inner-text">
-                                            <div class="mapel2 poppins"><?= $task['mapel'] ?></div>
-                                            <div class="task-remaining poppins"><?= $task['name'] ?></div>
+                    <div class="" id='content3'>
+                        <div class="sort-by top">
+                            <div class="title poppins">Tugas Baru</div>
+                            <div class="arrow">
+                                <span onclick="scrollContainer('scroll-3',-1)">
+                                    <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                                <span onclick="scrollContainer('scroll-3',1)">
+                                    <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="item row-task" id="scroll-3">
+                            <?php foreach ($data['tugas'] as $task) {
+                                date_default_timezone_set('Asia/Jakarta');
+                                $today = new DateTime(date('Y-m-d', time()));
+                                $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat'])));
+                                $interval = date_diff($dibuat, $today);
+                                if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
+                            ?>
+                                    <script>
+                                        hide3 = false
+                                    </script>
+                                    <div class="list" onclick="post(<?= $task['id_task'] ?>)">
+                                        <form action="Group/detail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
+                                        <div class="group gradient-1">
+                                            <div class="group-inner-text">
+                                                <div class="mapel2 poppins"><?= $task['mapel'] ?></div>
+                                                <div class="task-remaining poppins"><?= $task['name'] ?></div>
+                                            </div>
+                                        </div>
+                                        <div class="bottom-group">
+                                            <div class="percentage poppins">0%</div>
+                                            <div class="progress-member">
+                                                <div class="progress-bar-empty">
+                                                    <div class="progress-bar gradient-1" style="width: 0px;"></div>
+                                                </div>
+                                                <div class="member">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <div class="ellipse poppins">+8</div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="bottom-group">
-                                        <div class="percentage poppins">60%</div>
-                                        <div class="progress-member">
-                                            <div class="progress-bar-empty">
-                                                <div class="progress-bar gradient-1" style="width: 60px;"></div>
-                                            </div>
-                                            <div class="member">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <div class="ellipse poppins">+8</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php
-                            } else { ?>
-                                <script>
-                                    // alert('content')
+                                <?php
+                                } else { ?>
+                                    <script>
+                                        // alert('content')
 
-                                    // if (hide2) {
-                                    //     var content = document.getElementById('content2');
-                                    //     content.classList.add('hide');
-                                    // }
-                                </script>
+                                        //     if (hide3) {
+                                        //         var content = document.getElementById('content3');
+                                        //         content.classList.add('hide');
+                                        //     }
+                                        // 
+                                    </script>
+                                <?php
+                                } ?>
                             <?php
                             } ?>
-                        <?php
-                        } ?>
-                    </div>
-                </div>
-                <script>
-                    // hide3 = true
-                </script>
-                <div class="" id='content3'>
-                    <div class="sort-by top">
-                        <div class="title poppins">Tugas Baru</div>
-                        <div class="arrow">
-                            <span onclick="scrollContainer('scroll-3',-1)">
-                                <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </span>
-                            <span onclick="scrollContainer('scroll-3',1)">
-                                <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </span>
                         </div>
                     </div>
-                    <div class="item row-task" id="scroll-3">
-                        <?php foreach ($data['tugas'] as $task) {
-                            date_default_timezone_set('Asia/Jakarta');
-                            $today = new DateTime(date('Y-m-d', time()));
-                            $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat'])));
-                            $interval = date_diff($dibuat, $today);
-                            if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
-                        ?>
-                                <script>
-                                    hide3 = false
-                                </script>
-                                <div class="list" onclick="window.location.href='group/detail'">
-                                    <div class="group gradient-1">
-                                        <div class="group-inner-text">
-                                            <div class="mapel2 poppins"><?=$task['mapel']?></div>
-                                            <div class="task-remaining poppins"><?=$task['name']?></div>
-                                        </div>
-                                    </div>
-                                    <div class="bottom-group">
-                                        <div class="percentage poppins">0%</div>
-                                        <div class="progress-member">
-                                            <div class="progress-bar-empty">
-                                                <div class="progress-bar gradient-1" style="width: 0px;"></div>
-                                            </div>
-                                            <div class="member">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <div class="ellipse poppins">+8</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php
-                            } else { ?>
-                                <script>
-                                    // alert('content')
-
-                                //     if (hide3) {
-                                //         var content = document.getElementById('content3');
-                                //         content.classList.add('hide');
-                                //     }
-                                // </script>
-                            <?php
-                            } ?>
-                        <?php
-                        } ?>
-                    </div>
-                </div>
                 <?php } ?>
-                <?php if($_SESSION['status'] == 'guru'){ ?>
-                <div class="" id='content'>
-                    <div class="sort-by top">
-                        <div class="title poppins">Lewat Deadline</div>
-                        <div class="arrow">
-                            <span onclick="scrollContainer('scroll-1',-1)">
-                                <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </span>
-                            <span onclick="scrollContainer('scroll-1',1)">
-                                <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </span>
+                <?php if ($_SESSION['status'] == 'guru') { ?>
+                    <div class="" id='content'>
+                        <div class="sort-by top">
+                            <div class="title poppins">Lewat Deadline</div>
+                            <div class="arrow">
+                                <span onclick="scrollContainer('scroll-1',-1)">
+                                    <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                                <span onclick="scrollContainer('scroll-1',1)">
+                                    <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <script>
+                            var hide = true;
+                        </script>
+                        <div class="item row-task" id="scroll-1">
+                            <?php foreach ($data['tugas'] as $task) {
+                                date_default_timezone_set('Asia/Jakarta');
+                                $today = new DateTime(date('Y-m-d', time()));
+                                $deadline = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_deadline'])));
+                                $interval = date_diff($today, $deadline);
+                                if ($interval->format('%R') == '-') {
+                            ?>
+                                    <script>
+                                        // hide = false
+                                    </script>
+                                    <div class="list">
+                                        <form action="Group/detail" method="post"><input type="hidden"  name="idtask" value="<?= $task['id_task'] ?>"></form>
+                                        <div class="group gradient-1">
+                                            <div class="group-inner-text">
+                                                <div class="mapel2 poppins"><?= $task['mapel'] ?></div>
+                                                <div class="task-remaining poppins"><?= $task['nama_tugas_group'] ?></div>
+                                            </div>
+                                        </div>
+                                        <div class="bottom-group">
+                                            <div class="percentage poppins">60%</div>
+                                            <div class="progress-member">
+                                                <div class="progress-bar-empty">
+                                                    <div class="progress-bar gradient-1" style="width: 60px;"></div>
+                                                </div>
+                                                <div class="member">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <div class="ellipse poppins">+8</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php
+                                } else { ?>
+                                    <script>
+                                        // alert('content')
+
+                                        // if (hide) {
+                                        //     var content = document.getElementById('content');
+                                        //     content.classList.add('hide');
+                                        // }
+                                    </script>
+                            <?php }
+                            } ?>
+                        </div>
+                    </div>
+                    <?php
+                    $display2 = 'block';
+                    ?>
+                    <div class="" id='content2'>
+                        <div class="sort-by top">
+                            <div class="title poppins">Deadline Dekat</div>
+                            <div class="arrow">
+                                <span onclick="scrollContainer('scroll-2',-1)">
+                                    <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                                <span onclick="scrollContainer('scroll-2',1)">
+                                    <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <script>
+                            // var hide2 = true;
+                        </script>
+                        <div class="item row-task" id="scroll-2">
+                            <?php foreach ($data['tugas'] as $task) {
+                                date_default_timezone_set('Asia/Jakarta');
+                                $today = new DateTime(date('Y-m-d', time()));
+                                $deadline = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_deadline'])));
+                                $interval = date_diff($today, $deadline);
+                                // echo $interval->format('%a days');
+                                if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
+                            ?>
+                                    <script>
+                                        hide2 = false
+                                    </script>
+                                    <div class="list">
+                                        
+                                        <div class="group gradient-1">
+                                            <div class="group-inner-text">
+                                                <div class="mapel2 poppins"><?= $task['name'] ?></div>
+                                                <div class="task-remaining poppins"><?= $task['grade'] ?></div>
+                                            </div>
+                                        </div>
+                                        <div class="bottom-group">
+                                            <div class="percentage poppins">60%</div>
+                                            <div class="progress-member">
+                                                <div class="progress-bar-empty">
+                                                    <div class="progress-bar gradient-1" style="width: 60px;"></div>
+                                                </div>
+                                                <div class="member">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <div class="ellipse poppins">+8</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php
+                                } else { ?>
+                                    <script>
+                                        // alert('content')
+
+                                        // if (hide2) {
+                                        //     var content = document.getElementById('content2');
+                                        //     content.classList.add('hide');
+                                        // }
+                                    </script>
+                                <?php
+                                } ?>
+                            <?php
+                            } ?>
                         </div>
                     </div>
                     <script>
-                        var hide = true;
+                        // hide3 = true
                     </script>
-                    <div class="item row-task" id="scroll-1">
-                        <?php foreach ($data['tugas'] as $task) {
-                            date_default_timezone_set('Asia/Jakarta');
-                            $today = new DateTime(date('Y-m-d', time()));
-                            $deadline = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_deadline'])));
-                            $interval = date_diff($today, $deadline);
-                            if ($interval->format('%R') == '-') {
-                        ?>
-                                <script>
-                                    // hide = false
-                                </script>
-                                <form action="Group/detail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
-                                <div class="list" onclick="post(<?= $task['id_task'] ?>)">
-                                    <div class="group gradient-1">
-                                        <div class="group-inner-text">
-                                            <div class="mapel2 poppins"><?= $task['mapel'] ?></div>
-                                            <div class="task-remaining poppins"><?= $task['nama_tugas_group'] ?></div>
-                                        </div>
-                                    </div>
-                                    <div class="bottom-group">
-                                        <div class="percentage poppins">60%</div>
-                                        <div class="progress-member">
-                                            <div class="progress-bar-empty">
-                                                <div class="progress-bar gradient-1" style="width: 60px;"></div>
-                                            </div>
-                                            <div class="member">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <div class="ellipse poppins">+8</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php
-                            } else { ?>
-                                <script>
-                                    // alert('content')
-
-                                    // if (hide) {
-                                    //     var content = document.getElementById('content');
-                                    //     content.classList.add('hide');
-                                    // }
-                                </script>
-                        <?php }
-                        } ?>
-                    </div>
-                </div>
-                <?php
-                $display2 = 'block';
-                ?>
-                <div class="" id='content2'>
-                    <div class="sort-by top">
-                        <div class="title poppins">Deadline Dekat</div>
-                        <div class="arrow">
-                            <span onclick="scrollContainer('scroll-2',-1)">
-                                <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </span>
-                            <span onclick="scrollContainer('scroll-2',1)">
-                                <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </span>
+                    <div class="" id='content3'>
+                        <div class="sort-by top">
+                            <div class="title poppins">Tugas Baru</div>
+                            <div class="arrow">
+                                <span onclick="scrollContainer('scroll-3',-1)">
+                                    <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                                <span onclick="scrollContainer('scroll-3',1)">
+                                    <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    <script>
-                        // var hide2 = true;
-                    </script>
-                    <div class="item row-task" id="scroll-2">
-                        <?php foreach ($data['tugas'] as $task) {
-                            date_default_timezone_set('Asia/Jakarta');
-                            $today = new DateTime(date('Y-m-d', time()));
-                            $deadline = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_deadline'])));
-                            $interval = date_diff($today, $deadline);
-                            // echo $interval->format('%a days');
-                            if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
-                        ?>
-                                <script>
-                                    hide2 = false
-                                </script>
-                                <form action="Group/detail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
-                                <div class="list" onclick="post(<?= $task['id_task'] ?>)">
-                                    <div class="group gradient-1">
-                                        <div class="group-inner-text">
-                                            <div class="mapel2 poppins"><?= $task['name'] ?></div>
-                                            <div class="task-remaining poppins"><?= $task['grade'] ?></div>
-                                        </div>
-                                    </div>
-                                    <div class="bottom-group">
-                                        <div class="percentage poppins">60%</div>
-                                        <div class="progress-member">
-                                            <div class="progress-bar-empty">
-                                                <div class="progress-bar gradient-1" style="width: 60px;"></div>
+                        <div class="item row-task" id="scroll-3">
+                            <?php foreach ($data['tugas'] as $task) {
+                                date_default_timezone_set('Asia/Jakarta');
+                                $today = new DateTime(date('Y-m-d', time()));
+                                $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat'])));
+                                $interval = date_diff($dibuat, $today);
+                                if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
+                            ?>
+                                    <script>
+                                        hide3 = false
+                                    </script>
+                                    <div class="list">
+                                        
+                                        <div class="group gradient-1">
+                                            <div class="group-inner-text">
+                                                <div class="mapel2 poppins"><?= $task['name'] ?></div>
+                                                <div class="task-remaining poppins"><?= $task['grade'] ?></div>
                                             </div>
-                                            <div class="member">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <div class="ellipse poppins">+8</div>
+                                        </div>
+                                        <div class="bottom-group">
+                                            <div class="percentage poppins">0%</div>
+                                            <div class="progress-member">
+                                                <div class="progress-bar-empty">
+                                                    <div class="progress-bar gradient-1" style="width: 0px;"></div>
+                                                </div>
+                                                <div class="member">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <div class="ellipse poppins">+8</div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            <?php
-                            } else { ?>
-                                <script>
-                                    // alert('content')
+                                <?php
+                                } else { ?>
+                                    <script>
+                                        // alert('content')
 
-                                    // if (hide2) {
-                                    //     var content = document.getElementById('content2');
-                                    //     content.classList.add('hide');
-                                    // }
-                                </script>
+                                        //     if (hide3) {
+                                        //         var content = document.getElementById('content3');
+                                        //         content.classList.add('hide');
+                                        //     }
+                                        // 
+                                    </script>
+                                <?php
+                                } ?>
                             <?php
                             } ?>
-                        <?php
-                        } ?>
-                    </div>
-                </div>
-                <script>
-                    // hide3 = true
-                </script>
-                <div class="" id='content3'>
-                    <div class="sort-by top">
-                        <div class="title poppins">Tugas Baru</div>
-                        <div class="arrow">
-                            <span onclick="scrollContainer('scroll-3',-1)">
-                                <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </span>
-                            <span onclick="scrollContainer('scroll-3',1)">
-                                <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </span>
                         </div>
                     </div>
-                    <div class="item row-task" id="scroll-3">
-                        <?php foreach ($data['tugas'] as $task) {
-                            date_default_timezone_set('Asia/Jakarta');
-                            $today = new DateTime(date('Y-m-d', time()));
-                            $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat'])));
-                            $interval = date_diff($dibuat, $today);
-                            if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
-                        ?>
-                                <script>
-                                    hide3 = false
-                                </script>
-                                <form action="Group/detail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
-                                <div class="list" onclick="post(<?= $task['id_task'] ?>)">
-                                    <div class="group gradient-1">
-                                        <div class="group-inner-text">
-                                            <div class="mapel2 poppins"><?=$task['name']?></div>
-                                            <div class="task-remaining poppins"><?=$task['grade']?></div>
-                                        </div>
-                                    </div>
-                                    <div class="bottom-group">
-                                        <div class="percentage poppins">0%</div>
-                                        <div class="progress-member">
-                                            <div class="progress-bar-empty">
-                                                <div class="progress-bar gradient-1" style="width: 0px;"></div>
-                                            </div>
-                                            <div class="member">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <div class="ellipse poppins">+8</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php
-                            } else { ?>
-                                <script>
-                                    // alert('content')
-
-                                //     if (hide3) {
-                                //         var content = document.getElementById('content3');
-                                //         content.classList.add('hide');
-                                //     }
-                                // </script>
-                            <?php
-                            } ?>
-                        <?php
-                        } ?>
-                    </div>
-                </div>
                 <?php } ?>
             </div>
         </div>
@@ -568,15 +572,15 @@
             </div>
         </div>
     </div>
-        <script>
-            function post(id) {
-                var idformname = "form-" + id;
-                var idform = document.getElementById(idformname);
-                var idtask = document.getElementById("task-" + id)
-                // alert(idtask.value)
-                idform.submit(idtask)
-            }
-        </script>
+    <script>
+        function post(id) {
+            var idformname = "form-" + id;
+            var idform = document.getElementById(idformname);
+            var idtask = document.getElementById("task-" + id)
+            alert(idtask.value)
+            idform.submit(idtask)
+        }
+    </script>
     <script src="http://localhost/ourtaskmvc/public/js/script.js"></script>
 
     <script src="http://localhost/ourtaskmvc/public/js/overlay_menu.js"></script>

@@ -13,5 +13,9 @@ class Task_group_leader_model extends Controller{
         $this->db->bind(":id_task", $task_id);
         $this->db->bind(":id_leader", $leader_id);
         $this->db->execute();
+        $this->db->query("SELECT * FROM ".$this->table." where id_task = :id_task; ");
+        $this->db->bind(":id_task", $task_id);
+        return $this->db->resultSet();
+
     }
 }

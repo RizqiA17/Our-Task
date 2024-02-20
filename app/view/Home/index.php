@@ -101,44 +101,48 @@
                             // var hide = true;
                         </script>
                         <?php
+                        $total = 0;
                         foreach ($data['tugas_group'] as $task) {
                             date_default_timezone_set('Asia/Jakarta');
                             $today = new DateTime(date('Y-m-d', time()));
                             $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat'])));
                             $interval = date_diff($dibuat, $today);
-                            if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
+                            if ($total < 2) {
+                                if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
+                                    $total++;
                         ?>
-                                <div class="list" onclick="post(<?= $task['id_task'] ?>)">
-                                    <form action="Group/detail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
-                                    <div class="group gradient-1">
-                                        <div class="group-inner-text">
-                                            <div class="mapel2 poppins"><?= $task['mapel'] ?></div>
-                                            <div class="task-remaining poppins"><?= $task['name'] ?></div>
-                                        </div>
-                                    </div>
-                                    <div class="bottom-group">
-                                        <div class="percentage poppins">60%</div>
-                                        <div class="progress-member">
-                                            <div class="progress-bar-empty">
-                                                <div class="progress-bar gradient-1" style="width: 60px;"></div>
-                                            </div>
-                                            <div class="member">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <div class="ellipse poppins">+8</div>
+                                    <div class="list" onclick="post(<?= $task['id_task'] ?>)">
+                                        <form action="Group/detail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
+                                        <div class="group gradient-1">
+                                            <div class="group-inner-text">
+                                                <div class="mapel2 poppins"><?= $task['mapel'] ?></div>
+                                                <div class="task-remaining poppins"><?= $task['name'] ?></div>
                                             </div>
                                         </div>
+                                        <div class="bottom-group">
+                                            <div class="percentage poppins">60%</div>
+                                            <div class="progress-member">
+                                                <div class="progress-bar-empty">
+                                                    <div class="progress-bar gradient-1" style="width: 60px;"></div>
+                                                </div>
+                                                <div class="member">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <div class="ellipse poppins">+8</div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            <?php } else { ?>
-                                <script>
-                                    // if (hide) {
-                                    //     var content = document.getElementById('content-group');
-                                    //     content.classList.add('hide');
-                                    // }
-                                </script>
+                                <?php } else { ?>
+                                    <script>
+                                        // if (hide) {
+                                        //     var content = document.getElementById('content-group');
+                                        //     content.classList.add('hide');
+                                        // }
+                                    </script>
                             <?php }
+                            }
                             ?>
                     </div>
                 <?php } ?>
@@ -220,48 +224,53 @@
                             // var hide = true;
                         </script>
                         <?php
+                        $total = 0;
                         foreach ($data['tugas_group'] as $task) {
                             date_default_timezone_set('Asia/Jakarta');
                             $today = new DateTime(date('Y-m-d', time()));
                             $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat'])));
                             $interval = date_diff($dibuat, $today);
-                            if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
+                            if ($total < 2) {
+                                if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
+                                    $total++;
                         ?>
-                                <div class="list" onclick="window.location.href='Group/detail'">
-                                    <div class="group gradient-1">
-                                        <div class="group-inner-text">
-                                            <div class="mapel2 poppins"><?= $task['name'] ?></div>
-                                            <div class="task-remaining poppins"><?= $task['grade'] ?></div>
-                                        </div>
-                                    </div>
-                                    <div class="bottom-group">
-                                        <div class="percentage poppins">60%</div>
-                                        <div class="progress-member">
-                                            <div class="progress-bar-empty">
-                                                <div class="progress-bar gradient-1" style="width: 60px;"></div>
-                                            </div>
-                                            <div class="member">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                <div class="ellipse poppins">+8</div>
+                                    <div class="list">
+                                        <div class="group gradient-1">
+                                            <div class="group-inner-text">
+                                                <div class="mapel2 poppins"><?= $task['name'] ?></div>
+                                                <div class="task-remaining poppins"><?= $task['grade'] ?></div>
                                             </div>
                                         </div>
+                                        <div class="bottom-group">
+                                            <div class="percentage poppins">60%</div>
+                                            <div class="progress-member">
+                                                <div class="progress-bar-empty">
+                                                    <div class="progress-bar gradient-1" style="width: 60px;"></div>
+                                                </div>
+                                                <div class="member">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                    <div class="ellipse poppins">+8</div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            <?php } else { ?>
-                                <script>
-                                    // if (hide) {
-                                    //     var content = document.getElementById('content-group');
-                                    //     content.classList.add('hide');
-                                    // }
-                                </script>
+                                <?php } else { ?>
+                                    <script>
+                                        // if (hide) {
+                                        //     var content = document.getElementById('content-group');
+                                        //     content.classList.add('hide');
+                                        // }
+                                    </script>
                             <?php }
+                            }
                             ?>
+                            
+            <?php } ?>
                     </div>
                 </div>
 
-            <?php } ?>
 
         <?php } ?>
                 </div>
