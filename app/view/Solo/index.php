@@ -216,7 +216,7 @@
                     </div>
                 </div>
             </div>
-        <?php } else { ?>
+        <?php } else if($_SESSION['status'] == 'guru') { ?>
             <div class="container">
                 <div class="contain">
                     <div class="" id='content'>
@@ -250,11 +250,7 @@
                                     <script>
                                         hide = false
                                     </script>
-                                    <!-- <form action="<?= BASEURL ?>/home/getDetail" id="form-<?= $task['id_task'] ?>">
-                                        <input type="text" name="idtask" value="<?= $task['id_task'] ?>">
-                                        <button type="submit"></button>
-                                    </form> -->
-                                    <div class="list solo" onclick="window.location.href='Solo/detail'">
+                                    <div class="list solo" ">
                                         <div class="plain">
                                             <div class="info">
                                                 <div class="task work-sans">
@@ -317,7 +313,7 @@
                                     <script>
                                         hide2 = false
                                     </script>
-                                    <div class="list solo " onclick="window.location.href='Solo/detail'">
+                                    <div class="list solo " ">
                                         <div class="plain">
                                             <div class="info">
                                                 <div class="task work-sans">
@@ -381,8 +377,7 @@
                                     <Script>
                                         hide3 = false
                                     </Script>
-                                    <!-- <input type="hidden" value="<?= $task['id_task'] ?>"> -->
-                                    <div class="list solo " onclick="window.location.href='Solo/detail'">
+                                    <div class="list solo " ">
                                         <div class="plain">
                                             <div class="info">
                                                 <div class="task work-sans">

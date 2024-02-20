@@ -32,12 +32,17 @@ class Task_group_distribution_model
     }
 
     public function getMember($id_leader){
-        $this->db->query("SELECT * FROM ".$this->table." WHERE id_leader = ".$id_leader."");
+        $this->db->query("SELECT * FROM ".$this->table." JOIN profile ON ".$this->table.".id_profile = profile.id WHERE id_leader = ".$id_leader."");
+        return $this->db->resultSet();
+    }
+
+    public function getAllMember($id_task, $id_leader){
+        $this->db->query("SELECT * FROM ".$this->table." WHERE id_task = ".$id_task." id_leader = ".$id_leader."");
         return $this->db->resultSet();
     }
 
     public function memberRemaining($id_task){
-        $this->db->query("SELECT  FROM task_group_leader WHERE id_task = ".$id_task."");
+        $this->db->query("SELECT * FROM task_group_leader WHERE id_task = ".$id_task."");
 
     }
 

@@ -25,7 +25,7 @@ class Group extends Controller
         $id = $_SESSION['id'];
         $id_task = $_SESSION['id_task'];
         $data['task'] = $this->model('Task_group_distribution_model')->getTaskDetail($id_task, $id);
-        // var_dump($data['task']);
+        var_dump($data['task']);
 
         if ($data['task'][0]['id_leader'] != null) {
             $_SESSION['id_leader'] = $data['task'][0]['id_leader'];
@@ -75,6 +75,21 @@ class Group extends Controller
     public function subdetail()
     {
         $this->view("Group/sub_task_detail");
+    }
+    public function addtask()
+    {
+        session_start();
+        $id = $_SESSION['id'];
+        $id_task = $_SESSION['id_task'];
+        $data['task'] = $this->model('Task_group_distribution_model')->getTaskDetail($id_task, $id);
+        // var_dump($data['task']);
+
+        if ($data['task'][0]['id_leader'] != null) {
+            $_SESSION['id_leader'] = $data['task'][0]['id_leader'];
+            $data['member_group'] = $this->model('Task_group_distribution_model')->getMember($data['task'][0]['id_leader']);
+            // var_dump($data['member_group']);
+        }
+        $this->view("Group/addtask", $data);
     }
 
     public function leader()

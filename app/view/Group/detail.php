@@ -119,7 +119,7 @@
             <div style="font: 400 20px 'Poppins',sans-serif; margin-top: 30px;">Your not in any Group, contact your leader group</div>
             <?php } ?>
     </div>
-    <div class="task" style="font: 400 20px 'Poppins',sans-serif; overflow: hidden; overflow-y: auto;">Task
+    <div class="task" style="font: 400 20px 'Poppins',sans-serif; overflow: hidden; overflow-y: auto; ">Task
         <div>
 
             <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
@@ -147,12 +147,14 @@
             </div>
         </div>
     </div>
+    
 <?php } ?>
 </div>
-<button style="background-color: rgba(62, 74, 222, 1); color: white; border: none; height: 30px; width: 100%; margin-top: 30px; border-radius: 10px;">
-    Add
-    New Task +
-</button>
+<form action="addtask">
+    <button style="background-color: rgba(62, 74, 222, 1); color: white; border: none; height: 30px; width: 100%; margin-top: 30px; border-radius: 10px;">
+        Add New Task
+    </button>
+</form>
 <script>
     // Get the modal
     var modal = document.getElementById("Add-Member");

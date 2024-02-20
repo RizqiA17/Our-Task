@@ -57,7 +57,7 @@
                                     </script>
                                     // hide = false
                                     <div class="list" onclick="post(<?= $task['id_task'] ?>)">
-                                        <form action="Group/detail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
+                                        <form action="Group/getDetail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
                                         <div class="group gradient-1">
                                             <div class="group-inner-text">
                                                 <div class="mapel2 poppins"><?= $task['mapel'] ?></div>
@@ -128,7 +128,7 @@
                                         hide2 = false
                                     </script>
                                     <div class="list" onclick="post(<?= $task['id_task'] ?>)">
-                                        <form action="Group/detail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
+                                        <form action="Group/getDetail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
                                         <div class="group gradient-1">
                                             <div class="group-inner-text">
                                                 <div class="mapel2 poppins"><?= $task['mapel'] ?></div>
@@ -197,7 +197,7 @@
                                         hide3 = false
                                     </script>
                                     <div class="list" onclick="post(<?= $task['id_task'] ?>)">
-                                        <form action="Group/detail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
+                                        <form action="Group/getDetail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
                                         <div class="group gradient-1">
                                             <div class="group-inner-text">
                                                 <div class="mapel2 poppins"><?= $task['mapel'] ?></div>
@@ -269,7 +269,6 @@
                                         // hide = false
                                     </script>
                                     <div class="list">
-                                        <form action="Group/detail" method="post"><input type="hidden"  name="idtask" value="<?= $task['id_task'] ?>"></form>
                                         <div class="group gradient-1">
                                             <div class="group-inner-text">
                                                 <div class="mapel2 poppins"><?= $task['mapel'] ?></div>
