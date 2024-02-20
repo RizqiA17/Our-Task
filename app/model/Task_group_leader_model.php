@@ -16,6 +16,10 @@ class Task_group_leader_model extends Controller{
         $this->db->query("SELECT * FROM ".$this->table." where id_task = :id_task; ");
         $this->db->bind(":id_task", $task_id);
         return $this->db->resultSet();
+    }
 
+    public function getMaxMember($id_task){
+        $this->db->query("SELECT id FROM ".$this->table." WHERE id_task = ".$id_task);
+        return $this->db->resultSet();
     }
 }

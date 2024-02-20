@@ -26,7 +26,13 @@ class Group extends Controller
         $id = $_SESSION['id'];
         $data['task'] = $this->model('Task_group_distribution_model')->getTaskDetail($id_task, $id);
         $data['member'] = $this->model('Task_group_distribution_model')->getMember($id_task, $id);
-        var_dump($data);
+        $data['notmember'] = $this->model('Task_group_distribution_model')->getMemberNotInGroup($id_task);
+        $leadercount = $this->model('Task_group_leader_model')->getMemberNotInGroup($id_task);
+        // $murid = $this->model('Kelas_model')->getAllSiswaWithKelas($kelas);
+
+        $data['group_lenght'] = 
+        
+        // var_dump($data);
         $this->view("Group/detail", $data);
     }
 

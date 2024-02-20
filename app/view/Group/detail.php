@@ -16,17 +16,30 @@
             top: 0;
             width: 100%;
             height: 100%;
+            align-items: center;
+            justify-content: center;
             overflow: auto;
             background-color: rgba(0, 0, 0, 0.4);
         }
 
-        /* Modal Content/Box */
-        .modal-content {
+        .modal-card {
             background-color: #fefefe;
             margin: 15% auto;
             padding: 20px;
             border: 1px solid #888;
+            border-radius: 10px;
             width: 80%;
+            height: 60vh;
+
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            display: grid;
+            grid-template-columns: auto auto;
+            overflow: hidden;
+            overflow-y: auto;
+            height: calc(100% - 120px);
         }
 
         /* The Close Button */
@@ -69,15 +82,23 @@
             <div style="font: 400 20px 'Poppins',sans-serif; margin-top: 30px;">Member</div>
             <div style="display: flex; align-items: center;">
                 <img class="member-img" src="<?= BASEURL ?>image/<?= $task['pp_name'] ?>" alt="" style="height: 40px; width: 40px; margin: 10px;" style="display: flex; align-items: center; justify-content: center; font-size: 25px; box-sizing: border-box; border: dotted 3px; height: 40px; width: 40px;">
-                <?php foreach($data['member'] as $member) ?>
+                <?php foreach ($data['member'] as $member) ?>
                 <img class="member-img" src="<?= BASEURL ?>image/<?= $task['pp_name'] ?>" alt="" style="height: 40px; width: 40px; margin: 10px;" style="display: flex; align-items: center; justify-content: center; font-size: 25px; box-sizing: border-box; border: dotted 3px; height: 40px; width: 40px;">
                 <?php if ($task['id'] == $task['id_profile']) { ?>
                     <div id="Add-Member" class="modal">
-                        <!-- Modal content -->
-                        <div class="modal-content">
+                        <div class="modal-card">
+                            <!-- Modal content -->
                             <span class="close">×</span>
                             <p>Add Member</p>
-                            <img class="member-img" src="<?= BASEURL ?>image/<?= $task['pp_name'] ?> " alt="" style="height: 40px; width: 40px; margin: 10px;" style="display: flex; align-items: center; justify-content: center; font-size: 25px; box-sizing: border-box; border: dotted 3px; height: 40px; width: 40px;">
+                            <div class="modal-content">
+                                <?php foreach ($data['notmember'] as $getmember) { ?>
+                                    <div style="display: flex; gap: 10px; align-items: center">
+                                        <div class=""><input onchange="addMember(<?= $getmember['id_profile'] ?>)"  type="checkbox" name="membernogroup" id="<?= $getmember['id_profile'] ?>"></div>
+                                        <?= $getmember['name'] ?>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                            <button style="background-color: rgba(62, 74, 222, 1); color: white; border: none; height: 30px; width: 100%; margin-top: 30px; border-radius: 10px;">Add Member</button>
                         </div>
                     </div>
                     <button class="member-img" style="display: flex; align-items: center; justify-content: center; font-size: 25px; border-radius: 100%; box-sizing: border-box; border: dotted 3px; height: 40px; width: 40px;" id="Add-member-btn">+</button>
@@ -114,7 +135,7 @@
     </div>
 <?php } ?>
 </div>
-<button style="background-color: rgba(62, 74, 222, 1); border: none; height: 30px; width: 100%; margin-top: 30px; border-radius: 10px;">
+<button style="background-color: rgba(62, 74, 222, 1); color: white; border: none; height: 30px; width: 100%; margin-top: 30px; border-radius: 10px;">
     Add
     New Task +
 </button>
@@ -130,7 +151,7 @@
 
     // When the user clicks on the button, open the modal
     btn.onclick = function() {
-        modal.style.display = "block";
+        modal.style.display = "flex";
     };
 
     // When the user clicks on <span> (x), close the modal
@@ -145,19 +166,29 @@
         }
     };
 
-    setInterval(function() {
-        var h1 = document.querySelector(".header");
-        var h2 = document.querySelector(".task-title");
-        var h3 = document.querySelector(".task-detail");
+    var i = 0
+    function addMember(id) {
+        i++
+        member = id;
+        if(i > 6){
+            alert("Anggota telah mencapai batas")
+            document.getElementById(member).checked = false
+        }
+    }
 
-        var h4 = h1.offsetHeight + 75;
-        var h5 = h2.offsetHeight + 50;
-        var h6 = h3.offsetHeight;
+    // setInterval(function() {
+    //     var h1 = document.querySelector(".header");
+    //     var h2 = document.querySelector(".task-title");
+    //     var h3 = document.querySelector(".task-detail");
 
-        var h = h4 + h5 + h6;
+    //     var h4 = h1.offsetHeight + 75;
+    //     var h5 = h2.offsetHeight + 50;
+    //     var h6 = h3.offsetHeight;
 
-        document.querySelector(".task").style.height = "calc(100vh - " + h + "px)";
-    }, 1000);
+    //     var h = h4 + h5 + h6;
+
+    //     document.querySelector(".task").style.height = "calc(100vh - " + h + "px)";
+    // }, 1000);
 </script>
 </body>
 
