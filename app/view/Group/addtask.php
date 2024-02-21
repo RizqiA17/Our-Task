@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form action="<?= BASEURL ?>/home/addnewtask" method="post" class="add-task-form" enctype="multipart/form-data">
+    <form action="addnewtask" method="post" class="add-task-form" enctype="multipart/form-data">
         <div class="top">
             <div class="header">
                 <div class="title">
@@ -67,13 +67,13 @@
 
         function getLeader() {
             var checkbox = document.getElementsByName("leader-list");
-
+            
             for (var i = 0; i < checkbox.length; i++) {
                 if (checkbox[i].checked) {
                     leader += checkbox[i].value + ',';
                 }
             }
-            document.getElementById("delete-coma").innerText = leader.replace(/,\s*$/, "");
+            // alert(leader)
             document.getElementById('leader').value = leader
         }
 

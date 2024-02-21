@@ -21,6 +21,7 @@ class Home extends Controller
         $this->view("home/index", $data);
         $this->view("templates/footer");
     }
+    
     public function calender()
     {
         $data['task_solo'] = $this->model('Task_solo_distribution_model')->getAllTask();

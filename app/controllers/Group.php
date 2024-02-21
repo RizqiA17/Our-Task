@@ -25,7 +25,7 @@ class Group extends Controller
         $id = $_SESSION['id'];
         $id_task = $_SESSION['id_task'];
         $data['task'] = $this->model('Task_group_distribution_model')->getTaskDetail($id_task, $id);
-        var_dump($data['task']);
+        // var_dump($data['task']);
 
         if ($data['task'][0]['id_leader'] != null) {
             $_SESSION['id_leader'] = $data['task'][0]['id_leader'];
@@ -46,6 +46,8 @@ class Group extends Controller
         // var_dump($totalmurid);
         $data['group_lenght'] = $grouplenght;
         // var_dump($grouplenght);
+
+        $data['subtask'] = $this->model("Subtask_group_model")->getSubtask($id_task);
 
         // var_dump($data);
         $this->view("Group/detail", $data);
@@ -74,7 +76,11 @@ class Group extends Controller
 
     public function subdetail()
     {
-        $this->view("Group/sub_task_detail");
+        session_start();
+        $id_task = $_POST['id_task'];
+        $id_profile = $_SESSION['id'];
+        $data['task'] = $this->model("Subtask_group_distribution_model")->getDetail($id_profile, $id_task);
+        $this->view("Group/sub_task_detail", $data);
     }
     public function addtask()
     {
@@ -90,6 +96,68 @@ class Group extends Controller
             // var_dump($data['member_group']);
         }
         $this->view("Group/addtask", $data);
+    }
+
+    public function addnewtask()
+    {
+        session_start();
+        $id_task = $_SESSION['id_task'];
+        // var_dump($id_task);
+        $title = $_POST['title'];
+        // var_dump($title);
+        $detail = $_POST['detail'];
+        // var_dump($detail);
+        $deadline = date('Y-m-d', strtotime($_POST['deadline']));
+        // var_dump($deadline);
+        $taskTo = explode(',', $_POST['leader']);
+        // var_dump($taskTo);
+
+        $target_dir = "../public/image/";
+        $image_name = $_FILES["image"]["name"];
+        $image_tmp = $_FILES["image"]["tmp_name"]; // Menyimpan sementara file yang diupload
+        $imageFileType = strtolower(pathinfo($image_name, PATHINFO_EXTENSION));
+        $filename = uniqid() . '.' . $imageFileType;
+        $targetFile = $target_dir . $filename;
+        // var_dump($targetFile);
+
+        
+        // Mengecek apakah file telah diupload
+        if (!empty($image_tmp)) {
+            // Mengecek apakah file yang diupload adalah gambar
+            $check = getimagesize($image_tmp);
+            if ($check !== false) {
+                // Memindahkan file yang diupload ke folder image
+                if (move_uploaded_file($image_tmp, $targetFile)) {
+                    echo "The file " . basename($image_name) . " has been uploaded.";
+                    $previous_url = $_SERVER['HTTP_REFERER'];
+                    //header('Location:' . BASEURL . 'home');
+                } else {
+                    echo "Sorry, there was an error uploading your file.";
+                    $previous_url = $_SERVER['HTTP_REFERER'];
+                    //header('Location:' . BASEURL . 'home');
+                }
+            } else {
+                echo "File is not an image.";
+                $previous_url = $_SERVER['HTTP_REFERER'];
+                //header('Location:' . BASEURL . 'home');
+            }
+        } else {
+            echo "No file uploaded.";
+            $previous_url = $_SERVER['HTTP_REFERER'];
+            //header('Location:' . BASEURL . 'home');
+        }
+
+        $addTask = $this->model('Subtask_group_model')->addTask($title, $detail, $deadline, $filename, $id_task);
+
+        $member = $this->model('Task_group_distribution_model')->getMember($_SESSION['id_leader']);
+
+        for ($i = 0; $i < sizeof($member); $i++) {
+            $this->model('Subtask_group_distribution_model')->distributingTasks($addTask[0]['id'], $member[$i]['id_profile']);
+        }
+
+        header("Location:".BASEURL."home");
+
+
     }
 
     public function leader()

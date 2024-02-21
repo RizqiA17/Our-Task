@@ -10,90 +10,92 @@
 </head>
 
 <body>
-<div class="header">
-        <div class="title">
-            Member Task
+    <?php foreach ($data['task'] as $task) { ?>
+        <div class="header">
+            <div class="title">
+                Member Task
+            </div>
+            <div class="back" onclick="window.location.href='<?= BASEURL . 'ome';   ?>'">
+                <svg class="group" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.828 11H20V13H7.828L13.192 18.364L11.778 19.778L4 12L11.778 4.22205L13.192 5.63605L7.828 11Z" fill="#363942" />
+                </svg>
+            </div>
         </div>
-        <div class="back" onclick="window.location.href='<?= BASEURL.'ome';   ?>'">
-            <svg class="group" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7.828 11H20V13H7.828L13.192 18.364L11.778 19.778L4 12L11.778 4.22205L13.192 5.63605L7.828 11Z" fill="#363942" />
-            </svg>
-        </div>
-    </div>
+        <div class="bg">
+            <div style="font-weight: bold; "><?= $task['name'] ?></div>
 
-    <div class="bg">
-        <div style="font-weight: bold; ">High-fidelityt design</div>
+            <div style="color: #8e8e8e; margin-top: 20px;">Members</div>
+            <div style="display: flex; margin-top: 10px;">
+                <div class="profile2"></div>
+                <div class="profile"></div>
+            </div>
 
-        <div style="color: #8e8e8e; margin-top: 20px;">Members</div>
-        <div style="display: flex; margin-top: 10px;">
-            <div class="profile2"></div>
-            <div class="profile"></div>
         </div>
 
-    </div>
-
-    <div class="bg">
-        <div>Description</div>
-        <div style="margin:20px 0;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem nulla
-            deleniti repellat expedita, enim
-            adipisci! Deleniti sed enim, ullam dicta quisquam harum commodi vel nihil obcaecati omnis, ab dolorum? Quas.
+        <div class="bg">
+            <div>Description</div>
+            <div style="margin:20px 0;"><?= $task['description'] ?></div>
         </div>
-        <a style="color: black; " href="#">Show full description</a>
-    </div>
 
 
 
 
-    <div class="bg" id="attachments">
-        <div style="display: flex; ">
-            <div class="menu" style="margin: 0 10px;" onclick="AddAttachments()">Attachments</div>
-            <div class="menu" style="margin: 0 10px;" onclick="Attachment()">Add attachment</div>
-        </div>
-        <div id="attachment">
-            <div class="Attachments">
-                <div style="background-image: url(http://localhost/ourtaskmvc/public/image/figma.png);" class="img">
-                </div>
-                <div style="margin-left: 10px;">
-                    <div style="font-size: 0.9rem;">Figma</div>
-                    <div style="color: #8e8e8e ; font-size: 0.8rem;">Added May 8 at 11:30 PM</div>
-                    <div>
-                        <iconify-icon class="icon" icon="octicon:comment-16" flip="horizontal"></iconify-icon>
-                        <iconify-icon class="icon" icon="bi:trash"></iconify-icon>
-                        <iconify-icon class="icon" icon="uil:pen"></iconify-icon>
+
+        <div class="bg" id="attachments">
+            <div style="display: flex; ">
+                <div class="menu" style="margin: 0 10px;" onclick="AddAttachments()">Attachments</div>
+                <div class="menu" style="margin: 0 10px;" onclick="Attachment()">Add attachment</div>
+            </div>
+            <div id="attachment">
+                <?php if ($task['description_file'] == null) { ?>
+                    <div class="Attachments">
+                        <div style="background-image: url(http://localhost/ourtaskmvc/public/image/figma.png);" class="img">
+                        </div>
+                        <div style="margin-left: 10px;">
+                            <div style="font-size: 0.9rem;">Task Attachments</div>
+                            <div style="color: #8e8e8e ; font-size: 0.8rem;">Added <?= date('M j ', strtotime($task['create'])) . 'at ' . date('g:m A', strtotime($task['create'])) ?></div>
+                            <div>
+                                <iconify-icon class="icon" icon="octicon:comment-16" flip="horizontal"></iconify-icon>
+                                <iconify-icon class="icon" icon="bi:trash"></iconify-icon>
+                                <iconify-icon class="icon" icon="uil:pen"></iconify-icon>
+                            </div>
+                        </div>
+                    </div>
+                <?php
+                }
+
+                ?>
+                <?php  ?>
+                <div class="Attachments">
+                    <div style="background-image: url(http://localhost/ourtaskmvc/public/image/hp.jpg);" class="img"></div>
+                    <div style="margin-left: 10px;">
+                        <div style="font-size: 0.9rem;">Front End</div>
+                        <div style="color: #8e8e8e; font-size: 0.8rem;">Added May 8 at 11:30 PM</div>
+                        <div>
+                            <iconify-icon class="icon" icon="octicon:comment-16" flip="horizontal"></iconify-icon>
+                            <iconify-icon class="icon" icon="bi:trash"></iconify-icon>
+                            <iconify-icon class="icon" icon="uil:pen"></iconify-icon>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="Attachments">
-                <div style="background-image: url(http://localhost/ourtaskmvc/public/image/hp.jpg);" class="img"></div>
-                <div style="margin-left: 10px;">
-                    <div style="font-size: 0.9rem;">Front End</div>
-                    <div style="color: #8e8e8e; font-size: 0.8rem;">Added May 8 at 11:30 PM</div>
-                    <div>
-                        <iconify-icon class="icon" icon="octicon:comment-16" flip="horizontal"></iconify-icon>
-                        <iconify-icon class="icon" icon="bi:trash"></iconify-icon>
-                        <iconify-icon class="icon" icon="uil:pen"></iconify-icon>
-                    </div>
+            <form action="upload" method="post" enctype="multipart/form-data">
+                <div class="add-attachment hide" id="add">
+                    <input type="text" id="attachment-note" style="height: 20px">
+                    <input type="file" name="image" id="image attachment-file">
+                    <button type="submit" name="proses" style="outline: none; border:none; height: 30px" onclick="AttachmentInput()">Upload</button>
                 </div>
-            </div>
+            </form>
         </div>
-        <form action="upload" method="post" enctype="multipart/form-data">
-            <div class="add-attachment hide" id="add">
-                <input type="text" id="attachment-note" style="height: 20px">
-                <input type="file" name="image" id="image attachment-file">
-                <button type="submit" name="proses" style="outline: none; border:none; height: 30px" onclick="AttachmentInput()">Upload</button>
-            </div>
-        </form>
-    </div>
 
+    <?php } ?>
     <div class="bg">
         <div>Activity</div>
         <div style="display: flex; align-items: center; margin-top: 15px;">
             <div class="profile"></div>
-            <input type="text" id="comment-box" style="width: 100%; height: 20px; padding:5px; margin-bottom: 10px"
-                placeholder="Write a comment">
+            <input type="text" id="comment-box" style="width: 100%; height: 20px; padding:5px; margin-bottom: 10px" placeholder="Write a comment">
         </div>
-        <button class="" style="width: 100%; height: 30px; outline:none; border:none;"
-            onclick="AddComment()">Send</button>
+        <button class="" style="width: 100%; height: 30px; outline:none; border:none;" onclick="AddComment()">Send</button>
         <div style="width: 100%; height: 2px; background: rgb(239, 239, 239); margin-top: 20px;"></div>
         <div class="comment" id="comment">
 
@@ -138,7 +140,9 @@
             function showTime() {
                 var timeDisplay = document.getElementById('timeDisplay');
                 var currentTime = new Date();
-                var month = currentTime.toLocaleString('default', { month: 'long' });
+                var month = currentTime.toLocaleString('default', {
+                    month: 'long'
+                });
                 var day = currentTime.getDay();
                 var hours = currentTime.getHours();
                 var minutes = currentTime.getMinutes();
@@ -152,7 +156,7 @@
                 return (number < 10) ? '0' + number : number;
             }
 
-            showTime(); 
+            showTime();
             AddAttachments();
             addAttachment(document.getElementById("attachment-note").value, 'url placeholder', formattedTime);
 
@@ -225,7 +229,9 @@
                     // Fungsi untuk menampilkan waktu
                     function showTime() {
                         var currentTime = new Date();
-                        var month = currentTime.toLocaleString('default', { month: 'long' });
+                        var month = currentTime.toLocaleString('default', {
+                            month: 'long'
+                        });
                         var day = currentTime.getDay();
                         var hours = currentTime.getHours();
                         var minutes = currentTime.getMinutes();
@@ -239,24 +245,24 @@
                         return (number < 10) ? '0' + number : number;
                     }
 
-                    showTime(); 
+                    showTime();
                     AddAttachments();
                     addAttachment(attachmentNote, 'url placeholder', formattedTime);
 
-                //     // Mengirim file ke server
-                //     var formData = new FormData();
-                //     formData.append('file', file);
-                    
-                //     var xhr = new XMLHttpRequest();
-                //     xhr.open('POST', '/upload', true);
-                //     xhr.onload = function () {
-                //         if (xhr.status === 200) {
-                //             console.log('File berhasil diunggah.');
-                //         } else {
-                //             console.log('Terjadi kesalahan saat mengunggah file.');
-                //         }
-                //     };
-                //     xhr.send(formData);
+                    //     // Mengirim file ke server
+                    //     var formData = new FormData();
+                    //     formData.append('file', file);
+
+                    //     var xhr = new XMLHttpRequest();
+                    //     xhr.open('POST', '/upload', true);
+                    //     xhr.onload = function () {
+                    //         if (xhr.status === 200) {
+                    //             console.log('File berhasil diunggah.');
+                    //         } else {
+                    //             console.log('Terjadi kesalahan saat mengunggah file.');
+                    //         }
+                    //     };
+                    //     xhr.send(formData);
                 };
                 // const express = require('express');
                 // const multer  = require('multer');
