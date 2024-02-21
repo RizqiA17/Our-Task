@@ -27,4 +27,8 @@ class Task_group_leader_model extends Controller{
         $this->db->query("SELECT id FROM ".$this->table." WHERE id_task = ".$id_task);
         return $this->db->resultSet();
     }
+    public function setProgress($progress, $id){
+        $this->db->query("UPDATE ".$this->table." SET `progress` = ".$progress." WHERE id = ".$id);
+        $this->db->execute();
+    }
 }

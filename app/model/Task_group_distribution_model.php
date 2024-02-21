@@ -11,7 +11,7 @@ class Task_group_distribution_model
     }
 
     public function getAllTask(){
-        $this->db->query("SELECT * FROM " . $this->table ." JOIN task_group ON ".$this->table.".id_task = task_group.id JOIN mapel ON task_group.id_mapel = mapel.id  WHERE id_profile = ". $_SESSION['id']);
+        $this->db->query("SELECT * FROM " . $this->table ." JOIN task_group ON ".$this->table.".id_task = task_group.id JOIN mapel ON task_group.id_mapel = mapel.id  WHERE ".$this->table.".id_profile = ". $_SESSION['id']);
         return $this->db->resultSet();
     }
 

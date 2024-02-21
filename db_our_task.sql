@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 20, 2024 at 05:33 PM
+-- Generation Time: Feb 21, 2024 at 08:03 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -1849,13 +1849,41 @@ INSERT INTO `profile` (`id`, `name`, `no_induk`, `email`, `password`, `status`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `subtask_group`
+--
+
+CREATE TABLE `subtask_group` (
+  `id` int(20) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `description_file` varchar(255) DEFAULT NULL,
+  `create` date NOT NULL DEFAULT current_timestamp(),
+  `deadline` date NOT NULL DEFAULT current_timestamp(),
+  `id_task` int(10) NOT NULL,
+  `progress` varchar(10) NOT NULL DEFAULT 'unfinished'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subtask_group_distribution`
+--
+
+CREATE TABLE `subtask_group_distribution` (
+  `id` int(20) NOT NULL,
+  `id_subtask` int(10) NOT NULL,
+  `id_profile` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `task_file`
 --
 
 CREATE TABLE `task_file` (
   `id` int(10) NOT NULL,
   `id_task` int(10) DEFAULT NULL,
-  `id_task_distribution` int(10) DEFAULT NULL,
   `id_profile` int(4) NOT NULL,
   `task_answer_file` varchar(10) DEFAULT NULL,
   `name` varchar(10) DEFAULT NULL,
@@ -1901,84 +1929,6 @@ CREATE TABLE `task_group_distribution` (
   `id_profile` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `task_group_distribution`
---
-
-INSERT INTO `task_group_distribution` (`id`, `id_task`, `id_leader`, `id_profile`) VALUES
-(1960, 89, 214, 124),
-(1961, 89, NULL, 125),
-(1962, 89, NULL, 126),
-(1963, 89, NULL, 127),
-(1964, 89, NULL, 128),
-(1965, 89, NULL, 129),
-(1966, 89, NULL, 130),
-(1967, 89, NULL, 131),
-(1968, 89, NULL, 132),
-(1969, 89, NULL, 133),
-(1970, 89, NULL, 134),
-(1971, 89, NULL, 135),
-(1972, 89, NULL, 136),
-(1973, 89, NULL, 137),
-(1974, 89, NULL, 138),
-(1975, 89, NULL, 139),
-(1976, 89, NULL, 140),
-(1977, 89, NULL, 141),
-(1978, 89, 215, 142),
-(1979, 89, NULL, 143),
-(1980, 89, NULL, 144),
-(1981, 89, 216, 145),
-(1982, 89, NULL, 146),
-(1983, 89, NULL, 147),
-(1984, 89, NULL, 148),
-(1985, 89, NULL, 149),
-(1986, 89, NULL, 150),
-(1987, 89, NULL, 151),
-(1988, 89, NULL, 152),
-(1989, 89, NULL, 153),
-(1990, 89, NULL, 154),
-(1991, 89, NULL, 155),
-(1992, 89, NULL, 156),
-(1993, 89, NULL, 157),
-(1994, 89, NULL, 158),
-(1995, 89, NULL, 159),
-(1996, 90, 221, 124),
-(1997, 90, 217, 125),
-(1998, 90, 221, 126),
-(1999, 90, 221, 127),
-(2000, 90, 221, 128),
-(2001, 90, NULL, 129),
-(2002, 90, 221, 130),
-(2003, 90, 218, 131),
-(2004, 90, NULL, 132),
-(2005, 90, 221, 133),
-(2006, 90, NULL, 134),
-(2007, 90, NULL, 135),
-(2008, 90, NULL, 136),
-(2009, 90, 219, 137),
-(2010, 90, NULL, 138),
-(2011, 90, 221, 139),
-(2012, 90, NULL, 140),
-(2013, 90, NULL, 141),
-(2014, 90, NULL, 142),
-(2015, 90, 220, 143),
-(2016, 90, NULL, 144),
-(2017, 90, NULL, 145),
-(2018, 90, NULL, 146),
-(2019, 90, NULL, 147),
-(2020, 90, NULL, 148),
-(2021, 90, NULL, 149),
-(2022, 90, NULL, 150),
-(2023, 90, NULL, 151),
-(2024, 90, 221, 152),
-(2025, 90, NULL, 153),
-(2026, 90, NULL, 154),
-(2027, 90, NULL, 155),
-(2028, 90, NULL, 156),
-(2029, 90, NULL, 157),
-(2030, 90, NULL, 158),
-(2031, 90, NULL, 159);
-
 -- --------------------------------------------------------
 
 --
@@ -1988,22 +1938,9 @@ INSERT INTO `task_group_distribution` (`id`, `id_task`, `id_leader`, `id_profile
 CREATE TABLE `task_group_leader` (
   `id` int(10) NOT NULL,
   `id_task` int(10) NOT NULL,
-  `id_profile` int(10) NOT NULL
+  `id_profile` int(10) NOT NULL,
+  `progress` int(3) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `task_group_leader`
---
-
-INSERT INTO `task_group_leader` (`id`, `id_task`, `id_profile`) VALUES
-(214, 89, 124),
-(215, 89, 142),
-(216, 89, 145),
-(217, 90, 125),
-(218, 90, 131),
-(219, 90, 137),
-(220, 90, 143),
-(221, 90, 152);
 
 -- --------------------------------------------------------
 
@@ -2023,14 +1960,6 @@ CREATE TABLE `task_solo` (
   `tgl_deadline` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `task_solo`
---
-
-INSERT INTO `task_solo` (`id`, `name`, `description`, `task_description_file`, `id_mapel`, `id_kelas`, `id_guru`, `tgl_dibuat`, `tgl_deadline`) VALUES
-(57, 'tes task 1', 'tes task solo', '65d366819ea02.jpg', 1, 1, 841, '2024-02-19', '2024-02-26'),
-(58, 'fasssfa', 'adfafsaasf', '65d40db8699dd.', 1, 1, 841, '2024-02-20', '2024-02-22');
-
 -- --------------------------------------------------------
 
 --
@@ -2043,84 +1972,6 @@ CREATE TABLE `task_solo_distribution` (
   `id_profile` int(10) DEFAULT NULL,
   `progress` varchar(10) NOT NULL DEFAULT 'unfinished'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `task_solo_distribution`
---
-
-INSERT INTO `task_solo_distribution` (`id`, `id_task`, `id_profile`, `progress`) VALUES
-(685, 57, 124, 'unfinished'),
-(686, 57, 125, 'unfinished'),
-(687, 57, 126, 'unfinished'),
-(688, 57, 127, 'unfinished'),
-(689, 57, 128, 'unfinished'),
-(690, 57, 129, 'unfinished'),
-(691, 57, 130, 'unfinished'),
-(692, 57, 131, 'unfinished'),
-(693, 57, 132, 'unfinished'),
-(694, 57, 133, 'unfinished'),
-(695, 57, 134, 'unfinished'),
-(696, 57, 135, 'unfinished'),
-(697, 57, 136, 'unfinished'),
-(698, 57, 137, 'unfinished'),
-(699, 57, 138, 'unfinished'),
-(700, 57, 139, 'unfinished'),
-(701, 57, 140, 'unfinished'),
-(702, 57, 141, 'unfinished'),
-(703, 57, 142, 'unfinished'),
-(704, 57, 143, 'unfinished'),
-(705, 57, 144, 'unfinished'),
-(706, 57, 145, 'unfinished'),
-(707, 57, 146, 'unfinished'),
-(708, 57, 147, 'unfinished'),
-(709, 57, 148, 'unfinished'),
-(710, 57, 149, 'unfinished'),
-(711, 57, 150, 'unfinished'),
-(712, 57, 151, 'unfinished'),
-(713, 57, 152, 'unfinished'),
-(714, 57, 153, 'unfinished'),
-(715, 57, 154, 'unfinished'),
-(716, 57, 155, 'unfinished'),
-(717, 57, 156, 'unfinished'),
-(718, 57, 157, 'unfinished'),
-(719, 57, 158, 'unfinished'),
-(720, 57, 159, 'unfinished'),
-(721, 58, 124, 'unfinished'),
-(722, 58, 125, 'unfinished'),
-(723, 58, 126, 'unfinished'),
-(724, 58, 127, 'unfinished'),
-(725, 58, 128, 'unfinished'),
-(726, 58, 129, 'unfinished'),
-(727, 58, 130, 'unfinished'),
-(728, 58, 131, 'unfinished'),
-(729, 58, 132, 'unfinished'),
-(730, 58, 133, 'unfinished'),
-(731, 58, 134, 'unfinished'),
-(732, 58, 135, 'unfinished'),
-(733, 58, 136, 'unfinished'),
-(734, 58, 137, 'unfinished'),
-(735, 58, 138, 'unfinished'),
-(736, 58, 139, 'unfinished'),
-(737, 58, 140, 'unfinished'),
-(738, 58, 141, 'unfinished'),
-(739, 58, 142, 'unfinished'),
-(740, 58, 143, 'unfinished'),
-(741, 58, 144, 'unfinished'),
-(742, 58, 145, 'unfinished'),
-(743, 58, 146, 'unfinished'),
-(744, 58, 147, 'unfinished'),
-(745, 58, 148, 'unfinished'),
-(746, 58, 149, 'unfinished'),
-(747, 58, 150, 'unfinished'),
-(748, 58, 151, 'unfinished'),
-(749, 58, 152, 'unfinished'),
-(750, 58, 153, 'unfinished'),
-(751, 58, 154, 'unfinished'),
-(752, 58, 155, 'unfinished'),
-(753, 58, 156, 'unfinished'),
-(754, 58, 157, 'unfinished'),
-(755, 58, 158, 'unfinished'),
-(756, 58, 159, 'unfinished');
 
 --
 -- Indexes for dumped tables
@@ -2168,12 +2019,26 @@ ALTER TABLE `profile`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `subtask_group`
+--
+ALTER TABLE `subtask_group`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_task` (`id_task`);
+
+--
+-- Indexes for table `subtask_group_distribution`
+--
+ALTER TABLE `subtask_group_distribution`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_subtask` (`id_subtask`),
+  ADD KEY `id_profile` (`id_profile`);
+
+--
 -- Indexes for table `task_file`
 --
 ALTER TABLE `task_file`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_task` (`id_task`,`id_task_distribution`),
-  ADD KEY `id_task_distribution` (`id_task_distribution`),
+  ADD KEY `id_task` (`id_task`),
   ADD KEY `id_profile` (`id_profile`);
 
 --
@@ -2241,6 +2106,18 @@ ALTER TABLE `profile`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=844;
 
 --
+-- AUTO_INCREMENT for table `subtask_group`
+--
+ALTER TABLE `subtask_group`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `subtask_group_distribution`
+--
+ALTER TABLE `subtask_group_distribution`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
 -- AUTO_INCREMENT for table `task_file`
 --
 ALTER TABLE `task_file`
@@ -2301,11 +2178,23 @@ ALTER TABLE `kelas`
   ADD CONSTRAINT `kelas_ibfk_1` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id`);
 
 --
+-- Constraints for table `subtask_group`
+--
+ALTER TABLE `subtask_group`
+  ADD CONSTRAINT `subtask_group_ibfk_1` FOREIGN KEY (`id_task`) REFERENCES `task_group` (`id`);
+
+--
+-- Constraints for table `subtask_group_distribution`
+--
+ALTER TABLE `subtask_group_distribution`
+  ADD CONSTRAINT `subtask_group_distribution_ibfk_1` FOREIGN KEY (`id_subtask`) REFERENCES `subtask_group` (`id`),
+  ADD CONSTRAINT `subtask_group_distribution_ibfk_2` FOREIGN KEY (`id_profile`) REFERENCES `profile` (`id`);
+
+--
 -- Constraints for table `task_file`
 --
 ALTER TABLE `task_file`
   ADD CONSTRAINT `task_file_ibfk_1` FOREIGN KEY (`id_task`) REFERENCES `task_solo` (`id`),
-  ADD CONSTRAINT `task_file_ibfk_2` FOREIGN KEY (`id_task_distribution`) REFERENCES `task_solo_distribution` (`id`),
   ADD CONSTRAINT `task_file_ibfk_3` FOREIGN KEY (`id_profile`) REFERENCES `profile` (`id`);
 
 --

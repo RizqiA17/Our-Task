@@ -84,11 +84,13 @@
                     </div>
                 </div>
 
+                <?php if($detail['progress'] == 'unfinished'){ ?>
                 <div class="finsih">
                     <form action="complited">
                         <button onclick="window.confirm('Tandai Selesai?');" style="background-color: rgba(0, 110, 233, 1); border-radius: 10px; height: 30px; width: 100%; border: none; color: white;" onclick="window.location.href='http://localhost/ourtaskmvc/public/home'">Finsih</button>
                     </form>
                 </div>
+                <?php } ?>
 
                 <script>
                     var attachment = document.getElementById('attachment');

@@ -14,6 +14,7 @@ class Home extends Controller
         } else {
             $data['task_solo'] = $this->model('Task_solo_distribution_model')->getAllTask();
             $data['tugas_group'] = $this->model('Task_group_distribution_model')->getAllTask();
+            // var_dump($data['tugas_group']);
         }
         // var_dump($data['task_solo']);
 

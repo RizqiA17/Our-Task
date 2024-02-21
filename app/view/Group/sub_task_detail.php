@@ -15,7 +15,7 @@
             <div class="title">
                 Member Task
             </div>
-            <div class="back" onclick="window.location.href='<?= BASEURL . 'ome';   ?>'">
+            <div class="back" onclick="window.history.back()">
                 <svg class="group" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7.828 11H20V13H7.828L13.192 18.364L11.778 19.778L4 12L11.778 4.22205L13.192 5.63605L7.828 11Z" fill="#363942" />
                 </svg>
@@ -47,37 +47,36 @@
                 <div class="menu" style="margin: 0 10px;" onclick="Attachment()">Add attachment</div>
             </div>
             <div id="attachment">
-                <?php if ($task['description_file'] == null) { ?>
+                <?php if ($task['description_file'] != null) { ?>
                     <div class="Attachments">
-                        <div style="background-image: url(http://localhost/ourtaskmvc/public/image/figma.png);" class="img">
+                        <div style="background-image: url(http://localhost/ourtaskmvc/public/image/<?= $task['description_file'] ?>);" class="img">
                         </div>
                         <div style="margin-left: 10px;">
                             <div style="font-size: 0.9rem;">Task Attachments</div>
                             <div style="color: #8e8e8e ; font-size: 0.8rem;">Added <?= date('M j ', strtotime($task['create'])) . 'at ' . date('g:m A', strtotime($task['create'])) ?></div>
-                            <div>
-                                <iconify-icon class="icon" icon="octicon:comment-16" flip="horizontal"></iconify-icon>
-                                <iconify-icon class="icon" icon="bi:trash"></iconify-icon>
-                                <iconify-icon class="icon" icon="uil:pen"></iconify-icon>
+                        </div>
+                    </div>
+                    <?php
+                }
+                if ($data['file'] != null) {
+                    foreach ($data['file'] as $file) {
+                    ?>
+                        <div class="Attachments">
+                            <div style="background-image: url(http://localhost/ourtaskmvc/public/image/hp.jpg);" class="img"></div>
+                            <div style="margin-left: 10px;">
+                                <div style="font-size: 0.9rem;">Front End</div>
+                                <div style="color: #8e8e8e; font-size: 0.8rem;">Added May 8 at 11:30 PM</div>
+                                <div>
+                                    <!-- <iconify-icon class="icon" icon="octicon:comment-16" flip="horizontal"></iconify-icon> -->
+                                    <iconify-icon class="icon" icon="bi:trash"></iconify-icon>
+                                    <iconify-icon class="icon" icon="uil:pen"></iconify-icon>
+                                </div>
                             </div>
                         </div>
-                    </div>
                 <?php
+                    }
                 }
-
                 ?>
-                <?php  ?>
-                <div class="Attachments">
-                    <div style="background-image: url(http://localhost/ourtaskmvc/public/image/hp.jpg);" class="img"></div>
-                    <div style="margin-left: 10px;">
-                        <div style="font-size: 0.9rem;">Front End</div>
-                        <div style="color: #8e8e8e; font-size: 0.8rem;">Added May 8 at 11:30 PM</div>
-                        <div>
-                            <iconify-icon class="icon" icon="octicon:comment-16" flip="horizontal"></iconify-icon>
-                            <iconify-icon class="icon" icon="bi:trash"></iconify-icon>
-                            <iconify-icon class="icon" icon="uil:pen"></iconify-icon>
-                        </div>
-                    </div>
-                </div>
             </div>
             <form action="upload" method="post" enctype="multipart/form-data">
                 <div class="add-attachment hide" id="add">
@@ -88,8 +87,15 @@
             </form>
         </div>
 
-    <?php } ?>
-    <div class="bg">
+        <?php if ($task['progress'] == 'unfinished') { ?>
+            <div class="finsih">
+                <form action="complited">
+                    <button onclick="window.confirm('Tandai Selesai?');" style="cursor:pointer; background-color: rgba(0, 110, 233, 1); border-radius: 10px; height: 30px; width: 100%; border: none; color: white;" onclick="window.location.href='http://localhost/ourtaskmvc/public/home'">Finsih</button>
+                </form>
+            </div>
+    <?php }
+    } ?>
+    <!-- <div class="bg">
         <div>Activity</div>
         <div style="display: flex; align-items: center; margin-top: 15px;">
             <div class="profile"></div>
@@ -109,14 +115,14 @@
                 similique
                 autem necessitatibus, rerum reprehenderit voluptates est, consequuntur quod ullam officia, deleniti
                 iusto?
-                Provident unde assumenda hic.</div>
-            <!-- <div style="display: flex; align-items: center;">
+                Provident unde assumenda hic.</div> -->
+    <!-- <div style="display: flex; align-items: center;">
                 <iconify-icon icon="fluent:emoji-add-16-regular"></iconify-icon>
                 <div style="margin: 0px 7px;">•</div>
                 <a href="" style="font-size: 0.8rem;">Replly</a>
             </div> -->
-        </div>
-    </div>
+    <!-- </div>
+    </div> -->
 
     <script>
         var attachment = document.getElementById('attachment');

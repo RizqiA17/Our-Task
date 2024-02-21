@@ -21,4 +21,9 @@ class Subtask_group_model{
         $this->db->query("SELECT * FROM " . $this->table ." WHERE id_task = ".$id_task );
         return $this->db->resultSet();
     }
+
+    public function complited($id_subtask){
+        $this->db->query("UPDATE ".$this->table." SET `progress` = 'finish' WHERE `".$this->table."`.`id` = ".$id_subtask);
+        $this->db->execute();
+    }
 }

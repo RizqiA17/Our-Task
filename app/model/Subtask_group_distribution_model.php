@@ -12,7 +12,7 @@ class Subtask_group_distribution_model{
     public function distributingTasks($id_task, $id_murid){
         echo $id_murid; 
         
-        $this->db->query("INSERT INTO ".$this->table." (`id`, `id_subtask`, `id_profile`, `progress`) VALUES (NULL, ".$id_task.", ".$id_murid.", '' );");
+        $this->db->query("INSERT INTO ".$this->table." (`id`, `id_subtask`, `id_profile`) VALUES (NULL, ".$id_task.", ".$id_murid.");");
         $this->db->execute();
         // echo "complited";
     }
