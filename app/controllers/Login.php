@@ -52,7 +52,7 @@ class Login extends Controller
         $password = $_POST['password'];
         $cnfrmpass = $_POST['cnfrmpass'];
         $cek_ni = $this->model('Profile_model')->cekNI($no_induk);
-        if (!empty($cek_ni)) {
+        if (!empty($cek_ni)) {  
             if ($password == $cnfrmpass) {
                 $email_cek = $this->model('Profile_model')->cekEmail($email);
                 if (!empty($email_cek)) {
