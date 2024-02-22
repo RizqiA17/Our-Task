@@ -275,20 +275,16 @@
                                                 <div class="task-remaining poppins"><?= $task['nama_tugas_group'] ?></div>
                                             </div>
                                         </div>
-                                        <div class="bottom-group">
-                                            <div class="percentage poppins">60%</div>
-                                            <div class="progress-member">
-                                                <div class="progress-bar-empty">
-                                                    <div class="progress-bar gradient-1" style="width: 60px;"></div>
-                                                </div>
-                                                <div class="member">
-                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                    <div class="ellipse poppins">+8</div>
+                                        <div class="bottom-group" style="display:flex; align-items:center; justify-content:start; padding:0">
+                                                <div class="deadline work-sans">
+                                                    <div class="logo">
+                                                        <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M12 0.5V4.5M6 0.5V4.5M17.4826 9.5H0.517334M17.4826 9.5C17.2743 3.79277 15.154 2 9 2C2.84596 2 0.725603 3.79277 0.517334 9.5M17.4826 9.5C17.4943 9.82084 17.5 10.154 17.5 10.5C17.5 17 15.5 19 9 19C2.5 19 0.5 17 0.5 10.5C0.5 10.154 0.505626 9.82084 0.517334 9.5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                        </svg>
+                                                    </div>
+                                                    <?= $task['tgl_deadline'] ?>
                                                 </div>
                                             </div>
-                                        </div>
                                     </div>
                                 <?php
                                 } else { ?>
@@ -346,20 +342,16 @@
                                                 <div class="task-remaining poppins"><?= $task['grade'] ?></div>
                                             </div>
                                         </div>
-                                        <div class="bottom-group">
-                                            <div class="percentage poppins">60%</div>
-                                            <div class="progress-member">
-                                                <div class="progress-bar-empty">
-                                                    <div class="progress-bar gradient-1" style="width: 60px;"></div>
-                                                </div>
-                                                <div class="member">
-                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                    <div class="ellipse poppins">+8</div>
+                                        <div class="bottom-group" style="display:flex; align-items:center; justify-content:start; padding:0">
+                                                <div class="deadline work-sans">
+                                                    <div class="logo">
+                                                        <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M12 0.5V4.5M6 0.5V4.5M17.4826 9.5H0.517334M17.4826 9.5C17.2743 3.79277 15.154 2 9 2C2.84596 2 0.725603 3.79277 0.517334 9.5M17.4826 9.5C17.4943 9.82084 17.5 10.154 17.5 10.5C17.5 17 15.5 19 9 19C2.5 19 0.5 17 0.5 10.5C0.5 10.154 0.505626 9.82084 0.517334 9.5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                        </svg>
+                                                    </div>
+                                                    <?= $task['tgl_deadline'] ?>
                                                 </div>
                                             </div>
-                                        </div>
                                     </div>
                                 <?php
                                 } else { ?>
@@ -416,10 +408,10 @@
                                             </div>
                                         </div>
                                         <div class="bottom-group">
-                                            <div class="percentage poppins">0%</div>
+                                            <div class="percentage poppins">60%</div>
                                             <div class="progress-member">
                                                 <div class="progress-bar-empty">
-                                                    <div class="progress-bar gradient-1" style="width: 0px;"></div>
+                                                    <div class="progress-bar gradient-1" style="width: 60px;"></div>
                                                 </div>
                                                 <div class="member">
                                                     <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
@@ -576,7 +568,7 @@
             var idformname = "form-" + id;
             var idform = document.getElementById(idformname);
             var idtask = document.getElementById("task-" + id)
-            alert(idtask.value)
+            // alert(idtask.value)
             idform.submit(idtask)
         }
     </script>

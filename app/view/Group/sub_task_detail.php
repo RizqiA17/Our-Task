@@ -10,17 +10,17 @@
 </head>
 
 <body>
-    <?php foreach ($data['task'] as $task) { ?>
-        <div class="header">
-            <div class="title">
-                Member Task
-            </div>
-            <div class="back" onclick="window.history.back()">
-                <svg class="group" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7.828 11H20V13H7.828L13.192 18.364L11.778 19.778L4 12L11.778 4.22205L13.192 5.63605L7.828 11Z" fill="#363942" />
-                </svg>
-            </div>
+    <div class="header">
+        <div class="title">
+            Member Task
         </div>
+        <div class="back" onclick="window.history.back()">
+            <svg class="group" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.828 11H20V13H7.828L13.192 18.364L11.778 19.778L4 12L11.778 4.22205L13.192 5.63605L7.828 11Z" fill="#363942" />
+            </svg>
+        </div>
+    </div>
+    <?php foreach ($data['task'] as $task) { ?>
         <div class="bg">
             <div style="font-weight: bold; "><?= $task['name'] ?></div>
 
@@ -47,12 +47,24 @@
                 <div class="menu" style="margin: 0 10px;" onclick="Attachment()">Add attachment</div>
             </div>
             <div id="attachment">
-                <?php if ($task['description_file'] != null) { ?>
+                <?php
+                if ($task['task_description_file'] != null) { ?>
                     <div class="Attachments">
-                        <div style="background-image: url(http://localhost/ourtaskmvc/public/image/<?= $task['description_file'] ?>);" class="img">
-                        </div>
+                        <a href="http://localhost/ourtaskmvc/public/image/<?= $task['task_description_file'] ?>" style="background-image: url(http://localhost/ourtaskmvc/public/image/<?= $task['task_description_file'] ?>);" class="img" target="_blank"></a>
                         <div style="margin-left: 10px;">
-                            <div style="font-size: 0.9rem;">Task Attachments</div>
+                            <a href="http://localhost/ourtaskmvc/public/image/<?= $task['task_description_file'] ?>" style="color:black;font-size: 0.9rem;" target="_blank">Subtask Attachments</a>
+                            <!-- <div style="font-size: 0.9rem;">Subtask Attachments</div> -->
+                            <div style="color: #8e8e8e ; font-size: 0.8rem;">Added <?= date('M j ', strtotime($task['tgl_dibuat'])) . 'at ' . date('g:m A', strtotime($task['create'])) ?></div>
+                        </div>
+                    </div>
+                <?php
+                }
+                if ($task['description_file'] != null) { ?>
+                    <div class="Attachments">
+                        <a href="http://localhost/ourtaskmvc/public/image/<?= $task['description_file'] ?>" style="background-image: url(http://localhost/ourtaskmvc/public/image/<?= $task['description_file'] ?>);" class="img" target="_blank"></a>
+                        <div style="margin-left: 10px;">
+                            <a href="http://localhost/ourtaskmvc/public/image/<?= $task['description_file'] ?>" style="color:black;font-size: 0.9rem;" target="_blank">Subtask Attachments</a>
+                            <!-- <div style="font-size: 0.9rem;">Subtask Attachments</div> -->
                             <div style="color: #8e8e8e ; font-size: 0.8rem;">Added <?= date('M j ', strtotime($task['create'])) . 'at ' . date('g:m A', strtotime($task['create'])) ?></div>
                         </div>
                     </div>

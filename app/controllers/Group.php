@@ -33,7 +33,7 @@ class Group extends Controller
         }
         $data['notmember'] = $this->model('Task_group_distribution_model')->getMemberNotInGroup($id_task);
         $leadercount = $this->model('Task_group_leader_model')->getAllLeader($id_task);
-        // var_dump($data);
+        var_dump($data);
         $murid = $this->model('Kelas_model')->getAllSiswaWithKelas($data['task'][0]['id_kelas']);
         for ($totalmurid = 1; $totalmurid < sizeof($murid); $totalmurid++) {
             // var_dump($totalmurid);
@@ -69,7 +69,7 @@ class Group extends Controller
         for ($i = 1; $i < sizeof($member_id); $i++) {
             echo $member_id[$i - 1] . "<br>";
             // var_dump($_SESSION['id_leader']);
-            $this->model("Task_group_distribution_model")->addLeader($_SESSION['id_task'], $_SESSION['id_leader'], $member_id[$i - 1]);
+            $this->model("Task_group_distribution_model")->addLeader($_SESSION['id_task'], $_SESSION['id_leader'], $member_id[$i - 1], $_SESSION['id']);
         }
         header("Location:" . BASEURL . "Group/detail");
     }
@@ -82,6 +82,7 @@ class Group extends Controller
         $id_profile = $_SESSION['id'];
         $data['task'] = $this->model("Subtask_group_distribution_model")->getDetail($id_profile, $id_task);
         $data['file'] = $this->model("Task_file_model")->getFile();
+        var_dump($data);
         $this->view("Group/sub_task_detail", $data);
     }
     public function addtask()

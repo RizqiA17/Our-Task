@@ -49,7 +49,7 @@
                     </div>
                     <div class="select-kelas sett">
                         <label for="">Kelas</label>
-                        <select id="kelas" name="kelas" onchange="selectClass(value)">
+                        <select id="kelas" name="kelas" onchange="groupLeader()">
                             <?php foreach ($data['kelas'] as $kelas) { ?>
                                 <option value="<?= $kelas['id_kelas'] ?>"><?= $kelas['grade'] ?></option>
                             <?php } ?>
@@ -80,7 +80,7 @@
                 ?>
                     <div>
                         <?php $absen++; ?>
-                        <label for=""><input type="checkbox" name="leader-list" id="<?= $siswa['id_profile'] ?>" value="<?=$siswa['id_profile']?>"><?= $absen . '. ' . $siswa['name'] ?> </label>
+                        <label for=""><input type="checkbox" name="leader-list" id="<?= $siswa['id_profile'] ?>" value="<?= $siswa['id_profile'] ?>"><?= $absen . '. ' . $siswa['name'] ?> </label>
                     </div>
                 <?php
                     if ($absen == sizeof($data['siswa' . $id_kelas])) {
@@ -99,13 +99,28 @@
         <div id="delete-coma"></div>
     </form>
     <script>
-        var leader='';
-        function getLeader(){
-            var checkbox =document.getElementsByName("leader-list");
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                // console.log("Setiap 5 detik!");
+                // alert(document.getElementById("task-mode").value);
+                
+                if (document.getElementById("task-mode").value == "Group") {
+                    var kelas = document.getElementById("kelas").value
+                    // alert(kelas);
+                    document.getElementById("selectLeader").classList.remove('hide')
+                    document.getElementById("class" + kelas).classList.remove("hide")
+                }
+            }, 0.1);
+        });
 
-            for(var i = 0; i < checkbox.length; i++){
-                if(checkbox[i].checked){
-                    leader += checkbox[i].value+',';
+        var leader = '';
+
+        function getLeader() {
+            var checkbox = document.getElementsByName("leader-list");
+
+            for (var i = 0; i < checkbox.length; i++) {
+                if (checkbox[i].checked) {
+                    leader += checkbox[i].value + ',';
                 }
             }
             document.getElementById("delete-coma").innerText = leader.replace(/,\s*$/, "");
@@ -113,41 +128,54 @@
         }
 
         function groupLeader() {
+            var kelas = document.getElementById("kelas").value
             if (document.getElementById('task-mode').value == 'Solo') {
                 document.getElementById('selectLeader').classList.add("hide");
-                document.getElementById('class' + 1).classList.add("hide");
+                for (i = 1; i <= 20; i++) {
+                    idkelas = "class" + i;
+                    document.getElementById(idkelas).classList.add("hide");
+                }
+                // document.getElementById('class' + kelas).classList.add("hide");
             } else {
                 document.getElementById('selectLeader').classList.remove("hide");
-                document.getElementById('class' + 1).classList.remove("hide");
-            }
-        }
-
-        function selectClass(kelas) {
-            var i = 1
-            for (i = 1; i <= 20; i++) {
-                if (i == kelas) {
-                    idkelas = "class" + kelas;
-                    document.getElementById(idkelas).classList.remove("hide");
-                } else {
-                    idkelas2 = "class" + i;
-                    document.getElementById(idkelas2).classList.add("hide");
+                for (i = 1; i <= 20; i++) {
+                    if (i == kelas) {
+                        idkelas = "class" + kelas;
+                        document.getElementById(idkelas).classList.remove("hide");
+                    } else {
+                        idkelas2 = "class" + i;
+                        document.getElementById(idkelas2).classList.add("hide");
+                    }
                 }
             }
         }
 
-        setInterval(function() {
-            var h1 = document.querySelector(".header");
-            var h2 = document.querySelector(".task-title");
-            var h3 = document.querySelector(".task-detail");
+        // function selectClass(kelas) {
+        //     var i = 1
+        //     for (i = 1; i <= 20; i++) {
+        //         if (i == kelas) {
+        //             idkelas = "class" + kelas;
+        //             document.getElementById(idkelas).classList.remove("hide");
+        //         } else {
+        //             idkelas2 = "class" + i;
+        //             document.getElementById(idkelas2).classList.add("hide");
+        //         }
+        //     }
+        // }
 
-            var h4 = h1.offsetHeight + 75;
-            var h5 = h2.offsetHeight + 50;
-            var h6 = h3.offsetHeight;
+        // setInterval(function() {
+        //     var h1 = document.querySelector(".header");
+        //     var h2 = document.querySelector(".task-title");
+        //     var h3 = document.querySelector(".task-detail");
 
-            var h = h4 + h5 + h6;
+        //     var h4 = h1.offsetHeight + 75;
+        //     var h5 = h2.offsetHeight + 50;
+        //     var h6 = h3.offsetHeight;
 
-            document.querySelector(".task").style.height = "calc(100vh - " + h + "px)";
-        }, 1000);
+        //     var h = h4 + h5 + h6;
+
+        //     document.querySelector(".task").style.height = "calc(100vh - " + h + "px)";
+        // }, 1000);
     </script>
 </body>
 

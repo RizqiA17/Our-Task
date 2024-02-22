@@ -79,7 +79,7 @@
                     Due date: <?= date('l, j M Y') ?>
                 </div>
             </div>
-            <?php if ($data['task'][0]['id_leader'] != null) { ?>
+            <?php if ($data['task'][0]['id_profile_leader'] != null) { ?>
                 <div style="font: 400 20px 'Poppins',sans-serif; margin-top: 30px;">Member</div>
                 <div style="display: flex; align-items: center;">
                     <!-- <img class="member-img" src="<?= BASEURL ?>image/<?= $task['pp_name'] ?>" alt="" style="height: 40px; width: 40px; margin: 10px;" style="display: flex; align-items: center; justify-content: center; font-size: 25px; box-sizing: border-box; border: dotted 3px; height: 40px; width: 40px;"> -->
@@ -203,7 +203,7 @@
         } else {
             i--
         }
-        alert(i)
+        // alert(i)
     }
 
     function getValue() {
@@ -214,7 +214,7 @@
         for (var a = 0; a < document.getElementsByName("membernogroup").length; a++) {
             if (document.getElementsByName("membernogroup")[a].checked) {
                 membernogroup += document.getElementsByName("membernogroup")[a].value + ","
-                alert(membernogroup)
+                // alert(membernogroup)
                 document.getElementById("addMemberValue").value = membernogroup
             }
         }

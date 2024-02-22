@@ -22,7 +22,7 @@ class Home extends Controller
         $this->view("home/index", $data);
         $this->view("templates/footer");
     }
-    
+
     public function calender()
     {
         $data['task_solo'] = $this->model('Task_solo_distribution_model')->getAllTask();
@@ -66,6 +66,15 @@ class Home extends Controller
         // var_dump($_POST['leader']);
         $leader = explode(",", $_POST['leader']);
         // var_dump($leader);
+
+        if ($taskmode == 'Group') {
+            if ($leader[0] == null) {
+                $_SESSION['add_task_err'] = "Pilih Minimal 1";
+                $previous = $_SERVER['HTTP_REFERER'];
+                // var_dump($previous);
+                header("Location:" . $previous);
+            }
+        }
         // echo $title . $detail . $deadline . $taskmode . $filename . $kelas . $_SESSION['mapel'];
 
         // $addTask = $this->model('Task_solo_model')->addTask($title, $detail, $deadline,'', $_SESSION['mapel'], $kelas);
@@ -77,15 +86,19 @@ class Home extends Controller
         $filename = uniqid() . '.' . $imageFileType;
         $targetFile = $target_dir . $filename;
 
+        // var_dump($title);
         // var_dump($_SESSION['id']);
         $addTask = $this->model('Task_' . $taskmode . '_model')->addTask($title, $detail, $deadline, $filename, $_SESSION['mapel'], $kelas);
 
 
         // var_dump($addTask);
         if ($taskmode == 'Group') {
-            for ($i = 0; $i <= sizeof($leader); $i++) {
+            $this->model('Task_group_leader_model')->addLeader(null, $addTask[0]['id']);
+            // var_dump($leader);
+            for ($i = 0; $i < sizeof($leader); $i++) {
                 if ($leader[$i] != null) {
                     $addLeader = $this->model('Task_group_leader_model')->addLeader($leader[$i], $addTask[0]['id']);
+                    echo "aman";
                 }
             }
         }
@@ -123,10 +136,24 @@ class Home extends Controller
         for ($i = 0; $i < sizeof($murid); $i++) {
             $this->model('Task_' . $taskmode . '_distribution_model')->distributingTasks($addTask[0]['id'], $murid[$i]['id_profile'], $taskmode);
         }
+        
         if ($taskmode == 'Group') {
             for ($a = 0; $a < sizeof($addLeader); $a++) {
-                $asb = $this->model('Task_' . $taskmode . '_distribution_model')->addLeader($addTask[0]['id'], $addLeader[$a]['id'], $addLeader[$a]['id_profile']);
-                var_dump($asb);
+                // var_dump($addLeader);
+                for($i = 0; $i < sizeof($murid); $i++)
+                    // echo $i."<br>";
+                    $asb = $this->model('Task_' . $taskmode . '_distribution_model')->addLeader($addTask[0]['id'], $addLeader[0]['id'], $murid[$i]['id_profile'], null);
+                    // var_dump($asb);
+            }
+        }
+        if ($taskmode == 'Group') {
+            for ($a = 0; $a < sizeof($addLeader); $a++) {
+                // var_dump($addLeader);
+                if ($addLeader[$a]['id_profile'] != null) {
+                    // echo "tes";
+                    $asb = $this->model('Task_' . $taskmode . '_distribution_model')->addLeader($addTask[0]['id'], $addLeader[$a]['id'], $addLeader[$a]['id_profile'], $addLeader[$a]['id_profile']);
+                    // var_dump($asb);
+                }
             }
         }
         header("Location:" . BASEURL . "home");

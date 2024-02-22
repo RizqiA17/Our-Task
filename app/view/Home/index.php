@@ -56,7 +56,7 @@
                                         <div class="list solo half" id="<?= $task['id_task'] ?>">
                                             <div class="plain">
                                                 <div class="info">
-                                                    <div class="task work-sans <?php if($task['progress'] != "unfinished") echo "task-down"?>">
+                                                    <div class="task work-sans <?php if ($task['progress'] != "unfinished") echo "task-down" ?>">
                                                         <?= $task['name'] ?>
                                                     </div>
                                                     <div class="mapel work-sans">
@@ -119,19 +119,26 @@
                                                 <div class="task-remaining poppins"><?= $task['name'] ?></div>
                                             </div>
                                         </div>
-                                        <div class="bottom-group">
-                                            <div class="percentage poppins">60%</div>
-                                            <div class="progress-member">
-                                                <div class="progress-bar-empty">
-                                                    <div class="progress-bar gradient-1" style="width: 60px;"></div>
+                                        <div class="bottom-group poppins">
+                                            <?php
+                                            if ($task['id_leader'] != null) {
+                                                // echo ($task['id_leader'] != null ? $task['progress'] : "Belum masuk Group");
+                                            ?>
+                                                <div class="percentage poppins">
+                                                    <?= $task['progress']?>%
                                                 </div>
-                                                <div class="member">
-                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                    <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                    <div class="ellipse poppins">+8</div>
+                                                <div class="progress-member">
+                                                    <div class="progress-bar-empty">
+                                                        <div class="progress-bar gradient-1" style="width: 60px;"></div>
+                                                    </div>
+                                                    <div class="member">
+                                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
+                                                        <div class="ellipse poppins">+8</div>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            <?php } else echo "Belum masuk Group" ?>
                                         </div>
                                     </div>
                                 <?php } else { ?>
@@ -241,18 +248,14 @@
                                                     <div class="task-remaining poppins"><?= $task['grade'] ?></div>
                                                 </div>
                                             </div>
-                                            <div class="bottom-group">
-                                                <div class="percentage poppins">60%</div>
-                                                <div class="progress-member">
-                                                    <div class="progress-bar-empty">
-                                                        <div class="progress-bar gradient-1" style="width: 60px;"></div>
+                                            <div class="bottom-group" style="display:flex; align-items:center; justify-content:start; padding:0">
+                                                <div class="deadline work-sans">
+                                                    <div class="logo">
+                                                        <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M12 0.5V4.5M6 0.5V4.5M17.4826 9.5H0.517334M17.4826 9.5C17.2743 3.79277 15.154 2 9 2C2.84596 2 0.725603 3.79277 0.517334 9.5M17.4826 9.5C17.4943 9.82084 17.5 10.154 17.5 10.5C17.5 17 15.5 19 9 19C2.5 19 0.5 17 0.5 10.5C0.5 10.154 0.505626 9.82084 0.517334 9.5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                        </svg>
                                                     </div>
-                                                    <div class="member">
-                                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                        <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="ellipse">
-                                                        <div class="ellipse poppins">+8</div>
-                                                    </div>
+                                                    <?= $task['tgl_deadline'] ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -319,7 +322,7 @@
                                     <div>Calendar</div>
                                 </div>
                             </button> -->
-                            <!-- <button class="navigation" onclick="pathFind('complited')">
+                            <button class="navigation" onclick="pathFind('complited')">
                                 <div class="left-content">
                                     <svg class="check-ring" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle id="logo" cx="10" cy="10" r="7.5" stroke="#71839B" stroke-width="2" />
@@ -327,7 +330,7 @@
                                     </svg>
                                     <div>Complated Tasks</div>
                                 </div>
-                            </button> -->
+                            </button>
                             <button class="navigation" onclick="pathFind('home/mapel')">
                                 <div class="left-content">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -880 970 600" width="20">

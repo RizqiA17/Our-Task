@@ -53,43 +53,45 @@
                         if ($detail['task_description_file'] != null) {
                         ?>
                             <div class="Attachments">
-                                <div style="background-image: url(<?= BASEURL . 'image/' . $detail['task_description_file'] ?>);" class="img"></div>
-                                <div style="margin-left: 10px;">
-                                    <div style="font-size: 0.9rem;">File Task</div>
-                                </div>
-                                <?php }
-                            if (!empty($data['task_file'])) {
-                                foreach ($data['task_file'] as $file) { ?>
-                                    <div class="Attachments">
-                                        <div style="background-image: url(<?= BASEURL ?>image/<?= $file['task_answer_file'] ?>);" class="img"></div>
-                                        <div style="margin-left: 10px;">
-                                            <div style="font-size: 0.9rem;"><?= $file['name'] ?></div>
-                                            <div style="color: #8e8e8e; font-size: 0.8rem;">Added <?= date('M j ', strtotime($file['date'])) . 'at ' . date('g:m A', strtotime($file['date'])) ?></div>
-                                            <div>
-                                                <iconify-icon class="icon" icon="bi:trash"></iconify-icon>
-                                                <iconify-icon class="icon" icon="uil:pen"></iconify-icon>
-                                            </div>
+                        <a href="http://localhost/ourtaskmvc/public/image/<?= $detail['task_description_file'] ?>" style="background-image: url(http://localhost/ourtaskmvc/public/image/<?= $detail['task_description_file'] ?>);" class="img" target="_blank"></a>
+                        <div style="margin-left: 10px;">
+                            <a href="http://localhost/ourtaskmvc/public/image/<?= $detail['task_description_file'] ?>" style="color:black;font-size: 0.9rem;" target="_blank">Task Attachments</a>
+                            <!-- <div style="font-size: 0.9rem;">Subtask Attachments</div> -->
+                            <div style="color: #8e8e8e ; font-size: 0.8rem;">Added <?= date('M j ', strtotime($detail['tgl_dibuat'])) . 'at ' . date('g:m A', strtotime($detail['tgl_dibuat'])) ?></div>
+                        </div>
+                    </div>
+                            <?php }
+                        if (!empty($data['task_file'])) {
+                            foreach ($data['task_file'] as $file) { ?>
+                                <div class="Attachments">
+                                    <div style="background-image: url(<?= BASEURL ?>image/<?= $file['task_answer_file'] ?>);" class="img"></div>
+                                    <div style="margin-left: 10px;">
+                                        <div style="font-size: 0.9rem;"><?= $file['name'] ?></div>
+                                        <div style="color: #8e8e8e; font-size: 0.8rem;">Added <?= date('M j ', strtotime($file['date'])) . 'at ' . date('g:m A', strtotime($file['date'])) ?></div>
+                                        <div>
+                                            <iconify-icon class="icon" icon="bi:trash"></iconify-icon>
+                                            <iconify-icon class="icon" icon="uil:pen"></iconify-icon>
                                         </div>
                                     </div>
-                            <?php }
-                            } ?>
-                            </div>
-                            <form action="upload" method="post" enctype="multipart/form-data">
-                                <div class="add-attachment hide" id="add">
-                                    <input type="text" id="attachment-note" style="height: 20px">
-                                    <input type="file" name="image" id="image attachment-file">
-                                    <button type="submit" name="proses" id="attachment-submit" style="outline: none; border:none; height: 30px" onclick="AttachmentInput()">Upload</button>
                                 </div>
-                            </form>
+                        <?php }
+                        } ?>
+                        <form action="upload" method="post" enctype="multipart/form-data">
+                            <div class="add-attachment hide" id="add">
+                                <input type="text" id="attachment-note" style="height: 20px">
+                                <input type="file" name="image" id="image attachment-file">
+                                <button type="submit" name="proses" id="attachment-submit" style="outline: none; border:none; height: 30px" onclick="AttachmentInput()">Upload</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
-                <?php if($detail['progress'] == 'unfinished'){ ?>
-                <div class="finsih">
-                    <form action="complited">
-                        <button onclick="window.confirm('Tandai Selesai?');" style="background-color: rgba(0, 110, 233, 1); border-radius: 10px; height: 30px; width: 100%; border: none; color: white;" onclick="window.location.href='http://localhost/ourtaskmvc/public/home'">Finsih</button>
-                    </form>
-                </div>
+                <?php if ($detail['progress'] == 'unfinished') { ?>
+                    <div class="finsih">
+                        <form action="complited">
+                            <button onclick="window.confirm('Tandai Selesai?');" style="background-color: rgba(0, 110, 233, 1); border-radius: 10px; height: 30px; width: 100%; border: none; color: white;" onclick="window.location.href='http://localhost/ourtaskmvc/public/home'">Finsih</button>
+                        </form>
+                    </div>
                 <?php } ?>
 
                 <script>
