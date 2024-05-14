@@ -11,7 +11,7 @@ body {
     border-image-slice: 1;
     background-color: white;
     position: sticky;
-    
+    color: #101010;
     top: 0;
     z-index: 100;
 }
@@ -128,7 +128,7 @@ button {
     background-color: rgba(0, 0, 0, 0);
 }
 
-#overlay{
+/* #overlay{
     position: fixed;
     top: 0;
     left: -100%;
@@ -141,19 +141,19 @@ button {
     height: 100%;
     z-index: 999;
     transition: left 0.3s ease;
-}
+} */
 
-#overlay.open{
+/* #overlay.open{
     left: 0;
-}
+} */
 
-@media (max-width: 719px){
+/* @media (max-width: 719px){
     #overlay.close{
         left: -100%;
     }
-}
+} */
 
-#background{
+/* #background{
     position: fixed;
     overflow: hidden;
     top: 0;
@@ -162,9 +162,9 @@ button {
     height: 100%;
     background-color: rgba(0, 0, 0, 0);
     z-index: -1;
-}
+} */
 
-#background.open{
+/* #background.open{
     background-color: rgba(0, 0, 0, 0.25);
     z-index: 100;
 }
@@ -172,7 +172,7 @@ button {
 #background.close{
     background-color: rgba(0, 0, 0, 0);
     z-index: -1;
-}
+} */
 
 
 .menu {
@@ -232,10 +232,10 @@ button {
 }
 
 @media (min-width: 720px){
-    #overlay, .close{
+    /* #overlay, .close{
         left: 0;
         border-right: solid 1px rgb(230, 230, 230);
-    }
+    } */
 
     body{
         margin-left: 230px;
@@ -250,6 +250,6 @@ button {
     }
 }
 
-button:hover{
-    background-color: rgb(239, 246, 255);
-}
+/* button:hover{
+    background-color: #eff6ff;
+} */

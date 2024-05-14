@@ -49,6 +49,12 @@ class Task_group_distribution_model
         return $this->db->resultSet();
     }
 
+    public function getMemberInGroup()
+    {
+        $this->db->query("SELECT * FROM " . $this->table . " JOIN profile ON " . $this->table . ".id_profile = profile.id WHERE id_leader is not null");
+        return $this->db->resultSet();
+    }
+
     public function getAllMember($id_task, $id_leader)
     {
         $this->db->query("SELECT * FROM " . $this->table . " WHERE id_task = " . $id_task . " id_leader = " . $id_leader . "");

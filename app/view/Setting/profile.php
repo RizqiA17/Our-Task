@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link href="http://localhost/ourtaskmvc/public/css/output.css" rel="stylesheet">
+    <link href="<?=BASEURL?>css/output.css" rel="stylesheet">
     <link rel="icon" href="" media="(prefers-color-scheme: light)">
     <link rel="icon" href="" media="(prefers-color-scheme: dark)">
     <style>
@@ -39,7 +39,7 @@
 
     <div class="w-full absolute" style="display: flex;align-items: center;justify-content: center; cursor: pointer;">
         <div class="bg-white rounded-full">
-            <img src="http://localhost/ourtaskmvc/public/image/Profil.png" alt="" class="mx-auto w-[100px] ">
+            <img src="<?=BASEURL?>image/Profil.png" alt="" class="mx-auto w-[100px] ">
         </div>
     </div>
     <div class="bg-white w-[100%]  mt-14 pt-14 text-center" style="height: calc(100vh - 120px)">
@@ -52,7 +52,7 @@
 
         <div class="px-7 py-10 ">
             <!--  -->
-            <a href="http://localhost/ourtaskmvc/public/setting/myprofile">
+            <a href="<?=BASEURL?>setting/myprofile">
                 <div class="flex my-8 items-center btn">
                     <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 0 24 24" width="28px" fill="#006EE9">
                         <path d="M0 0h24v24H0z" fill="none" />
@@ -62,7 +62,7 @@
                 </div>
             </a>
             <!--  -->
-            <a href="http://localhost/ourtaskmvc/public/setting">
+            <a href="<?=BASEURL?>setting">
                 <div class="flex my-8 items-center ">
                     <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="28px" viewBox="0 0 24 24" width="28px" fill="#006EE9">
                         <g>
@@ -74,13 +74,13 @@
                 </div>
             </a>
             <!--  -->
-            <a href="http://localhost/ourtaskmvc/public/login">
+            <a href="<?=BASEURL?>login">
                 <div class="flex my-8 items-center ">
                     <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 0 24 24" width="28px" fill="#006EE9">
                         <path d="M0 0h24v24H0z" fill="none" />
                         <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" />
                     </svg>
-                    <form action="http://localhost/ourtaskmvc/public/home/logout">
+                    <form action="<?=BASEURL?>home/logout">
                         <button type="submit" method="post">
                             <div class="ml-3">Logout</div>
                         </button>

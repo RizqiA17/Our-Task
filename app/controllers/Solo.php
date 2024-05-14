@@ -1,43 +1,49 @@
 <?php
+        session_start();
 class Solo extends Controller
 {
 
     public function index()
     {
-        session_start();
-        if(!isset($_SESSION['status'])){
-            header("Location:".BASEURL."Login");
+        if (!isset($_SESSION['status'])) {
+            header("Location:" . BASEURL . "Login");
         }
-            $data['title'] = 'Data Tugas';
-            if ($_SESSION['status'] == 'guru') {
-                $data['task'] = $this->model('Task_solo_model')->getTaskForTeacher();
-            } else {
-                $data['task'] = $this->model('Task_solo_distribution_model')->getAllTask();
-            }
-            // var_dump($data['task']);
-            $this->view("templates/header",$data);
-            $this->view("Solo/index", $data);
-            $this->view("templates/footer");
+        $data['title'] = 'Data Tugas';
+        if ($_SESSION['status'] == 'guru') {
+            $data['task'] = $this->model('Task_solo_model')->getTaskForTeacher();
+        } else {
+            $data['task'] = $this->model('Task_solo_distribution_model')->getAllTask();
+        }
+        // var_dump($data['task']);
+        $this->view("templates/header", $data);
+        $this->view("Solo/index", $data);
+        $this->view("templates/footer");
     }
 
-    public function detail()
+    public function getDetail()
     {
-        session_start();
-        $id_task = $_POST['idtask'];
+        if ($_POST != null) {
+            $_SESSION['id_task'] = $_POST['idtask'];
+        }
+        header("Location:".BASEURL."Solo/Detail");
+    }
+
+    public function detail($id){
+        $id_task = $id;
         $id = $_SESSION['id'];
         $data['task'] = $this->model('Task_solo_distribution_model')->getTaskDetail($id_task, $id);
-        $_SESSION['id_task']=$data['task'][0]['id_task'];
+        $_SESSION['id_task'] = $data['task']['id_task'];
         // var_dump($data);
         $this->view("Solo/detail", $data);
     }
 
-    public function complited(){
-        session_start();
+    public function complited()
+    {
         var_dump($_SESSION['id_task']);
         echo "task selesai";
 
         $this->model('Task_solo_distribution_model')->taskComplited($_SESSION['id_task'], $_SESSION['id']);
-        header("Location:".BASEURL."home");
+        header("Location:" . BASEURL . "home");
     }
 
     public function upload()

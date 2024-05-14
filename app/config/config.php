@@ -1,6 +1,8 @@
 <?php
 
-define("BASEURL","http://localhost/ourtaskmvc/public/");
+// define("BASEURL","http://localhost/ourtask/public/");
+define("BASEURL","http://ourtask.test/");
+// define("BASEURL","http://192.168.95.21/ourtaskmvc/public/");
 define("BASEIMG","http://localhost/ourtaskmvc/public/image/");
 
 define("DB_HOST","localhost");

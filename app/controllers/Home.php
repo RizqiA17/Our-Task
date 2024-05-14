@@ -14,7 +14,8 @@ class Home extends Controller
         } else {
             $data['task_solo'] = $this->model('Task_solo_distribution_model')->getAllTask();
             $data['tugas_group'] = $this->model('Task_group_distribution_model')->getAllTask();
-            // var_dump($data['tugas_group']);
+            $data['group_member'] = $this->model('Task_group_distribution_model')->getMemberInGroup();
+            // var_dump($data['group_member']);
         }
         // var_dump($data['task_solo']);
 
@@ -83,8 +84,11 @@ class Home extends Controller
         $image_name = $_FILES["image"]["name"];
         $image_tmp = $_FILES["image"]["tmp_name"]; // Menyimpan sementara file yang diupload
         $imageFileType = strtolower(pathinfo($image_name, PATHINFO_EXTENSION));
-        $filename = uniqid() . '.' . $imageFileType;
-        $targetFile = $target_dir . $filename;
+        $filename = "";
+        if (!empty($image_tmp)) {
+            $filename = uniqid() . '.' . $imageFileType;
+            $targetFile = $target_dir . $filename;
+        }
 
         // var_dump($title);
         // var_dump($_SESSION['id']);
@@ -126,7 +130,7 @@ class Home extends Controller
         } else {
             echo "No file uploaded.";
             $previous_url = $_SERVER['HTTP_REFERER'];
-            //header('Location:' . BASEURL . 'home');
+            // header('Location:' . BASEURL . 'home');
         }
 
         // var_dump($addTask);
@@ -136,14 +140,14 @@ class Home extends Controller
         for ($i = 0; $i < sizeof($murid); $i++) {
             $this->model('Task_' . $taskmode . '_distribution_model')->distributingTasks($addTask[0]['id'], $murid[$i]['id_profile'], $taskmode);
         }
-        
+
         if ($taskmode == 'Group') {
             for ($a = 0; $a < sizeof($addLeader); $a++) {
                 // var_dump($addLeader);
-                for($i = 0; $i < sizeof($murid); $i++)
+                for ($i = 0; $i < sizeof($murid); $i++)
                     // echo $i."<br>";
                     $asb = $this->model('Task_' . $taskmode . '_distribution_model')->addLeader($addTask[0]['id'], $addLeader[0]['id'], $murid[$i]['id_profile'], null);
-                    // var_dump($asb);
+                // var_dump($asb);
             }
         }
         if ($taskmode == 'Group') {
@@ -174,6 +178,6 @@ class Home extends Controller
         session_start();
         session_unset();
         session_destroy();
-        header("Location:http://localhost/ourtaskmvc/public/login");
+        header("Location:".BASEURL."public/login");
     }
 }

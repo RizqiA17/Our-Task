@@ -19,11 +19,12 @@ class Group extends Controller
     }
 
 
-    public function detail()
+    public function detail($id_task)
     {
         session_start();
         $id = $_SESSION['id'];
-        $id_task = $_SESSION['id_task'];
+        $_SESSION['id_task'] = $id_task;
+        $id_task = $id_task;
         $data['task'] = $this->model('Task_group_distribution_model')->getTaskDetail($id_task, $id);
         // var_dump($data['task']);
 
@@ -33,7 +34,7 @@ class Group extends Controller
         }
         $data['notmember'] = $this->model('Task_group_distribution_model')->getMemberNotInGroup($id_task);
         $leadercount = $this->model('Task_group_leader_model')->getAllLeader($id_task);
-        var_dump($data);
+        // var_dump($data);
         $murid = $this->model('Kelas_model')->getAllSiswaWithKelas($data['task'][0]['id_kelas']);
         for ($totalmurid = 1; $totalmurid < sizeof($murid); $totalmurid++) {
             // var_dump($totalmurid);
@@ -57,7 +58,7 @@ class Group extends Controller
     {
         session_start();
         $id_task = $_POST['idtask'];
-        var_dump($_POST['idtask']);
+        // var_dump($_POST['idtask']);
         $_SESSION['id_task'] = $id_task;
         header('Location:' . BASEURL . "Group/detail");
     }
@@ -82,7 +83,7 @@ class Group extends Controller
         $id_profile = $_SESSION['id'];
         $data['task'] = $this->model("Subtask_group_distribution_model")->getDetail($id_profile, $id_task);
         $data['file'] = $this->model("Task_file_model")->getFile();
-        var_dump($data);
+        // var_dump($data);
         $this->view("Group/sub_task_detail", $data);
     }
     public function addtask()
@@ -205,20 +206,20 @@ class Group extends Controller
 
     public function complited(){
         session_start();
-        var_dump($_SESSION['id_subtask']);
+        // var_dump($_SESSION['id_subtask']);
         echo "task selesai";
 
         $getTotalSubTask = $this->model('subtask_group_model')->getSubtask($_SESSION['id_task']);
-        var_dump($getTotalSubTask);
+        // var_dump($getTotalSubTask);
         
         $totalcomplited = 0;
         for($i = 0; $i < sizeof($getTotalSubTask); $i++){
             if($getTotalSubTask[$i]['progress'] != 'unfinished'){
-                var_dump(sizeof($getTotalSubTask));
+                // var_dump(sizeof($getTotalSubTask));
                 $totalcomplited++;
-                var_dump($totalcomplited);
+                // var_dump($totalcomplited);
                 $progress = $totalcomplited/sizeof($getTotalSubTask)*100;
-                var_dump($progress);
+                // var_dump($progress);
                 $this->model('Task_group_leader_model')->setProgress($progress, $_SESSION['id_leader']);
             }
         }

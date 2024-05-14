@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link href="http://localhost/ourtaskmvc/public/css//output.css" rel="stylesheet">
+    <link href="<?=BASEURL?>css//output.css" rel="stylesheet">
     <link rel="icon" href="" media="(prefers-color-scheme: light)">
     <link rel="icon" href="" media="(prefers-color-scheme: dark)">
 </head>
@@ -29,7 +29,7 @@
 
         <div class="px-7 py-10 h-[700px] ">
             <!--  -->
-            <a href="http://localhost/ourtaskmvc/public/setting/notification">
+            <a href="<?=BASEURL?>setting/notification">
                 <div class="flex my-8 items-center ">
                     <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 0 24 24" width="36px" fill="#006EE9">
                         <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" />

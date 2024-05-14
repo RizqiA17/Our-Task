@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 21, 2024 at 08:03 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Host: localhost:3306
+-- Generation Time: May 14, 2024 at 06:58 AM
+-- Server version: 8.3.0
+-- PHP Version: 8.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `distribution_kelas` (
-  `id` int(3) NOT NULL,
-  `id_profile` int(3) DEFAULT NULL,
-  `id_kelas` int(2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `id` int NOT NULL,
+  `id_profile` int DEFAULT NULL,
+  `id_kelas` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `distribution_kelas`
@@ -763,11 +763,11 @@ INSERT INTO `distribution_kelas` (`id`, `id_profile`, `id_kelas`) VALUES
 --
 
 CREATE TABLE `distribution_mapel` (
-  `id` int(4) NOT NULL,
-  `id_profile` int(10) DEFAULT NULL,
-  `id_mapel` int(8) DEFAULT NULL,
-  `id_kelas` int(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `id` int NOT NULL,
+  `id_profile` int DEFAULT NULL,
+  `id_mapel` int DEFAULT NULL,
+  `id_kelas` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `distribution_mapel`
@@ -892,9 +892,9 @@ INSERT INTO `distribution_mapel` (`id`, `id_profile`, `id_mapel`, `id_kelas`) VA
 --
 
 CREATE TABLE `jurusan` (
-  `id` int(1) NOT NULL,
+  `id` int NOT NULL,
   `jurusan` varchar(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `jurusan`
@@ -916,11 +916,11 @@ INSERT INTO `jurusan` (`id`, `jurusan`) VALUES
 --
 
 CREATE TABLE `kelas` (
-  `id` int(2) NOT NULL,
-  `id_jurusan` int(1) DEFAULT NULL,
-  `sub_jurusan` int(1) DEFAULT NULL,
+  `id` int NOT NULL,
+  `id_jurusan` int DEFAULT NULL,
+  `sub_jurusan` int DEFAULT NULL,
   `grade` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `kelas`
@@ -955,9 +955,9 @@ INSERT INTO `kelas` (`id`, `id_jurusan`, `sub_jurusan`, `grade`) VALUES
 --
 
 CREATE TABLE `mapel` (
-  `id` int(2) NOT NULL,
+  `id` int NOT NULL,
   `mapel` varchar(17) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `mapel`
@@ -988,14 +988,14 @@ INSERT INTO `mapel` (`id`, `mapel`) VALUES
 --
 
 CREATE TABLE `profile` (
-  `id` int(3) NOT NULL,
+  `id` int NOT NULL,
   `name` varchar(37) DEFAULT NULL,
-  `no_induk` int(22) DEFAULT NULL,
+  `no_induk` int DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `status` varchar(14) DEFAULT 'siswa',
   `pp_name` varchar(255) NOT NULL DEFAULT 'Profil.png'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `profile`
@@ -1853,14 +1853,14 @@ INSERT INTO `profile` (`id`, `name`, `no_induk`, `email`, `password`, `status`, 
 --
 
 CREATE TABLE `subtask_group` (
-  `id` int(20) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `description_file` varchar(255) DEFAULT NULL,
-  `create` date NOT NULL DEFAULT current_timestamp(),
-  `deadline` date NOT NULL DEFAULT current_timestamp(),
-  `id_task` int(10) NOT NULL,
-  `progress` varchar(10) NOT NULL DEFAULT 'unfinished'
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `description_file` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deadline` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `id_task` int NOT NULL,
+  `progress` varchar(10) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'unfinished'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -1870,9 +1870,9 @@ CREATE TABLE `subtask_group` (
 --
 
 CREATE TABLE `subtask_group_distribution` (
-  `id` int(20) NOT NULL,
-  `id_subtask` int(10) NOT NULL,
-  `id_profile` int(10) NOT NULL
+  `id` int NOT NULL,
+  `id_subtask` int NOT NULL,
+  `id_profile` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -1882,13 +1882,13 @@ CREATE TABLE `subtask_group_distribution` (
 --
 
 CREATE TABLE `task_file` (
-  `id` int(10) NOT NULL,
-  `id_task` int(10) DEFAULT NULL,
-  `id_profile` int(4) NOT NULL,
+  `id` int NOT NULL,
+  `id_task` int DEFAULT NULL,
+  `id_profile` int NOT NULL,
   `task_answer_file` varchar(10) DEFAULT NULL,
   `name` varchar(10) DEFAULT NULL,
-  `date` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `date` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -1897,24 +1897,24 @@ CREATE TABLE `task_file` (
 --
 
 CREATE TABLE `task_group` (
-  `id` int(10) NOT NULL,
+  `id` int NOT NULL,
   `name` varchar(10) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `task_description_file` varchar(255) DEFAULT NULL,
-  `id_mapel` int(10) DEFAULT NULL,
-  `id_kelas` int(10) DEFAULT NULL,
-  `id_guru` int(10) DEFAULT NULL,
-  `tgl_dibuat` date DEFAULT current_timestamp(),
-  `tgl_deadline` date DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `id_mapel` int DEFAULT NULL,
+  `id_kelas` int DEFAULT NULL,
+  `id_guru` int DEFAULT NULL,
+  `tgl_dibuat` datetime DEFAULT CURRENT_TIMESTAMP,
+  `tgl_deadline` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `task_group`
 --
 
 INSERT INTO `task_group` (`id`, `name`, `description`, `task_description_file`, `id_mapel`, `id_kelas`, `id_guru`, `tgl_dibuat`, `tgl_deadline`) VALUES
-(89, 'tes group ', 'suioihjgfdhiouyghfdgh', '65d4c07a0d1a0.png', 1, 1, 841, '2024-02-20', '2024-03-01'),
-(90, 'AFsdafasd', 'SFSADASASFASFA', '65d4c2f62bff2.png', 1, 1, 841, '2024-02-20', '2024-02-27');
+(89, 'tes group ', 'suioihjgfdhiouyghfdgh', '65d4c07a0d1a0.png', 1, 1, 841, '2024-02-20 00:00:00', '2024-03-01 00:00:00'),
+(90, 'AFsdafasd', 'SFSADASASFASFA', '65d4c2f62bff2.png', 1, 1, 841, '2024-02-20 00:00:00', '2024-02-27 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1923,11 +1923,11 @@ INSERT INTO `task_group` (`id`, `name`, `description`, `task_description_file`, 
 --
 
 CREATE TABLE `task_group_distribution` (
-  `id` int(10) NOT NULL,
-  `id_task` int(10) DEFAULT NULL,
-  `id_leader` int(10) DEFAULT NULL,
-  `id_profile` int(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `id` int NOT NULL,
+  `id_task` int DEFAULT NULL,
+  `id_leader` int DEFAULT NULL,
+  `id_profile` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -1936,10 +1936,10 @@ CREATE TABLE `task_group_distribution` (
 --
 
 CREATE TABLE `task_group_leader` (
-  `id` int(10) NOT NULL,
-  `id_task` int(10) NOT NULL,
-  `id_profile` int(10) NOT NULL,
-  `progress` int(3) NOT NULL DEFAULT 0
+  `id` int NOT NULL,
+  `id_task` int NOT NULL,
+  `id_profile` int NOT NULL,
+  `progress` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -1949,16 +1949,16 @@ CREATE TABLE `task_group_leader` (
 --
 
 CREATE TABLE `task_solo` (
-  `id` int(10) NOT NULL,
+  `id` int NOT NULL,
   `name` varchar(10) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `task_description_file` varchar(255) DEFAULT NULL,
-  `id_mapel` int(10) DEFAULT NULL,
-  `id_kelas` int(10) DEFAULT NULL,
-  `id_guru` int(10) DEFAULT NULL,
-  `tgl_dibuat` date NOT NULL DEFAULT current_timestamp(),
-  `tgl_deadline` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `id_mapel` int DEFAULT NULL,
+  `id_kelas` int DEFAULT NULL,
+  `id_guru` int DEFAULT NULL,
+  `tgl_dibuat` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tgl_deadline` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -1967,11 +1967,11 @@ CREATE TABLE `task_solo` (
 --
 
 CREATE TABLE `task_solo_distribution` (
-  `id` int(10) NOT NULL,
-  `id_task` int(10) DEFAULT NULL,
-  `id_profile` int(10) DEFAULT NULL,
+  `id` int NOT NULL,
+  `id_task` int DEFAULT NULL,
+  `id_profile` int DEFAULT NULL,
   `progress` varchar(10) NOT NULL DEFAULT 'unfinished'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Indexes for dumped tables
@@ -2091,67 +2091,67 @@ ALTER TABLE `task_solo_distribution`
 -- AUTO_INCREMENT for table `distribution_mapel`
 --
 ALTER TABLE `distribution_mapel`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `profile`
 --
 ALTER TABLE `profile`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=844;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=844;
 
 --
 -- AUTO_INCREMENT for table `subtask_group`
 --
 ALTER TABLE `subtask_group`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `subtask_group_distribution`
 --
 ALTER TABLE `subtask_group_distribution`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `task_file`
 --
 ALTER TABLE `task_file`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `task_group`
 --
 ALTER TABLE `task_group`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `task_group_distribution`
 --
 ALTER TABLE `task_group_distribution`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2032;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2032;
 
 --
 -- AUTO_INCREMENT for table `task_group_leader`
 --
 ALTER TABLE `task_group_leader`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
 
 --
 -- AUTO_INCREMENT for table `task_solo`
 --
 ALTER TABLE `task_solo`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `task_solo_distribution`
 --
 ALTER TABLE `task_solo_distribution`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=757;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=757;
 
 --
 -- Constraints for dumped tables

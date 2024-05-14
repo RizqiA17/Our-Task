@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link href="http://localhost/ourtaskmvc/public/css/output.css" rel="stylesheet">
+    <link href="<?=BASEURL?>css/output.css" rel="stylesheet">
     <link rel="icon" href="" media="(prefers-color-scheme: light)">
     <link rel="icon" href="" media="(prefers-color-scheme: dark)">
 </head>

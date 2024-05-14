@@ -1,0 +1,67 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./app/view/**/*.{html,js,php}"],
+  theme: {
+    extend: {
+      width: {
+        '112': '28rem',
+        '128': '32rem',
+        '25': '100px',
+      },
+      colors: {
+        'base-50' : '#e6f1fd',
+        'base-100' : '#cce2fb',
+        'base-200' : '#99c5f6',
+        'base-300' : '#66a8f2',
+        'base-400' : '#338bed',
+        'base-500' : '#006EE9',
+        'base-600' : '#0058ba',
+        'base-700' : '#00428c',
+        'base-800' : '#002c5d',
+        'base-900' : '#00162f',
+        'base-950' : '#000b17',
+
+        'second-50' : '#f2faf9',
+        'second-100' : '#e6f6f4',
+        'second-200' : '#ccece9',
+        'second-300' : '#b3e3dd',
+        'second-400' : '#99d9d2',
+        'second-500' : '#80d0c7',
+        'second-600' : '#66a69f',
+        'second-700' : '#4d7d77',
+        'second-800' : '#335350',
+        'second-900' : '#1a2a28',
+        'second-950' : '#0d1514',
+
+        '50' : '#fafafa',
+        '100' : '#dadada',
+        '200' : '#b5b5b5',
+        '300' : '#909090',
+        '400' : '#6b6b6b',
+        '500' : '#464646',
+        '600' : '#383838',
+        '700' : '#2a2a2a',
+        '800' : '#1c1c1c',
+        '900' : '#0e0e0e',
+        '950' : '#070707',
+
+        'own-blue' : '#006EE9',
+        'own-blue-200' : '#eff6ff',
+        'bg-dark' : '#1E1E1E',
+        'item-dark' : '#2C2C2C',
+        'bg-light' : '#FFFFFF',
+        'item-light' : '#FAFAFA',
+        'gradient-1-start' : '#0093e9',
+        'gradient-1-end' : '#80d0c7',
+      },},
+    fontFamily: {
+      'cursive': ['Righteous'],
+      'sans': ['ui-sans-serif', 'system-ui'],
+      'Poppins': ['Poppins'],
+      'serif': ['ui-serif', 'Georgia'],
+      'mono': ['ui-monospace', 'SFMono-Regular'],
+    },
+  },
+  plugins: [],
+}
+
