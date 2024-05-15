@@ -15,6 +15,7 @@ class Home extends Controller
             $data['task_solo'] = $this->model('Task_solo_distribution_model')->getAllTask();
             $data['tugas_group'] = $this->model('Task_group_distribution_model')->getAllTask();
             $data['group_member'] = $this->model('Task_group_distribution_model')->getMemberInGroup();
+
             // var_dump($data['group_member']);
         }
         // var_dump($data['task_solo']);
@@ -24,16 +25,6 @@ class Home extends Controller
         $this->view("templates/footer");
     }
 
-    public function calender()
-    {
-        $data['task_solo'] = $this->model('Task_solo_distribution_model')->getAllTask();
-        $data['task_group'] = $this->model('Task_group_distribution_model')->getAllTask();
-        $this->view("Home/calender", $data);
-    }
-    public function notification()
-    {
-        $this->view("Home/notification");
-    }
     public function mapel()
     {
         $data['title'] = 'Mapel';
@@ -44,6 +35,17 @@ class Home extends Controller
         $this->view("templates/footer");
     }
 
+    public function calender()
+    {
+        $data['task_solo'] = $this->model('Task_solo_distribution_model')->getAllTask();
+        $data['task_group'] = $this->model('Task_group_distribution_model')->getAllTask();
+        $this->view("Home/calender", $data);
+    }
+
+    public function notification()
+    {
+        $this->view("Home/notification");
+    }
     public function addtask()
     {
         // $this->model('Mapel_model')->mengajar();

@@ -53,7 +53,7 @@
                     }
                 }
                 if ($total == 0) { ?>
-                    <div class="h-full w-full text-center flex items-center justify-center font-bold text-5xl text-700">No New Task</div>
+                    <div class=" w-full text-center flex items-center justify-center font-bold text-5xl text-700">No New Task</div>
                 <?php } ?>
             </div>
         </div>

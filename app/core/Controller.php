@@ -4,12 +4,17 @@ class Controller
 {
     public function view($view,  $data = [])
     {
+        if (isset($_SESSION['id'])) {
+            $id = $this->model('Kelas_model')->getKelas();
+            $data['mapel'] = $this->model('Mapel_model')->getMapel($id[0]['id_kelas']);
+        }
+
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
         // var_dump($_SESSION['nama']);
         // if (isset($_SESSION['nama'])) {
-            require_once("../app/view/" . $view . ".php");
+        require_once("../app/view/" . $view . ".php");
         // } else {
         //     $url = BASEURL . $view;
         //     // var_dump($url);

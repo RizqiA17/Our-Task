@@ -81,10 +81,9 @@
                         </span>
                     </div>
                     <div class=" w-full items-start flex flex-col pl-14 hidden delay-1000 transition-all" id="dropdown-mapel">
-                        <div class="">Tes 1</div>
-                        <div class="">Tes 1</div>
-                        <div class="">Tes 1</div>
-                        <div class="">Tes 1</div>
+                        <?php foreach($data['mapel'] as $mapel): ?>
+                        <a href="#" class=""><?=$mapel['mapel']?></a>
+                        <?php endforeach; ?>
                     </div>
                 </button>
             <?php }
