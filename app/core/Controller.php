@@ -2,6 +2,16 @@
 
 class Controller
 {
+    function IsSessionExist()
+    {
+        if (!isset($_SESSION['status'])) {
+            header("Location:" . BASEURL . "Login");
+            echo "Halo";
+            // return false;
+        }
+        // else echo session_id();
+    }
+
     public function view($view,  $data = [])
     {
         if (isset($_SESSION['id'])) {
@@ -9,21 +19,7 @@ class Controller
             $data['mapel'] = $this->model('Mapel_model')->getMapel($id[0]['id_kelas']);
         }
 
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-        // var_dump($_SESSION['nama']);
-        // if (isset($_SESSION['nama'])) {
         require_once("../app/view/" . $view . ".php");
-        // } else {
-        //     $url = BASEURL . $view;
-        //     // var_dump($url);
-        //     if ($url == BASEURL . 'Login/register') {
-        //         require_once("../app/view/Login/register.php");
-        //     } else {
-        //         require_once("../app/view/Login/index.php");
-        //     }
-        // }
     }
 
     public function model($model)

@@ -34,7 +34,7 @@
         </div>
         <div class=" mt-16 flex w-full flex-col items-center justify-center min-[560px]:w-112 max-[390px]:mt-12">
             <div class=" font-semibold font-Poppins text-base max-md:text-sm">Login to your account</div>
-            <form class="w-full flex flex-col items-center" action="<?= BASEURL ?>/login/signin" method="post">
+            <form class="w-full flex flex-col items-center" action="<?= BASEURL ?>login/signin" method="post">
                 <div class=" dark:bg-700  flex mt-5 border-solid border border-200 dark:border-500 rounded-xl h-12 w-full max-md:h-11">
                     <div class=" flex justify-center items-center bg-base-500  box-border h-full w-12 max-md:w-11 rounded-s-xl">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 18 16" fill="none">

@@ -1,13 +1,12 @@
 <?php
-        session_start();
+        
 class Solo extends Controller
 {
 
     public function index()
     {
-        if (!isset($_SESSION['status'])) {
-            header("Location:" . BASEURL . "Login");
-        }
+        $this->IsSessionExist();
+
         $data['title'] = 'Data Tugas';
         if ($_SESSION['status'] == 'guru') {
             $data['task'] = $this->model('Task_solo_model')->getTaskForTeacher();
@@ -22,6 +21,8 @@ class Solo extends Controller
 
     public function getDetail()
     {
+        $this->IsSessionExist();
+        
         if ($_POST != null) {
             $_SESSION['id_task'] = $_POST['idtask'];
         }

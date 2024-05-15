@@ -1,12 +1,11 @@
 <?php
-session_start();
+
 class Home extends Controller
 {
     public function index()
     {
-        if (!isset($_SESSION['status'])) {
-            header("Location:" . BASEURL . "Login");
-        }
+        $this->IsSessionExist();
+
         $data['title'] = 'Home';
         if ($_SESSION['status'] == 'guru') {
             $data['task_solo'] = $this->model('Task_solo_model')->getTaskForTeacher();
@@ -16,9 +15,7 @@ class Home extends Controller
             $data['tugas_group'] = $this->model('Task_group_distribution_model')->getAllTask();
             $data['group_member'] = $this->model('Task_group_distribution_model')->getMemberInGroup();
 
-            // var_dump($data['group_member']);
         }
-        // var_dump($data['task_solo']);
 
         $this->view("templates/header", $data);
         $this->view("home/index", $data);
@@ -27,6 +24,8 @@ class Home extends Controller
 
     public function mapel()
     {
+        $this->IsSessionExist();
+
         $data['title'] = 'Mapel';
         $id = $this->model('Kelas_model')->getKelas();
         $data['mapel'] = $this->model('Mapel_model')->getMapel($id[0]['id_kelas']);
@@ -37,6 +36,8 @@ class Home extends Controller
 
     public function calender()
     {
+        $this->IsSessionExist();
+
         $data['task_solo'] = $this->model('Task_solo_distribution_model')->getAllTask();
         $data['task_group'] = $this->model('Task_group_distribution_model')->getAllTask();
         $this->view("Home/calender", $data);
@@ -44,10 +45,14 @@ class Home extends Controller
 
     public function notification()
     {
+        $this->IsSessionExist();
+
         $this->view("Home/notification");
     }
     public function addtask()
     {
+        $this->IsSessionExist();
+        
         // $this->model('Mapel_model')->mengajar();
         $data['kelas'] = $this->model('Mapel_model')->mengajar();
         $i = 0;
@@ -168,7 +173,7 @@ class Home extends Controller
     {
         $id_task = $_POST['idtask'];
         echo $id_task;
-        // session_start();
+        // 
         // $data['task'] = $this->model('Task_solo_distribution_model')->getTaskDetail($_SESSION['id_task'], $_SESSION['id']);
         // $data['task_file'] = $this->model('Task_solo_distribution_model')->taskFile($_SESSION['id_task'], $_SESSION['id']);
         // var_dump($data);
@@ -177,7 +182,7 @@ class Home extends Controller
 
     public function logout()
     {
-        session_start();
+        
         session_unset();
         session_destroy();
         header("Location:".BASEURL."public/login");

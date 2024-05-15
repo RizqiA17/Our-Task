@@ -1,7 +1,8 @@
 <?php
-session_start();
+
 class Complited extends Controller{
     public function index(){
+        $this->IsSessionExist();
         
         if(!isset($_SESSION['status'])){
             header("Location:".BASEURL."Login");

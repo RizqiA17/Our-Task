@@ -63,7 +63,7 @@
 
             <!-- Title -->
             <div class=" font-normal text-2xl w-full flex justify-between items-center h-12">
-                <h3 class=" font-semibold text-xl dark:text-slate-100">Group Projects</h3>
+                <h3 class=" font-semibold text-xl dark:text-100">Group Projects</h3>
                 <a href="<?= BASEURL ?>group" class=" text-xs font-normal">View All</a>
             </div>
 

@@ -13,7 +13,7 @@ class Profile_model{
         $this->db->query("SELECT * FROM ". $this->table . " WHERE email = :email AND password = :password");
         $this->db->bind(':email', $email);
         $this->db->bind(':password', $password);
-        session_start();
+        
         return $this->db->resultSet();
     }
 

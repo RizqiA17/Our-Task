@@ -3,32 +3,26 @@ class Login extends Controller
 {
     public function index()
     {
-        // if(!isset($_SESSION['nama'])) {
-        //     $this->view('Login/register');
-        // } else {
-        //     $this->view('Login/index');
-        // }
-
         $this->view("Login/index");
     }
+    
     public function signup()
     {
-        if (!isset($_SESSION['nama'])) {
+        // if (!isset($_SESSION['nama'])) {
             $this->view("Login/register");
-        } else {
-            $this->view("Login/index");
-        }
+        // } else {
+        //     $this->view("Login/index");
+        // }
     }
 
     public function signin()
     {
-        // var_dump($_POST["email"]);
         $email = $_POST['email'];
         $password = $_POST['password'];
 
         $data['signin'] = $this->model('Profile_model')->getAccount($email, $password);
         var_dump($data);
-        session_start();
+        
         if (!empty($data['signin'])) {
             $_SESSION['nama'] = $data['signin'][0]['name'];
             $_SESSION['email'] =  $data['signin'][0]['email'];
@@ -46,7 +40,7 @@ class Login extends Controller
 
     public function register()
     {
-        session_start();
+        
         $no_induk = $_POST['no_induk'];
         $email = $_POST['email'];
         $password = $_POST['password'];
