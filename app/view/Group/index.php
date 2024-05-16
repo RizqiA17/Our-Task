@@ -98,7 +98,7 @@
 
         <!-- Deadline Dekat -->
         <div id="content-2">
-    
+
             <!-- Title -->
             <div class=" font-normal text-2xl w-full flex justify-between items-center h-12">
                 <h3 class=" font-semibold text-xl dark:text-100">Deadline Dekat</h3>
@@ -115,10 +115,10 @@
                     </span>
                 </div>
             </div>
-    
+
             <!-- Content -->
             <div class="flex flex-col flex-wrap justify-start relative h-40 gap-6 min-[550px]:flex-row row-task">
-    
+
                 <!-- Items -->
                 <?php
                 $total = 0;
@@ -132,7 +132,7 @@
                 ?>
                         <a href="<?= BASEURL ?>group/detail/<?= $task['id_task'] ?>" class=" relative rounded-2xl h-36 w-48  shadow-md bg-white dark:bg-700">
                             <form action="Group/getDetail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
-    
+
                             <!-- Top Items -->
                             <div class="w-full h-20 rounded-t-2xl from-base-500 to-second-500 bg-gradient-to-r">
                                 <div class="p-4">
@@ -141,26 +141,26 @@
                                     </h3>
                                 </div>
                             </div>
-    
+
                             <!-- Bottom Items -->
                             <div class="py-4 px-5 w-48 box-border">
                                 <?php
                                 if ($task['id_leader'] != null) {
                                 ?>
-    
+
                                     <!-- Presentage -->
                                     <h3 class="font-semibold text-sm">
                                         <?= $task['progress'] ?>%
                                     </h3>
-    
+
                                     <!-- Presentage Bar -->
                                     <div class="flex flex-row justify-between items-center">
-    
+
                                         <!-- Bar -->
                                         <div class="h-0.5 w-25 bg-gray-200 dark:bg-gray-500 mr-5">
                                             <div class="h-0.5 from-gradient-1-start to-gradient-1-end gradient bg-gradient-to-r" style="width: <?= $task['progress'] ?>px;"></div>
                                         </div>
-    
+
                                         <!-- Member Total -->
                                         <div class="flex flex-row justify-center flex-grow">
                                             <?php
@@ -193,8 +193,8 @@
         </div>
 
         <!-- Tugas Baru -->
-        <div  id="content-3">
-    
+        <div id="content-3">
+
             <!-- Title -->
             <div class=" font-normal text-2xl w-full flex justify-between items-center h-12">
                 <h3 class=" font-semibold text-xl dark:text-100">Tugas Baru</h3>
@@ -211,10 +211,10 @@
                     </span>
                 </div>
             </div>
-    
+
             <!-- Content -->
             <div class="flex flex-col flex-wrap justify-start relative h-40 gap-6 min-[550px]:flex-row row-task">
-    
+
                 <!-- Items -->
                 <?php
                 $total = 0;
@@ -227,7 +227,7 @@
                 ?>
                         <a href="<?= BASEURL ?>group/detail/<?= $task['id_task'] ?>" class=" relative rounded-2xl h-36 w-48  shadow-md bg-white dark:bg-700">
                             <form action="Group/getDetail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
-    
+
                             <!-- Top Items -->
                             <div class="w-full h-20 rounded-t-2xl from-base-500 to-second-500 bg-gradient-to-r">
                                 <div class="p-4">
@@ -236,26 +236,26 @@
                                     </h3>
                                 </div>
                             </div>
-    
+
                             <!-- Bottom Items -->
                             <div class="py-4 px-5 w-48 box-border">
                                 <?php
                                 if ($task['id_leader'] != null) {
                                 ?>
-    
+
                                     <!-- Presentage -->
                                     <h3 class="font-semibold text-sm">
                                         <?= $task['progress'] ?>%
                                     </h3>
-    
+
                                     <!-- Presentage Bar -->
                                     <div class="flex flex-row justify-between items-center">
-    
+
                                         <!-- Bar -->
                                         <div class="h-0.5 w-25 bg-gray-200 dark:bg-gray-500 mr-5">
                                             <div class="h-0.5 from-gradient-1-start to-gradient-1-end gradient bg-gradient-to-r" style="width: <?= $task['progress'] ?>px;"></div>
                                         </div>
-    
+
                                         <!-- Member Total -->
                                         <div class="flex flex-row justify-center flex-grow">
                                             <?php
