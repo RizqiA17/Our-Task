@@ -77,12 +77,15 @@
                     </div>
                     <div class=" absolute right-3 top-2 z-20 " onclick="DropDown()">
                         <span class="material-symbols-outlined text-[#71839B]">
-                            expand_more
+                            keyboard_arrow_down
+                        </span>
+                        <span class="material-symbols-outlined text-[#71839B] hidden">
+                            keyboard_arrow_up
                         </span>
                     </div>
                     <div class=" w-full items-start flex flex-col pl-14 hidden delay-1000 transition-all" id="dropdown-mapel">
-                        <?php foreach($data['mapel'] as $mapel): ?>
-                        <a href="#" class=""><?=$mapel['mapel']?></a>
+                        <?php foreach ($data['mapel'] as $mapel) : ?>
+                            <a href="#" class=""><?= $mapel['mapel'] ?></a>
                         <?php endforeach; ?>
                     </div>
                 </button>

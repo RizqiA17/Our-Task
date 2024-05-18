@@ -29,11 +29,12 @@ class Solo extends Controller
         header("Location:".BASEURL."Solo/Detail");
     }
 
-    public function detail($id){
-        $id_task = $id;
+    public function detail($id_task){
+        $data['id_task'] = $id_task;
         $id = $_SESSION['id'];
         $data['task'] = $this->model('Task_solo_distribution_model')->getTaskDetail($id_task, $id);
         $_SESSION['id_task'] = $data['task']['id_task'];
+        $data['task_file'] = $this->model('Task_file_model')->getFile();
         // var_dump($data);
         $this->view("Solo/detail", $data);
     }
@@ -49,11 +50,13 @@ class Solo extends Controller
 
     public function upload()
     {
+        $id = $_SESSION['id_task'];
         $target_dir = "../public/image/";
         $image_name = $_FILES["image"]["name"];
         $image_tmp = $_FILES["image"]["tmp_name"]; // Menyimpan sementara file yang diupload
         $imageFileType = strtolower(pathinfo($image_name, PATHINFO_EXTENSION));
-        $targetFile = $target_dir . uniqid() . '.' . $imageFileType;
+        $file_name = uniqid() . '.' . $imageFileType;
+        $targetFile = $target_dir . $file_name;
 
         // Mengecek apakah file telah diupload
         if (!empty($image_tmp)) {
@@ -64,21 +67,22 @@ class Solo extends Controller
                 if (move_uploaded_file($image_tmp, $targetFile)) {
                     // echo "The file " . basename($image_name) . " has been uploaded.";
                     $previous_url = $_SERVER['HTTP_REFERER'];
-                    header('Location:' . BASEURL . 'solo/detail');
+                    $this->model('Task_file_model')->addFile($_POST, $file_name);
+                    header('Location:' . BASEURL . 'solo/detail/'.$id);
                 } else {
                     // echo "Sorry, there was an error uploading your file.";
                     $previous_url = $_SERVER['HTTP_REFERER'];
-                    header('Location:' . BASEURL . 'solo/detail');
+                    header('Location:' . BASEURL . 'solo/detail/'.$id);
                 }
             } else {
                 // echo "File is not an image.";
                 $previous_url = $_SERVER['HTTP_REFERER'];
-                header('Location:' . BASEURL . 'solo/detail');
+                header('Location:' . BASEURL . 'solo/detail/'.$id);
             }
         } else {
             // echo "No file uploaded.";
             $previous_url = $_SERVER['HTTP_REFERER'];
-            header('Location:' . BASEURL . 'solo/detail');
+            header('Location:' . BASEURL . 'solo/detail/'.$id);
         }
     }
 }

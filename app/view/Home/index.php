@@ -1,4 +1,4 @@
-<div class="h-full">
+<div class="h-full max-w-[calc(100vw_-_223px)] max-[720px]:max-w-[100vw]">
 
     <!-- Student Form -->
     <?php
@@ -25,10 +25,10 @@
                     $today = new DateTime(date('Y-m-d', time()));
                     $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat'])));
                     $interval = date_diff($dibuat, $today);
-                    if ($interval->format('%R') == '+' && $interval->format('%a') <= '7' && $total < 6) {
+                    if (($interval->format('%R') == '+' && $interval->format('%a') <= '7') || ($interval->format('%R') == '-' && $interval->format('%a') == '0') && $total < 6) {
                         $total++;
                 ?>
-                        <a href="<?= BASEURL ?>solo/detail/<?= $task['id_task'] ?>" class="w-full max-w-64 bg-white dark:bg-700 shadow-md rounded-2xl grow sm:w-96 h-36" id="<?= $task['id_task'] ?>">
+                        <a href="<?= BASEURL ?>solo/detail/<?= $task['id_task'] ?>" class="w-full min-w-64 bg-white dark:bg-700 shadow-md rounded-2xl grow sm:w-96 h-36" id="<?= $task['id_task'] ?>">
                             <!-- Top -->
                             <div class=" mt-6 pb-3 mx-6 flex-grow border-b border-100 dark:border-500">
                                 <h3 class=" text-lg font-bold font-sans <?php if ($task['progress'] != "unfinished") echo "task-down" ?>">

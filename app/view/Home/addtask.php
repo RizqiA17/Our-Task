@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form action="<?= BASEURL ?>/home/addnewtask" method="post" class="add-task-form" enctype="multipart/form-data">
+    <form action="<?= BASEURL ?>home/addnewtask" method="post" class="add-task-form" enctype="multipart/form-data">
         <div class="top">
             <div class="header">
                 <div class="title">
@@ -34,7 +34,7 @@
                 <div class="task-setting">
                     <div class="set-deadline sett">
                         <label for="">Deadline</label>
-                        <input type="date" name="deadline" required>
+                        <input type="date" min="<?= date('Y-m-d', time()) ?>" name="deadline" required>
                     </div>
                     <div class="task-file sett">
                         <label for="">Image</label>

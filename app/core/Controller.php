@@ -14,7 +14,7 @@ class Controller
 
     public function view($view,  $data = [])
     {
-        if (isset($_SESSION['id'])) {
+        if (isset($_SESSION['id']) && $_SESSION['status'] != 'guru') {
             $id = $this->model('Kelas_model')->getKelas();
             $data['mapel'] = $this->model('Mapel_model')->getMapel($id[0]['id_kelas']);
         }

@@ -1,6 +1,6 @@
 <?php if ($_SESSION['status'] != 'guru') { ?>
     <!-- Solo Content -->
-    <div class="px-9 py-4" id="content-solo">
+    <div class="px-9 py-4 max-w-[calc(100vw_-_223px)] max-[720px]:max-w-[100vw]" id="content-solo">
 
         <!-- Lewat Deadline -->
         <div class="" id='content'>
@@ -32,10 +32,10 @@
                     $today = new DateTime(date('Y-m-d', time()));
                     $deadline = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_deadline'])));
                     $interval = date_diff($today, $deadline);
-                    if ($interval->format('%R') == '-') {
+                    if ($interval->format('%R') == '-' && $task['progress'] != 'finish') {
                         $total++;
                 ?>
-                        <a href="<?= BASEURL ?>solo/detail/<?= $task['id_task'] ?>" class="w-full max-w-64 bg-white dark:bg-700 shadow-md rounded-2xl grow sm:w-96 h-36" id="<?= $task['id_task'] ?>">
+                        <a href="<?= BASEURL ?>solo/detail/<?= $task['id_task'] ?>" class="w-full min-w-64 max-w-64 bg-white dark:bg-700 shadow-md rounded-2xl grow sm:w-96 h-36" id="<?= $task['id_task'] ?>">
                             <!-- Top -->
                             <div class=" mt-6 pb-3 mx-6 flex-grow border-b border-100 dark:border-500">
                                 <h3 class=" text-lg font-bold font-sans">
@@ -85,7 +85,7 @@
             </div>
 
             <!-- Content -->
-            <div class=" flex max-w-full min-h-36 pb-2 max-h-80 gap-6 flex-row relative overflow-hidden overflow-y-auto" id="scroll-1">
+            <div class=" flex max-w-full min-h-36 pb-2 max-h-80 gap-6 flex-row relative overflow-hidden overflow-y-auto" id="scroll-2">
 
                 <!-- Items -->
 
@@ -97,9 +97,10 @@
                     $deadline = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_deadline'])));
                     $interval = date_diff($today, $deadline);
                     // echo $interval->format('%a days');
-                    if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
+                    if ($interval->format('%R') == '+' && $interval->format('%a') <= '7' && $task['progress'] != 'finish') {
+                        $total++;
                 ?>
-                        <a href="<?= BASEURL ?>solo/detail/<?= $task['id_task'] ?>" class="w-full max-w-64 bg-white dark:bg-700 shadow-md rounded-2xl grow sm:w-96 h-36" id="<?= $task['id_task'] ?>">
+                        <a href="<?= BASEURL ?>solo/detail/<?= $task['id_task'] ?>" class="w-full min-w-64 max-w-64 bg-white dark:bg-700 shadow-md rounded-2xl grow sm:w-96 h-36" id="<?= $task['id_task'] ?>">
                             <!-- Top -->
                             <div class=" mt-6 pb-3 mx-6 flex-grow border-b border-100 dark:border-500">
                                 <h3 class=" text-lg font-bold font-sans">
@@ -149,7 +150,7 @@
             </div>
 
             <!-- Content -->
-            <div class=" flex max-w-full min-h-36 pb-2 max-h-80 gap-6 flex-row relative overflow-hidden overflow-y-auto" id="scroll-1">
+            <div class=" flex max-w-full min-h-36 pb-2 max-h-80 gap-6 flex-row relative overflow-hidden overflow-y-auto" id="scroll-3">
 
                 <!-- Items -->
 
@@ -161,9 +162,10 @@
                     $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat'])));
                     $interval = date_diff($dibuat, $today);
                     // echo $interval->format('%a days');
-                    if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
+                    if ((($interval->format('%R') == '+' && $interval->format('%a') <= '7') || ($interval->format('%R') == '-' && $interval->format('%a') == '0')) && $task['progress'] != 'finish') {
+                        $total++;
                 ?>
-                        <a href="<?= BASEURL ?>solo/detail/<?= $task['id_task'] ?>" class="w-full max-w-64 bg-white dark:bg-700 shadow-md rounded-2xl grow sm:w-96 h-36" id="<?= $task['id_task'] ?>">
+                        <a href="<?= BASEURL ?>solo/detail/<?= $task['id_task'] ?>" class="w-full min-w-64 max-w-64 bg-white dark:bg-700 shadow-md rounded-2xl grow sm:w-96 h-36" id="<?= $task['id_task'] ?>">
                             <!-- Top -->
                             <div class=" mt-6 pb-3 mx-6 flex-grow border-b border-100 dark:border-500">
                                 <h3 class=" text-lg font-bold font-sans">

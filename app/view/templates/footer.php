@@ -1,6 +1,7 @@
 
 <div id="background" class="fixed hidden overflow-hidden top-0 left-0 w-full h-full bg-800 bg-opacity-75 "></div>
 <script src="<?= BASEURL ?>js/overlay_menu.js"></script>
+<script src="<?= BASEURL ?>js/script.js"></script>
 <script>
     function pathFind(pathName) {
 

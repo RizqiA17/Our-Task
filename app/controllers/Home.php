@@ -5,7 +5,6 @@ class Home extends Controller
     public function index()
     {
         $this->IsSessionExist();
-
         $data['title'] = 'Home';
         if ($_SESSION['status'] == 'guru') {
             $data['task_solo'] = $this->model('Task_solo_model')->getTaskForTeacher();
@@ -14,24 +13,37 @@ class Home extends Controller
             $data['task_solo'] = $this->model('Task_solo_distribution_model')->getAllTask();
             $data['tugas_group'] = $this->model('Task_group_distribution_model')->getAllTask();
             $data['group_member'] = $this->model('Task_group_distribution_model')->getMemberInGroup();
-
+            
         }
-
+        
         $this->view("templates/header", $data);
         $this->view("home/index", $data);
         $this->view("templates/footer");
     }
 
-    public function mapel()
+    public function mapel($id = "")
     {
         $this->IsSessionExist();
 
-        $data['title'] = 'Mapel';
-        $id = $this->model('Kelas_model')->getKelas();
-        $data['mapel'] = $this->model('Mapel_model')->getMapel($id[0]['id_kelas']);
-        $this->view("templates/header", $data);
-        $this->view("Home/mapel", $data);
-        $this->view("templates/footer");
+        if($id != ""){
+            $data['nama_mapel'] = "";
+            $data['task_solo'] = $this->model('Task_solo_distribution_model')->getAllTask();
+            $data['tugas_group'] = $this->model('Task_group_distribution_model')->getAllTask();
+            $data['group_member'] = $this->model('Task_group_distribution_model')->getMemberInGroup();
+            $data['title'] = "";
+            $this->view("templates/header", $data);
+            $this->view("Home/ListMapel");
+            $this->view("templates/footer");
+        }
+        else
+        {
+            $data['title'] = 'Mapel';
+            $id = $this->model('Kelas_model')->getKelas();
+            $data['mapel'] = $this->model('Mapel_model')->getMapel($id[0]['id_kelas']);
+            $this->view("templates/header", $data);
+            $this->view("Home/mapel", $data);
+            $this->view("templates/footer");
+        }
     }
 
     public function calender()
@@ -83,7 +95,8 @@ class Home extends Controller
                 header("Location:" . $previous);
             }
         }
-        // echo $title . $detail . $deadline . $taskmode . $filename . $kelas . $_SESSION['mapel'];
+        // echo $title . $detail . $deadline . $taskmode . $kelas . $_SESSION['mapel'];
+        // echo $kelas;
 
         // $addTask = $this->model('Task_solo_model')->addTask($title, $detail, $deadline,'', $_SESSION['mapel'], $kelas);
 
@@ -145,7 +158,7 @@ class Home extends Controller
         $murid = $this->model('Kelas_model')->getAllSiswaWithKelas($kelas);
         // var_dump($murid);
         for ($i = 0; $i < sizeof($murid); $i++) {
-            $this->model('Task_' . $taskmode . '_distribution_model')->distributingTasks($addTask[0]['id'], $murid[$i]['id_profile'], $taskmode);
+            $this->model('Task_' . $taskmode . '_distribution_model')->distributingTasks($addTask[0]['id'], $murid[$i]['id_profile']);
         }
 
         if ($taskmode == 'Group') {
@@ -167,7 +180,7 @@ class Home extends Controller
                 }
             }
         }
-        header("Location:" . BASEURL . "home");
+        // header("Location:" . BASEURL . "home");
     }
     public function getDetail()
     {

@@ -1,7 +1,7 @@
 var overlay = document.getElementById('overlay');
 var background = document.getElementById('background');
 var dropdown = document.getElementById('dropdown-mapel');
-const isActive = false;
+
 
 function overlayOpen() {
     overlay.classList.remove('-left-full');
@@ -22,16 +22,16 @@ function overlayClose() {
 }
 
 function DropDownCheck(){
-    isActive ? dropdown.classList.remove('hidden') : dropdown.classList.add('hidden');
+    localStorage.getItem('DropdownCond') === 'true' ? dropdown.classList.remove('hidden') : dropdown.classList.add('hidden');
 }
 
 function DropDown() {
-    if (isActive) {
+    if (localStorage.getItem('DropdownCond') === 'true') {
         dropdown.classList.add('hidden');
-        isActive = false;
+        localStorage.setItem('DropdownCond', 'false');
     } else {
         dropdown.classList.remove('hidden');
-        isActive = true;
+        localStorage.setItem('DropdownCond', 'true');
     }
 
 }

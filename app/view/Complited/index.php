@@ -7,12 +7,12 @@
         <div class=" font-normal text-2xl w-full base-100 flex justify-between items-center h-12">
             <h3 class=" font-semibold text-xl dark:text-100">Complited Solo Project</h3>
             <div class="flex">
-                <span onclick="scrollContainer('scroll-3',-1)">
+                <span onclick="scrollContainer('scroll-1',-1)">
                     <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path class=" stroke-700 dark:stroke-50" d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </span>
-                <span onclick="scrollContainer('scroll-3',1)">
+                <span onclick="scrollContainer('scroll-1',1)">
                     <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path class=" stroke-700 dark:stroke-50" d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
@@ -28,7 +28,8 @@
             <?php
             $total = 0;
             foreach ($data['task_solo'] as $task) {
-                if ($task['progress'] != 'unfinished') {
+                if ($task['progress'] == 'finish') {
+                    $total++;
             ?>
                     <a href="<?= BASEURL ?>solo/detail/<?= $task['id_task'] ?>" class="w-full max-w-64 bg-white dark:bg-700 shadow-md rounded-2xl grow sm:w-96 h-36" id="<?= $task['id_task'] ?>">
                         <!-- Top -->
@@ -85,7 +86,7 @@
         </div>
 
         <!-- Content -->
-        <div class="flex flex-col flex-wrap justify-start relative h-40 gap-6 min-[550px]:flex-row row-task">
+        <div class="flex flex-col flex-wrap justify-start relative h-40 gap-6 min-[550px]:flex-row row-task" id="scroll-2">
 
             <!-- Items -->
             <?php
@@ -178,7 +179,7 @@
         </div>
 
         <!-- Content -->
-        <div class="flex flex-col flex-wrap justify-start relative h-40 gap-6 min-[550px]:flex-row row-task">
+        <div class="flex flex-col flex-wrap justify-start relative h-40 gap-6 min-[550px]:flex-row row-task" id="scroll-3">
 
             <!-- Items -->
             <?php
