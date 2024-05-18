@@ -13,9 +13,8 @@ class Home extends Controller
             $data['task_solo'] = $this->model('Task_solo_distribution_model')->getAllTask();
             $data['tugas_group'] = $this->model('Task_group_distribution_model')->getAllTask();
             $data['group_member'] = $this->model('Task_group_distribution_model')->getMemberInGroup();
-            
         }
-        
+
         $this->view("templates/header", $data);
         $this->view("home/index", $data);
         $this->view("templates/footer");
@@ -25,7 +24,7 @@ class Home extends Controller
     {
         $this->IsSessionExist();
 
-        if($id != ""){
+        if ($id != "") {
             $data['nama_mapel'] = "";
             $data['task_solo'] = $this->model('Task_solo_distribution_model')->getAllTask();
             $data['tugas_group'] = $this->model('Task_group_distribution_model')->getAllTask();
@@ -34,9 +33,7 @@ class Home extends Controller
             $this->view("templates/header", $data);
             $this->view("Home/ListMapel");
             $this->view("templates/footer");
-        }
-        else
-        {
+        } else {
             $data['title'] = 'Mapel';
             $id = $this->model('Kelas_model')->getKelas();
             $data['mapel'] = $this->model('Mapel_model')->getMapel($id[0]['id_kelas']);
@@ -64,7 +61,7 @@ class Home extends Controller
     public function addtask()
     {
         $this->IsSessionExist();
-        
+
         // $this->model('Mapel_model')->mengajar();
         $data['kelas'] = $this->model('Mapel_model')->mengajar();
         $i = 0;
@@ -80,14 +77,18 @@ class Home extends Controller
     {
         $title = $_POST['title'];
         $detail = $_POST['detail'];
-        $deadline = date('Y-m-d', strtotime($_POST['deadline']));
-        $taskmode = $_POST['mode'];
+        $deadline = date('Y-m-d 23:59:59', strtotime($_POST['deadline']));
+        // $taskmode = $_POST['mode'];
+        $isGroup = $_POST['group'];
         $kelas = $_POST['kelas'];
         // var_dump($_POST['leader']);
         $leader = explode(",", $_POST['leader']);
-        // var_dump($leader);
+        var_dump($leader);
+        $taskmode = 'solo';
 
-        if ($taskmode == 'Group') {
+        // if ($taskmode == 'Group') {
+        if ($isGroup) {
+            $taskmode = 'group';
             if ($leader[0] == null) {
                 $_SESSION['add_task_err'] = "Pilih Minimal 1";
                 $previous = $_SERVER['HTTP_REFERER'];
@@ -116,11 +117,11 @@ class Home extends Controller
 
 
         // var_dump($addTask);
-        if ($taskmode == 'Group') {
+        if ($taskmode == 'group') {
             $this->model('Task_group_leader_model')->addLeader(null, $addTask[0]['id']);
             // var_dump($leader);
             for ($i = 0; $i < sizeof($leader); $i++) {
-                if ($leader[$i] != null) {
+                if ($leader[$i] != '') {
                     $addLeader = $this->model('Task_group_leader_model')->addLeader($leader[$i], $addTask[0]['id']);
                     echo "aman";
                 }
@@ -161,7 +162,7 @@ class Home extends Controller
             $this->model('Task_' . $taskmode . '_distribution_model')->distributingTasks($addTask[0]['id'], $murid[$i]['id_profile']);
         }
 
-        if ($taskmode == 'Group') {
+        if ($isGroup) {
             for ($a = 0; $a < sizeof($addLeader); $a++) {
                 // var_dump($addLeader);
                 for ($i = 0; $i < sizeof($murid); $i++)
@@ -170,7 +171,7 @@ class Home extends Controller
                 // var_dump($asb);
             }
         }
-        if ($taskmode == 'Group') {
+        if ($isGroup) {
             for ($a = 0; $a < sizeof($addLeader); $a++) {
                 // var_dump($addLeader);
                 if ($addLeader[$a]['id_profile'] != null) {
@@ -195,9 +196,9 @@ class Home extends Controller
 
     public function logout()
     {
-        
+
         session_unset();
         session_destroy();
-        header("Location:".BASEURL."public/login");
+        header("Location:" . BASEURL . "public/login");
     }
 }
