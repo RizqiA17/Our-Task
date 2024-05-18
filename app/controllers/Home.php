@@ -89,6 +89,7 @@ class Home extends Controller
         // if ($taskmode == 'Group') {
         if ($isGroup) {
             $taskmode = 'group';
+            // echo "Tes";
             if ($leader[0] == null) {
                 $_SESSION['add_task_err'] = "Pilih Minimal 1";
                 $previous = $_SERVER['HTTP_REFERER'];
@@ -121,9 +122,9 @@ class Home extends Controller
             $this->model('Task_group_leader_model')->addLeader(null, $addTask[0]['id']);
             // var_dump($leader);
             for ($i = 0; $i < sizeof($leader); $i++) {
-                if ($leader[$i] != '') {
+                echo "aman";
+                if ($leader[$i] != null) {
                     $addLeader = $this->model('Task_group_leader_model')->addLeader($leader[$i], $addTask[0]['id']);
-                    echo "aman";
                 }
             }
         }
@@ -164,7 +165,7 @@ class Home extends Controller
 
         if ($isGroup) {
             for ($a = 0; $a < sizeof($addLeader); $a++) {
-                // var_dump($addLeader);
+                var_dump($addLeader);
                 for ($i = 0; $i < sizeof($murid); $i++)
                     // echo $i."<br>";
                     $asb = $this->model('Task_' . $taskmode . '_distribution_model')->addLeader($addTask[0]['id'], $addLeader[0]['id'], $murid[$i]['id_profile'], null);

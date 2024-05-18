@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 18, 2024 at 08:49 AM
+-- Generation Time: May 18, 2024 at 03:27 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.3.6
 
@@ -1918,6 +1918,13 @@ CREATE TABLE `task_group` (
   `tgl_deadline` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+--
+-- Dumping data for table `task_group`
+--
+
+INSERT INTO `task_group` (`id`, `name`, `description`, `task_description_file`, `id_mapel`, `id_kelas`, `id_guru`, `tgl_dibuat`, `tgl_deadline`) VALUES
+(108, 'adsdqwedac', 'qwewqdsaada', '', 1, 1, 841, '2024-05-18 22:25:30', '2024-05-18 23:59:59');
+
 -- --------------------------------------------------------
 
 --
@@ -1928,8 +1935,51 @@ CREATE TABLE `task_group_distribution` (
   `id` int NOT NULL,
   `id_task` int DEFAULT NULL,
   `id_leader` int DEFAULT NULL,
-  `id_profile` int DEFAULT NULL
+  `id_profile` int DEFAULT NULL,
+  `id_profile_leader` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Dumping data for table `task_group_distribution`
+--
+
+INSERT INTO `task_group_distribution` (`id`, `id_task`, `id_leader`, `id_profile`, `id_profile_leader`) VALUES
+(2176, 108, 234, 124, NULL),
+(2177, 108, 234, 125, NULL),
+(2178, 108, 234, 126, NULL),
+(2179, 108, 234, 127, NULL),
+(2180, 108, 234, 128, NULL),
+(2181, 108, 234, 129, NULL),
+(2182, 108, 234, 130, NULL),
+(2183, 108, 234, 131, NULL),
+(2184, 108, 234, 132, 132),
+(2185, 108, 234, 133, NULL),
+(2186, 108, 234, 134, NULL),
+(2187, 108, 234, 135, NULL),
+(2188, 108, 234, 136, NULL),
+(2189, 108, 234, 137, NULL),
+(2190, 108, 234, 138, NULL),
+(2191, 108, 234, 139, NULL),
+(2192, 108, 234, 140, NULL),
+(2193, 108, 234, 141, NULL),
+(2194, 108, 235, 142, 142),
+(2195, 108, 234, 143, NULL),
+(2196, 108, 234, 144, NULL),
+(2197, 108, 234, 145, NULL),
+(2198, 108, 234, 146, NULL),
+(2199, 108, 234, 147, NULL),
+(2200, 108, 234, 148, NULL),
+(2201, 108, 234, 149, NULL),
+(2202, 108, 234, 150, NULL),
+(2203, 108, 234, 151, NULL),
+(2204, 108, 236, 152, 152),
+(2205, 108, 234, 153, NULL),
+(2206, 108, 234, 154, NULL),
+(2207, 108, 234, 155, NULL),
+(2208, 108, 234, 156, NULL),
+(2209, 108, 234, 157, NULL),
+(2210, 108, 234, 158, NULL),
+(2211, 108, 234, 159, NULL);
 
 -- --------------------------------------------------------
 
@@ -1943,6 +1993,15 @@ CREATE TABLE `task_group_leader` (
   `id_profile` int NOT NULL,
   `progress` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `task_group_leader`
+--
+
+INSERT INTO `task_group_leader` (`id`, `id_task`, `id_profile`, `progress`) VALUES
+(234, 108, 132, 0),
+(235, 108, 142, 0),
+(236, 108, 152, 0);
 
 -- --------------------------------------------------------
 
@@ -1979,7 +2038,9 @@ INSERT INTO `task_solo` (`id`, `name`, `description`, `task_description_file`, `
 (78, 'zxczxcxcz', 'xzczczczxczczxczx', '', 1, 1, 841, '2024-05-18 12:49:51', '2024-05-19 00:00:00'),
 (79, 'fgdgf', 'ggfgfdgffdfgdf', '', 1, 1, 841, '2024-05-18 12:51:08', '2024-05-20 00:00:00'),
 (80, 'iop', 'iop', '664842806b981.jpg', 1, 1, 841, '2024-05-18 12:54:08', '2024-05-18 00:00:00'),
-(81, 'qweqweqweqwe', 'qweqweqeq', '664844dd5048d.jpg', 1, 1, 841, '2024-05-18 13:04:13', '2024-05-19 00:00:00');
+(81, 'qweqweqweqwe', 'qweqweqeq', '664844dd5048d.jpg', 1, 1, 841, '2024-05-18 13:04:13', '2024-05-19 00:00:00'),
+(82, 'tes1', 'qeqwewq', '', 1, 1, 841, '2024-05-18 21:22:56', '2024-05-18 00:00:00'),
+(84, 'tes1', 'qeqwewq', '', 1, 1, 841, '2024-05-18 21:28:18', '2024-05-18 23:59:59');
 
 -- --------------------------------------------------------
 
@@ -2466,7 +2527,79 @@ INSERT INTO `task_solo_distribution` (`id`, `id_task`, `id_profile`, `progress`)
 (1365, 81, 156, 'unfinished'),
 (1366, 81, 157, 'unfinished'),
 (1367, 81, 158, 'unfinished'),
-(1368, 81, 159, 'unfinished');
+(1368, 81, 159, 'unfinished'),
+(1369, 82, 124, 'unfinished'),
+(1370, 82, 125, 'unfinished'),
+(1371, 82, 126, 'unfinished'),
+(1372, 82, 127, 'unfinished'),
+(1373, 82, 128, 'unfinished'),
+(1374, 82, 129, 'unfinished'),
+(1375, 82, 130, 'unfinished'),
+(1376, 82, 131, 'unfinished'),
+(1377, 82, 132, 'unfinished'),
+(1378, 82, 133, 'unfinished'),
+(1379, 82, 134, 'unfinished'),
+(1380, 82, 135, 'unfinished'),
+(1381, 82, 136, 'unfinished'),
+(1382, 82, 137, 'unfinished'),
+(1383, 82, 138, 'unfinished'),
+(1384, 82, 139, 'unfinished'),
+(1385, 82, 140, 'unfinished'),
+(1386, 82, 141, 'unfinished'),
+(1387, 82, 142, 'unfinished'),
+(1388, 82, 143, 'unfinished'),
+(1389, 82, 144, 'unfinished'),
+(1390, 82, 145, 'unfinished'),
+(1391, 82, 146, 'unfinished'),
+(1392, 82, 147, 'unfinished'),
+(1393, 82, 148, 'unfinished'),
+(1394, 82, 149, 'unfinished'),
+(1395, 82, 150, 'unfinished'),
+(1396, 82, 151, 'unfinished'),
+(1397, 82, 152, 'unfinished'),
+(1398, 82, 153, 'unfinished'),
+(1399, 82, 154, 'unfinished'),
+(1400, 82, 155, 'unfinished'),
+(1401, 82, 156, 'unfinished'),
+(1402, 82, 157, 'unfinished'),
+(1403, 82, 158, 'unfinished'),
+(1404, 82, 159, 'unfinished'),
+(1441, 84, 124, 'unfinished'),
+(1442, 84, 125, 'unfinished'),
+(1443, 84, 126, 'unfinished'),
+(1444, 84, 127, 'unfinished'),
+(1445, 84, 128, 'unfinished'),
+(1446, 84, 129, 'unfinished'),
+(1447, 84, 130, 'unfinished'),
+(1448, 84, 131, 'unfinished'),
+(1449, 84, 132, 'unfinished'),
+(1450, 84, 133, 'unfinished'),
+(1451, 84, 134, 'unfinished'),
+(1452, 84, 135, 'unfinished'),
+(1453, 84, 136, 'unfinished'),
+(1454, 84, 137, 'unfinished'),
+(1455, 84, 138, 'unfinished'),
+(1456, 84, 139, 'unfinished'),
+(1457, 84, 140, 'unfinished'),
+(1458, 84, 141, 'unfinished'),
+(1459, 84, 142, 'unfinished'),
+(1460, 84, 143, 'unfinished'),
+(1461, 84, 144, 'unfinished'),
+(1462, 84, 145, 'unfinished'),
+(1463, 84, 146, 'unfinished'),
+(1464, 84, 147, 'unfinished'),
+(1465, 84, 148, 'unfinished'),
+(1466, 84, 149, 'unfinished'),
+(1467, 84, 150, 'unfinished'),
+(1468, 84, 151, 'unfinished'),
+(1469, 84, 152, 'unfinished'),
+(1470, 84, 153, 'unfinished'),
+(1471, 84, 154, 'unfinished'),
+(1472, 84, 155, 'unfinished'),
+(1473, 84, 156, 'unfinished'),
+(1474, 84, 157, 'unfinished'),
+(1475, 84, 158, 'unfinished'),
+(1476, 84, 159, 'unfinished');
 
 --
 -- Indexes for dumped tables
@@ -2552,7 +2685,8 @@ ALTER TABLE `task_group_distribution`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_task` (`id_task`,`id_profile`),
   ADD KEY `id_profile` (`id_profile`),
-  ADD KEY `id_leader` (`id_leader`);
+  ADD KEY `id_leader` (`id_leader`),
+  ADD KEY `id_profile_leader` (`id_profile_leader`);
 
 --
 -- Indexes for table `task_group_leader`
@@ -2622,31 +2756,31 @@ ALTER TABLE `task_file`
 -- AUTO_INCREMENT for table `task_group`
 --
 ALTER TABLE `task_group`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT for table `task_group_distribution`
 --
 ALTER TABLE `task_group_distribution`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2032;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2212;
 
 --
 -- AUTO_INCREMENT for table `task_group_leader`
 --
 ALTER TABLE `task_group_leader`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=237;
 
 --
 -- AUTO_INCREMENT for table `task_solo`
 --
 ALTER TABLE `task_solo`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `task_solo_distribution`
 --
 ALTER TABLE `task_solo_distribution`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1369;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1477;
 
 --
 -- Constraints for dumped tables
@@ -2704,15 +2838,16 @@ ALTER TABLE `task_group`
 -- Constraints for table `task_group_distribution`
 --
 ALTER TABLE `task_group_distribution`
-  ADD CONSTRAINT `task_group_distribution_ibfk_3` FOREIGN KEY (`id_profile`) REFERENCES `profile` (`id`),
-  ADD CONSTRAINT `task_group_distribution_ibfk_5` FOREIGN KEY (`id_leader`) REFERENCES `task_group_leader` (`id`),
-  ADD CONSTRAINT `task_group_distribution_ibfk_6` FOREIGN KEY (`id_task`) REFERENCES `task_group` (`id`);
+  ADD CONSTRAINT `task_group_distribution_ibfk_3` FOREIGN KEY (`id_profile`) REFERENCES `profile` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `task_group_distribution_ibfk_5` FOREIGN KEY (`id_leader`) REFERENCES `task_group_leader` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `task_group_distribution_ibfk_6` FOREIGN KEY (`id_task`) REFERENCES `task_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `task_group_distribution_ibfk_7` FOREIGN KEY (`id_profile_leader`) REFERENCES `profile` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `task_group_leader`
 --
 ALTER TABLE `task_group_leader`
-  ADD CONSTRAINT `task_group_leader_ibfk_1` FOREIGN KEY (`id_task`) REFERENCES `task_group` (`id`);
+  ADD CONSTRAINT `task_group_leader_ibfk_1` FOREIGN KEY (`id_task`) REFERENCES `task_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `task_solo`
