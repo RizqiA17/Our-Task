@@ -13,6 +13,7 @@ class Home extends Controller
             $data['task_solo'] = $this->model('Task_solo_distribution_model')->getAllTask();
             $data['tugas_group'] = $this->model('Task_group_distribution_model')->getAllTask();
             $data['group_member'] = $this->model('Task_group_distribution_model')->getMemberInGroup();
+            // var_dump($data['group_member']);
         }
 
         $this->view("templates/header", $data);
@@ -138,21 +139,21 @@ class Home extends Controller
                 if (move_uploaded_file($image_tmp, $targetFile)) {
                     echo "The file " . basename($image_name) . " has been uploaded.";
                     $previous_url = $_SERVER['HTTP_REFERER'];
-                    //header('Location:' . BASEURL . 'home');
+                    header('Location:' . BASEURL . 'home');
                 } else {
                     echo "Sorry, there was an error uploading your file.";
                     $previous_url = $_SERVER['HTTP_REFERER'];
-                    //header('Location:' . BASEURL . 'home');
+                    header('Location:' . BASEURL . 'home');
                 }
             } else {
                 echo "File is not an image.";
                 $previous_url = $_SERVER['HTTP_REFERER'];
-                //header('Location:' . BASEURL . 'home');
+                header('Location:' . BASEURL . 'home');
             }
         } else {
             echo "No file uploaded.";
             $previous_url = $_SERVER['HTTP_REFERER'];
-            // header('Location:' . BASEURL . 'home');
+            header('Location:' . BASEURL . 'home');
         }
 
         // var_dump($addTask);
@@ -182,7 +183,7 @@ class Home extends Controller
                 }
             }
         }
-        // header("Location:" . BASEURL . "home");
+        header("Location:" . BASEURL . "home");
     }
     public function getDetail()
     {

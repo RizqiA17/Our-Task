@@ -81,7 +81,7 @@
                     $today = new DateTime(date('Y-m-d', time()));
                     $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat'])));
                     $interval = date_diff($dibuat, $today);
-                    if ($interval->format('%R') == '+' && $interval->format('%a') <= '7' && $total < 6) {
+                    if (($interval->format('%R') == '+' && $interval->format('%a') <= '7') || ($interval->format('%R') == '-' && $interval->format('%a') == '0') && $total < 6) {
                         $total++;
                 ?>
                         <a href="<?= BASEURL ?>group/detail/<?= $task['id_task'] ?>" class=" relative rounded-2xl h-36 w-48  shadow-md bg-white dark:bg-700">
@@ -121,7 +121,7 @@
                                             $memberTotal = 0;
                                             $is_lot = false;
                                             foreach ($data['group_member'] as $member) {
-                                                if ($member['id_task'] == $task['id_task'] && $memberTotal < 5) {
+                                                if ($member['id_task'] == $task['id_task'] && $member['id_profile_leader'] == $task['id_profile_leader'] && $memberTotal < 5) {
                                                     $memberTotal++; ?>
                                                     <img src="<?= BASEURL ?>image/Profil.png" alt="" class="rounded-full size-5 -ml-2.5 ">
                                                 <?php } else if ($memberTotal >= 5) {

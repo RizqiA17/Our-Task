@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 18, 2024 at 03:27 PM
+-- Generation Time: May 18, 2024 at 03:47 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.3.6
 
@@ -1923,7 +1923,7 @@ CREATE TABLE `task_group` (
 --
 
 INSERT INTO `task_group` (`id`, `name`, `description`, `task_description_file`, `id_mapel`, `id_kelas`, `id_guru`, `tgl_dibuat`, `tgl_deadline`) VALUES
-(108, 'adsdqwedac', 'qwewqdsaada', '', 1, 1, 841, '2024-05-18 22:25:30', '2024-05-18 23:59:59');
+(111, 'qwe', 'qwe', '', 1, 1, 841, '2024-05-18 22:39:57', '2024-05-18 23:59:59');
 
 -- --------------------------------------------------------
 
@@ -1944,42 +1944,42 @@ CREATE TABLE `task_group_distribution` (
 --
 
 INSERT INTO `task_group_distribution` (`id`, `id_task`, `id_leader`, `id_profile`, `id_profile_leader`) VALUES
-(2176, 108, 234, 124, NULL),
-(2177, 108, 234, 125, NULL),
-(2178, 108, 234, 126, NULL),
-(2179, 108, 234, 127, NULL),
-(2180, 108, 234, 128, NULL),
-(2181, 108, 234, 129, NULL),
-(2182, 108, 234, 130, NULL),
-(2183, 108, 234, 131, NULL),
-(2184, 108, 234, 132, 132),
-(2185, 108, 234, 133, NULL),
-(2186, 108, 234, 134, NULL),
-(2187, 108, 234, 135, NULL),
-(2188, 108, 234, 136, NULL),
-(2189, 108, 234, 137, NULL),
-(2190, 108, 234, 138, NULL),
-(2191, 108, 234, 139, NULL),
-(2192, 108, 234, 140, NULL),
-(2193, 108, 234, 141, NULL),
-(2194, 108, 235, 142, 142),
-(2195, 108, 234, 143, NULL),
-(2196, 108, 234, 144, NULL),
-(2197, 108, 234, 145, NULL),
-(2198, 108, 234, 146, NULL),
-(2199, 108, 234, 147, NULL),
-(2200, 108, 234, 148, NULL),
-(2201, 108, 234, 149, NULL),
-(2202, 108, 234, 150, NULL),
-(2203, 108, 234, 151, NULL),
-(2204, 108, 236, 152, 152),
-(2205, 108, 234, 153, NULL),
-(2206, 108, 234, 154, NULL),
-(2207, 108, 234, 155, NULL),
-(2208, 108, 234, 156, NULL),
-(2209, 108, 234, 157, NULL),
-(2210, 108, 234, 158, NULL),
-(2211, 108, 234, 159, NULL);
+(2248, 111, 241, 124, NULL),
+(2249, 111, 241, 125, NULL),
+(2250, 111, 241, 126, NULL),
+(2251, 111, 241, 127, NULL),
+(2252, 111, 241, 128, NULL),
+(2253, 111, 241, 129, NULL),
+(2254, 111, 241, 130, NULL),
+(2255, 111, 241, 131, NULL),
+(2256, 111, 241, 132, NULL),
+(2257, 111, 241, 133, NULL),
+(2258, 111, 241, 134, NULL),
+(2259, 111, 241, 135, NULL),
+(2260, 111, 241, 136, NULL),
+(2261, 111, 241, 137, NULL),
+(2262, 111, 241, 138, NULL),
+(2263, 111, 241, 139, NULL),
+(2264, 111, 241, 140, NULL),
+(2265, 111, 241, 141, NULL),
+(2266, 111, 241, 142, NULL),
+(2267, 111, 241, 143, NULL),
+(2268, 111, 241, 144, NULL),
+(2269, 111, 241, 145, NULL),
+(2270, 111, 242, 146, 146),
+(2271, 111, 241, 147, NULL),
+(2272, 111, 243, 148, 148),
+(2273, 111, 241, 149, NULL),
+(2274, 111, 241, 150, NULL),
+(2275, 111, 241, 151, NULL),
+(2276, 111, 244, 152, 152),
+(2277, 111, 241, 153, NULL),
+(2278, 111, 241, 154, NULL),
+(2279, 111, 241, 155, NULL),
+(2280, 111, 241, 156, NULL),
+(2281, 111, 241, 157, NULL),
+(2282, 111, 241, 158, NULL),
+(2283, 111, 241, 159, NULL);
 
 -- --------------------------------------------------------
 
@@ -1990,7 +1990,7 @@ INSERT INTO `task_group_distribution` (`id`, `id_task`, `id_leader`, `id_profile
 CREATE TABLE `task_group_leader` (
   `id` int NOT NULL,
   `id_task` int NOT NULL,
-  `id_profile` int NOT NULL,
+  `id_profile` int DEFAULT NULL,
   `progress` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1999,9 +1999,10 @@ CREATE TABLE `task_group_leader` (
 --
 
 INSERT INTO `task_group_leader` (`id`, `id_task`, `id_profile`, `progress`) VALUES
-(234, 108, 132, 0),
-(235, 108, 142, 0),
-(236, 108, 152, 0);
+(241, 111, NULL, 0),
+(242, 111, 146, 0),
+(243, 111, 148, 0),
+(244, 111, 152, 0);
 
 -- --------------------------------------------------------
 
@@ -2756,19 +2757,19 @@ ALTER TABLE `task_file`
 -- AUTO_INCREMENT for table `task_group`
 --
 ALTER TABLE `task_group`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT for table `task_group_distribution`
 --
 ALTER TABLE `task_group_distribution`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2212;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2284;
 
 --
 -- AUTO_INCREMENT for table `task_group_leader`
 --
 ALTER TABLE `task_group_leader`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=237;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
 
 --
 -- AUTO_INCREMENT for table `task_solo`
