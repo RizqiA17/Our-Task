@@ -139,21 +139,21 @@ class Home extends Controller
                 if (move_uploaded_file($image_tmp, $targetFile)) {
                     echo "The file " . basename($image_name) . " has been uploaded.";
                     $previous_url = $_SERVER['HTTP_REFERER'];
-                    header('Location:' . BASEURL . 'home');
+                    // header('Location:' . BASEURL . 'home');
                 } else {
                     echo "Sorry, there was an error uploading your file.";
                     $previous_url = $_SERVER['HTTP_REFERER'];
-                    header('Location:' . BASEURL . 'home');
+                    // header('Location:' . BASEURL . 'home');
                 }
             } else {
                 echo "File is not an image.";
                 $previous_url = $_SERVER['HTTP_REFERER'];
-                header('Location:' . BASEURL . 'home');
+                // header('Location:' . BASEURL . 'home');
             }
         } else {
             echo "No file uploaded.";
             $previous_url = $_SERVER['HTTP_REFERER'];
-            header('Location:' . BASEURL . 'home');
+            // header('Location:' . BASEURL . 'home');
         }
 
         // var_dump($addTask);
@@ -166,7 +166,7 @@ class Home extends Controller
 
         if ($isGroup) {
             for ($a = 0; $a < sizeof($addLeader); $a++) {
-                var_dump($addLeader);
+                // var_dump($addLeader);
                 for ($i = 0; $i < sizeof($murid); $i++)
                     // echo $i."<br>";
                     $asb = $this->model('Task_' . $taskmode . '_distribution_model')->addLeader($addTask[0]['id'], $addLeader[0]['id'], $murid[$i]['id_profile'], null);

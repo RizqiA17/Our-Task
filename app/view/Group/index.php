@@ -22,7 +22,7 @@
             </div>
 
             <!-- Content -->
-            <div class="flex flex-col flex-wrap justify-start relative h-40 gap-6 min-[550px]:flex-row row-task">
+            <div class="flex flex-col flex-wrap justify-start relative h-40 gap-6 min-[550px]:flex-row row-task" id="scroll-1">
 
                 <!-- Items -->
                 <?php
@@ -32,7 +32,8 @@
                     $today = new DateTime(date('Y-m-d', time()));
                     $deadline = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_deadline'])));
                     $interval = date_diff($today, $deadline);
-                    if ($interval->format('%R') == '-') {
+                    if ($interval->format('%R') == '-' && (int)$task['progress'] != 100) {
+                        $total++;
                 ?>
                         <a href="<?= BASEURL ?>group/detail/<?= $task['id_task'] ?>" class="relative w-48 bg-white shadow-md rounded-2xl h-36 dark:bg-700">
                             <form action="Group/getDetail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
@@ -119,7 +120,7 @@
             </div>
 
             <!-- Content -->
-            <div class="flex flex-col flex-wrap justify-start relative h-40 gap-6 min-[550px]:flex-row row-task">
+            <div class="flex flex-col flex-wrap justify-start relative h-40 gap-6 min-[550px]:flex-row row-task" id="scroll-2">
 
                 <!-- Items -->
                 <?php
@@ -130,7 +131,8 @@
                     $deadline = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_deadline'])));
                     $interval = date_diff($today, $deadline);
                     // echo $interval->format('%a days');
-                    if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
+                    if ($interval->format('%R') == '+' && $interval->format('%a') <= '7' && (int)$task['progress'] != 100) {
+                        $total++;
                 ?>
                         <a href="<?= BASEURL ?>group/detail/<?= $task['id_task'] ?>" class="relative w-48 bg-white shadow-md rounded-2xl h-36 dark:bg-700">
                             <form action="Group/getDetail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
@@ -217,7 +219,7 @@
             </div>
 
             <!-- Content -->
-            <div class="flex flex-col flex-wrap justify-start relative h-40 gap-6 min-[550px]:flex-row row-task">
+            <div class="flex flex-col flex-wrap justify-start relative h-40 gap-6 min-[550px]:flex-row row-task" id="scroll-3">
 
                 <!-- Items -->
                 <?php
@@ -227,7 +229,8 @@
                     $today = new DateTime(date('Y-m-d', time()));
                     $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat'])));
                     $interval = date_diff($dibuat, $today);
-                    if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
+                    if ((($interval->format('%R') == '+' && $interval->format('%a') <= '7') || ($interval->format('%R') == '-' && $interval->format('%a') == '0')) && (int)$task['progress'] != 100) {
+                        $total++;
                 ?>
                         <a href="<?= BASEURL ?>group/detail/<?= $task['id_task'] ?>" class="relative w-48 bg-white shadow-md rounded-2xl h-36 dark:bg-700">
 

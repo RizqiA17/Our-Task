@@ -16,7 +16,6 @@ class Task_solo_distribution_model{
 
     public function getTaskDetail($id_task, $id){
         $this->db->query("SELECT * FROM " . $this->table ." JOIN task_solo ON ".$this->table.".id_task = task_solo.id JOIN mapel ON task_solo.id_mapel = mapel.id WHERE id_task = ".$id_task. " AND id_profile = ".$id);
-        // return $this->db->resultSet();
         return $this->db->single();
     }
 
@@ -31,6 +30,12 @@ class Task_solo_distribution_model{
         $this->db->query("INSERT INTO ".$this->table." (`id`, `id_task`, `id_profile`) VALUES(null, ".$id_task.", ".$id_murid.");");
         $this->db->execute();
         echo "complited";
+    }
+
+    public function getTaskByClass($id_guru){
+        $this->db->query("SELECT * FROM " . $this->table ." JOIN task_solo ON ".$this->table.".id_task = task_solo.id JOIN mapel ON task_solo.id_mapel = mapel.id  WHERE id_profile = ". $_SESSION['id'] . " AND id_guru = :id_guru ORDER BY task_solo.tgl_dibuat ASC" );
+        $this->db->bind(":id_guru", $id_guru);
+        return $this->db->resultSet();
     }
 
     public function taskComplited($id_task, $id_profile){

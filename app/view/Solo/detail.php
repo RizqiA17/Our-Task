@@ -107,9 +107,9 @@
 
     <!-- Set Finish -->
     <?php if ($task['progress'] == 'unfinished') { ?>
-        <form action="<?=BASEURL?>solo/complited" class=" mb-9 w-full">
-            <button onclick="window.confirm('Tandai Selesai?');" class="bg-own-blue rounded-lg mt-3 h-7 w-full border-none text-white cursor-pointer" onclick="window.location.href='<?= BASEURL ?>home'">Finish</button>
-        </form>
+        <!-- <form action="" class=" mb-9 w-full"> -->
+            <button onclick="window.confirm('Tandai Selesai?') ? window.location.href='<?=BASEURL?>solo/complited' : ''" class="bg-own-blue rounded-lg mt-3 h-7 w-full border-none text-white cursor-pointer">Finish</button>
+        <!-- </form> -->
     <?php } ?>
 
     <!-- <script>

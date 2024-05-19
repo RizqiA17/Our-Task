@@ -49,6 +49,12 @@ class Task_group_distribution_model
         return $this->db->resultSet();
     }
 
+    public function getTaskByClass($id_guru){
+        $this->db->query("SELECT * FROM " . $this->table . " JOIN profile ON " . $this->table . ".id_profile = profile.id JOIN task_group ON " . $this->table . ".id_task = task_group.id JOIN task_group_leader ON " . $this->table . ".id_task = task_group_leader.id_task AND task_group.id = task_group_leader.id_task AND " . $this->table . ".id_leader = task_group_leader.id JOIN mapel ON task_group.id_mapel = mapel.id WHERE " . $this->table . ".id_profile = " . $_SESSION['id'] . " AND id_guru = :id_guru ORDER BY task_group.tgl_dibuat ASC" );
+        $this->db->bind(":id_guru", $id_guru);
+        return $this->db->resultSet();
+    }
+
     public function getMemberInGroup()
     {
         $this->db->query("SELECT * FROM " . $this->table . " JOIN profile ON " . $this->table . ".id_profile = profile.id WHERE id_leader is not null");

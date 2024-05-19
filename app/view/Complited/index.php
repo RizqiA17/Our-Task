@@ -1,5 +1,5 @@
 <!-- Solo Content -->
-<div class="py-4 px-9" id="content-solo">
+<div class="px-9 py-4 max-w-[calc(100vw_-_223px)] max-[720px]:max-w-[100vw]" id="content-solo">
 
     <!-- Complited Solo -->
     <div class="" id='content-solo'>
@@ -31,27 +31,27 @@
                 if ($task['progress'] == 'finish') {
                     $total++;
             ?>
-                    <a href="<?= BASEURL ?>solo/detail/<?= $task['id_task'] ?>" class="w-full bg-white shadow-md max-w-64 dark:bg-700 rounded-2xl grow sm:w-96 h-36" id="<?= $task['id_task'] ?>">
-                        <!-- Top -->
-                        <div class="flex-grow pb-3 mx-6 mt-6 border-b border-100 dark:border-500">
-                            <h3 class="font-sans text-lg font-bold line-through ">
-                                <?= $task['name'] ?>
-                                <p class="text-sm font-normal ">
-                                    <?= $task['mapel'] ?>
-                                </p>
-                            </h3>
-                        </div>
+                    <a href="<?= BASEURL ?>solo/detail/<?= $task['id_task'] ?>" class="w-full min-w-64 max-w-64 bg-white dark:bg-700 shadow-md rounded-2xl grow sm:w-96 h-36" id="<?= $task['id_task'] ?>">
+                            <!-- Top -->
+                            <div class=" mt-6 pb-3 mx-6 flex-grow border-b border-100 dark:border-500">
+                                <h3 class=" text-lg font-bold font-sans line-through">
+                                    <?= $task['name'] ?>
+                                    <p class=" font-normal text-sm">
+                                        <?= $task['mapel'] ?>
+                                    </p>
+                                </h3>
+                            </div>
 
-                        <!-- Deadline -->
-                        <div class="flex items-center mx-6 mt-4 text-xs font-extralight">
-                            <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 0.5V4.5M6 0.5V4.5M17.4826 9.5H0.517334M17.4826 9.5C17.2743 3.79277 15.154 2 9 2C2.84596 2 0.725603 3.79277 0.517334 9.5M17.4826 9.5C17.4943 9.82084 17.5 10.154 17.5 10.5C17.5 17 15.5 19 9 19C2.5 19 0.5 17 0.5 10.5C0.5 10.154 0.505626 9.82084 0.517334 9.5" stroke="#71839B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            <p class="ml-3 text-xs font-normal">
-                                <?= $task['tgl_deadline'] ?>
-                            </p>
-                        </div>
-                    </a>
+                            <!-- Deadline -->
+                            <div class=" mt-4 flex items-center font-extralight text-xs mx-6 ">
+                                <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 0.5V4.5M6 0.5V4.5M17.4826 9.5H0.517334M17.4826 9.5C17.2743 3.79277 15.154 2 9 2C2.84596 2 0.725603 3.79277 0.517334 9.5M17.4826 9.5C17.4943 9.82084 17.5 10.154 17.5 10.5C17.5 17 15.5 19 9 19C2.5 19 0.5 17 0.5 10.5C0.5 10.154 0.505626 9.82084 0.517334 9.5" stroke="#71839B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <p class="ml-3 font-normal text-xs">
+                                    <?= $task['tgl_deadline'] ?>
+                                </p>
+                            </div>
+                        </a>
                 <?php
                 }
             }
@@ -95,6 +95,7 @@
                 $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat'])));
                 $selesai = (int) $task['progress'];
                 if ($selesai >= 100) {
+                    $total++;
             ?>
                     <a href="<?= BASEURL ?>group/detail/<?= $task['id_task'] ?>" class="relative w-48 bg-white shadow-md rounded-2xl h-36 dark:bg-700">
                         <form action="Group/getDetail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
@@ -189,7 +190,8 @@
             foreach ($data['tugas_group'] as $task) {
                 $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat'])));
                 $selesai = (int) $task['progress'];
-                if ($selesai >= 90 && $selesai < 100) {
+                if ($selesai >= 80 && $selesai < 100) {
+                    $total++;
             ?>
                     <a href="<?= BASEURL ?>group/detail/<?= $task['id_task'] ?>" class="relative w-48 bg-white shadow-md rounded-2xl h-36 dark:bg-700">
                         <form action="Group/getDetail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>

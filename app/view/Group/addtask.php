@@ -94,7 +94,7 @@
                     leader += checkbox[i].value + ',';
                 }
             }
-            alert(leader)
+            // alert(leader)
             document.getElementById('leader').value = leader
         }
 

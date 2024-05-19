@@ -77,18 +77,18 @@ class Group extends Controller
             // var_dump($_SESSION['id_leader']);
             $this->model("Task_group_distribution_model")->addLeader($_SESSION['id_task'], $_SESSION['id_leader'], $member_id[$i - 1], $_SESSION['id']);
         }
-        header("Location:" . BASEURL . "group/detail/".$_SESSION['id_task']);
+        header("Location:" . BASEURL . "group/detail/" . $_SESSION['id_task']);
     }
 
-    public function subdetail()
+    public function subtask($id_task)
     {
         $this->IsSessionExist();
 
-        $id_task = $_POST['id_task'];
+        // $id_task = $_POST['id_task'];
         $_SESSION['id_subtask'] = $id_task;
         $id_profile = $_SESSION['id'];
         $data['task'] = $this->model("Subtask_group_distribution_model")->getDetail($id_profile, $id_task);
-        $data['file'] = $this->model("Task_file_model")->getFile();
+        $data['task_file'] = $this->model("Subtask_file_model")->getFile();
         // var_dump($data);
         $this->view("Group/sub_task_detail", $data);
     }
@@ -158,16 +158,32 @@ class Group extends Controller
             $previous_url = $_SERVER['HTTP_REFERER'];
             //header('Location:' . BASEURL . 'home');
         }
+        
+        $getTotalSubTask = $this->model('subtask_group_model')->getSubtask($_SESSION['id_task']);
+        // var_dump($getTotalSubTask);
+
+        $totalcomplited = 0;
+        for ($i = 0; $i < sizeof($getTotalSubTask); $i++) {
+            // var_dump(sizeof($getTotalSubTask));
+            if ($getTotalSubTask[$i]['progress'] != 'unfinished') {
+                $totalcomplited++;
+                // var_dump($totalcomplited);
+                $progress = $totalcomplited / (sizeof($getTotalSubTask) + 1) * 100;
+                // var_dump($progress);
+                $this->model('Task_group_leader_model')->setProgress($progress, $_SESSION['id_leader']);
+                // var_dump($_SESSION);
+            }
+        }
 
         $addTask = $this->model('Subtask_group_model')->addTask($title, $detail, $deadline, $filename, $id_task);
 
         // $member = $this->model('Task_group_distribution_model')->getMember($_SESSION['id_leader']);
 
         for ($i = 0; $i < sizeof($taskTo); $i++) {
-            if($taskTo[$i] != null) $this->model('Subtask_group_distribution_model')->distributingTasks($addTask[0]['id'], $taskTo[$i]);
+            if ($taskTo[$i] != null) $this->model('Subtask_group_distribution_model')->distributingTasks($addTask[0]['id'], $taskTo[$i]);
         }
 
-        header("Location:" . BASEURL . "group/detail/".$_SESSION['id_task']);
+        header("Location:" . BASEURL . "group/detail/" . $_SESSION['id_task']);
     }
 
     public function leader()
@@ -184,7 +200,8 @@ class Group extends Controller
         $image_name = $_FILES["image"]["name"];
         $image_tmp = $_FILES["image"]["tmp_name"]; // Menyimpan sementara file yang diupload
         $imageFileType = strtolower(pathinfo($image_name, PATHINFO_EXTENSION));
-        $targetFile = $target_dir . uniqid() . '.' . $imageFileType;
+        $file_name = uniqid() . '.' . $imageFileType;
+        $targetFile = $target_dir . $file_name;
 
         // Mengecek apakah file telah diupload
         if (!empty($image_tmp)) {
@@ -195,21 +212,22 @@ class Group extends Controller
                 if (move_uploaded_file($image_tmp, $targetFile)) {
                     // echo "The file " . basename($image_name) . " has been uploaded.";
                     $previous_url = $_SERVER['HTTP_REFERER'];
-                    header('Location:' . BASEURL . 'group/detail');
+                    $this->model('Subtask_file_model')->addFile($_POST, $file_name);
+                    header('Location:' . BASEURL . 'group/detail/' . $_SESSION['id_task']);
                 } else {
                     // echo "Sorry, there was an error uploading your file.";
                     $previous_url = $_SERVER['HTTP_REFERER'];
-                    header('Location:' . BASEURL . 'group/detail');
+                    // header('Location:' . BASEURL . 'group/detail');
                 }
             } else {
                 // echo "File is not an image.";
                 $previous_url = $_SERVER['HTTP_REFERER'];
-                header('Location:' . BASEURL . 'group/detail');
+                // header('Location:' . BASEURL . 'group/detail');
             }
         } else {
             // echo "No file uploaded.";
             $previous_url = $_SERVER['HTTP_REFERER'];
-            header('Location:' . BASEURL . 'group/detail');
+            // header('Location:' . BASEURL . 'group/detail');
         }
     }
 
@@ -217,8 +235,10 @@ class Group extends Controller
     {
         $this->IsSessionExist();
 
+        $this->model('Subtask_group_model')->complited($_SESSION['id_subtask']);
+
         // var_dump($_SESSION['id_subtask']);
-        echo "task selesai";
+        // echo "task selesai";
 
         $getTotalSubTask = $this->model('subtask_group_model')->getSubtask($_SESSION['id_task']);
         // var_dump($getTotalSubTask);
@@ -232,10 +252,9 @@ class Group extends Controller
                 $progress = $totalcomplited / sizeof($getTotalSubTask) * 100;
                 // var_dump($progress);
                 $this->model('Task_group_leader_model')->setProgress($progress, $_SESSION['id_leader']);
+                // var_dump($_SESSION);
             }
         }
-
-        $this->model('Subtask_group_model')->complited($_SESSION['id_subtask']);
         // $this->model('')
         header("Location:" . BASEURL . "home");
     }

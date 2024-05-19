@@ -30,7 +30,7 @@
 
             <!-- Description -->
             <div class="w-full">
-                <p class="overflow-hidden overflow-y-auto text-slate-600 dark:text-gray-400 max-h-24">Lorem ipsum, dolor sit amet <?= $task['description'] ?></p>
+                <p class="overflow-hidden overflow-y-auto text-slate-600 dark:text-gray-400 max-h-24"><?= $task['description'] ?></p>
             </div>
 
             <!-- Info Task -->
@@ -48,7 +48,7 @@
                             <?php
                             if (sizeof($data['member']) < floor($data['group_lenght']) && $task['id_profile_leader'] == $_SESSION['id']) {
                             ?>
-                                <button class="box-border relative content-center justify-center w-8 h-8 -ml-3 text-xl font-semibold border-2 border-dotted rounded-full bg-600 dark:border-white border-bg-dark dark:text-50" onclick="OpenModal(false)">
+                                <button class="box-border relative content-center justify-center w-8 h-8 -ml-3 text-xl font-semibold border-2 border-dotted rounded-full bg-100 dark:bg-600 dark:border-white border-bg-dark dark:text-50" onclick="OpenModal(false)">
                                     <span class="m-0.5 material-symbols-outlined">
                                         add
                                     </span>
@@ -73,7 +73,7 @@
 
             <!-- Subtask Card -->
             <?php foreach ($data['subtask'] as $subtask) { ?>
-                <div class="flex justify-between w-full p-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl h-28">
+                <a href="<?=BASEURL . 'group/subtask/'. $subtask['id']?>" class="flex justify-between w-full hover:border-base-600 cursor-pointer p-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl h-28">
                     <div class="flex flex-col justify-center h-full ">
                         <h3 class="text-xl text-gray-600 dark:text-gray-400">Title Subtask</h3>
                         <div class="flex pt-2.5">
@@ -88,13 +88,13 @@
                         </span>
                         25 Hari
                     </div>
-                </div>
+                </a>
             <?php } ?>
 
         </div>
     </div>
     <div class="mt-4 bg-inherit">
-        <a href="<?= BASEURL ?>group/addtask" class="flex justify-center items-center w-full p-4 border-2 dark:text-50 text-center border-gray-300 co dark:border-gray-600 rounded-xl h-24 cursor-pointer">
+        <a href="<?= BASEURL ?>group/addtask" class="flex justify-center items-center w-full p-4 border-2 hover:border-base-600 dark:text-50 text-center border-gray-300 co dark:border-gray-600 rounded-xl h-24 cursor-pointer">
             <span class="m-0.5 material-symbols-outlined">
                 add
             </span>

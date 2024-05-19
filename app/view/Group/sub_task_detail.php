@@ -4,445 +4,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="http://localhost/ourtaskmvc/public/css/group-detail.css"> -->
-    <link rel="stylesheet" href="http://localhost/ourtaskmvc/public/css/detail.css">
-    <title>Desain baru</title>
+    <!-- <link rel="stylesheet" href="<?= BASEURL ?>css/detail.css"> -->
+    <link rel="stylesheet" href="<?= BASEURL ?>css/output.css">
+    <title>Task Details</title>
 </head>
 
-<body>
-    <div class="header">
-        <div class="title">
-            Member Task
-        </div>
-        <div class="back" onclick="window.history.back()">
+<body class="min-h-svh bg-50 dark:bg-700 dark:text-50 mx-6 font-sans flex flex-col justify-start">
+
+
+    <!-- Header -->
+    <div class="flex justify-between items-center py-9">
+        <div class="cursor-pointer" onclick="window.history.back()">
             <svg class="group" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7.828 11H20V13H7.828L13.192 18.364L11.778 19.778L4 12L11.778 4.22205L13.192 5.63605L7.828 11Z" fill="#363942" />
             </svg>
         </div>
+        <h1 class="font-semibold text-2xl uppercase">
+            subtask detail
+        </h1>
+        <div class="w-6 h-6"></div>
     </div>
-    <?php foreach ($data['task'] as $task) { ?>
-        <div class="bg">
-            <div style="font-weight: bold; "><?= $task['name'] ?></div>
 
-            <div style="color: #8e8e8e; margin-top: 20px;">Members</div>
-            <div style="display: flex; margin-top: 10px;">
-                <div class="profile2"></div>
-                <div class="profile"></div>
+    <?php
+    // var_dump($data);
+$task = $data['task'][0];
+    $deadline = date('l, j F Y', strtotime($task['deadline']));
+    ?>
+
+    <div class="flex gap-4 w-full flex-wrap">
+
+        <!-- Detail -->
+        <div class=" min-h-48 flex-grow flex flex-col justify-center bg-inherit border border-gray-200 dark:border-slate-600 p-5 rounded-2xl">
+            <h2 class=" font-semibold text-2xl w-full uppercase">
+                <?= $task['name'] ?>
+            </h2>
+            <h3 class="mt-6">
+                Description
+                <p class=" px-3 text-gray-400">
+                    <?= $task['description'] ?>
+                </p>
+            </h3>
+            <div class="flex flex-row justify-between gap-5 mt-3">
+                <h3 class="">
+                    Deadline
+                    <p class=" font-semibold text-md text-gray-400 pl-3">
+                        <?= $deadline ?>
+                    </p>
+                </h3>
             </div>
-
         </div>
 
-        <div class="bg">
-            <div>Description</div>
-            <div style="margin:20px 0;"><?= $task['description'] ?></div>
-        </div>
+        <!-- Attachment for Student -->
 
-
-
-
-
-        <div class="bg" id="attachments">
-            <div style="display: flex; ">
-                <div class="menu" style="margin: 0 10px;" onclick="AddAttachments()">Attachments</div>
-                <div class="menu" style="margin: 0 10px;" onclick="Attachment()">Add attachment</div>
+        <div class=" rounded-2xl p-5 w-full flex-grow md:max-w-96 border border-gray-200 dark:border-slate-600" id="attachments">
+            <div class="flex">
+                <div class=" p-2 w-36 text-center rounded-2xl cursor-pointer hover:bg-gray-200 ease-in-out hover:text-black transition-colors delay-75" onclick="AddAttachments()">Attachments</div>
+                <div class=" ml-1 p-2 w-36 text-center rounded-2xl cursor-pointer hover:bg-gray-200 ease-in-out hover:text-black transition-colors delay-75" onclick="Attachment()">Add attachment</div>
             </div>
+
+            <!-- Attachment Task -->
             <div id="attachment">
                 <?php
-                if ($task['task_description_file'] != null) { ?>
-                    <div class="Attachments">
-                        <a href="http://localhost/ourtaskmvc/public/image/<?= $task['task_description_file'] ?>" style="background-image: url(http://localhost/ourtaskmvc/public/image/<?= $task['task_description_file'] ?>);" class="img" target="_blank"></a>
+                if ($task['task_description_file'] != null) {
+                ?>
+                    <div class="mt-5 flex items-center">
+                        <a href="<?= BASEIMG . $task['task_description_file'] ?>" class="w-16 h-16 bg-green-600 rounded-lg flex justify-center items-center overflow-hidden" target="_blank">
+                            <img src="<?= BASEURL ?>image/<?= $task['task_description_file'] ?>" alt="">
+                        </a>
                         <div style="margin-left: 10px;">
-                            <a href="http://localhost/ourtaskmvc/public/image/<?= $task['task_description_file'] ?>" style="color:black;font-size: 0.9rem;" target="_blank">Subtask Attachments</a>
-                            <!-- <div style="font-size: 0.9rem;">Subtask Attachments</div> -->
-                            <div style="color: #8e8e8e ; font-size: 0.8rem;">Added <?= date('M j ', strtotime($task['tgl_dibuat'])) . 'at ' . date('g:m A', strtotime($task['create'])) ?></div>
+                            <a href="<?= BASEIMG . $task['task_description_file'] ?>" target="_blank">Task Attachments</a>
+                            <div class=" text-gray-400 text-xs">Added <?= date('M j ', strtotime($task['tgl_dibuat'])) . 'at ' . date('g:m A', strtotime($task['tgl_dibuat'])) ?></div>
                         </div>
                     </div>
-                <?php
-                }
-                if ($task['description_file'] != null) { ?>
-                    <div class="Attachments">
-                        <a href="http://localhost/ourtaskmvc/public/image/<?= $task['description_file'] ?>" style="background-image: url(http://localhost/ourtaskmvc/public/image/<?= $task['description_file'] ?>);" class="img" target="_blank"></a>
-                        <div style="margin-left: 10px;">
-                            <a href="http://localhost/ourtaskmvc/public/image/<?= $task['description_file'] ?>" style="color:black;font-size: 0.9rem;" target="_blank">Subtask Attachments</a>
-                            <!-- <div style="font-size: 0.9rem;">Subtask Attachments</div> -->
-                            <div style="color: #8e8e8e ; font-size: 0.8rem;">Added <?= date('M j ', strtotime($task['create'])) . 'at ' . date('g:m A', strtotime($task['create'])) ?></div>
-                        </div>
-                    </div>
-                    <?php
-                }
-                if ($data['file'] != null) {
-                    foreach ($data['file'] as $file) {
-                    ?>
-                        <div class="Attachments">
-                            <div style="background-image: url(http://localhost/ourtaskmvc/public/image/hp.jpg);" class="img"></div>
+                    <?php }
+                if (!empty($data['task_file'])) {
+                    foreach ($data['task_file'] as $file) {?>
+                        <div class="mt-5 flex items-center">
+                            <a href="<?= BASEIMG . $file['task_answer_file'] ?>" class="w-16 h-16 bg-green-600 rounded-lg flex justify-center items-center overflow-hidden" target="_blank">
+                                <img src="<?= BASEIMG . $file['task_answer_file'] ?>" alt="">
+                            </a>
                             <div style="margin-left: 10px;">
-                                <div style="font-size: 0.9rem;">Front End</div>
-                                <div style="color: #8e8e8e; font-size: 0.8rem;">Added May 8 at 11:30 PM</div>
-                                <div>
-                                    <!-- <iconify-icon class="icon" icon="octicon:comment-16" flip="horizontal"></iconify-icon> -->
-                                    <iconify-icon class="icon" icon="bi:trash"></iconify-icon>
-                                    <iconify-icon class="icon" icon="uil:pen"></iconify-icon>
-                                </div>
+                                <a href="<?= BASEIMG . $file['task_answer_file'] ?>" target="_blank">Task Attachments</a>
+                                <div class=" text-gray-400 text-xs">Added <?= date('M j ', strtotime($file['date'])) . 'at ' . date('g:m A', strtotime($file['date'])) ?></div>
                             </div>
                         </div>
-                <?php
-                    }
-                }
-                ?>
+                <?php }
+                } ?>
             </div>
-            <form action="upload" method="post" enctype="multipart/form-data">
-                <div class="add-attachment hide" id="add">
-                    <input type="text" id="attachment-note" style="height: 20px">
-                    <input type="file" name="image" id="image attachment-file">
-                    <button type="submit" name="proses" style="outline: none; border:none; height: 30px" onclick="AttachmentInput()">Upload</button>
+
+            <!-- Add Attachment -->
+            <form action="<?= BASEURL ?>group/upload" method="post" enctype="multipart/form-data">
+                <div class="mt-5 flex flex-col gap-2 hidden" id="add">
+                    <div class="flex max-sm:gap-2 max-sm:flex-col flex-row gap-8 items-center">
+                        <input type="text" id="attachment-note" class="h-5 dark:bg-gray-700 box-border h-8 w-full outline-none border dark:border-slate-600 rounded-md text-sm p-1 " name="name" placeholder="Title">
+                        <input type="file" name="image" id="image attachment-file" class=" w-full text-center text my-2">
+                    </div>
+                    <button type="submit" name="proses" id="attachment-submit" class="bg-own-blue rounded-lg h-7 w-full border-none text-white cursor-pointer" onclick="AttachmentInput()">Upload</button>
                 </div>
             </form>
         </div>
+    </div>
 
-        <?php if ($task['progress'] == 'unfinished') { ?>
-            <div class="finsih">
-                <form action="complited">
-                    <button onclick="window.confirm('Tandai Selesai?');" style="cursor:pointer; background-color: rgba(0, 110, 233, 1); border-radius: 10px; height: 30px; width: 100%; border: none; color: white;" onclick="window.location.href='http://localhost/ourtaskmvc/public/home'">Finsih</button>
-                </form>
-            </div>
-    <?php }
-    } ?>
-    <!-- <div class="bg">
-        <div>Activity</div>
-        <div style="display: flex; align-items: center; margin-top: 15px;">
-            <div class="profile"></div>
-            <input type="text" id="comment-box" style="width: 100%; height: 20px; padding:5px; margin-bottom: 10px" placeholder="Write a comment">
-        </div>
-        <button class="" style="width: 100%; height: 30px; outline:none; border:none;" onclick="AddComment()">Send</button>
-        <div style="width: 100%; height: 2px; background: rgb(239, 239, 239); margin-top: 20px;"></div>
-        <div class="comment" id="comment">
 
-            <div style="display: flex; align-items: center; margin-top: 15px;">
-                <div class="profile"></div>
-                <div class="comment-username">Cristina</div>
-                <div style="font-size: 0.8rem; margin-left: 7px; color: #8e8e8e;">May 8 at 11:41 PM</div>
-            </div>
-            <div class="comment-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis eos architecto voluptas itaque
-                similique
-                autem necessitatibus, rerum reprehenderit voluptates est, consequuntur quod ullam officia, deleniti
-                iusto?
-                Provident unde assumenda hic.</div> -->
-    <!-- <div style="display: flex; align-items: center;">
-                <iconify-icon icon="fluent:emoji-add-16-regular"></iconify-icon>
-                <div style="margin: 0px 7px;">•</div>
-                <a href="" style="font-size: 0.8rem;">Replly</a>
-            </div> -->
-    <!-- </div>
-    </div> -->
+    <!-- Set Finish -->
+    <?php if ($task['progress'] == 'unfinished') { ?>
+        <!-- <form action="<?=BASEURL?>group/complited" class=" mb-9 w-full"> -->
+            <button onclick="window.confirm('Tandai Selesai?') ? window.location.href ='<?=BASEURL?>group/complited' : ''" type="submit" class="bg-own-blue rounded-lg mt-3 h-7 h-10 w-full border-none text-white cursor-pointer">Finish</button>
+        <!-- </form> -->
+    <?php } ?>
 
+    <!-- Change from Display Attachment to Add Attachment -->
     <script>
         var attachment = document.getElementById('attachment');
         var addAttachments = document.getElementById('add');
 
         function Attachment() {
-            attachment.classList.add("hide");
-            addAttachments.classList.remove("hide");
+            attachment.classList.add("hidden");
+            addAttachments.classList.remove("hidden");
         }
 
         function AddAttachments() {
-            attachment.classList.remove("hide");
-            addAttachments.classList.add("hide");
-        }
-
-        function AttachmentInput() {
-
-            var formattedTime;
-
-            // Fungsi untuk menampilkan waktu
-            function showTime() {
-                var timeDisplay = document.getElementById('timeDisplay');
-                var currentTime = new Date();
-                var month = currentTime.toLocaleString('default', {
-                    month: 'long'
-                });
-                var day = currentTime.getDay();
-                var hours = currentTime.getHours();
-                var minutes = currentTime.getMinutes();
-                var formattedMonth = month.substring(0, 3);
-                var ampm = hours >= 12 ? 'PM' : 'AM';
-                formattedTime = 'Added ' + formattedMonth + ' ' + day + ' at ' + padZero(hours) + ':' + padZero(minutes) + ' ' + ampm;
-            }
-
-            // Fungsi untuk menambahkan nol di depan angka satu digit
-            function padZero(number) {
-                return (number < 10) ? '0' + number : number;
-            }
-
-            showTime();
-            AddAttachments();
-            addAttachment(document.getElementById("attachment-note").value, 'url placeholder', formattedTime);
-
-            // Menambahkan elemen ikon komentar, sampah, dan pena
-            var iconDiv = document.createElement('div');
-            var icons = ['octicon:comment-16', 'bi:trash', 'uil:pen'];
-            icons.forEach(icon => {
-                var iconifyIcon = document.createElement('iconify-icon');
-                iconifyIcon.className = 'icon';
-                iconifyIcon.setAttribute('icon', icon);
-                iconDiv.appendChild(iconifyIcon);
-            });
-        }
-
-        function addAttachment(fileName, imageUrl, addedInfo) {
-            // Membuat elemen Attachments
-            var attachmentDiv = document.createElement('div');
-            attachmentDiv.className = 'Attachments';
-
-            // Membuat elemen gambar
-            var imgDiv = document.createElement('div');
-            imgDiv.className = 'img';
-            imgDiv.style.backgroundImage = 'url(' + imageUrl + ')';
-            attachmentDiv.appendChild(imgDiv);
-
-            // Membuat elemen keterangan file
-            var textDiv = document.createElement('div');
-            textDiv.style.marginLeft = '10px';
-
-            // Menambahkan elemen teks nama file
-            var fileNameDiv = document.createElement('div');
-            fileNameDiv.style.fontSize = '0.9rem';
-            fileNameDiv.textContent = fileName;
-            textDiv.appendChild(fileNameDiv);
-
-            // Menambahkan elemen teks informasi tambahan
-            var addedInfoDiv = document.createElement('div');
-            addedInfoDiv.style.color = '#8e8e8e';
-            addedInfoDiv.style.fontSize = '0.8rem';
-            addedInfoDiv.textContent = addedInfo;
-            textDiv.appendChild(addedInfoDiv);
-
-            // Menambahkan elemen ikon komentar, sampah, dan pena
-            var iconDiv = document.createElement('div');
-            var icons = ['octicon:comment-16', 'bi:trash', 'uil:pen'];
-            icons.forEach(icon => {
-                var iconifyIcon = document.createElement('iconify-icon');
-                iconifyIcon.className = 'icon';
-                iconifyIcon.setAttribute('icon', icon);
-                iconDiv.appendChild(iconifyIcon);
-            });
-            textDiv.appendChild(iconDiv);
-
-            // Menambahkan elemen teks ke elemen Attachments
-            attachmentDiv.appendChild(textDiv);
-
-            // Menambahkan elemen Attachments ke dalam elemen target
-            document.getElementById('attachment').appendChild(attachmentDiv);
-
-            // Menambahkan fitur mengirim file ke databases
-            function AttachmentInput() {
-                var fileInput = document.getElementById('fileInput');
-                fileInput.click();
-
-                fileInput.onchange = function() {
-                    var file = fileInput.files[0];
-                    var attachmentNote = document.getElementById("attachment-note").value;
-                    var formattedTime;
-
-                    // Fungsi untuk menampilkan waktu
-                    function showTime() {
-                        var currentTime = new Date();
-                        var month = currentTime.toLocaleString('default', {
-                            month: 'long'
-                        });
-                        var day = currentTime.getDay();
-                        var hours = currentTime.getHours();
-                        var minutes = currentTime.getMinutes();
-                        var formattedMonth = month.substring(0, 3);
-                        var ampm = hours >= 12 ? 'PM' : 'AM';
-                        formattedTime = 'Added ' + formattedMonth + ' ' + day + ' at ' + padZero(hours) + ':' + padZero(minutes) + ' ' + ampm;
-                    }
-
-                    // Fungsi untuk menambahkan nol di depan angka satu digit
-                    function padZero(number) {
-                        return (number < 10) ? '0' + number : number;
-                    }
-
-                    showTime();
-                    AddAttachments();
-                    addAttachment(attachmentNote, 'url placeholder', formattedTime);
-
-                    //     // Mengirim file ke server
-                    //     var formData = new FormData();
-                    //     formData.append('file', file);
-
-                    //     var xhr = new XMLHttpRequest();
-                    //     xhr.open('POST', '/upload', true);
-                    //     xhr.onload = function () {
-                    //         if (xhr.status === 200) {
-                    //             console.log('File berhasil diunggah.');
-                    //         } else {
-                    //             console.log('Terjadi kesalahan saat mengunggah file.');
-                    //         }
-                    //     };
-                    //     xhr.send(formData);
-                };
-                // const express = require('express');
-                // const multer  = require('multer');
-                // const app = express();
-                // const upload = multer({ dest: 'uploads/' }); // Direktori untuk menyimpan file
-
-                // // Endpoint untuk mengunggah file
-                // app.post('/upload', upload.single('file'), function (req, res, next) {
-                //     // Lakukan penyimpanan nama file ke database di sini
-                //     const fileName = req.file.filename;
-                //     res.status(200).send('File berhasil diunggah.');
-                // });
-
-                // app.listen(3000, function () {
-                // console.log('Server berjalan di port 3000');
-                // });
-
-            }
-
+            attachment.classList.remove("hidden");
+            addAttachments.classList.add("hidden");
         }
     </script>
 
-    <!-- <script>
-        var formattedTime;
-
-        // Fungsi untuk menampilkan waktu
-        function showTime() {
-            var timeDisplay = document.getElementById('timeDisplay');
-            var currentTime = new Date();
-            var month = currentTime.toLocaleString('default', {
-                month: 'long'
-            });
-            var day = currentTime.getDay();
-            var hours = currentTime.getHours();
-            var minutes = currentTime.getMinutes();
-            var formattedMonth = month.substring(0, 3);
-            var ampm = hours >= 12 ? 'PM' : 'AM';
-            formattedTime = formattedMonth + ' ' + day + ' at ' + padZero(hours) + ':' + padZero(minutes) + ' ' + ampm;
-        }
-
-        // Fungsi untuk menambahkan nol di depan angka satu digit
-        function padZero(number) {
-            return (number < 10) ? '0' + number : number;
-        }
-
-        // Add Comment
-
-        var comment_box = document.getElementById("comment-box");
-        var comment = document.getElementById("comment");
-
-        function AddComment() {
-            // alert("ba");
-            showTime();
-
-            var commentDiv = document.createElement('div');
-            commentDiv.style.display = "flex";
-            commentDiv.style.alignItems = "center";
-            commentDiv.style.marginTop = "25px";
-
-            var profile = document.createElement('div');
-            profile.classList.add("profile");
-            commentDiv.appendChild(profile);
-
-            var username = document.createElement('div');
-            username.classList.add("comment-username");
-            username.textContent = "Rizqi";
-            commentDiv.appendChild(username);
-
-            var time = document.createElement('div');
-            time.style.fontSize = "0.8rem";
-            time.style.marginLeft = "7px";
-            time.style.color = "#8e8e8e";
-            time.textContent = formattedTime;
-            commentDiv.appendChild(time);
-
-            var comment_text = document.createElement('div');
-            comment_text.textContent = comment_box.value;
-            comment_text.classList.add("comment-text");
-
-            comment.appendChild(commentDiv);
-            comment.appendChild(comment_text);
-
-        }
-
-        // Add Atttachment
-        var attachment = document.getElementById('attachment');
-        var addAttachments = document.getElementById('add');
-
-        function Attachment() {
-            attachment.classList.add("hide");
-            addAttachments.classList.remove("hide");
-        }
-
-        function AddAttachments() {
-            attachment.classList.remove("hide");
-            addAttachments.classList.add("hide");
-        }
-
-        function AttachmentInput() {
-
-            showTime();
-            AddAttachments();
-            addAttachment(document.getElementById("attachment-note").value, 'url placeholder', formattedTime);
-
-            // Menambahkan elemen ikon komentar, sampah, dan pena
-            var iconDiv = document.createElement('div');
-            var icons = ['octicon:comment-16', 'bi:trash', 'uil:pen'];
-            icons.forEach(icon => {
-                var iconifyIcon = document.createElement('iconify-icon');
-                iconifyIcon.className = 'icon';
-                iconifyIcon.setAttribute('icon', icon);
-                iconDiv.appendChild(iconifyIcon);
-            });
-        }
-
-        function addAttachment(fileName, imageUrl, addedInfo) {
-            // Membuat elemen Attachments
-            var attachmentDiv = document.createElement('div');
-            attachmentDiv.className = 'Attachments';
-
-            // Membuat elemen gambar
-            var imgDiv = document.createElement('div');
-            imgDiv.className = 'img';
-            imgDiv.style.backgroundImage = 'url(' + imageUrl + ')';
-            attachmentDiv.appendChild(imgDiv);
-
-            // Membuat elemen keterangan file
-            var textDiv = document.createElement('div');
-            textDiv.style.marginLeft = '10px';
-
-            // Menambahkan elemen teks nama file
-            var fileNameDiv = document.createElement('div');
-            fileNameDiv.style.fontSize = '0.9rem';
-            fileNameDiv.textContent = fileName;
-            textDiv.appendChild(fileNameDiv);
-
-            // Menambahkan elemen teks informasi tambahan
-            var addedInfoDiv = document.createElement('div');
-            addedInfoDiv.style.color = '#8e8e8e';
-            addedInfoDiv.style.fontSize = '0.8rem';
-            addedInfoDiv.textContent = 'Added ' + addedInfo;
-            textDiv.appendChild(addedInfoDiv);
-
-            // Menambahkan elemen ikon komentar, sampah, dan pena
-            var iconDiv = document.createElement('div');
-            var icons = ['octicon:comment-16', 'bi:trash', 'uil:pen'];
-            icons.forEach(icon => {
-                var iconifyIcon = document.createElement('iconify-icon');
-                iconifyIcon.className = 'icon';
-                iconifyIcon.setAttribute('icon', icon);
-                iconDiv.appendChild(iconifyIcon);
-            });
-            textDiv.appendChild(iconDiv);
-
-            // Menambahkan elemen teks ke elemen Attachments
-            attachmentDiv.appendChild(textDiv);
-
-            // Menambahkan elemen Attachments ke dalam elemen target
-            document.getElementById('attachment').appendChild(attachmentDiv);
-        }
-    </script> -->
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
 </body>
 
 </html>
