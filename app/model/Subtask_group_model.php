@@ -11,7 +11,7 @@ class Subtask_group_model{
     }
 
     public function addtask($title, $detail, $deadline, $filename, $id_task){
-        $this->db->query("INSERT INTO ".$this->table." (id, name, description, description_file, deadline, id_task) VALUES ('', '".$title."', '". $detail ."', '". $filename ."', '".$deadline."', ".$id_task.")");
+        $this->db->query("INSERT INTO ".$this->table." (id, name, description, description_file, deadline, id_task) VALUES (null, '".$title."', '". $detail ."', '". $filename ."', '".$deadline."', ".$id_task.")");
         $this->db->execute();
         $this->db->query("SELECT id FROM ".$this->table." ORDER BY id DESC LIMIT 1");
         return $this->db->resultSet();

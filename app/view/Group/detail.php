@@ -70,26 +70,31 @@
     <!-- Subtask -->
     <div class="relative overflow-hidden overflow-y-auto grow">
         <div class="flex flex-col gap-4">
-            <div class="flex justify-between w-full p-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl h-28">
-                <div class="flex flex-col justify-center h-full ">
-                    <h3 class="text-xl text-gray-600 dark:text-gray-400">Title Subtask</h3>
-                    <div class="flex pt-2.5">
-                        <img src="<?= BASEURL ?>image/Profil.png" alt="" class="box-border justify-center w-8 h-8 border-2 border-white rounded-full dark:border-bg-dark ">
-                        <img src="<?= BASEURL ?>image/Profil.png" alt="" class="box-border justify-center w-8 h-8 -ml-3 border-2 border-white rounded-full dark:border-bg-dark ">
-                        <img src="<?= BASEURL ?>image/Profil.png" alt="" class="box-border justify-center w-8 h-8 -ml-3 border-2 border-white rounded-full dark:border-bg-dark ">
+
+            <!-- Subtask Card -->
+            <?php foreach ($data['subtask'] as $subtask) { ?>
+                <div class="flex justify-between w-full p-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl h-28">
+                    <div class="flex flex-col justify-center h-full ">
+                        <h3 class="text-xl text-gray-600 dark:text-gray-400">Title Subtask</h3>
+                        <div class="flex pt-2.5">
+                            <img src="<?= BASEURL ?>image/Profil.png" alt="" class="box-border justify-center w-8 h-8 border-2 border-white rounded-full dark:border-bg-dark ">
+                            <img src="<?= BASEURL ?>image/Profil.png" alt="" class="box-border justify-center w-8 h-8 -ml-3 border-2 border-white rounded-full dark:border-bg-dark ">
+                            <img src="<?= BASEURL ?>image/Profil.png" alt="" class="box-border justify-center w-8 h-8 -ml-3 border-2 border-white rounded-full dark:border-bg-dark ">
+                        </div>
+                    </div>
+                    <div class="flex items-center h-full text-gray-600 dark:text-gray-400">
+                        <span class="material-symbols-outlined">
+                            Flag
+                        </span>
+                        25 Hari
                     </div>
                 </div>
-                <div class="flex items-center h-full text-gray-600 dark:text-gray-400">
-                    <span class="material-symbols-outlined">
-                        Flag
-                    </span>
-                    25 Hari
-                </div>
-            </div>
+            <?php } ?>
+
         </div>
     </div>
     <div class="mt-4 bg-inherit">
-        <a href="<?= BASEURL ?>group/addtask" class="flex justify-center items-center w-full p-4 border-2 dark:text-50 text-center border-gray-300 co dark:border-gray-600 rounded-xl h-28 cursor-pointer">
+        <a href="<?= BASEURL ?>group/addtask" class="flex justify-center items-center w-full p-4 border-2 dark:text-50 text-center border-gray-300 co dark:border-gray-600 rounded-xl h-24 cursor-pointer">
             <span class="m-0.5 material-symbols-outlined">
                 add
             </span>
@@ -118,7 +123,7 @@
                         </button>
                     </div>
                     <!-- Modal body -->
-                    <form action="<?=BASEURL?>group/addMember" method="post">
+                    <form action="<?= BASEURL ?>group/addMember" method="post">
                         <div class="p-2  h-[60svh]">
                             <input type="hidden" name="addMember" id="addMemberValue" value="">
                             <div class="h-full px-5">

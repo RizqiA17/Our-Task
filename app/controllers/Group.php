@@ -122,7 +122,7 @@ class Group extends Controller
         $deadline = date('Y-m-d', strtotime($_POST['deadline']));
         // var_dump($deadline);
         $taskTo = explode(',', $_POST['leader']);
-        // var_dump($taskTo);
+        var_dump($taskTo);
 
         $target_dir = "../public/image/";
         $image_name = $_FILES["image"]["name"];
@@ -161,13 +161,13 @@ class Group extends Controller
 
         $addTask = $this->model('Subtask_group_model')->addTask($title, $detail, $deadline, $filename, $id_task);
 
-        $member = $this->model('Task_group_distribution_model')->getMember($_SESSION['id_leader']);
+        // $member = $this->model('Task_group_distribution_model')->getMember($_SESSION['id_leader']);
 
-        for ($i = 0; $i < sizeof($member); $i++) {
-            $this->model('Subtask_group_distribution_model')->distributingTasks($addTask[0]['id'], $member[$i]['id_profile']);
+        for ($i = 0; $i < sizeof($taskTo); $i++) {
+            if($taskTo[$i] != null) $this->model('Subtask_group_distribution_model')->distributingTasks($addTask[0]['id'], $taskTo[$i]);
         }
 
-        header("Location:" . BASEURL . "home");
+        header("Location:" . BASEURL . "group/detail/".$_SESSION['id_task']);
     }
 
     public function leader()
