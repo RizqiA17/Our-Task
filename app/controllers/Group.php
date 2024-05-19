@@ -13,6 +13,7 @@ class Group extends Controller
             $data['tugas'] = $this->model('Task_group_model')->getTaskForTeacher();
         } else {
             $data['tugas'] = $this->model('Task_group_distribution_model')->getAllTask();
+            $data['group_member'] = $this->model('Task_group_distribution_model')->getMemberInGroup();
         }
         $this->view("templates/header", $data);
         $this->view("Group/index", $data);
@@ -76,7 +77,7 @@ class Group extends Controller
             // var_dump($_SESSION['id_leader']);
             $this->model("Task_group_distribution_model")->addLeader($_SESSION['id_task'], $_SESSION['id_leader'], $member_id[$i - 1], $_SESSION['id']);
         }
-        header("Location:" . BASEURL . "Group/detail");
+        header("Location:" . BASEURL . "group/detail/".$_SESSION['id_task']);
     }
 
     public function subdetail()

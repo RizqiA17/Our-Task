@@ -1,21 +1,21 @@
 <?php if ($_SESSION['status'] != 'guru') { ?>
     <!-- Group Content -->
-    <div class="px-9 py-4 box-border" id="content">
+    <div class="box-border py-4 px-9" id="content">
 
         <!-- Lewat Deadline -->
         <div id="content">
             <!-- Title -->
-            <div class=" font-normal text-2xl w-full flex justify-between items-center h-12">
-                <h3 class=" font-semibold text-xl dark:text-100">Lewat Deadline</h3>
+            <div class="flex items-center justify-between w-full h-12 text-2xl font-normal ">
+                <h3 class="text-xl font-semibold dark:text-100">Lewat Deadline</h3>
                 <div class="flex">
                     <span onclick="scrollContainer('scroll-1',-1)">
                         <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path class=" cursor-pointer stroke-700 dark:stroke-50" d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path class="cursor-pointer stroke-700 dark:stroke-50" d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </span>
                     <span onclick="scrollContainer('scroll-1',1)">
                         <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path class=" cursor-pointer stroke-700 dark:stroke-50" d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path class="cursor-pointer stroke-700 dark:stroke-50" d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </span>
                 </div>
@@ -34,31 +34,31 @@
                     $interval = date_diff($today, $deadline);
                     if ($interval->format('%R') == '-') {
                 ?>
-                        <a href="<?= BASEURL ?>group/detail/<?= $task['id_task'] ?>" class=" relative rounded-2xl h-36 w-48  shadow-md bg-white dark:bg-700">
+                        <a href="<?= BASEURL ?>group/detail/<?= $task['id_task'] ?>" class="relative w-48 bg-white shadow-md rounded-2xl h-36 dark:bg-700">
                             <form action="Group/getDetail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
 
                             <!-- Top Items -->
                             <div class="w-full h-20 rounded-t-2xl from-base-500 to-second-500 bg-gradient-to-r">
                                 <div class="p-4">
-                                    <h3 class=" font-medium text-base text-white"><?= $task['mapel'] ?>
-                                        <p class=" font-normal text-xs"><?= $task['name'] ?></p>
+                                    <h3 class="text-base font-medium text-white "><?= $task['mapel'] ?>
+                                        <p class="text-xs font-normal "><?= $task['name'] ?></p>
                                     </h3>
                                 </div>
                             </div>
 
                             <!-- Bottom Items -->
-                            <div class="py-4 px-5 w-48 box-border">
+                            <div class="box-border w-48 px-5 py-4">
                                 <?php
                                 if ($task['id_leader'] != null) {
                                 ?>
 
                                     <!-- Presentage -->
-                                    <h3 class="font-semibold text-sm">
+                                    <h3 class="text-sm font-semibold">
                                         <?= $task['progress'] ?>%
                                     </h3>
 
                                     <!-- Presentage Bar -->
-                                    <div class="flex flex-row justify-between items-center">
+                                    <div class="flex flex-row items-center justify-between">
 
                                         <!-- Bar -->
                                         <div class="h-0.5 w-25 bg-gray-200 dark:bg-gray-500 mr-5">
@@ -71,16 +71,18 @@
                                             $memberTotal = 0;
                                             $is_lot = false;
                                             foreach ($data['group_member'] as $member) {
-                                                if ($member['id_task'] == $task['id_task'] && $memberTotal < 5) {
-                                                    $memberTotal++; ?>
-                                                    <img src="<?= BASEURL ?>image/Profil.png" alt="" class="rounded-full size-5 -ml-2.5 ">
-                                                <?php } else if ($memberTotal >= 5) {
-                                                    $memberTotal++;
-                                                    $is_lot = true ?>
+                                                if ($member['id_task'] == $task['id_task'] && $member['id_profile_leader'] == $task['id_profile_leader']) {
+                                                    if ($memberTotal < 5) {
+                                                        $memberTotal++; ?>
+                                                        <img src="<?= BASEURL ?>image/Profil.png" alt="" class="rounded-full size-5 -ml-2.5 ">
+                                                    <?php } else if ($memberTotal >= 5) {
+                                                        $memberTotal++;
+                                                        $is_lot = true; ?>
                                                 <?php }
+                                                }
                                             }
                                             if ($is_lot) { ?>
-                                                <div class="rounded-full w-5 h-5 -ml-2.5 relative text-xs text-center font-light flex justify-center items-center dark:bg-bg-dark"><?= $memberTotal -= 5 ?></div>
+                                                <div class="rounded-full w-5 h-5 -ml-2.5 relative text-xs text-center font-light flex justify-center items-center dark:bg-bg-dark">&plus;<?= $memberTotal -= 5 ?></div>
                                             <?php } ?>
                                         </div>
                                     </div>
@@ -91,7 +93,7 @@
                     }
                 }
                 if ($total == 0) { ?>
-                    <div class="h-full w-full text-center flex items-center justify-center font-bold text-5xl text-700">No New Task</div>
+                    <div class="flex items-center justify-center w-full h-full text-5xl font-bold text-center text-700">No Task</div>
                 <?php } ?>
             </div>
         </div>
@@ -100,17 +102,17 @@
         <div id="content-2">
 
             <!-- Title -->
-            <div class=" font-normal text-2xl w-full flex justify-between items-center h-12">
-                <h3 class=" font-semibold text-xl dark:text-100">Deadline Dekat</h3>
+            <div class="flex items-center justify-between w-full h-12 text-2xl font-normal ">
+                <h3 class="text-xl font-semibold dark:text-100">Deadline Dekat</h3>
                 <div class="flex">
                     <span onclick="scrollContainer('scroll-2',-1)">
                         <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path class=" cursor-pointer stroke-700 dark:stroke-50" d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path class="cursor-pointer stroke-700 dark:stroke-50" d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </span>
                     <span onclick="scrollContainer('scroll-2',1)">
                         <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path class=" cursor-pointer stroke-700 dark:stroke-50" d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path class="cursor-pointer stroke-700 dark:stroke-50" d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </span>
                 </div>
@@ -130,31 +132,31 @@
                     // echo $interval->format('%a days');
                     if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
                 ?>
-                        <a href="<?= BASEURL ?>group/detail/<?= $task['id_task'] ?>" class=" relative rounded-2xl h-36 w-48  shadow-md bg-white dark:bg-700">
+                        <a href="<?= BASEURL ?>group/detail/<?= $task['id_task'] ?>" class="relative w-48 bg-white shadow-md rounded-2xl h-36 dark:bg-700">
                             <form action="Group/getDetail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
 
                             <!-- Top Items -->
                             <div class="w-full h-20 rounded-t-2xl from-base-500 to-second-500 bg-gradient-to-r">
                                 <div class="p-4">
-                                    <h3 class=" font-medium text-base text-white"><?= $task['mapel'] ?>
-                                        <p class=" font-normal text-xs"><?= $task['name'] ?></p>
+                                    <h3 class="text-base font-medium text-white "><?= $task['mapel'] ?>
+                                        <p class="text-xs font-normal "><?= $task['name'] ?></p>
                                     </h3>
                                 </div>
                             </div>
 
                             <!-- Bottom Items -->
-                            <div class="py-4 px-5 w-48 box-border">
+                            <div class="box-border w-48 px-5 py-4">
                                 <?php
                                 if ($task['id_leader'] != null) {
                                 ?>
 
                                     <!-- Presentage -->
-                                    <h3 class="font-semibold text-sm">
+                                    <h3 class="text-sm font-semibold">
                                         <?= $task['progress'] ?>%
                                     </h3>
 
                                     <!-- Presentage Bar -->
-                                    <div class="flex flex-row justify-between items-center">
+                                    <div class="flex flex-row items-center justify-between">
 
                                         <!-- Bar -->
                                         <div class="h-0.5 w-25 bg-gray-200 dark:bg-gray-500 mr-5">
@@ -167,16 +169,18 @@
                                             $memberTotal = 0;
                                             $is_lot = false;
                                             foreach ($data['group_member'] as $member) {
-                                                if ($member['id_task'] == $task['id_task'] && $memberTotal < 5) {
-                                                    $memberTotal++; ?>
-                                                    <img src="<?= BASEURL ?>image/Profil.png" alt="" class="rounded-full size-5 -ml-2.5 ">
-                                                <?php } else if ($memberTotal >= 5) {
-                                                    $memberTotal++;
-                                                    $is_lot = true ?>
+                                                if ($member['id_task'] == $task['id_task'] && $member['id_profile_leader'] == $task['id_profile_leader']) {
+                                                    if ($memberTotal < 5) {
+                                                        $memberTotal++; ?>
+                                                        <img src="<?= BASEURL ?>image/Profil.png" alt="" class="rounded-full size-5 -ml-2.5 ">
+                                                    <?php } else if ($memberTotal >= 5) {
+                                                        $memberTotal++;
+                                                        $is_lot = true; ?>
                                                 <?php }
+                                                }
                                             }
                                             if ($is_lot) { ?>
-                                                <div class="rounded-full w-5 h-5 -ml-2.5 relative text-xs text-center font-light flex justify-center items-center dark:bg-bg-dark"><?= $memberTotal -= 5 ?></div>
+                                                <div class="rounded-full w-5 h-5 -ml-2.5 relative text-xs text-center font-light flex justify-center items-center dark:bg-bg-dark">&plus;<?= $memberTotal -= 5 ?></div>
                                             <?php } ?>
                                         </div>
                                     </div>
@@ -187,7 +191,7 @@
                     }
                 }
                 if ($total == 0) { ?>
-                    <div class="h-full w-full text-center flex items-center justify-center font-bold text-5xl text-700">No New Task</div>
+                    <div class="flex items-center justify-center w-full h-full text-5xl font-bold text-center text-700">No Task</div>
                 <?php } ?>
             </div>
         </div>
@@ -196,17 +200,17 @@
         <div id="content-3">
 
             <!-- Title -->
-            <div class=" font-normal text-2xl w-full flex justify-between items-center h-12">
-                <h3 class=" font-semibold text-xl dark:text-100">Tugas Baru</h3>
+            <div class="flex items-center justify-between w-full h-12 text-2xl font-normal ">
+                <h3 class="text-xl font-semibold dark:text-100">Tugas Baru</h3>
                 <div class="flex">
                     <span onclick="scrollContainer('scroll-3',-1)">
                         <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path class=" cursor-pointer stroke-700 dark:stroke-50" d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path class="cursor-pointer stroke-700 dark:stroke-50" d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </span>
                     <span onclick="scrollContainer('scroll-3',1)">
                         <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path class=" cursor-pointer stroke-700 dark:stroke-50" d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path class="cursor-pointer stroke-700 dark:stroke-50" d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </span>
                 </div>
@@ -225,31 +229,30 @@
                     $interval = date_diff($dibuat, $today);
                     if ($interval->format('%R') == '+' && $interval->format('%a') <= '7') {
                 ?>
-                        <a href="<?= BASEURL ?>group/detail/<?= $task['id_task'] ?>" class=" relative rounded-2xl h-36 w-48  shadow-md bg-white dark:bg-700">
-                            <form action="Group/getDetail" method="post" id="form-<?= $task['id_task'] ?>"><input type="hidden" id="task-<?= $task['id_task'] ?>" name="idtask" value="<?= $task['id_task'] ?>"></form>
+                        <a href="<?= BASEURL ?>group/detail/<?= $task['id_task'] ?>" class="relative w-48 bg-white shadow-md rounded-2xl h-36 dark:bg-700">
 
                             <!-- Top Items -->
                             <div class="w-full h-20 rounded-t-2xl from-base-500 to-second-500 bg-gradient-to-r">
                                 <div class="p-4">
-                                    <h3 class=" font-medium text-base text-white"><?= $task['mapel'] ?>
-                                        <p class=" font-normal text-xs"><?= $task['name'] ?></p>
+                                    <h3 class="text-base font-medium text-white "><?= $task['mapel'] ?>
+                                        <p class="text-xs font-normal "><?= $task['name'] ?></p>
                                     </h3>
                                 </div>
                             </div>
 
                             <!-- Bottom Items -->
-                            <div class="py-4 px-5 w-48 box-border">
+                            <div class="box-border w-48 px-5 py-4">
                                 <?php
                                 if ($task['id_leader'] != null) {
                                 ?>
 
                                     <!-- Presentage -->
-                                    <h3 class="font-semibold text-sm">
+                                    <h3 class="text-sm font-semibold">
                                         <?= $task['progress'] ?>%
                                     </h3>
 
                                     <!-- Presentage Bar -->
-                                    <div class="flex flex-row justify-between items-center">
+                                    <div class="flex flex-row items-center justify-between">
 
                                         <!-- Bar -->
                                         <div class="h-0.5 w-25 bg-gray-200 dark:bg-gray-500 mr-5">
@@ -262,16 +265,18 @@
                                             $memberTotal = 0;
                                             $is_lot = false;
                                             foreach ($data['group_member'] as $member) {
-                                                if ($member['id_task'] == $task['id_task'] && $memberTotal < 5) {
-                                                    $memberTotal++; ?>
-                                                    <img src="<?= BASEURL ?>image/Profil.png" alt="" class="rounded-full size-5 -ml-2.5 ">
-                                                <?php } else if ($memberTotal >= 5) {
-                                                    $memberTotal++;
-                                                    $is_lot = true ?>
+                                                if ($member['id_task'] == $task['id_task'] && $member['id_profile_leader'] == $task['id_profile_leader']) {
+                                                    if ($memberTotal < 5) {
+                                                        $memberTotal++; ?>
+                                                        <img src="<?= BASEURL ?>image/Profil.png" alt="" class="rounded-full size-5 -ml-2.5 ">
+                                                    <?php } else if ($memberTotal >= 5) {
+                                                        $memberTotal++;
+                                                        $is_lot = true; ?>
                                                 <?php }
+                                                }
                                             }
                                             if ($is_lot) { ?>
-                                                <div class="rounded-full w-5 h-5 -ml-2.5 relative text-xs text-center font-light flex justify-center items-center dark:bg-bg-dark"><?= $memberTotal -= 5 ?></div>
+                                                <div class="rounded-full w-5 h-5 -ml-2.5 relative text-xs text-center font-light flex justify-center items-center dark:bg-bg-dark">&plus;<?= $memberTotal -= 5 ?></div>
                                             <?php } ?>
                                         </div>
                                     </div>
@@ -282,14 +287,14 @@
                     }
                 }
                 if ($total == 0) { ?>
-                    <div class="h-full w-full text-center flex items-center justify-center font-bold text-5xl text-700">No New Task</div>
+                    <div class="flex items-center justify-center w-full h-full text-5xl font-bold text-center text-700">No Task</div>
                 <?php } ?>
             </div>
         </div>
     </div>
     <!-- <div class="" id='content'>
         <div class="sort-by top">
-            <div class=" font-semibold text-xl dark:text-slate-100">Lewat Deadline</div>
+            <div class="text-xl font-semibold dark:text-slate-100">Lewat Deadline</div>
             <div class="arrow">
                 <span onclick="scrollContainer('scroll-1',-1)">
                     <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -356,7 +361,7 @@
     </div>
     <div class="" id='content2'>
         <div class="sort-by top">
-            <div class=" font-semibold text-xl dark:text-slate-100">Deadline Dekat</div>
+            <div class="text-xl font-semibold dark:text-slate-100">Deadline Dekat</div>
             <div class="arrow">
                 <span onclick="scrollContainer('scroll-2',-1)">
                     <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -426,7 +431,7 @@
     </div>
     <div class="" id='content3'>
         <div class="sort-by top">
-            <div class=" font-semibold text-xl dark:text-slate-100">Tugas Baru</div>
+            <div class="text-xl font-semibold dark:text-slate-100">Tugas Baru</div>
             <div class="arrow">
                 <span onclick="scrollContainer('scroll-3',-1)">
                     <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -495,7 +500,7 @@
 <?php if ($_SESSION['status'] == 'guru') { ?>
     <div class="" id='content'>
         <div class="sort-by top">
-            <div class=" font-semibold text-xl dark:text-slate-100">Lewat Deadline</div>
+            <div class="text-xl font-semibold dark:text-slate-100">Lewat Deadline</div>
             <div class="arrow">
                 <span onclick="scrollContainer('scroll-1',-1)">
                     <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -560,7 +565,7 @@
     ?>
     <div class="" id='content2'>
         <div class="sort-by top">
-            <div class=" font-semibold text-xl dark:text-slate-100">Deadline Dekat</div>
+            <div class="text-xl font-semibold dark:text-slate-100">Deadline Dekat</div>
             <div class="arrow">
                 <span onclick="scrollContainer('scroll-2',-1)">
                     <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -629,7 +634,7 @@
     </script>
     <div class="" id='content3'>
         <div class="sort-by top">
-            <div class=" font-semibold text-xl dark:text-slate-100">Tugas Baru</div>
+            <div class="text-xl font-semibold dark:text-slate-100">Tugas Baru</div>
             <div class="arrow">
                 <span onclick="scrollContainer('scroll-3',-1)">
                     <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
