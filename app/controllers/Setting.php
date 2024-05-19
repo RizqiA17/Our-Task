@@ -3,7 +3,6 @@ class Setting extends Controller
 {
     public function index()
     {
-        session_start();
         if(!isset($_SESSION['status'])){
             header("Location:".BASEURL."Login");
         }
@@ -24,9 +23,6 @@ class Setting extends Controller
     }
     public function ChangeEmail()
     {
-        if(session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
         $email = $_POST['email'];
         $password = $_POST['password'];
         $data['ChangeEmail'] = $this->model("Profile_model")->VallPass();
