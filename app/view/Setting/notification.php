@@ -10,10 +10,10 @@
     <link rel="icon" href="" media="(prefers-color-scheme: dark)">
 </head>
 
-<body class="bg-[#006EE9] ">
+<body class="bg-base-500 dark:bg-600 dark:text-50">
     <div class="" style="margin: 40px 20px 10px 20px;">
     <a onclick="window.history.back(); " style="position: absolute;">
-            <div class="w-[45px] h-[40px] center bg-white rounded-lg " style="display: flex;align-items: center;justify-content: center; cursor:pointer;">
+            <div class="w-[45px] h-[40px] center bg-white dark:bg-700 rounded-lg " style="display: flex;align-items: center;justify-content: center; cursor:pointer;">
                 <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="28px" viewBox="0 0 24 24" width="28px" fill="#006EE9">
                     <rect fill="none" height="24" width="24" />
                     <path d="M9,19l1.41-1.41L5.83,13H22V11H5.83l4.59-4.59L9,5l-7,7L9,19z" />
@@ -24,7 +24,7 @@
     </div>
 
 
-    <div class="bg-white w-[100%] h-full mt-14 pt-10 rounded-t-3xl">
+    <div class="bg-white dark:bg-800 w-[100%] h-full mt-14 pt-10 rounded-t-3xl">
         <div class="px-7 py-10 h-[700px] ">
             <div class="mt-7">
                 <div class="text-[#006EE9] font-medium">Notification Tone</div>

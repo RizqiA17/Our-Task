@@ -24,10 +24,10 @@
     </style>
 </head>
 
-<body class="bg-[#006EE9] " style="overflow: hidden;">
+<body class="bg-base-500 dark:bg-600 dark:text-50 overflow-hidden">
     <div class="" style="margin: 40px 20px 10px 20px;">
         <a onclick="window.history.back(); " style="position: absolute;">
-            <div class="w-[45px] h-[40px] center bg-white rounded-lg " style="display: flex;align-items: center;justify-content: center; cursor: pointer;">
+            <div class="w-[45px] h-[40px] center dark:bg-700 bg-white rounded-lg " style="display: flex;align-items: center;justify-content: center; cursor: pointer;">
                 <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="28px" viewBox="0 0 24 24" width="28px" fill="#006EE9">
                     <rect fill="none" height="24" width="24" />
                     <path d="M9,19l1.41-1.41L5.83,13H22V11H5.83l4.59-4.59L9,5l-7,7L9,19z" />
@@ -37,16 +37,16 @@
         <div class=" text-white font-bold " style="width: 100%; text-align: center;">Profile</div>
     </div>
 
-    <div class="w-full absolute" style="display: flex;align-items: center;justify-content: center; cursor: pointer;">
-        <div class="bg-white rounded-full">
+    <div class="w-full absolute flex items-center justify-center cursor-pointer">
+        <div class="bg-white dar rounded-full">
             <img src="<?=BASEURL?>image/Profil.png" alt="" class="mx-auto w-[100px] ">
         </div>
     </div>
-    <div class="bg-white w-[100%]  mt-14 pt-14 text-center" style="height: calc(100vh - 120px)">
+    <div class="bg-white dark:bg-800 w-[100%]  mt-14 pt-14 text-center" style="height: calc(100vh - 120px)">
 
-        <div class="bg-white shadow-lg rounded-lg px-5 mx-5 " style="height: 100px;">
-            <div class="mt-5 text-lg font-bold text-[#006EE9]"><?= $_SESSION['nama'] ?></div>
-            <div class="mt-3 font-medium"><?= $_SESSION['email'] ?></div>
+        <div class="bg-white dark:bg-700 flex flex-col justify-center items-center shadow-lg rounded-lg px-5 mx-5 " style="height: 100px;">
+            <div class="text-lg font-bold text-base-500"><?= $_SESSION['nama'] ?></div>
+            <div class=" font-medium "><?= $_SESSION['email'] ?></div>
         </div>
 
 
