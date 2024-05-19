@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 18, 2024 at 03:47 PM
+-- Generation Time: May 19, 2024 at 02:12 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.3.6
 
@@ -1849,6 +1849,21 @@ INSERT INTO `profile` (`id`, `name`, `no_induk`, `email`, `password`, `status`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `subtask_file`
+--
+
+CREATE TABLE `subtask_file` (
+  `id` int NOT NULL,
+  `id_subtask` int NOT NULL,
+  `id_profile` int NOT NULL,
+  `task_answer_file` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `subtask_group`
 --
 
@@ -1863,6 +1878,26 @@ CREATE TABLE `subtask_group` (
   `progress` varchar(10) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'unfinished'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `subtask_group`
+--
+
+INSERT INTO `subtask_group` (`id`, `name`, `description`, `description_file`, `create`, `deadline`, `id_task`, `progress`) VALUES
+(33, 'dsasaddsa', 'dsasaddsadsa', '6649cd2b99cd1.', '2024-05-19 16:58:03', '2024-05-19 00:00:00', 119, 'finish'),
+(34, 'adssadsa', 'dsadsasddsasad', '6649cdfe591e7.', '2024-05-19 17:01:34', '2024-05-19 00:00:00', 119, 'finish'),
+(35, 'saddsa', 'dsasadsadsa', '6649ce3b18987.', '2024-05-19 17:02:35', '2024-05-19 00:00:00', 119, 'finish'),
+(36, 'asddsadsa', 'dsadsadsadsa', '6649d363e61e7.', '2024-05-19 17:24:35', '2024-05-19 00:00:00', 121, 'finish'),
+(37, 'asdsa', 'dsadsdad', '6649d40f5a151.', '2024-05-19 17:27:27', '2024-05-19 00:00:00', 122, 'finish'),
+(38, 'adssaddsasad', 'dsadsadsadsadsa', '6649d438749c2.', '2024-05-19 17:28:08', '2024-05-19 00:00:00', 123, 'finish'),
+(39, 'dsadsadsas', 'dsadsadsadsad', '6649d4920b1d7.', '2024-05-19 17:29:38', '2024-05-19 00:00:00', 119, 'finish'),
+(40, 'dsadsadsas', 'dsadsadsadsad', '6649d4c556742.', '2024-05-19 17:30:29', '2024-05-19 00:00:00', 119, 'finish'),
+(41, 'adsdsas', 'dsasdsadsadsa', '6649d544b3754.', '2024-05-19 17:32:36', '2024-05-19 00:00:00', 123, 'finish'),
+(42, 'adsdsdsa', 'dsadsadsa', '6649d7b283cc8.', '2024-05-19 17:42:58', '2024-05-19 00:00:00', 121, 'finish'),
+(43, 'saddsadsads', 'dsadsadsaddsa', '6649d85ed9d96.', '2024-05-19 17:45:50', '2024-05-19 00:00:00', 121, 'finish'),
+(44, 'dsadsadsadsa', 'dsadsadsadadsa', '6649d864e89c0.', '2024-05-19 17:45:57', '2024-05-19 00:00:00', 121, 'finish'),
+(45, 'dsadsadsadsa', 'dsadsadsadsa', '6649d86a1ffa1.', '2024-05-19 17:46:02', '2024-05-19 00:00:00', 121, 'finish'),
+(46, 'dsadsadsa', 'dsadsadsadsa', '6649d889e2bee.', '2024-05-19 17:46:33', '2024-05-19 00:00:00', 121, 'unfinished');
+
 -- --------------------------------------------------------
 
 --
@@ -1874,6 +1909,26 @@ CREATE TABLE `subtask_group_distribution` (
   `id_subtask` int NOT NULL,
   `id_profile` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `subtask_group_distribution`
+--
+
+INSERT INTO `subtask_group_distribution` (`id`, `id_subtask`, `id_profile`) VALUES
+(113, 33, 152),
+(114, 34, 152),
+(115, 35, 152),
+(116, 36, 152),
+(117, 37, 152),
+(118, 38, 152),
+(119, 39, 152),
+(120, 40, 152),
+(121, 41, 152),
+(122, 42, 152),
+(123, 43, 152),
+(124, 44, 152),
+(125, 45, 152),
+(126, 46, 152);
 
 -- --------------------------------------------------------
 
@@ -1898,7 +1953,8 @@ INSERT INTO `task_file` (`id`, `id_task`, `id_profile`, `task_answer_file`, `nam
 (2, 80, 152, '664858b5639b9.jpeg', 'qewqeeqe', '2024-05-18 14:28:53'),
 (3, 80, 152, '66485b568d7a7.webp', 'dsadsadsasa', '2024-05-18 14:40:06'),
 (4, 80, 152, '66485bf873f25.jpeg', 'dsadsadsa', '2024-05-18 14:42:48'),
-(5, 80, 152, '66485c333600b.jpeg', 'dsadsadsa', '2024-05-18 14:43:47');
+(5, 80, 152, '66485c333600b.jpeg', 'dsadsadsa', '2024-05-18 14:43:47'),
+(9, 70, 152, '6649c747b7307.jpeg', 'ewadsda', '2024-05-19 16:32:55');
 
 -- --------------------------------------------------------
 
@@ -1908,8 +1964,8 @@ INSERT INTO `task_file` (`id`, `id_task`, `id_profile`, `task_answer_file`, `nam
 
 CREATE TABLE `task_group` (
   `id` int NOT NULL,
-  `name` varchar(10) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci,
   `task_description_file` varchar(255) DEFAULT NULL,
   `id_mapel` int DEFAULT NULL,
   `id_kelas` int DEFAULT NULL,
@@ -1923,7 +1979,11 @@ CREATE TABLE `task_group` (
 --
 
 INSERT INTO `task_group` (`id`, `name`, `description`, `task_description_file`, `id_mapel`, `id_kelas`, `id_guru`, `tgl_dibuat`, `tgl_deadline`) VALUES
-(111, 'qwe', 'qwe', '', 1, 1, 841, '2024-05-18 22:39:57', '2024-05-18 23:59:59');
+(119, 'adsdsa', 'dsadsadsadsadsa', '', 1, 1, 841, '2024-05-19 16:55:34', '2024-05-19 23:59:59'),
+(120, 'adsdsadsa', 'dsadsadsadsadsadsad', '', 1, 1, 841, '2024-05-19 17:17:29', '2024-05-19 23:59:59'),
+(121, 'dsadsadsaasdsadsa', 'asaddsadsadsadsadsa', '', 1, 1, 841, '2024-05-19 17:17:37', '2024-05-19 23:59:59'),
+(122, 'dsadsadsadsa', 'adsdsadsa', '', 1, 1, 841, '2024-05-19 17:19:01', '2024-05-19 23:59:59'),
+(123, 'dsadsadsadsa', 'adsdsadsa', '', 1, 1, 841, '2024-05-19 17:20:34', '2024-05-19 23:59:59');
 
 -- --------------------------------------------------------
 
@@ -1944,42 +2004,186 @@ CREATE TABLE `task_group_distribution` (
 --
 
 INSERT INTO `task_group_distribution` (`id`, `id_task`, `id_leader`, `id_profile`, `id_profile_leader`) VALUES
-(2248, 111, 241, 124, NULL),
-(2249, 111, 241, 125, NULL),
-(2250, 111, 241, 126, NULL),
-(2251, 111, 241, 127, NULL),
-(2252, 111, 241, 128, NULL),
-(2253, 111, 241, 129, NULL),
-(2254, 111, 241, 130, NULL),
-(2255, 111, 241, 131, NULL),
-(2256, 111, 241, 132, NULL),
-(2257, 111, 241, 133, NULL),
-(2258, 111, 241, 134, NULL),
-(2259, 111, 241, 135, NULL),
-(2260, 111, 241, 136, NULL),
-(2261, 111, 241, 137, NULL),
-(2262, 111, 241, 138, NULL),
-(2263, 111, 241, 139, NULL),
-(2264, 111, 241, 140, NULL),
-(2265, 111, 241, 141, NULL),
-(2266, 111, 241, 142, NULL),
-(2267, 111, 241, 143, NULL),
-(2268, 111, 241, 144, NULL),
-(2269, 111, 241, 145, NULL),
-(2270, 111, 242, 146, 146),
-(2271, 111, 241, 147, NULL),
-(2272, 111, 243, 148, 148),
-(2273, 111, 241, 149, NULL),
-(2274, 111, 241, 150, NULL),
-(2275, 111, 241, 151, NULL),
-(2276, 111, 244, 152, 152),
-(2277, 111, 241, 153, NULL),
-(2278, 111, 241, 154, NULL),
-(2279, 111, 241, 155, NULL),
-(2280, 111, 241, 156, NULL),
-(2281, 111, 241, 157, NULL),
-(2282, 111, 241, 158, NULL),
-(2283, 111, 241, 159, NULL);
+(2536, 119, 298, 124, NULL),
+(2537, 119, 298, 125, NULL),
+(2538, 119, 298, 126, NULL),
+(2539, 119, 299, 127, 127),
+(2540, 119, 298, 128, NULL),
+(2541, 119, 298, 129, NULL),
+(2542, 119, 298, 130, NULL),
+(2543, 119, 298, 131, NULL),
+(2544, 119, 300, 132, 132),
+(2545, 119, 298, 133, NULL),
+(2546, 119, 298, 134, NULL),
+(2547, 119, 298, 135, NULL),
+(2548, 119, 298, 136, NULL),
+(2549, 119, 301, 137, 137),
+(2550, 119, 298, 138, NULL),
+(2551, 119, 298, 139, NULL),
+(2552, 119, 298, 140, NULL),
+(2553, 119, 298, 141, NULL),
+(2554, 119, 302, 142, 142),
+(2555, 119, 298, 143, NULL),
+(2556, 119, 298, 144, NULL),
+(2557, 119, 298, 145, NULL),
+(2558, 119, 298, 146, NULL),
+(2559, 119, 303, 147, 147),
+(2560, 119, 298, 148, NULL),
+(2561, 119, 298, 149, NULL),
+(2562, 119, 298, 150, NULL),
+(2563, 119, 298, 151, NULL),
+(2564, 119, 304, 152, 152),
+(2565, 119, 298, 153, NULL),
+(2566, 119, 298, 154, NULL),
+(2567, 119, 298, 155, NULL),
+(2568, 119, 298, 156, NULL),
+(2569, 119, 298, 157, NULL),
+(2570, 119, 298, 158, NULL),
+(2571, 119, 298, 159, NULL),
+(2572, 120, NULL, 124, NULL),
+(2573, 120, NULL, 125, NULL),
+(2574, 120, NULL, 126, NULL),
+(2575, 120, NULL, 127, NULL),
+(2576, 120, NULL, 128, NULL),
+(2577, 120, NULL, 129, NULL),
+(2578, 120, NULL, 130, NULL),
+(2579, 120, NULL, 131, NULL),
+(2580, 120, NULL, 132, NULL),
+(2581, 120, NULL, 133, NULL),
+(2582, 120, NULL, 134, NULL),
+(2583, 120, NULL, 135, NULL),
+(2584, 120, NULL, 136, NULL),
+(2585, 120, NULL, 137, NULL),
+(2586, 120, NULL, 138, NULL),
+(2587, 120, NULL, 139, NULL),
+(2588, 120, NULL, 140, NULL),
+(2589, 120, NULL, 141, NULL),
+(2590, 120, NULL, 142, NULL),
+(2591, 120, NULL, 143, NULL),
+(2592, 120, NULL, 144, NULL),
+(2593, 120, NULL, 145, NULL),
+(2594, 120, NULL, 146, NULL),
+(2595, 120, NULL, 147, NULL),
+(2596, 120, NULL, 148, NULL),
+(2597, 120, NULL, 149, NULL),
+(2598, 120, NULL, 150, NULL),
+(2599, 120, NULL, 151, NULL),
+(2600, 120, NULL, 152, NULL),
+(2601, 120, NULL, 153, NULL),
+(2602, 120, NULL, 154, NULL),
+(2603, 120, NULL, 155, NULL),
+(2604, 120, NULL, 156, NULL),
+(2605, 120, NULL, 157, NULL),
+(2606, 120, NULL, 158, NULL),
+(2607, 120, NULL, 159, NULL),
+(2608, 121, 306, 124, NULL),
+(2609, 121, 306, 125, NULL),
+(2610, 121, 306, 126, NULL),
+(2611, 121, 306, 127, NULL),
+(2612, 121, 306, 128, NULL),
+(2613, 121, 306, 129, NULL),
+(2614, 121, 306, 130, NULL),
+(2615, 121, 306, 131, NULL),
+(2616, 121, 306, 132, NULL),
+(2617, 121, 306, 133, NULL),
+(2618, 121, 306, 134, NULL),
+(2619, 121, 306, 135, NULL),
+(2620, 121, 306, 136, NULL),
+(2621, 121, 306, 137, NULL),
+(2622, 121, 306, 138, NULL),
+(2623, 121, 306, 139, NULL),
+(2624, 121, 306, 140, NULL),
+(2625, 121, 306, 141, NULL),
+(2626, 121, 306, 142, NULL),
+(2627, 121, 306, 143, NULL),
+(2628, 121, 306, 144, NULL),
+(2629, 121, 306, 145, NULL),
+(2630, 121, 306, 146, NULL),
+(2631, 121, 306, 147, NULL),
+(2632, 121, 306, 148, NULL),
+(2633, 121, 306, 149, NULL),
+(2634, 121, 306, 150, NULL),
+(2635, 121, 306, 151, NULL),
+(2636, 121, 307, 152, 152),
+(2637, 121, 306, 153, NULL),
+(2638, 121, 306, 154, NULL),
+(2639, 121, 306, 155, NULL),
+(2640, 121, 306, 156, NULL),
+(2641, 121, 306, 157, NULL),
+(2642, 121, 306, 158, NULL),
+(2643, 121, 306, 159, NULL),
+(2644, 122, 308, 124, NULL),
+(2645, 122, 308, 125, NULL),
+(2646, 122, 308, 126, NULL),
+(2647, 122, 308, 127, NULL),
+(2648, 122, 308, 128, NULL),
+(2649, 122, 308, 129, NULL),
+(2650, 122, 308, 130, NULL),
+(2651, 122, 308, 131, NULL),
+(2652, 122, 308, 132, NULL),
+(2653, 122, 308, 133, NULL),
+(2654, 122, 308, 134, NULL),
+(2655, 122, 308, 135, NULL),
+(2656, 122, 308, 136, NULL),
+(2657, 122, 308, 137, NULL),
+(2658, 122, 308, 138, NULL),
+(2659, 122, 308, 139, NULL),
+(2660, 122, 308, 140, NULL),
+(2661, 122, 308, 141, NULL),
+(2662, 122, 309, 142, 142),
+(2663, 122, 308, 143, NULL),
+(2664, 122, 308, 144, NULL),
+(2665, 122, 308, 145, NULL),
+(2666, 122, 308, 146, NULL),
+(2667, 122, 310, 147, 147),
+(2668, 122, 308, 148, NULL),
+(2669, 122, 308, 149, NULL),
+(2670, 122, 308, 150, NULL),
+(2671, 122, 308, 151, NULL),
+(2672, 122, 311, 152, 152),
+(2673, 122, 308, 153, NULL),
+(2674, 122, 308, 154, NULL),
+(2675, 122, 308, 155, NULL),
+(2676, 122, 308, 156, NULL),
+(2677, 122, 308, 157, NULL),
+(2678, 122, 308, 158, NULL),
+(2679, 122, 308, 159, NULL),
+(2680, 123, 312, 124, NULL),
+(2681, 123, 312, 125, NULL),
+(2682, 123, 312, 126, NULL),
+(2683, 123, 312, 127, NULL),
+(2684, 123, 312, 128, NULL),
+(2685, 123, 312, 129, NULL),
+(2686, 123, 312, 130, NULL),
+(2687, 123, 312, 131, NULL),
+(2688, 123, 312, 132, NULL),
+(2689, 123, 312, 133, NULL),
+(2690, 123, 312, 134, NULL),
+(2691, 123, 312, 135, NULL),
+(2692, 123, 312, 136, NULL),
+(2693, 123, 312, 137, NULL),
+(2694, 123, 312, 138, NULL),
+(2695, 123, 312, 139, NULL),
+(2696, 123, 312, 140, NULL),
+(2697, 123, 312, 141, NULL),
+(2698, 123, 313, 142, 142),
+(2699, 123, 312, 143, NULL),
+(2700, 123, 312, 144, NULL),
+(2701, 123, 312, 145, NULL),
+(2702, 123, 312, 146, NULL),
+(2703, 123, 314, 147, 147),
+(2704, 123, 312, 148, NULL),
+(2705, 123, 312, 149, NULL),
+(2706, 123, 312, 150, NULL),
+(2707, 123, 312, 151, NULL),
+(2708, 123, 315, 152, 152),
+(2709, 123, 312, 153, NULL),
+(2710, 123, 312, 154, NULL),
+(2711, 123, 312, 155, NULL),
+(2712, 123, 312, 156, NULL),
+(2713, 123, 312, 157, NULL),
+(2714, 123, 312, 158, NULL),
+(2715, 123, 312, 159, NULL);
 
 -- --------------------------------------------------------
 
@@ -1999,10 +2203,24 @@ CREATE TABLE `task_group_leader` (
 --
 
 INSERT INTO `task_group_leader` (`id`, `id_task`, `id_profile`, `progress`) VALUES
-(241, 111, NULL, 0),
-(242, 111, 146, 0),
-(243, 111, 148, 0),
-(244, 111, 152, 0);
+(298, 119, NULL, 0),
+(299, 119, 127, 0),
+(300, 119, 132, 0),
+(301, 119, 137, 0),
+(302, 119, 142, 0),
+(303, 119, 147, 0),
+(304, 119, 152, 100),
+(305, 120, NULL, 0),
+(306, 121, NULL, 0),
+(307, 121, 152, 83),
+(308, 122, NULL, 0),
+(309, 122, 142, 0),
+(310, 122, 147, 0),
+(311, 122, 152, 100),
+(312, 123, NULL, 0),
+(313, 123, 142, 0),
+(314, 123, 147, 0),
+(315, 123, 152, 100);
 
 -- --------------------------------------------------------
 
@@ -2041,7 +2259,8 @@ INSERT INTO `task_solo` (`id`, `name`, `description`, `task_description_file`, `
 (80, 'iop', 'iop', '664842806b981.jpg', 1, 1, 841, '2024-05-18 12:54:08', '2024-05-18 00:00:00'),
 (81, 'qweqweqweqwe', 'qweqweqeq', '664844dd5048d.jpg', 1, 1, 841, '2024-05-18 13:04:13', '2024-05-19 00:00:00'),
 (82, 'tes1', 'qeqwewq', '', 1, 1, 841, '2024-05-18 21:22:56', '2024-05-18 00:00:00'),
-(84, 'tes1', 'qeqwewq', '', 1, 1, 841, '2024-05-18 21:28:18', '2024-05-18 23:59:59');
+(84, 'tes1', 'qeqwewq', '', 1, 1, 841, '2024-05-18 21:28:18', '2024-05-18 23:59:59'),
+(85, 'dsadsdsa', 'dsadsadsadsadsadsadsdsadsa', '', 1, 1, 841, '2024-05-19 16:51:20', '2024-05-19 23:59:59');
 
 -- --------------------------------------------------------
 
@@ -2089,7 +2308,7 @@ INSERT INTO `task_solo_distribution` (`id`, `id_task`, `id_profile`, `progress`)
 (926, 69, 149, 'unfinished'),
 (927, 69, 150, 'unfinished'),
 (928, 69, 151, 'unfinished'),
-(929, 69, 152, 'unfinished'),
+(929, 69, 152, 'finish'),
 (930, 69, 153, 'unfinished'),
 (931, 69, 154, 'unfinished'),
 (932, 69, 155, 'unfinished'),
@@ -2125,7 +2344,7 @@ INSERT INTO `task_solo_distribution` (`id`, `id_task`, `id_profile`, `progress`)
 (962, 70, 149, 'unfinished'),
 (963, 70, 150, 'unfinished'),
 (964, 70, 151, 'unfinished'),
-(965, 70, 152, 'unfinished'),
+(965, 70, 152, 'finish'),
 (966, 70, 153, 'unfinished'),
 (967, 70, 154, 'unfinished'),
 (968, 70, 155, 'unfinished'),
@@ -2161,7 +2380,7 @@ INSERT INTO `task_solo_distribution` (`id`, `id_task`, `id_profile`, `progress`)
 (998, 71, 149, 'unfinished'),
 (999, 71, 150, 'unfinished'),
 (1000, 71, 151, 'unfinished'),
-(1001, 71, 152, 'unfinished'),
+(1001, 71, 152, 'finish'),
 (1002, 71, 153, 'unfinished'),
 (1003, 71, 154, 'unfinished'),
 (1004, 71, 155, 'unfinished'),
@@ -2197,7 +2416,7 @@ INSERT INTO `task_solo_distribution` (`id`, `id_task`, `id_profile`, `progress`)
 (1034, 72, 149, 'unfinished'),
 (1035, 72, 150, 'unfinished'),
 (1036, 72, 151, 'unfinished'),
-(1037, 72, 152, 'unfinished'),
+(1037, 72, 152, 'finish'),
 (1038, 72, 153, 'unfinished'),
 (1039, 72, 154, 'unfinished'),
 (1040, 72, 155, 'unfinished'),
@@ -2233,7 +2452,7 @@ INSERT INTO `task_solo_distribution` (`id`, `id_task`, `id_profile`, `progress`)
 (1070, 73, 149, 'unfinished'),
 (1071, 73, 150, 'unfinished'),
 (1072, 73, 151, 'unfinished'),
-(1073, 73, 152, 'unfinished'),
+(1073, 73, 152, 'finish'),
 (1074, 73, 153, 'unfinished'),
 (1075, 73, 154, 'unfinished'),
 (1076, 73, 155, 'unfinished'),
@@ -2269,7 +2488,7 @@ INSERT INTO `task_solo_distribution` (`id`, `id_task`, `id_profile`, `progress`)
 (1106, 74, 149, 'unfinished'),
 (1107, 74, 150, 'unfinished'),
 (1108, 74, 151, 'unfinished'),
-(1109, 74, 152, 'unfinished'),
+(1109, 74, 152, 'finish'),
 (1110, 74, 153, 'unfinished'),
 (1111, 74, 154, 'unfinished'),
 (1112, 74, 155, 'unfinished'),
@@ -2305,7 +2524,7 @@ INSERT INTO `task_solo_distribution` (`id`, `id_task`, `id_profile`, `progress`)
 (1142, 75, 149, 'unfinished'),
 (1143, 75, 150, 'unfinished'),
 (1144, 75, 151, 'unfinished'),
-(1145, 75, 152, 'unfinished'),
+(1145, 75, 152, 'finish'),
 (1146, 75, 153, 'unfinished'),
 (1147, 75, 154, 'unfinished'),
 (1148, 75, 155, 'unfinished'),
@@ -2600,7 +2819,43 @@ INSERT INTO `task_solo_distribution` (`id`, `id_task`, `id_profile`, `progress`)
 (1473, 84, 156, 'unfinished'),
 (1474, 84, 157, 'unfinished'),
 (1475, 84, 158, 'unfinished'),
-(1476, 84, 159, 'unfinished');
+(1476, 84, 159, 'unfinished'),
+(1477, 85, 124, 'unfinished'),
+(1478, 85, 125, 'unfinished'),
+(1479, 85, 126, 'unfinished'),
+(1480, 85, 127, 'unfinished'),
+(1481, 85, 128, 'unfinished'),
+(1482, 85, 129, 'unfinished'),
+(1483, 85, 130, 'unfinished'),
+(1484, 85, 131, 'unfinished'),
+(1485, 85, 132, 'unfinished'),
+(1486, 85, 133, 'unfinished'),
+(1487, 85, 134, 'unfinished'),
+(1488, 85, 135, 'unfinished'),
+(1489, 85, 136, 'unfinished'),
+(1490, 85, 137, 'unfinished'),
+(1491, 85, 138, 'unfinished'),
+(1492, 85, 139, 'unfinished'),
+(1493, 85, 140, 'unfinished'),
+(1494, 85, 141, 'unfinished'),
+(1495, 85, 142, 'unfinished'),
+(1496, 85, 143, 'unfinished'),
+(1497, 85, 144, 'unfinished'),
+(1498, 85, 145, 'unfinished'),
+(1499, 85, 146, 'unfinished'),
+(1500, 85, 147, 'unfinished'),
+(1501, 85, 148, 'unfinished'),
+(1502, 85, 149, 'unfinished'),
+(1503, 85, 150, 'unfinished'),
+(1504, 85, 151, 'unfinished'),
+(1505, 85, 152, 'unfinished'),
+(1506, 85, 153, 'unfinished'),
+(1507, 85, 154, 'unfinished'),
+(1508, 85, 155, 'unfinished'),
+(1509, 85, 156, 'unfinished'),
+(1510, 85, 157, 'unfinished'),
+(1511, 85, 158, 'unfinished'),
+(1512, 85, 159, 'unfinished');
 
 --
 -- Indexes for dumped tables
@@ -2646,6 +2901,14 @@ ALTER TABLE `mapel`
 --
 ALTER TABLE `profile`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `subtask_file`
+--
+ALTER TABLE `subtask_file`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_subtask` (`id_subtask`,`id_profile`),
+  ADD KEY `id_profile` (`id_profile`);
 
 --
 -- Indexes for table `subtask_group`
@@ -2736,52 +2999,58 @@ ALTER TABLE `profile`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=844;
 
 --
+-- AUTO_INCREMENT for table `subtask_file`
+--
+ALTER TABLE `subtask_file`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `subtask_group`
 --
 ALTER TABLE `subtask_group`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `subtask_group_distribution`
 --
 ALTER TABLE `subtask_group_distribution`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
 -- AUTO_INCREMENT for table `task_file`
 --
 ALTER TABLE `task_file`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `task_group`
 --
 ALTER TABLE `task_group`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- AUTO_INCREMENT for table `task_group_distribution`
 --
 ALTER TABLE `task_group_distribution`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2284;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2716;
 
 --
 -- AUTO_INCREMENT for table `task_group_leader`
 --
 ALTER TABLE `task_group_leader`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=316;
 
 --
 -- AUTO_INCREMENT for table `task_solo`
 --
 ALTER TABLE `task_solo`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `task_solo_distribution`
 --
 ALTER TABLE `task_solo_distribution`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1477;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1513;
 
 --
 -- Constraints for dumped tables
@@ -2808,17 +3077,24 @@ ALTER TABLE `kelas`
   ADD CONSTRAINT `kelas_ibfk_1` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id`);
 
 --
+-- Constraints for table `subtask_file`
+--
+ALTER TABLE `subtask_file`
+  ADD CONSTRAINT `subtask_file_ibfk_1` FOREIGN KEY (`id_profile`) REFERENCES `profile` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `subtask_file_ibfk_2` FOREIGN KEY (`id_subtask`) REFERENCES `subtask_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `subtask_group`
 --
 ALTER TABLE `subtask_group`
-  ADD CONSTRAINT `subtask_group_ibfk_1` FOREIGN KEY (`id_task`) REFERENCES `task_group` (`id`);
+  ADD CONSTRAINT `subtask_group_ibfk_1` FOREIGN KEY (`id_task`) REFERENCES `task_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `subtask_group_distribution`
 --
 ALTER TABLE `subtask_group_distribution`
-  ADD CONSTRAINT `subtask_group_distribution_ibfk_1` FOREIGN KEY (`id_subtask`) REFERENCES `subtask_group` (`id`),
-  ADD CONSTRAINT `subtask_group_distribution_ibfk_2` FOREIGN KEY (`id_profile`) REFERENCES `profile` (`id`);
+  ADD CONSTRAINT `subtask_group_distribution_ibfk_1` FOREIGN KEY (`id_subtask`) REFERENCES `subtask_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `subtask_group_distribution_ibfk_2` FOREIGN KEY (`id_profile`) REFERENCES `profile` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `task_file`
