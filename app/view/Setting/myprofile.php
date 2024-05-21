@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link href="<?=BASEURL?>css/output.css" rel="stylesheet">
+    <link href="<?= BASEURL ?>css/output.css" rel="stylesheet">
     <link rel="icon" href="" media="(prefers-color-scheme: light)">
     <link rel="icon" href="" media="(prefers-color-scheme: dark)">
     <style>
         input {
             outline: none;
         }
+
         ::-ms-reveal {
             display: none !important;
         }
@@ -45,7 +46,7 @@
             </div>
             <br>
             Change Email
-            <form action="ChangeEmail" method="post">
+            <form action="<?= BASEURL ?>setting/ChangeEmail" method="post">
                 <div class="mt-4">
                     <label class="pt-10 text-[#006EE9] font-medium " for="">Email</label>
                     <input type="email" name="email" id="email" class="mt-1 flex border-2 dark:bg-700 border-[#bdd3ec] rounded-lg w-[100%] px-4 py-3 text-sm " placeholder="New Email">
@@ -58,9 +59,9 @@
             </form>
 
 
-
-
         </div>
+
+    </div>
 
 </body>
 

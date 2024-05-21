@@ -81,7 +81,8 @@
                     $today = new DateTime(date('Y-m-d', time()));
                     $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat'])));
                     $interval = date_diff($dibuat, $today);
-                    if ((($interval->format('%R') == '+' && $interval->format('%a') <= '7') || ($interval->format('%R') == '-' && $interval->format('%a') == '0') && $total < 6 && (int)$task['progress'] != 100)) {
+                    $progress = (int)$task['progress'];
+                    if ((($interval->format('%R') == '+' && $interval->format('%a') <= '7') || ($interval->format('%R') == '-' && $interval->format('%a') == '0')) && $total < 6 && $progress < 100) {
                         $total++;
                 ?>
                         <a href="<?= BASEURL ?>group/detail/<?= $task['id_task'] ?>" class="relative w-48 bg-white shadow-md rounded-2xl h-36 dark:bg-700">
@@ -171,7 +172,7 @@
                     $today = new DateTime(date('Y-m-d', time()));
                     $dibuat = new DateTime(date('Y-m-d H:i:s', strtotime($task['tgl_dibuat'])));
                     $interval = date_diff($dibuat, $today);
-                    if ((($interval->format('%R') == '+' && $interval->format('%a') <= '7') || ($interval->format('%R') == '-' && $interval->format('%a') == '0') && $total < 6)) {
+                    if ((($interval->format('%R') == '+' && $interval->format('%a') <= '7') || ($interval->format('%R') == '-' && $interval->format('%a') == '0') && $total < 6 && $task['progress'] != 'finish')) {
                         $total++;
                 ?>
                         <a href="<?= BASEURL ?>solo/detail/<?= $task['id'] ?>" class="w-full bg-white shadow-md min-w-64 dark:bg-700 rounded-2xl grow sm:w-96 h-36" id="<?= $task['id'] ?>">

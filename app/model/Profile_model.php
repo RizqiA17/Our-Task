@@ -44,8 +44,21 @@ class Profile_model{
 
     public function ChangeEmail($email){
         var_dump($email);
-        $this->db->query("UPDATE  ". $this->table . " SET email = :email");
+        $this->db->query("UPDATE  ". $this->table . " SET email = :email WHERE id = ".$_SESSION['id']);
         $this->db->bind(':email', $email);
         return $this->db->resultSet();
+    }
+
+    public function ChangePassword($pass){
+        $this->db->query("UPDATE  ". $this->table . " SET password = :pass WHERE id = ".$_SESSION['id']);
+        $this->db->bind(':pass', $pass);
+        return $this->db->single();
+    }
+
+    public function ValEmailAndNis($data){
+        $this->db->query("SELECT * FROM " . $this->table . " WHERE no_induk = ".$data['no_induk']." AND email = '".$data['email']."'");
+        // $this->db->bind(':no_induk', $data['no_induk']);
+        // $this->db->bind(':email', $data['email']);
+        return $this->db->single();
     }
 }

@@ -5,11 +5,11 @@ class Login extends Controller
     {
         $this->view("Login/index");
     }
-    
+
     public function signup()
     {
         // if (!isset($_SESSION['nama'])) {
-            $this->view("Login/register");
+        $this->view("Login/register");
         // } else {
         //     $this->view("Login/index");
         // }
@@ -22,7 +22,7 @@ class Login extends Controller
 
         $data['signin'] = $this->model('Profile_model')->getAccount($email, $password);
         var_dump($data);
-        
+
         if (!empty($data['signin'])) {
             $_SESSION['nama'] = $data['signin'][0]['name'];
             $_SESSION['email'] =  $data['signin'][0]['email'];
@@ -40,13 +40,13 @@ class Login extends Controller
 
     public function register()
     {
-        
+
         $no_induk = $_POST['no_induk'];
         $email = $_POST['email'];
         $password = $_POST['password'];
         $cnfrmpass = $_POST['cnfrmpass'];
         $cek_ni = $this->model('Profile_model')->cekNI($no_induk);
-        if (!empty($cek_ni)) {  
+        if (!empty($cek_ni)) {
             if ($password == $cnfrmpass) {
                 $email_cek = $this->model('Profile_model')->cekEmail($email);
                 if (!empty($email_cek)) {
@@ -77,6 +77,40 @@ class Login extends Controller
         } else {
             $_SESSION['signup_err'] = "NIS Not Found";
             header("Location:" . BASEURL . "login/signup");
+        }
+    }
+
+    public function forgotPassword()
+    {
+        $this->view("Login/forgotPassword");
+    }
+
+    public function checkInputForgotPassword()
+    {
+        $data['profile'] =  $this->model('Profile_model')->ValEmailAndNis($_POST);
+        // $_SESSION['status'] = 'guru';
+        // var_dump($data);
+        if (!empty($data['profile'])) {
+            $_SESSION['id'] = $data['profile']['id'];
+            header("Location:" . BASEURL . "Login/ChangePassword");
+        } else {
+            $this->view("Login/forgotPassword");
+            $_SESSION['login_err'] = "Data Not Found";
+        }
+    }
+    public function changePassword()
+    {
+        $this->view("Login/changePassword");
+    }
+
+    public function setNewPassword()
+    {
+        $password = $_POST['password'];
+        $cnfrmpass = $_POST['cnfrmpass'];
+        if ($password == $cnfrmpass) {
+            if (!empty($this->model('Profile_model')->ChangePassword($password))) {
+                Header("Location:".BASEURL."Login");
+            }
         }
     }
 }

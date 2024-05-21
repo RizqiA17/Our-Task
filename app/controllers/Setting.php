@@ -21,6 +21,10 @@ class Setting extends Controller
     {
         $this->view("Setting/notification");
     }
+    public function security()
+    {
+        $this->view("Setting/security");
+    }
     public function ChangeEmail()
     {
         $email = $_POST['email'];
