@@ -7,12 +7,12 @@
         <div class="flex items-center justify-between w-full h-12 text-2xl font-normal base-100">
             <h3 class="text-xl font-semibold dark:text-100">Complited Solo Project</h3>
             <div class="flex">
-                <span onclick="scrollContainer('scroll-1',-1)">
+                <span class=" cursor-pointer" onclick="scrollContainer('scroll-1',-1)">
                     <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path class=" stroke-700 dark:stroke-50" d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </span>
-                <span onclick="scrollContainer('scroll-1',1)">
+                <span class=" cursor-pointer" onclick="scrollContainer('scroll-1',1)">
                     <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path class=" stroke-700 dark:stroke-50" d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
@@ -72,12 +72,12 @@
         <div class="flex items-center justify-between w-full h-12 text-2xl font-normal ">
             <h3 class="text-xl font-semibold dark:text-100">Complited Group</h3>
             <div class="flex">
-                <span onclick="scrollContainer('scroll-2',-1)">
+                <span class=" cursor-pointer" onclick="scrollContainer('scroll-2',-1)">
                     <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path class="cursor-pointer stroke-700 dark:stroke-50" d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </span>
-                <span onclick="scrollContainer('scroll-2',1)">
+                <span class=" cursor-pointer" onclick="scrollContainer('scroll-2',1)">
                     <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path class="cursor-pointer stroke-700 dark:stroke-50" d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
@@ -168,12 +168,12 @@
         <div class="flex items-center justify-between w-full h-12 text-2xl font-normal ">
             <h3 class="text-xl font-semibold dark:text-100">Almost Complited</h3>
             <div class="flex">
-                <span onclick="scrollContainer('scroll-3',-1)">
+                <span class=" cursor-pointer" onclick="scrollContainer('scroll-3',-1)">
                     <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path class="cursor-pointer stroke-700 dark:stroke-50" d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </span>
-                <span onclick="scrollContainer('scroll-3',1)">
+                <span class=" cursor-pointer" onclick="scrollContainer('scroll-3',1)">
                     <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path class="cursor-pointer stroke-700 dark:stroke-50" d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
@@ -206,7 +206,7 @@
                         </div>
 
                         <!-- Bottom Items -->
-                        <div class="box-border w-48 px-5 py-4">
+                        <div class="box-border w-48 p-4">
                             <?php
                             if ($task['id_leader'] != null) {
                             ?>
@@ -264,12 +264,12 @@
         <div class="sort-by top">
             <div class="text-xl font-semibold dark:text-slate-100">Complated Solo Project</div>
             <div class="arrow">
-                <span onclick="scrollContainer('scroll-1',-1)">
+                <span class=" cursor-pointer" onclick="scrollContainer('scroll-1',-1)">
                     <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </span>
-                <span onclick="scrollContainer('scroll-1',1)">
+                <span class=" cursor-pointer" onclick="scrollContainer('scroll-1',1)">
                     <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
@@ -309,12 +309,12 @@
             <div class="sort-by top">
                 <div class="text-xl font-semibold dark:text-slate-100">Complated Group Project</div>
                 <div class="arrow">
-                    <span onclick="scrollContainer('scroll-3',-1)">
+                    <span class=" cursor-pointer" onclick="scrollContainer('scroll-3',-1)">
                         <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </span>
-                    <span onclick="scrollContainer('scroll-3',1)">
+                    <span class=" cursor-pointer" onclick="scrollContainer('scroll-3',1)">
                         <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
@@ -378,12 +378,12 @@
             <div class="sort-by top">
                 <div class="text-xl font-semibold dark:text-slate-100">Almost Complated Group Project</div>
                 <div class="arrow">
-                    <span onclick="scrollContainer('scroll-2',-1)">
+                    <span class=" cursor-pointer" onclick="scrollContainer('scroll-2',-1)">
                         <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </span>
-                    <span onclick="scrollContainer('scroll-2',1)">
+                    <span class=" cursor-pointer" onclick="scrollContainer('scroll-2',1)">
                         <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke="#141522" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>

@@ -15,6 +15,9 @@ class Group extends Controller
             $data['tugas'] = $this->model('Task_group_distribution_model')->getAllTask();
             $data['group_member'] = $this->model('Task_group_distribution_model')->getMemberInGroup();
         }
+
+        // var_dump($data);
+
         $this->view("templates/header", $data);
         $this->view("Group/index", $data);
         $this->view("templates/footer");
@@ -27,33 +30,36 @@ class Group extends Controller
 
         $id = $_SESSION['id'];
         $_SESSION['id_task'] = $id_task;
-        $id_task = $id_task;
-        $data['task'] = $this->model('Task_group_distribution_model')->getTaskDetail($id_task, $id);
-        // var_dump($data['task']);
-
-        if ($data['task'][0]['id_leader'] != null) {
-            $_SESSION['id_leader'] = $data['task'][0]['id_leader'];
-            $data['member'] = $this->model('Task_group_distribution_model')->getMember($data['task'][0]['id_leader']);
-        }
-        $data['notmember'] = $this->model('Task_group_distribution_model')->getMemberNotInGroup($id_task);
-        $leadercount = $this->model('Task_group_leader_model')->getAllLeader($id_task);
-        // var_dump($data);
-        $murid = $this->model('Kelas_model')->getAllSiswaWithKelas($data['task'][0]['id_kelas']);
-        for ($totalmurid = 1; $totalmurid < sizeof($murid); $totalmurid++) {
+        
+        if ($_SESSION['status'] == 'siswa') {
+            $data['task'] = $this->model('Task_group_distribution_model')->getTaskDetail($id_task, $id);
+            if ($data['task'][0]['id_leader'] != null) {
+                $_SESSION['id_leader'] = $data['task'][0]['id_leader'];
+                $data['member'] = $this->model('Task_group_distribution_model')->getMember($data['task'][0]['id_leader']);
+            }
+            $data['notmember'] = $this->model('Task_group_distribution_model')->getMemberNotInGroup($id_task);
+            $leadercount = $this->model('Task_group_leader_model')->getAllLeader($id_task);
+            // var_dump($data);
+            $murid = $this->model('Kelas_model')->getAllSiswaWithKelas($data['task'][0]['id_kelas']);
+            for ($totalmurid = 1; $totalmurid < sizeof($murid); $totalmurid++) {
+                // var_dump($totalmurid);
+            }
+            // echo sizeof($leadercount);
+            $grouplenght = $totalmurid / sizeof($leadercount);
+            if ($totalmurid % sizeof($leadercount) != 0) {
+                $grouplenght++;
+            }
             // var_dump($totalmurid);
+            $data['group_lenght'] = $grouplenght;
+            // var_dump($grouplenght);
+            
+            if (!is_null($data['task'][0]['id_profile_leader'])) {
+                $data['subtask'] = $this->model("Subtask_group_model")->getSubtask($id_task, $data['task']['id_profile_leader']);
+            }
+        }else{
+            $data['task'] = $this->model('Task_group_model')->getTaskDetail($id_task);
         }
-        // echo sizeof($leadercount);
-        $grouplenght = $totalmurid / sizeof($leadercount);
-        if ($totalmurid % sizeof($leadercount) != 0) {
-            $grouplenght++;
-        }
-        // var_dump($totalmurid);
-        $data['group_lenght'] = $grouplenght;
-        // var_dump($grouplenght);
-
-        if (!is_null($data['task'][0]['id_profile_leader'])) {
-            $data['subtask'] = $this->model("Subtask_group_model")->getSubtask($id_task, $data['task']['id_profile_leader']);
-        }
+        // var_dump($data['task']);
 
         // var_dump($data);
         $this->view("Group/detail", $data);

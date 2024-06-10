@@ -14,9 +14,9 @@
 
     <!-- Header -->
     <div class="flex justify-between items-center py-9">
-        <div class="cursor-pointer" onclick="window.history.back()">
-            <svg class="group" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7.828 11H20V13H7.828L13.192 18.364L11.778 19.778L4 12L11.778 4.22205L13.192 5.63605L7.828 11Z" fill="#363942" />
+        <div class="w-6 h-6 material-symbols-outlined dark:text-gray-400 cursor-pointer" onclick="window.history.back()">
+            <svg class="" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="fill-700 dark:fill-50" d="M7.828 11H20V13H7.828L13.192 18.364L11.778 19.778L4 12L11.778 4.22205L13.192 5.63605L7.828 11Z" />
             </svg>
         </div>
         <h1 class="font-semibold text-2xl uppercase">
@@ -58,7 +58,9 @@
         <div class=" rounded-2xl p-5 w-full flex-grow md:max-w-96 border border-gray-200 dark:border-slate-600" id="attachments">
             <div class="flex">
                 <div class=" p-2 w-36 text-center rounded-2xl cursor-pointer hover:bg-gray-200 ease-in-out hover:text-black transition-colors delay-75" onclick="AddAttachments()">Attachments</div>
-                <div class=" ml-1 p-2 w-36 text-center rounded-2xl cursor-pointer hover:bg-gray-200 ease-in-out hover:text-black transition-colors delay-75" onclick="Attachment()">Add attachment</div>
+                <?php if (($_SESSION['status'] == 'guru' && $task['task_description_file'] == null) || $_SESSION['status'] == 'siswa') : ?>
+                    <div class=" ml-1 p-2 w-36 text-center rounded-2xl cursor-pointer hover:bg-gray-200 ease-in-out hover:text-black transition-colors delay-75" onclick="Attachment()">Add attachment</div>
+                <?php endif; ?>
             </div>
 
             <!-- Attachment Task -->
@@ -106,11 +108,12 @@
 
 
     <!-- Set Finish -->
-    <?php if ($task['progress'] == 'unfinished') { ?>
-        <!-- <form action="" class=" mb-9 w-full"> -->
-            <button onclick="window.confirm('Tandai Selesai?') ? window.location.href='<?=BASEURL?>solo/complited' : ''" class="bg-own-blue rounded-lg mt-3 h-7 w-full border-none text-white cursor-pointer">Finish</button>
-        <!-- </form> -->
-    <?php } ?>
+    <?php if ($_SESSION['status'] == 'siswa') : if ($task['progress'] == 'unfinished') { ?>
+            <!-- <form action="" class=" mb-9 w-full"> -->
+            <button onclick="window.confirm('Tandai Selesai?') ? window.location.href='<?= BASEURL ?>solo/complited' : ''" class="bg-own-blue rounded-lg mt-3 h-7 w-full border-none text-white cursor-pointer">Finish</button>
+            <!-- </form> -->
+    <?php }
+    endif; ?>
 
     <!-- <script>
         var attachment = document.getElementById('attachment');

@@ -711,6 +711,11 @@ video {
   margin-right: 0.75rem;
 }
 
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
 .mx-5 {
   margin-left: 1.25rem;
   margin-right: 1.25rem;
@@ -1615,6 +1620,10 @@ video {
   --tw-gradient-to: #80d0c7 var(--tw-gradient-to-position);
 }
 
+.fill-700 {
+  fill: #2a2a2a;
+}
+
 .fill-900 {
   fill: #0e0e0e;
 }
@@ -1775,28 +1784,16 @@ video {
   font-family: 'Poppins', sans-serif;
 }
 
+.font-\[\'Poppins\'\2c sans-serif\] {
+  font-family: 'Poppins',sans-serif;
+}
+
 .font-cursive {
   font-family: Righteous;
 }
 
 .font-sans {
   font-family: ui-sans-serif, system-ui;
-}
-
-.font-\[\] {
-  font-family: ;
-}
-
-.font-\[\'Poppins\'\] {
-  font-family: 'Poppins';
-}
-
-.font-\[\'Poppins\'\2c _sans\] {
-  font-family: 'Poppins', sans;
-}
-
-.font-\[\'Poppins\'\2c sans-serif\] {
-  font-family: 'Poppins',sans-serif;
 }
 
 .text-2xl {
@@ -2512,12 +2509,12 @@ video {
     fill: #dadada;
   }
 
-  .dark\:fill-white {
-    fill: #fff;
-  }
-
   .dark\:fill-50 {
     fill: #fafafa;
+  }
+
+  .dark\:fill-white {
+    fill: #fff;
   }
 
   .dark\:stroke-50 {

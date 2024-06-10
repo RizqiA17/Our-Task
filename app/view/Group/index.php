@@ -8,12 +8,12 @@
             <div class="flex items-center justify-between w-full h-12 text-2xl font-normal ">
                 <h3 class="text-xl font-semibold dark:text-100">Lewat Deadline</h3>
                 <div class="flex">
-                    <span onclick="scrollContainer('scroll-1',-1)">
+                    <span class=" cursor-pointer" onclick="scrollContainer('scroll-1',-1)">
                         <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path class="cursor-pointer stroke-700 dark:stroke-50" d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </span>
-                    <span onclick="scrollContainer('scroll-1',1)">
+                    <span class=" cursor-pointer" onclick="scrollContainer('scroll-1',1)">
                         <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path class="cursor-pointer stroke-700 dark:stroke-50" d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
@@ -48,7 +48,7 @@
                             </div>
 
                             <!-- Bottom Items -->
-                            <div class="box-border w-48 px-5 py-4">
+                            <div class="box-border w-48 p-4">
                                 <?php
                                 if ($task['id_profile_leader'] != null) {
                                 ?>
@@ -106,12 +106,12 @@
             <div class="flex items-center justify-between w-full h-12 text-2xl font-normal ">
                 <h3 class="text-xl font-semibold dark:text-100">Deadline Dekat</h3>
                 <div class="flex">
-                    <span onclick="scrollContainer('scroll-2',-1)">
+                    <span class=" cursor-pointer" onclick="scrollContainer('scroll-2',-1)">
                         <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path class="cursor-pointer stroke-700 dark:stroke-50" d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </span>
-                    <span onclick="scrollContainer('scroll-2',1)">
+                    <span class=" cursor-pointer" onclick="scrollContainer('scroll-2',1)">
                         <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path class="cursor-pointer stroke-700 dark:stroke-50" d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
@@ -147,7 +147,7 @@
                             </div>
 
                             <!-- Bottom Items -->
-                            <div class="box-border w-48 px-5 py-4">
+                            <div class="box-border w-48 p-4">
                                 <?php
                                 if ($task['id_profile_leader'] != null) {
                                 ?>
@@ -205,12 +205,12 @@
             <div class="flex items-center justify-between w-full h-12 text-2xl font-normal ">
                 <h3 class="text-xl font-semibold dark:text-100">Tugas Baru</h3>
                 <div class="flex">
-                    <span onclick="scrollContainer('scroll-3',-1)">
+                    <span class=" cursor-pointer" onclick="scrollContainer('scroll-3',-1)">
                         <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path class="cursor-pointer stroke-700 dark:stroke-50" d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </span>
-                    <span onclick="scrollContainer('scroll-3',1)">
+                    <span class=" cursor-pointer" onclick="scrollContainer('scroll-3',1)">
                         <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path class="cursor-pointer stroke-700 dark:stroke-50" d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
@@ -244,7 +244,7 @@
                             </div>
 
                             <!-- Bottom Items -->
-                            <div class="box-border w-48 px-5 py-4">
+                            <div class="box-border w-48 p-4">
                                 <?php
                                 if ($task['id_profile_leader'] != null) {
                                 ?>
@@ -307,12 +307,12 @@
             <div class="flex items-center justify-between w-full h-12 text-2xl font-normal ">
                 <h3 class="text-xl font-semibold dark:text-100">Lewat Deadline</h3>
                 <div class="flex">
-                    <span onclick="scrollContainer('scroll-1',-1)">
+                    <span class=" cursor-pointer" onclick="scrollContainer('scroll-1',-1)">
                         <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path class="cursor-pointer stroke-700 dark:stroke-50" d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </span>
-                    <span onclick="scrollContainer('scroll-1',1)">
+                    <span class=" cursor-pointer" onclick="scrollContainer('scroll-1',1)">
                         <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path class="cursor-pointer stroke-700 dark:stroke-50" d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
@@ -340,14 +340,14 @@
                             <!-- Top Items -->
                             <div class="w-full h-20 rounded-t-2xl from-base-500 to-second-500 bg-gradient-to-r">
                                 <div class="p-4">
-                                    <h3 class="text-base font-medium text-white "><?= $task['mapel'] ?>
+                                    <h3 class="text-base font-medium text-white "><?= $task['grade'] ?>
                                         <p class="text-xs font-normal "><?= $task['name'] ?></p>
                                     </h3>
                                 </div>
                             </div>
 
                             <!-- Deadline -->
-                            <div class="flex items-center mx-6 mt-6 text-xs font-extralight">
+                            <div class="flex items-center mx-4 mt-6 text-xs font-extralight">
                                 <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M12 0.5V4.5M6 0.5V4.5M17.4826 9.5H0.517334M17.4826 9.5C17.2743 3.79277 15.154 2 9 2C2.84596 2 0.725603 3.79277 0.517334 9.5M17.4826 9.5C17.4943 9.82084 17.5 10.154 17.5 10.5C17.5 17 15.5 19 9 19C2.5 19 0.5 17 0.5 10.5C0.5 10.154 0.505626 9.82084 0.517334 9.5" stroke="#71839B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
@@ -372,12 +372,12 @@
             <div class="flex items-center justify-between w-full h-12 text-2xl font-normal ">
                 <h3 class="text-xl font-semibold dark:text-100">Deadline Dekat</h3>
                 <div class="flex">
-                    <span onclick="scrollContainer('scroll-2',-1)">
+                    <span class=" cursor-pointer" onclick="scrollContainer('scroll-2',-1)">
                         <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path class="cursor-pointer stroke-700 dark:stroke-50" d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </span>
-                    <span onclick="scrollContainer('scroll-2',1)">
+                    <span class=" cursor-pointer" onclick="scrollContainer('scroll-2',1)">
                         <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path class="cursor-pointer stroke-700 dark:stroke-50" d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
@@ -438,12 +438,12 @@
             <div class="flex items-center justify-between w-full h-12 text-2xl font-normal ">
                 <h3 class="text-xl font-semibold dark:text-100">Tugas Baru</h3>
                 <div class="flex">
-                    <span onclick="scrollContainer('scroll-3',-1)">
+                    <span class=" cursor-pointer" onclick="scrollContainer('scroll-3',-1)">
                         <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path class="cursor-pointer stroke-700 dark:stroke-50" d="M15 19.92L8.47997 13.4C7.70997 12.63 7.70997 11.37 8.47997 10.6L15 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </span>
-                    <span onclick="scrollContainer('scroll-3',1)">
+                    <span class=" cursor-pointer" onclick="scrollContainer('scroll-3',1)">
                         <svg class="arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path class="cursor-pointer stroke-700 dark:stroke-50" d="M8.90997 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.90997 4.08002" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
