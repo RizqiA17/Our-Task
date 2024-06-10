@@ -51,14 +51,14 @@
                 </div>
             </button>
             <?php if ($_SESSION['status'] != 'guru') { ?>
-                <button class="w-full hover:bg-base-100 dark:hover:bg-600 rounded-md" onclick="window.location.href='<?= BASEURL ?>home/calender'">
+                <!-- <button class="w-full hover:bg-base-100 dark:hover:bg-600 rounded-md" onclick="window.location.href='<?= BASEURL ?>home/calender'">
                     <div class="flex justify-start items-center p-3 h-8 gap-4 active:translate-y-0.5">
                         <svg class="u-calender" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path id="logo-fill" d="M15.8333 3.33332H14.1667V2.49999C14.1667 2.27898 14.0789 2.06701 13.9226 1.91073C13.7663 1.75445 13.5543 1.66666 13.3333 1.66666C13.1123 1.66666 12.9003 1.75445 12.7441 1.91073C12.5878 2.06701 12.5 2.27898 12.5 2.49999V3.33332H7.49999V2.49999C7.49999 2.27898 7.41219 2.06701 7.25591 1.91073C7.09963 1.75445 6.88767 1.66666 6.66666 1.66666C6.44564 1.66666 6.23368 1.75445 6.0774 1.91073C5.92112 2.06701 5.83332 2.27898 5.83332 2.49999V3.33332H4.16666C3.50362 3.33332 2.86773 3.59672 2.39889 4.06556C1.93005 4.5344 1.66666 5.17028 1.66666 5.83332V15.8333C1.66666 16.4964 1.93005 17.1322 2.39889 17.6011C2.86773 18.0699 3.50362 18.3333 4.16666 18.3333H15.8333C16.4964 18.3333 17.1322 18.0699 17.6011 17.6011C18.0699 17.1322 18.3333 16.4964 18.3333 15.8333V5.83332C18.3333 5.17028 18.0699 4.5344 17.6011 4.06556C17.1322 3.59672 16.4964 3.33332 15.8333 3.33332ZM16.6667 15.8333C16.6667 16.0543 16.5789 16.2663 16.4226 16.4226C16.2663 16.5789 16.0543 16.6667 15.8333 16.6667H4.16666C3.94564 16.6667 3.73368 16.5789 3.5774 16.4226C3.42112 16.2663 3.33332 16.0543 3.33332 15.8333V9.99999H16.6667V15.8333ZM16.6667 8.33332H3.33332V5.83332C3.33332 5.61231 3.42112 5.40035 3.5774 5.24407C3.73368 5.08779 3.94564 4.99999 4.16666 4.99999H5.83332V5.83332C5.83332 6.05434 5.92112 6.2663 6.0774 6.42258C6.23368 6.57886 6.44564 6.66666 6.66666 6.66666C6.88767 6.66666 7.09963 6.57886 7.25591 6.42258C7.41219 6.2663 7.49999 6.05434 7.49999 5.83332V4.99999H12.5V5.83332C12.5 6.05434 12.5878 6.2663 12.7441 6.42258C12.9003 6.57886 13.1123 6.66666 13.3333 6.66666C13.5543 6.66666 13.7663 6.57886 13.9226 6.42258C14.0789 6.2663 14.1667 6.05434 14.1667 5.83332V4.99999H15.8333C16.0543 4.99999 16.2663 5.08779 16.4226 5.24407C16.5789 5.40035 16.6667 5.61231 16.6667 5.83332V8.33332Z" fill="#71839B" />
                         </svg>
                         <div>Calendar</div>
                     </div>
-                </button>
+                </button> -->
                 <button class="w-full hover:bg-base-100 dark:hover:bg-600 rounded-md" onclick="pathFind('complited')">
                     <div class="flex justify-start items-center p-3 h-8 gap-4 active:translate-y-0.5">
                         <svg class="check-ring" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -105,14 +105,14 @@
         </div>
         <div class=" flex flex-col relative justify-center items-start">
             <?php if ($_SESSION['status'] != 'guru') { ?>
-                <button class="w-full hover:bg-base-100 dark:hover:bg-600 rounded-md" onclick="window.location.href='<?= BASEURL ?>home/notification'">
+                <!-- <button class="w-full hover:bg-base-100 dark:hover:bg-600 rounded-md" onclick="window.location.href='<?= BASEURL ?>home/notification'">
                     <div class="flex justify-start items-center p-3 h-8 gap-4 active:translate-y-0.5">
                         <svg class="curved-bell" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9 17.5V18.5C9 20.1569 10.3431 21 12 21C13.6569 21 15 20.1569 15 18.5V17.5M5.99999 8.5C5.99999 5.18629 8.68628 3.5 12 3.5C15.3137 3.5 18 5.18629 18 8.5C18 10.4392 18.705 12.6133 19.4316 14.3389C20.0348 15.7717 19.0222 17.5 17.4676 17.5H6.53237C4.97778 17.5 3.96518 15.7717 4.56842 14.3389C5.29493 12.6133 5.99999 10.4392 5.99999 8.5Z" stroke="#71839B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                         <div>Notification</div>
                     </div>
-                </button>
+                </button> -->
             <?php } ?>
             <button class="w-full hover:bg-base-100 dark:hover:bg-600 rounded-md" onclick="window.location.href='<?= BASEURL ?>setting'">
                 <div class="flex justify-start items-center p-3 h-8 gap-4 active:translate-y-0.5">
@@ -159,13 +159,13 @@
 
                 <!-- Right Items -->
                 <div class=" flex items-center gap-4">
-                    <a href="<?= BASEURL ?>home/notification" class="border-2 border-100 dark:border-500 relative flex items-center justify-center size-11 rounded-full">
+                    <!-- <a href="<?= BASEURL ?>home/notification" class="border-2 border-100 dark:border-500 relative flex items-center justify-center size-11 rounded-full">
                         <svg class="" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M0.917375 10.4893V10.3068C0.944146 9.76687 1.11719 9.24374 1.41865 8.79134C1.92044 8.24789 2.26394 7.58192 2.41312 6.86332C2.41312 6.30792 2.41312 5.74459 2.46163 5.18919C2.71226 2.51535 5.35609 0.666668 7.96757 0.666668H8.03225C10.6437 0.666668 13.2876 2.51535 13.5463 5.18919C13.5948 5.74459 13.5463 6.30792 13.5867 6.86332C13.7379 7.58359 14.081 8.25162 14.5812 8.79927C14.8849 9.24767 15.0582 9.76889 15.0824 10.3068V10.4813C15.1005 11.2067 14.8507 11.914 14.379 12.4728C13.7558 13.1262 12.9101 13.5327 12.002 13.6154C9.33918 13.901 6.65255 13.901 3.98971 13.6154C3.08264 13.5292 2.23815 13.1233 1.61269 12.4728C1.14835 11.9136 0.901888 11.2105 0.917375 10.4893Z" stroke="#8E92BC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M5.96246 16.3765C6.37853 16.8987 6.98951 17.2367 7.66021 17.3156C8.3309 17.3945 9.00599 17.2079 9.53607 16.797C9.6991 16.6755 9.8458 16.5342 9.97266 16.3765" stroke="#8E92BC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                         <div class=" border-2 border-red-600 bg-red-600 h-1.5 w-1.5 rounded-full absolute top-2.5 right-3.5"></div>
-                    </a>
+                    </a> -->
                     <a href="<?= BASEURL ?>setting/profile">
                         <img src="<?= BASEURL ?>image/Profil.png" class="h-11 w-11 rounded-full">
                     </a>
