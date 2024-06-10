@@ -37,4 +37,9 @@ class Task_group_model
         $this->db->query("SELECT id FROM " . $this->table . " ORDER BY id DESC LIMIT 1");
         return $this->db->resultSet();
     }
+    public function addAttachment($filename, $id)
+    {
+        $this->db->query("UPDATE " . $this->table . " SET task_description_file = '" . $filename . "' WHERE id = " . $id);
+        $this->db->execute();
+    }
 }

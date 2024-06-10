@@ -193,7 +193,7 @@
                 </div>
 
                 <!-- Attachment Task -->
-                <div id="attachment">
+                <div id="attachment" class="">
                     <?php
                     if ($task['task_description_file'] != null) {
                     ?>
@@ -206,25 +206,12 @@
                                 <div class=" text-gray-400 text-xs">Added <?= date('M j ', strtotime($task['tgl_dibuat'])) . 'at ' . date('g:m A', strtotime($task['tgl_dibuat'])) ?></div>
                             </div>
                         </div>
-                        <?php }
-                    if (!empty($data['task_file'])) {
-                        foreach ($data['task_file'] as $file) { ?>
-                            <div class="mt-5 flex items-center">
-                                <a href="<?= BASEIMG . $file['task_answer_file'] ?>" class="w-16 h-16 bg-green-600 rounded-lg flex justify-center items-center overflow-hidden" target="_blank">
-                                    <img src="<?= BASEIMG . $file['task_answer_file'] ?>" alt="">
-                                </a>
-                                <div style="margin-left: 10px;">
-                                    <a href="<?= BASEIMG . $file['task_answer_file'] ?>" target="_blank">Task Attachments</a>
-                                    <div class=" text-gray-400 text-xs">Added <?= date('M j ', strtotime($file['date'])) . 'at ' . date('g:m A', strtotime($file['date'])) ?></div>
-                                </div>
-                            </div>
-                    <?php }
-                    } ?>
+                        <?php } ?>
                 </div>
 
                 <!-- Add Attachment -->
-                <form action="<?= BASEURL ?>solo/upload" method="post" enctype="multipart/form-data">
-                    <div class="mt-5 flex flex-col gap-2 hidden" id="add">
+                <form action="<?= BASEURL ?>group/upload" method="post" enctype="multipart/form-data">
+                    <div class="mt-5 flex hidden flex-col gap-2" id="add">
                         <div class="flex max-sm:gap-2 max-sm:flex-col flex-row gap-8 items-center">
                             <input type="text" id="attachment-note" class="h-5 dark:bg-gray-700 box-border h-8 w-full outline-none border dark:border-slate-600 rounded-md text-sm p-1 " name="name" placeholder="Title">
                             <input type="file" name="image" id="image attachment-file" class=" w-full text-center text my-2">

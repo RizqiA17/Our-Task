@@ -30,7 +30,7 @@ class Group extends Controller
 
         $id = $_SESSION['id'];
         $_SESSION['id_task'] = $id_task;
-        
+
         if ($_SESSION['status'] == 'siswa') {
             $data['task'] = $this->model('Task_group_distribution_model')->getTaskDetail($id_task, $id);
             if ($data['task'][0]['id_leader'] != null) {
@@ -52,11 +52,11 @@ class Group extends Controller
             // var_dump($totalmurid);
             $data['group_lenght'] = $grouplenght;
             // var_dump($grouplenght);
-            
+
             if (!is_null($data['task'][0]['id_profile_leader'])) {
                 $data['subtask'] = $this->model("Subtask_group_model")->getSubtask($id_task, $data['task']['id_profile_leader']);
             }
-        }else{
+        } else {
             $data['task'] = $this->model('Task_group_model')->getTaskDetail($id_task);
         }
         // var_dump($data['task']);
@@ -220,20 +220,24 @@ class Group extends Controller
                 if (move_uploaded_file($image_tmp, $targetFile)) {
                     // echo "The file " . basename($image_name) . " has been uploaded.";
                     $previous_url = $_SERVER['HTTP_REFERER'];
-                    $this->model('Subtask_file_model')->addFile($_POST, $file_name);
+                    if ($_SESSION['status'] == 'siswa') {
+                        $this->model('Subtask_file_model')->addFile($_POST, $file_name);
+                    } else {
+                        $this->model('Task_group_model')->addAttachment($file_name, $_SESSION['id_task']);
+                    }
                     header('Location:' . BASEURL . 'group/detail/' . $_SESSION['id_task']);
                 } else {
-                    // echo "Sorry, there was an error uploading your file.";
+                    echo "Sorry, there was an error uploading your file.";
                     $previous_url = $_SERVER['HTTP_REFERER'];
                     // header('Location:' . BASEURL . 'group/detail');
                 }
             } else {
-                // echo "File is not an image.";
+                echo "File is not an image.";
                 $previous_url = $_SERVER['HTTP_REFERER'];
                 // header('Location:' . BASEURL . 'group/detail');
             }
         } else {
-            // echo "No file uploaded.";
+            echo "No file uploaded.";
             $previous_url = $_SERVER['HTTP_REFERER'];
             // header('Location:' . BASEURL . 'group/detail');
         }
