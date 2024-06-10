@@ -34,10 +34,10 @@ class Task_group_distribution_model
         $this->db->query("UPDATE " . $this->table . " SET `id_leader` = '" . $id_leader . "', id_profile_leader = :id WHERE " . $this->table . ".id_task = " . $id_task . " AND " . $this->table . ".id_profile = " . $id_profile . ";");
         $this->db->bind(":id", $id_leader_profile);
         // $this->db->query("UPDATE task_group_distribution SET `id_leader` = 168 WHERE id_task = 73 AND 'id_profile' = 152;"); 
-        echo $id_task;
-        echo $id_leader;
-        echo $id_profile."<br>";
-        echo $id_leader_profile;
+        // echo $id_task;
+        // echo $id_leader;
+        // echo $id_profile."<br>";
+        // echo $id_leader_profile;
         $this->db->execute();
         $this->db->query("SELECT * FROM " . $this->table . " WHERE id_task = " . $id_task . " AND id_profile = " . $id_profile . ";");
         return $this->db->resultSet();

@@ -26,7 +26,7 @@
     <!-- Detail -->
     <?php foreach ($data['task'] as $task) { ?>
         <h2 class="mt-6 mb-6 text-2xl font-bold capitalize dark:text-white"><?= $task['name'] ?></h2>
-        <div class="w-full flex max-[712px]:flex-col flex-row gap-6 mb-12">
+        <div class="w-full flex max-[712px]:flex-col <?= $data['task'][0]['id_profile_leader'] != null ? 'flex-row' : 'flex-col' ?> gap-6 mb-12">
 
             <!-- Description -->
             <div class="w-full">
@@ -43,8 +43,6 @@
                             foreach ($data['member'] as $member) { ?>
                                 <img src="<?= BASEIMG . $task['pp_name'] ?>" alt="" class="box-border justify-center w-8 h-8 -ml-3 border-2 border-white rounded-full dark:border-bg-dark">
                             <?php } ?>
-                            <!-- <img src="<?= BASEURL ?>image/Profil.png" alt="" class="box-border justify-center w-8 h-8 border-2 border-white rounded-full dark:border-bg-dark ">
-                        <img src="<?= BASEURL ?>image/Profil.png" alt="" class="box-border justify-center w-8 h-8 -ml-3 border-2 border-white rounded-full dark:border-bg-dark "> -->
                             <?php
                             if (sizeof($data['member']) < floor($data['group_lenght']) && $task['id_profile_leader'] == $_SESSION['id']) {
                             ?>
@@ -72,37 +70,42 @@
         <div class="flex flex-col gap-4">
 
             <!-- Subtask Card -->
-            <?php foreach ($data['subtask'] as $subtask) { ?>
-                <a href="<?=BASEURL . 'group/subtask/'. $subtask['id']?>" class="flex justify-between w-full hover:border-base-600 cursor-pointer p-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl h-28">
-                    <div class="flex flex-col justify-center h-full ">
-                        <h3 class="text-xl text-gray-600 dark:text-gray-400">Title Subtask</h3>
-                        <div class="flex pt-2.5">
-                            <img src="<?= BASEURL ?>image/Profil.png" alt="" class="box-border justify-center w-8 h-8 border-2 border-white rounded-full dark:border-bg-dark ">
-                            <img src="<?= BASEURL ?>image/Profil.png" alt="" class="box-border justify-center w-8 h-8 -ml-3 border-2 border-white rounded-full dark:border-bg-dark ">
-                            <img src="<?= BASEURL ?>image/Profil.png" alt="" class="box-border justify-center w-8 h-8 -ml-3 border-2 border-white rounded-full dark:border-bg-dark ">
+
+            <?php if (isset($data['subtask'])) {
+                foreach ($data['subtask'] as $subtask) { ?>
+                    <a href="<?= BASEURL . 'group/subtask/' . $subtask['id'] ?>" class="flex justify-between w-full hover:border-base-600 cursor-pointer p-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl h-28">
+                        <div class="flex flex-col justify-center h-full ">
+                            <h3 class="text-xl text-gray-600 dark:text-gray-400">Title Subtask</h3>
+                            <div class="flex pt-2.5">
+                                <img src="<?= BASEURL ?>image/Profil.png" alt="" class="box-border justify-center w-8 h-8 border-2 border-white rounded-full dark:border-bg-dark ">
+                                <img src="<?= BASEURL ?>image/Profil.png" alt="" class="box-border justify-center w-8 h-8 -ml-3 border-2 border-white rounded-full dark:border-bg-dark ">
+                                <img src="<?= BASEURL ?>image/Profil.png" alt="" class="box-border justify-center w-8 h-8 -ml-3 border-2 border-white rounded-full dark:border-bg-dark ">
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex items-center h-full text-gray-600 dark:text-gray-400">
-                        <span class="material-symbols-outlined">
-                            Flag
-                        </span>
-                        25 Hari
-                    </div>
-                </a>
-            <?php } ?>
+                        <div class="flex items-center h-full text-gray-600 dark:text-gray-400">
+                            <span class="material-symbols-outlined">
+                                Flag
+                            </span>
+                            25 Hari
+                        </div>
+                    </a>
+            <?php }
+            } ?>
 
         </div>
     </div>
-    <div class="mt-4 bg-inherit">
-        <a href="<?= BASEURL ?>group/addtask" class="flex justify-center items-center w-full p-4 border-2 hover:border-base-600 dark:text-50 text-center border-gray-300 co dark:border-gray-600 rounded-xl h-24 cursor-pointer">
-            <span class="m-0.5 material-symbols-outlined">
-                add
-            </span>
-            ADD SUBTASK
-        </a>
-    </div>
-
+    <?php if ($task['id_profile_leader'] == $_SESSION['id']) { ?>
+        <div class="mt-4 bg-inherit">
+            <a href="<?= BASEURL ?>group/addtask" class="flex justify-center items-center w-full p-4 border-2 hover:border-base-600 dark:text-50 text-center border-gray-300 co dark:border-gray-600 rounded-xl h-24 cursor-pointer">
+                <span class="m-0.5 material-symbols-outlined">
+                    add
+                </span>
+                ADD SUBTASK
+            </a>
+        </div>
     <?php
+    }
+
     if (sizeof($data['member']) < floor($data['group_lenght']) && $task['id_profile_leader'] == $_SESSION['id']) {
     ?>
         <!-- Main modal -->

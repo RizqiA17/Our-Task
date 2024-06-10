@@ -50,7 +50,7 @@
                             <!-- Bottom Items -->
                             <div class="box-border w-48 px-5 py-4">
                                 <?php
-                                if ($task['id_leader'] != null) {
+                                if ($task['id_profile_leader'] != null) {
                                 ?>
 
                                     <!-- Presentage -->
@@ -149,7 +149,7 @@
                             <!-- Bottom Items -->
                             <div class="box-border w-48 px-5 py-4">
                                 <?php
-                                if ($task['id_leader'] != null) {
+                                if ($task['id_profile_leader'] != null) {
                                 ?>
 
                                     <!-- Presentage -->
@@ -246,7 +246,7 @@
                             <!-- Bottom Items -->
                             <div class="box-border w-48 px-5 py-4">
                                 <?php
-                                if ($task['id_leader'] != null) {
+                                if ($task['id_profile_leader'] != null) {
                                 ?>
 
                                     <!-- Presentage -->

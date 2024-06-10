@@ -51,7 +51,9 @@ class Group extends Controller
         $data['group_lenght'] = $grouplenght;
         // var_dump($grouplenght);
 
-        $data['subtask'] = $this->model("Subtask_group_model")->getSubtask($id_task);
+        if (!is_null($data['task'][0]['id_profile_leader'])) {
+            $data['subtask'] = $this->model("Subtask_group_model")->getSubtask($id_task, $data['task']['id_profile_leader']);
+        }
 
         // var_dump($data);
         $this->view("Group/detail", $data);
@@ -158,7 +160,7 @@ class Group extends Controller
             $previous_url = $_SERVER['HTTP_REFERER'];
             //header('Location:' . BASEURL . 'home');
         }
-        
+
         $getTotalSubTask = $this->model('subtask_group_model')->getSubtask($_SESSION['id_task']);
         // var_dump($getTotalSubTask);
 
