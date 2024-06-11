@@ -14,9 +14,9 @@
 
     <!-- Header -->
     <div class="flex justify-between items-center py-9">
-        <div class="cursor-pointer" onclick="window.history.back()">
-            <svg class="group" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7.828 11H20V13H7.828L13.192 18.364L11.778 19.778L4 12L11.778 4.22205L13.192 5.63605L7.828 11Z" fill="#363942" />
+        <div class="w-6 h-6 material-symbols-outlined dark:text-gray-400 cursor-pointer" onclick="window.history.back()">
+            <svg class="" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="fill-700 dark:fill-50" d="M7.828 11H20V13H7.828L13.192 18.364L11.778 19.778L4 12L11.778 4.22205L13.192 5.63605L7.828 11Z" />
             </svg>
         </div>
         <h1 class="font-semibold text-2xl uppercase">
@@ -27,7 +27,7 @@
 
     <?php
     // var_dump($data);
-$task = $data['task'][0];
+    $task = $data['task'][0];
     $deadline = date('l, j F Y', strtotime($task['deadline']));
     ?>
 
@@ -78,7 +78,7 @@ $task = $data['task'][0];
                     </div>
                     <?php }
                 if (!empty($data['task_file'])) {
-                    foreach ($data['task_file'] as $file) {?>
+                    foreach ($data['task_file'] as $file) { ?>
                         <div class="mt-5 flex items-center">
                             <a href="<?= BASEIMG . $file['task_answer_file'] ?>" class="w-16 h-16 bg-green-600 rounded-lg flex justify-center items-center overflow-hidden" target="_blank">
                                 <img src="<?= BASEIMG . $file['task_answer_file'] ?>" alt="">
@@ -107,9 +107,9 @@ $task = $data['task'][0];
 
 
     <!-- Set Finish -->
-    <?php if ($task['progress'] == 'unfinished') { ?>
-        <!-- <form action="<?=BASEURL?>group/complited" class=" mb-9 w-full"> -->
-            <button onclick="window.confirm('Tandai Selesai?') ? window.location.href ='<?=BASEURL?>group/complited' : ''" type="submit" class="bg-own-blue rounded-lg mt-3 h-7 h-10 w-full border-none text-white cursor-pointer">Finish</button>
+    <?php if ($task['progress'] == 'unfinished' && $task['id_profile'] == $_SESSION['id']) { ?>
+        <!-- <form action="<?= BASEURL ?>group/complited" class=" mb-9 w-full"> -->
+        <button onclick="window.confirm('Tandai Selesai?') ? window.location.href ='<?= BASEURL ?>group/complited' : ''" type="submit" class="bg-own-blue rounded-lg mt-3 h-7 h-10 w-full border-none text-white cursor-pointer">Finish</button>
         <!-- </form> -->
     <?php } ?>
 

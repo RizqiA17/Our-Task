@@ -406,7 +406,7 @@
                             <!-- Top Items -->
                             <div class="w-full h-20 rounded-t-2xl from-base-500 to-second-500 bg-gradient-to-r">
                                 <div class="p-4">
-                                    <h3 class="text-base font-medium text-white "><?= $task['mapel'] ?>
+                                    <h3 class="text-base font-medium text-white "><?= $task['grade'] ?>
                                         <p class="text-xs font-normal "><?= $task['name'] ?></p>
                                     </h3>
                                 </div>
@@ -471,7 +471,7 @@
                             <!-- Top Items -->
                             <div class="w-full h-20 rounded-t-2xl from-base-500 to-second-500 bg-gradient-to-r">
                                 <div class="p-4">
-                                    <h3 class="text-base font-medium text-white "><?= $task['mapel'] ?>
+                                    <h3 class="text-base font-medium text-white "><?= $task['grade'] ?>
                                         <p class="text-xs font-normal "><?= $task['name'] ?></p>
                                     </h3>
                                 </div>

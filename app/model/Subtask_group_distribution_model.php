@@ -17,8 +17,8 @@ class Subtask_group_distribution_model{
         // echo "complited";
     }
 
-    public function getDetail($id_profile, $id_task){
-        $this->db->query("SELECT * FROM ".$this->table." JOIN subtask_group ON subtask_group.id = ".$this->table.".id_subtask JOIN task_group ON subtask_group.id_task = task_group.id WHERE id_subtask = ".$id_task." AND id_profile = ".$id_profile."");
+    public function getDetail($id_task){
+        $this->db->query("SELECT * FROM ".$this->table." JOIN subtask_group ON subtask_group.id = ".$this->table.".id_subtask JOIN task_group ON subtask_group.id_task = task_group.id WHERE id_subtask = ".$id_task);
 
         return $this->db->resultSet();
     }

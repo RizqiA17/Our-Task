@@ -54,7 +54,7 @@ class Group extends Controller
             // var_dump($grouplenght);
 
             if (!is_null($data['task'][0]['id_profile_leader'])) {
-                $data['subtask'] = $this->model("Subtask_group_model")->getSubtask($id_task, $data['task']['id_profile_leader']);
+                $data['subtask'] = $this->model("Subtask_group_model")->getSubtask($id_task, $data['task'][0]['id_profile_leader']);
             }
         } else {
             $data['task'] = $this->model('Task_group_model')->getTaskDetail($id_task);
@@ -95,7 +95,7 @@ class Group extends Controller
         // $id_task = $_POST['id_task'];
         $_SESSION['id_subtask'] = $id_task;
         $id_profile = $_SESSION['id'];
-        $data['task'] = $this->model("Subtask_group_distribution_model")->getDetail($id_profile, $id_task);
+        $data['task'] = $this->model("Subtask_group_distribution_model")->getDetail($id_task);
         $data['task_file'] = $this->model("Subtask_file_model")->getFile();
         // var_dump($data);
         $this->view("Group/sub_task_detail", $data);
