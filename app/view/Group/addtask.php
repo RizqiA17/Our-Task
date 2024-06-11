@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="<?= BASEURL ?>css/detail.css">
+    <!-- <link rel="stylesheet" href="<?= BASEURL ?>css/detail.css"> -->
     <link rel="stylesheet" href="<?= BASEURL ?>css/output.css">
     <style>
         input[type='file']::file-selector-button {
@@ -62,7 +62,7 @@
                 </div>
             </div>
             <div class=" w-full text-center font-semibold text-xl mt-5" id="selectLeader">
-                <input type="hidden" class="text-inherit" name="leader" id="leader">
+                <input type="hidden" required class="text-inherit" name="leader" id="leader">
                 Assigned To
             </div>
             <div class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] mt-6">
@@ -80,7 +80,7 @@
 
 
         <div class="bottom">
-            <button onclick="getLeader()" type="submit">Add</button>
+            <button class=" h-10 w-full bg-base-500 text-50" id="btn-add-task" onclick="getLeader()" type="submit">Add</button>
         </div>
     </form>
     <script>
@@ -96,6 +96,12 @@
             }
             // alert(leader)
             document.getElementById('leader').value = leader
+            if (leader == '') {
+                document.getElementById('btn-add-task').setAttribute("type", "button");
+                alert("cek list minimal 1");
+            } else {
+                document.getElementById('btn-add-task').setAttribute("type", "submit");
+            }
         }
 
         function groupLeader() {

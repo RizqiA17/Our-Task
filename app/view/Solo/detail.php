@@ -85,7 +85,7 @@
                                 <img src="<?= BASEIMG . $file['task_answer_file'] ?>" alt="">
                             </a>
                             <div style="margin-left: 10px;">
-                                <a href="<?= BASEIMG . $file['task_answer_file'] ?>" target="_blank">Task Attachments</a>
+                                <a href="<?= BASEIMG . $file['task_answer_file'] ?>" target="_blank"><?=$task['name']?></a>
                                 <div class=" text-gray-400 text-xs">Added <?= date('M j ', strtotime($file['date'])) . 'at ' . date('g:m A', strtotime($file['date'])) ?></div>
                             </div>
                         </div>
