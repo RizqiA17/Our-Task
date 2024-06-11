@@ -27,7 +27,7 @@
 
     <?php
     // var_dump($data);
-    $task = $data['task'];
+    $task = $data['task'][0];
     $deadline = date('l, j F Y', strtotime($task['deadline']));
     ?>
 
