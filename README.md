@@ -1,3 +1,68 @@
+# Panduan Setup Project Laravel di Laptop Masing-Masing
+
+Dokumen ini berisi panduan langkah demi langkah untuk meng-clone dan menjalankan project Laravel yang sudah terintegrasi dengan autentikasi menggunakan JWT (JSON Web Token).
+
+---
+
+## 1. Clone Project
+
+```bash
+git clone https://github.com/username/nama-project.git
+cd nama-project
+```
+
+## 2. Instalasi Dependensi
+
+Instal tymon/jwt-auth
+
+```bash
+composer require tymon/jwt-auth
+```
+
+Publish config
+
+```bash
+php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+```
+
+## 3. Setup Environtment
+
+```bash
+cp .env.example .env
+```
+
+kemudian konfigurasi dataabse pada file `.env`, sebagai contoh:
+
+```.env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=ourtask
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+## 4. Generate Key
+
+```bash
+php artisan key:generate
+php artisan jwt:secret
+```
+
+## 5. Jalankan Migrasi Databse
+
+```bash
+php artisan migrate --seed
+```
+
+## 6. Jalankan project
+
+```bash
+php artisan serve
+```
+
+---
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
