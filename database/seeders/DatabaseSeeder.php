@@ -19,7 +19,13 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
-            'password' => Hash::make('123123123')
+            'password' => Hash::make('123123123'),
+            'slug' => 'test-user'
+        ]);
+
+        $this->call([
+            GroupSeeder::class,
+            MemberSeeder::class,
         ]);
     }
 }
