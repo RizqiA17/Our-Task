@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\GenerateSlug;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\OtpController;
+use App\Http\Controllers\EmailController;
 use Illuminate\Support\Facades\Validator;
+
 
 class AuthController extends Controller
 {
@@ -34,10 +37,13 @@ class AuthController extends Controller
         }
 
         $user = User::create([
+            'slug' => GenerateSlug::generateSlug(User::class, $request->name),
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        EmailController::SendVerificationEmail($request, $user);
 
         if ($user) {
             return $this->login();
@@ -60,6 +66,34 @@ class AuthController extends Controller
         }
 
         return $this->respondWithToken($token);
+    }
+
+    public function verifyOtp()
+    {
+        $request = request();
+        $user = auth()->user();
+        $otp = new OtpController();
+        if ($otp->IsExpired($user->id, $request->otp))
+            return response()->json(['error' => 'OTP Expired'], 410);
+        if ($otp->VerifyOTP($user->id, $request->otp)) {
+            $user->email_verified_at = now();
+            $user->save();
+            return response()->json(['message' => 'Email succesfully verify']);
+        } else {
+            return response()->json(['error' => 'Invalid OTP'], 409);
+        }
+    }
+
+    public function resendOtp()
+    {
+        $request = request();
+        $user = auth()->user();
+
+        if ($user->email_verified_at != null) {
+            return response()->json(['error' => 'Email Already Verified'], 409);
+        }
+        EmailController::SendVerificationEmail($request, $user);
+        return response()->json(['message'=> 'Email successfuly send. Check your mailbox!']);
     }
 
     /**

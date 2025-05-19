@@ -16,4 +16,15 @@ Route::group([
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
 
+    Route::group([
+
+        'prefix' => 'otp'
+    ], function(){
+
+        Route::post('verify', [AuthController::class, 'verifyOtp']);
+        Route::post('resend', [AuthController::class, 'resendOtp']);
+    
+    });
+
+
 });
