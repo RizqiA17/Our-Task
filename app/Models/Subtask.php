@@ -9,4 +9,30 @@ class Subtask extends Model
 {
     /** @use HasFactory<\Database\Factories\SubtaskFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'slug',
+        'task_id',
+        'name',
+        'description',
+        'description_file',
+        'create',
+        'deadline',
+        'progress'
+    ];
+
+    public function task()
+    {
+        return $this->belongsTo(Task::class);
+    }
+
+    public function assignments()
+    {
+        return $this->hasMany(SubtaskAssignments::class);
+    }
+
+    public function submissions()
+    {
+        return $this->hasMany(TaskSubmissions::class);
+    }
 }

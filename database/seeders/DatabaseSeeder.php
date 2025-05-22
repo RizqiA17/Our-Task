@@ -23,9 +23,9 @@ class DatabaseSeeder extends Seeder
             'slug' => 'test-user'
         ]);
 
-        $this->call([
-            GroupSeeder::class,
-            MemberSeeder::class,
-        ]);
+        // $this->call([
+        //     GroupSeeder::class,
+        //     MemberSeeder::class,
+        // ]);
     }
 }

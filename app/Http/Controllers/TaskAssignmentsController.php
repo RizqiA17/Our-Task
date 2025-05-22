@@ -8,6 +8,22 @@ use App\Http\Requests\UpdateTaskAssignmentsRequest;
 
 class TaskAssignmentsController extends Controller
 {
+    public static function assignTask($data)
+    {
+        $taskAssignment = TaskAssignments::create([
+            'task_id' => $data['task_id'],
+            'user_id' => $data['user_id'],
+            'role' => $data['role'],
+            'progress' => $data['progress'],
+        ]);
+
+        if ($taskAssignment) {
+            return response()->json(['message' => 'Task created successfully'], 201);
+        } else {
+            return response()->json(['error' => 'Something went wrong'], 500);
+        }
+    }
+
     /**
      * Display a listing of the resource.
      */

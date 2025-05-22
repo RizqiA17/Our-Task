@@ -5,19 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SubtaskAssignments extends Model
+class PendingMember extends Model
 {
-    /** @use HasFactory<\Database\Factories\SubtaskAssignmentsFactory> */
+    /** @use HasFactory<\Database\Factories\PendingMemberFactory> */
     use HasFactory;
-
+    
     protected $fillable = [
-        'subtask_id',
-        'user_id'
+        'user_id',
+        'group_id',
+        'role',
     ];
 
-    public function subtask()
+    public function group()
     {
-        return $this->belongsTo(Subtask::class);
+        return $this->belongsTo(Group::class);
     }
 
     public function user()

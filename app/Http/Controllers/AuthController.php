@@ -18,10 +18,11 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
-    }
+    
+    // public function __construct()
+    // {
+    //     $this->middleware(['auth','api'], ['except' => ['login', 'register']]);
+    // }
 
     public function register()
     {
@@ -73,8 +74,10 @@ class AuthController extends Controller
         $request = request();
         $user = auth()->user();
         $otp = new OtpController();
+
         if ($otp->IsExpired($user->id, $request->otp))
             return response()->json(['error' => 'OTP Expired'], 410);
+
         if ($otp->VerifyOTP($user->id, $request->otp)) {
             $user->email_verified_at = now();
             $user->save();
@@ -92,6 +95,7 @@ class AuthController extends Controller
         if ($user->email_verified_at != null) {
             return response()->json(['error' => 'Email Already Verified'], 409);
         }
+
         EmailController::SendVerificationEmail($request, $user);
         return response()->json(['message'=> 'Email successfuly send. Check your mailbox!']);
     }
