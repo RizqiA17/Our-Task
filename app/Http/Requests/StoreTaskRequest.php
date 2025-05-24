@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Policies\TaskPolicy;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTaskRequest extends FormRequest
@@ -11,7 +12,8 @@ class StoreTaskRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        $policy = app(TaskPolicy::class);
+        return $policy->create($this->user(), $this->group_id);
     }
 
     /**

@@ -16,6 +16,10 @@ class Group extends Model
         'group_description',
         'group_image',
         'group_banner',
+        'group_key',
+        'group_type',
+        'join_permission',
+        'create_task_permission',
     ];
 
     public function members()

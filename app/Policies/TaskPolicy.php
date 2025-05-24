@@ -2,6 +2,8 @@
 
 namespace App\Policies;
 
+use App\Models\Group;
+use App\Models\Member;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
@@ -27,9 +29,29 @@ class TaskPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(User $user, $groupId = null): bool
     {
-        return false;
+        // Tidak ada group_id = boleh
+        if (is_null($groupId)) {
+            return true;
+        }
+
+        // Cek apakah grupnya ada
+        $group = Group::with('members')->find($groupId);
+
+        if (!$group) {
+            return false;
+        }
+
+        // Role yang diizinkan
+        $allowedRoles = ['owner', 'admin'];
+
+        // Cari user dalam group
+        $member = $group->members()
+                        ->where('user_id', $user->id)
+                        ->first();
+
+        return $member && in_array($member->role, $allowedRoles);
     }
 
     /**

@@ -20,8 +20,7 @@ return new class extends Migration
             $table->string('task_description_file')->nullable();
             $table->foreignId('group_id')->nullable()->constrained('groups');
             $table->foreignId('assigned_by')->nullable()->constrained('users');
-            $table->dateTime('tgl_dibuat')->useCurrent();
-            $table->dateTime('tgl_deadline')->useCurrent();
+            $table->dateTime('deadline')->useCurrent();
             $table->timestamps();
         });        
         
