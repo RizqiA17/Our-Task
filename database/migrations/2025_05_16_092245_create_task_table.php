@@ -30,6 +30,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->enum('role', ['leader', 'member'])->default('member');
             $table->tinyInteger('progress', )->default(0);
+            $table->bigInteger('leader_id')->nullable();
             $table->timestamps();
         
             $table->unique(['task_id', 'user_id']);
@@ -42,7 +43,6 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('description_file')->nullable();
-            $table->dateTime('create')->useCurrent();
             $table->dateTime('deadline')->useCurrent();
             $table->string('progress', 20)->default('unfinished');
             $table->timestamps();

@@ -16,7 +16,6 @@ class Subtask extends Model
         'name',
         'description',
         'description_file',
-        'create',
         'deadline',
         'progress'
     ];

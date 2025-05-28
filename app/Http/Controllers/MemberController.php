@@ -7,7 +7,6 @@ use App\Models\Member;
 use App\Models\PendingMember;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\StoreMemberRequest;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\UpdateMemberRequest;
 

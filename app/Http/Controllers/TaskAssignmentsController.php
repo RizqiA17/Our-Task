@@ -3,26 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\TaskAssignments;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreTaskAssignmentsRequest;
 use App\Http\Requests\UpdateTaskAssignmentsRequest;
 
 class TaskAssignmentsController extends Controller
 {
-    public static function assignTask($data)
-    {
-        $taskAssignment = TaskAssignments::create([
-            'task_id' => $data['task_id'],
-            'user_id' => $data['user_id'],
-            'role' => $data['role'],
-            'progress' => $data['progress'],
-        ]);
-
-        if ($taskAssignment) {
-            return response()->json(['message' => 'Task created successfully'], 201);
-        } else {
-            return response()->json(['error' => 'Something went wrong'], 500);
-        }
-    }
 
     /**
      * Display a listing of the resource.
@@ -45,7 +31,31 @@ class TaskAssignmentsController extends Controller
      */
     public function store(StoreTaskAssignmentsRequest $request)
     {
-        //
+        $validated = Validator::make($request->all(), [
+            'task_id' => 'required|exists:tasks,id',
+            'assigned_to' => 'required|array',
+            'assigned_to.*'=>'exists:users,id',
+        ]);
+
+        if ($validated->fails()) {
+            return response()->json($validated->errors(), 422);
+        }
+
+        foreach ($request->assigned_to as $userId) {
+            $taskAssignment = TaskAssignments::create([
+                'task_id' => $request->task_id,
+                'assigned_to' => $userId,
+                'role' => 'member',
+                'progress' => 0,
+                'leader_id' => auth()->id(),
+            ]);
+        }
+
+        if ($taskAssignment) {
+            return response()->json(['message' => 'Task assignment created successfully'], 201);
+        } else {
+            return response()->json(['error' => 'Something went wrong'], 500);
+        }
     }
 
     /**

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\GenerateSlug;
-use App\Models\Group;
 use App\DeleteUploadedFile;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreTaskRequest;
@@ -136,12 +135,21 @@ class TaskController extends Controller
                 'boolean',
                 function ($attribute, $value, $fail) use ($request) {
                     if (empty($request->group_id) && !$value) {
-                        $fail('Cannot assign task to yourself without a group');
+                        $fail('Cannot assign task except yourself without a group');
                     }
                 }
             ],
-            'assigned_to' => 'required_if:task_type,team|exists:users,id',
-            'deadline' => 'required|date|after:tgl_dibuat',
+            'assigned_to' => [
+                'sometimes',
+                'array',
+                function ($attribute, $value, $fail) use ($request) {
+                    if ($request->group_id == null) {
+                        $fail('Assigned to is for group only.');
+                    }
+                }
+            ],
+            'assigned_to.*' => 'exists:users,id',
+            'deadline' => 'required|date|after:now',
         ]);
 
         if ($validator->fails()) {
@@ -151,7 +159,7 @@ class TaskController extends Controller
         try {
             $me = auth()->user();
             $request['assigned_by'] = $me->id;
-            
+
             // Handle file upload
             $taskDescriptionPath = null;
             if ($request->hasFile('task_description_file')) {
@@ -177,29 +185,36 @@ class TaskController extends Controller
 
             // Assign task leader
             if (!$request->dont_assigned_to_me) {
-                TaskAssignmentsController::assignTask([
-                    'task_id' => $task->id,
+                $task->assignments()->create([
                     'user_id' => $request->assigned_by,
                     'role' => 'leader',
                     'progress' => 0,
                 ]);
             }
 
-            // Assign task members if group exists
-            if ($request->group_id) {
-                $members = $request->assigned_to ?
-                    json_decode($request->assigned_to) :
-                    Group::find($request->group_id)->members()->where('user_id', '!=', $request->assigned_by)->get();
-
+            if ($request->assigned_to && is_array($request->assigned_to)) {
+                foreach ($request->assigned_to as $userId) {
+                    if ($userId !== $request->assigned_by || $task->group()->members()->where('user_id', $userId)->exists()) {
+                        $task->assignments()->create([
+                            'user_id' => $userId,
+                            'role' => 'leader',
+                            'progress' => 0,
+                        ]);
+                    }
+                }
+            } else if ($request->group_id && $request->task_type === 'solo') {
+                $members = $task->group()->members()->all();
                 foreach ($members as $member) {
-                    TaskAssignmentsController::assignTask([
-                        'task_id' => $task->id,
-                        'user_id' => $member->user_id ?? $member,
-                        'role' => 'member',
-                        'progress' => 0,
-                    ]);
+                    if ($member->user_id !== $request->assigned_by) {
+                        $task->assignments()->create([
+                            'user_id' => $member->user_id,
+                            'role' => 'leader',
+                            'progress' => 0,
+                        ]);
+                    }
                 }
             }
+
 
             DB::commit();
             return response()->json(['message' => 'Task created successfully'], 201);

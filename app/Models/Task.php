@@ -26,6 +26,14 @@ class Task extends Model
         return $this->belongsTo(Group::class);
     }
 
+    public function assignments(){
+        return $this->hasMany(TaskAssignments::class);
+    }
+    
+    public function subtasks(){
+        return $this->hasMany(Subtask::class);
+    }
+
     public function assignedBy(){
         return $this->belongsTo(User::class);
     }
