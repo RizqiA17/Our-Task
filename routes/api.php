@@ -33,20 +33,27 @@ Route::middleware(['jwt.auth', 'verified'])->group(function () {
     Route::prefix('task')->group(function () {
 
         Route::post('store', [TaskController::class, 'store']);
-        Route::get('show/{slug}', [TaskController::class, 'show']);
-        Route::put('update/{slug}', [TaskController::class, 'update']);
-        Route::delete('delete/{slug}', [TaskController::class, 'destroy']);
+        Route::get('show/{task:slug}', [TaskController::class, 'show']);
+        Route::put('update/{task:slug}', [TaskController::class, 'update']);
+        Route::delete('delete/{task:slug}', [TaskController::class, 'destroy']);
 
     });
 
     Route::prefix('group')->group(function () {
 
         Route::post('store', [GroupController::class, 'store']);
-        Route::get('show/{slug}', [GroupController::class, 'show']);
-        Route::put('update/{slug}', [GroupController::class, 'update']);
-        Route::delete('delete/{slug}', [GroupController::class, 'destroy']);
+        Route::get('show/{group:slug}', [GroupController::class, 'show']);
+        Route::put('update/{group:slug}', [GroupController::class, 'update']);
+        Route::delete('delete/{group:slug}', [GroupController::class, 'destroy']);
 
         Route::post('join', [MemberController::class, 'store']);
+
+    });
+
+    Route::prefix('home')->group(function () {
+
+        Route::get('group', [GroupController::class, 'index']);
+        Route::get('task', [TaskController::class, 'index']);
 
     });
 
